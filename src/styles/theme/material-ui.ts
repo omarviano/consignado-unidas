@@ -62,9 +62,10 @@ const materialUiTheme = createTheme(
     },
     palette: {
       primary: {
-        main: '#005B9E',
+        main: '#005CE5',
         dark: '#003E6B',
         light: '#00A6D8',
+        contrastText: '#FFFF',
       },
       secondary: {
         main: '#FFDD00',
@@ -87,6 +88,21 @@ const materialUiTheme = createTheme(
         '200': '#828282',
         '300': '#4F4F4F',
         '400': '#333333',
+      },
+    },
+    overrides: {
+      MuiButton: {
+        containedPrimary: {
+          '&.Mui-disabled': {
+            backgroundColor: '#BDBDBD',
+            color: '#FFFF',
+          },
+        },
+        outlinedPrimary: {
+          '&.Mui-disabled': {
+            color: '#BDBDBD',
+          },
+        },
       },
     },
   },
