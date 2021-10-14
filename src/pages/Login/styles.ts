@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import TypographyStyles from '@material-ui/core/Typography';
-import { InputOutlined } from 'components/Inputs/Input';
+import { Input } from 'components/Inputs/Input';
 import { Button } from 'components/Buttons/Button';
 
 import ImageBackground from 'assets/images/background.png';
@@ -17,20 +17,6 @@ export const Container = styled.div`
   background-size: cover;
 `;
 
-export const Card = styled.div`
-  max-width: 589px;
-  max-height: 500px;
-
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  flex-direction: column;
-
-  padding: 120px 120px 70px;
-  background-color: ${({ theme }) => theme.palette.primary.contrastText};
-  border-radius: 8px;
-`;
-
 export const TextAccessAccount = styled(TypographyStyles)`
   color: ${({ theme }) => theme.palette.grey[500]};
   font-size: 24px;
@@ -38,7 +24,7 @@ export const TextAccessAccount = styled(TypographyStyles)`
   margin-bottom: 36px;
 `;
 
-export const InputEmail = styled(InputOutlined)`
+export const InputEmail = styled(Input)`
   margin-bottom: 36px;
 `;
 

@@ -1,11 +1,12 @@
 import React, { FC } from 'react';
 
 import { Formik } from 'components/Formik';
+import { Card } from 'components/Card';
 import * as Styled from './styles';
 
 const Login: FC = () => (
   <Styled.Container>
-    <Styled.Card>
+    <Card>
       <Styled.TextAccessAccount>Acesse sua conta</Styled.TextAccessAccount>
       <Formik initialValues={{}} onSubmit={() => console.log('teste')}>
         <Styled.InputEmail
@@ -36,7 +37,7 @@ const Login: FC = () => (
           Esqueci minha senha
         </Styled.TextSignUp>
       </Styled.ContentTexts> */}
-    </Styled.Card>
+    </Card>
   </Styled.Container>
 );
 

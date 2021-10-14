@@ -3,7 +3,7 @@ import { IconBaseProps } from 'react-icons';
 
 import { TextFieldProps } from '@material-ui/core';
 
-export type InputOutlinedProps = TextFieldProps & {
+export type InputProps = TextFieldProps & {
   name: string;
   label: string;
   value?: string;
