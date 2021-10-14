@@ -88,6 +88,7 @@ const materialUiTheme = createTheme(
         '200': '#828282',
         '300': '#4F4F4F',
         '400': '#333333',
+        '500': '#848484',
       },
     },
     overrides: {

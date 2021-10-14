@@ -4,7 +4,7 @@ import ButtonStyles from '@material-ui/core/Button';
 
 export const Button = styled(ButtonStyles)`
   height: 50px;
-  border-radius: 30px;
+  border-radius: 60px;
 
   &.MuiButton-outlined {
     border: 1px solid;

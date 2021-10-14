@@ -12,6 +12,7 @@ import {
   StylesProvider,
 } from '@material-ui/core';
 import { MuiPickersUtilsProvider as ThemeProviderPickers } from '@material-ui/pickers';
+import { Routes } from './routes';
 
 const App: FC = () => (
   <ThemeProviderMaterialUi theme={materialUiTheme}>
@@ -20,6 +21,7 @@ const App: FC = () => (
         <ThemeProviderStyledComponents theme={materialUiTheme}>
           <GlobalStyles />
           <CssBaseline />
+          <Routes />
         </ThemeProviderStyledComponents>
       </StylesProvider>
     </ThemeProviderPickers>
