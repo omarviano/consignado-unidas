@@ -7,9 +7,13 @@ export interface LoginCredentials {
   password: string;
 }
 
+export type User = {
+  name: string;
+};
+
 export type TokenProps = {
   token: string;
-  name: string;
+  user: User;
 };
 
 export type AuthResponse = {
@@ -17,7 +21,7 @@ export type AuthResponse = {
 };
 
 export interface AuthState {
-  user: TokenProps | null;
+  data: TokenProps | null;
   isAuthenticating: boolean;
   requestProfileStatus: RequestStatus;
 }

@@ -6,7 +6,7 @@ import { getToken } from './storage';
 
 const initialState: AuthState = {
   isAuthenticating: false,
-  user: getToken(),
+  data: getToken(),
   requestProfileStatus: {
     error: false,
     loading: false,
@@ -27,17 +27,17 @@ const authReducer: Reducer<AuthState, AuthReducerActionMap> = (
       return state;
 
     case AuthActions.RequestUserSuccess:
-      state.user = action.payload.data.token;
+      state.data = action.payload.data.token;
       state.isAuthenticating = false;
       return state;
 
     case AuthActions.RequestUserError:
-      state.user = null;
+      state.data = null;
       state.isAuthenticating = false;
       return state;
 
     case AuthActions.SignOut:
-      state.user = null;
+      state.data = null;
       return state;
 
     default:

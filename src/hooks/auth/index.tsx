@@ -15,7 +15,6 @@ import {
   AuthContextData,
   LoginCredentials,
   AuthActions,
-  AuthResponse,
   AuthContextProviderProps,
 } from './props';
 import authReducer, { initialState } from './reducer';
@@ -33,13 +32,14 @@ export const AuthProvider: FC<AuthContextProviderProps> = props => {
   );
 
   const isAuthenticated = useMemo(
-    () => state.user?.token != null,
-    [state.user?.token],
+    () => state.data?.token != null,
+    [state.data?.token],
   );
 
   useEffect(() => {
-    persistToken(state.user);
-    api.defaults.headers.authorization = `Bearer ${state.user?.token}`;
+    persistToken(state.data);
+    api.defaults.headers.authorization = `Bearer ${state.data?.token}`;
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -49,9 +49,10 @@ export const AuthProvider: FC<AuthContextProviderProps> = props => {
 
       credentials.cpf = Document.removeMask(credentials.cpf);
 
-      const response = await api.post<AuthResponse>('/auth', credentials);
-      const { token } = response.data;
-      persistToken(token);
+      const response = await api.post('/auth', credentials);
+      const { data } = response.data;
+      persistToken(data);
+
       dispatch({ type: AuthActions.RequestUserSuccess, payload: response });
     } catch (error) {
       dispatch({ type: AuthActions.RequestUserError });
