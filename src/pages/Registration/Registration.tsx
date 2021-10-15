@@ -4,7 +4,7 @@ import { ExitToApp, ArrowBack, ArrowRightAlt } from '@material-ui/icons';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import { Checkbox, InputLabel } from '@material-ui/core';
+import { Checkbox, Grid, InputLabel } from '@material-ui/core';
 import { DatePicker } from '@material-ui/pickers';
 
 import { Formik } from 'components/Formik';
@@ -161,7 +161,7 @@ const Registration: React.FC = () => {
               name="cellphone"
               type="text"
               label="Digite o número do seu telefone"
-              placeholder="Seu melhor email"
+              placeholder="(XX)XXXXX-XXXX"
               variant="outlined"
               mask="(99)99999-9999"
             />
@@ -192,7 +192,6 @@ const Registration: React.FC = () => {
               label="Cadastre uma senha"
               placeholder="Cadastre um senha"
               variant="outlined"
-              mask="(99)99999-9999"
             />
 
             <Input
@@ -201,7 +200,6 @@ const Registration: React.FC = () => {
               label="Confirme sua senha"
               placeholder="Confirme sua senha"
               variant="outlined"
-              mask="(99)99999-9999"
             />
 
             <Styled.ContinueButton
@@ -332,8 +330,50 @@ const Registration: React.FC = () => {
                   placeholder="Banco"
                   variant="outlined"
                 />
+
+                <Grid container spacing={1}>
+                  <Grid item xs={6}>
+                    <Input
+                      name="agencia"
+                      type="text"
+                      label="Agência"
+                      placeholder="N° da sua agência"
+                      variant="outlined"
+                    />
+                  </Grid>
+
+                  <Grid item xs={7}>
+                    <Input
+                      name="numConta"
+                      type="text"
+                      label="N° da Conta Corrente"
+                      placeholder="XXXXXX"
+                      variant="outlined"
+                    />
+                  </Grid>
+
+                  <Grid item xs={2}>
+                    <Input
+                      name="digito"
+                      type="text"
+                      label="Digito"
+                      placeholder="Digito"
+                      variant="outlined"
+                    />
+                  </Grid>
+                </Grid>
               </Styled.BankDataInputs>
             </Styled.BankDataContainer>
+
+            <Styled.ContinueButton
+              type="submit"
+              size="small"
+              variant="contained"
+              color="primary"
+              onClick={handleClickNext}
+            >
+              Finalizar cadastro
+            </Styled.ContinueButton>
           </Styled.Step>
         </Styled.StepsContainer>
       </Formik>

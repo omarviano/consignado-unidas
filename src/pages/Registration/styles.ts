@@ -49,6 +49,10 @@ export const Step = styled.div<StepProps>`
   margin: auto;
   visibility: ${({ currentStep, step }) =>
     step === currentStep ? 'visible' : 'hidden'};
+
+  .MuiFormControl-root + .MuiFormControl-root {
+    margin-top: 32px;
+  }
 `;
 
 export const StepTitle = styled.p`
@@ -153,4 +157,9 @@ export const BankDataContainer = styled.div``;
 
 export const BankDataInputs = styled.div`
   margin-top: 32px;
+
+  .MuiGrid-container,
+  .MuiGrid-item + .MuiGrid-item {
+    margin-top: 30px;
+  }
 `;
