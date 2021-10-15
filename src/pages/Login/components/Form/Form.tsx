@@ -26,7 +26,7 @@ const Form: FC = memo(() => {
       <Styled.InputEmail
         variant="outlined"
         name="cpf"
-        label="cpf"
+        label="Cpf"
         placeholder="Seu Cpf"
         mask="999.999.999-99"
       />
