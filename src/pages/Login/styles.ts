@@ -1,7 +1,5 @@
 import styled from 'styled-components';
 import TypographyStyles from '@material-ui/core/Typography';
-import { Input } from 'components/Inputs/Input';
-import { Button } from 'components/Buttons/Button';
 
 import ImageBackground from 'assets/images/background.png';
 
@@ -23,14 +21,6 @@ export const TextAccessAccount = styled(TypographyStyles)`
   font-weight: 400;
   margin-bottom: 36px;
 `;
-
-export const InputEmail = styled(Input)`
-  margin-bottom: 36px;
-`;
-
-export const InputPassword = styled(InputEmail)``;
-
-export const ButtonEnter = styled(Button)``;
 
 export const ContentTexts = styled.div`
   display: flex;

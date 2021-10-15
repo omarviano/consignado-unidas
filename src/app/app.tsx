@@ -5,7 +5,7 @@ import { ThemeProvider as ThemeProviderStyledComponents } from 'styled-component
 import { GlobalStyles } from 'styles';
 import { materialUiTheme } from 'styles/theme/material-ui';
 import DateFnsUtils from '@date-io/date-fns';
-
+import { AppProvider } from 'hooks';
 import {
   ThemeProvider as ThemeProviderMaterialUi,
   CssBaseline,
@@ -21,7 +21,9 @@ const App: FC = () => (
         <ThemeProviderStyledComponents theme={materialUiTheme}>
           <GlobalStyles />
           <CssBaseline />
-          <Routes />
+          <AppProvider>
+            <Routes />
+          </AppProvider>
         </ThemeProviderStyledComponents>
       </StylesProvider>
     </ThemeProviderPickers>
