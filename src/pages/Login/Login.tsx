@@ -1,33 +1,14 @@
 import React, { FC } from 'react';
 
-import { Formik } from 'components/Formik';
 import { Card } from 'components/Card';
 import * as Styled from './styles';
+import { Form } from './components/Form';
 
 const Login: FC = () => (
   <Styled.Container>
     <Card>
       <Styled.TextAccessAccount>Acesse sua conta</Styled.TextAccessAccount>
-      <Formik initialValues={{}} onSubmit={() => console.log('teste')}>
-        <Styled.InputEmail
-          variant="outlined"
-          name="email"
-          label="E-mail"
-          placeholder="Seu Email"
-        />
-
-        <Styled.InputPassword
-          variant="outlined"
-          name="password"
-          label="Sua Senha"
-          placeholder="Senha"
-          type="password"
-        />
-
-        <Styled.ButtonEnter variant="contained" color="primary">
-          Entrar
-        </Styled.ButtonEnter>
-      </Formik>
+      <Form />
       {/* //TODO vai entrar na proxima estoria
       <Styled.ContentTexts>
         <Styled.TextSignUp color="primary" variant="h3">
