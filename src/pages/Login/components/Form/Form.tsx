@@ -1,4 +1,5 @@
-import { FC, memo, useCallback, useMemo, useState } from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import { FC, memo, useCallback, useEffect, useMemo, useState } from 'react';
 
 import { Formik } from 'components/Formik';
 import { ReactComponent as EyeHide } from 'assets/icons/eye-hide.svg';
@@ -6,14 +7,15 @@ import { ReactComponent as Eye } from 'assets/icons/eye.svg';
 
 import { useAuth } from 'hooks/auth';
 import { LoginCredentials } from 'hooks/auth/props';
+import { schema } from './schema';
+import { useModalLogin } from '../ModalLogin/context';
 
 import * as Styled from './styles';
 
-import { schema } from './schema';
-
 const Form: FC = memo(() => {
-  const { signIn } = useAuth();
+  const { signIn, modalActive, resetModalActive, isAuthenticating } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
+  const { toggleModal } = useModalLogin();
 
   const initialValues: LoginCredentials = {
     cpf: '',
@@ -35,10 +37,22 @@ const Form: FC = memo(() => {
     [showPassword],
   );
 
+  const handleSubmit = useCallback((values: LoginCredentials) => {
+    signIn(values);
+    resetModalActive();
+  }, []);
+
+  useEffect(() => {
+    if (modalActive) return toggleModal();
+    return () => {
+      <> </>;
+    };
+  }, [modalActive]);
+
   return (
     <Formik
       initialValues={initialValues}
-      onSubmit={signIn}
+      onSubmit={handleSubmit}
       validationSchema={schema}
     >
       <Styled.InputEmail
@@ -69,7 +83,12 @@ const Form: FC = memo(() => {
         }}
       />
 
-      <Styled.ButtonEnter variant="contained" color="primary" type="submit">
+      <Styled.ButtonEnter
+        variant="contained"
+        color="primary"
+        type="submit"
+        disabled={isAuthenticating}
+      >
         Entrar
       </Styled.ButtonEnter>
     </Formik>

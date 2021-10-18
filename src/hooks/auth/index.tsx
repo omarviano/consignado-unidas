@@ -6,6 +6,7 @@ import {
   FC,
   useMemo,
   useReducer,
+  useState,
 } from 'react';
 
 import { api } from 'services/api';
@@ -25,6 +26,8 @@ const AuthContext = createContext(initialValues);
 
 export const AuthProvider: FC<AuthContextProviderProps> = props => {
   const { children, initialProps } = props;
+  const [messageError, setMessageError] = useState('');
+  const [modalActive, setModalActive] = useState(false);
 
   const [state, dispatch] = useReducer(
     authReducer,
@@ -49,7 +52,11 @@ export const AuthProvider: FC<AuthContextProviderProps> = props => {
       persistToken(data);
 
       dispatch({ type: AuthActions.RequestUserSuccess, payload: response });
-    } catch (error) {
+    } catch (error: any) {
+      const { response } = error;
+      const { ...errorObject } = response;
+      setMessageError(errorObject.data.message);
+      setModalActive(true);
       dispatch({ type: AuthActions.RequestUserError });
     }
   }, []);
@@ -59,15 +66,22 @@ export const AuthProvider: FC<AuthContextProviderProps> = props => {
     dispatch({ type: AuthActions.SignOut });
   }, []);
 
+  const resetModalActive = useCallback(() => {
+    setModalActive(false);
+  }, []);
+
   const isAuthenticated = useMemo(() => state.data !== null, [state.data]);
 
   return (
     <AuthContext.Provider
       value={{
         ...state,
+        resetModalActive,
+        messageError,
         isAuthenticated,
         signIn,
         signOut,
+        modalActive,
       }}
     >
       {children}
