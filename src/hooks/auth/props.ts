@@ -1,6 +1,5 @@
 import { AxiosResponse } from 'axios';
 import { ActionMapData } from 'hooks/props';
-import { RequestStatus } from 'interface/common';
 
 export interface LoginCredentials {
   cpf: string;
@@ -23,7 +22,6 @@ export type AuthResponse = {
 export interface AuthState {
   data: TokenProps | null;
   isAuthenticating: boolean;
-  requestProfileStatus: RequestStatus;
 }
 
 export enum AuthActions {

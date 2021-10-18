@@ -31,11 +31,6 @@ export const AuthProvider: FC<AuthContextProviderProps> = props => {
     initialProps || initialState,
   );
 
-  const isAuthenticated = useMemo(
-    () => state.data?.token != null,
-    [state.data?.token],
-  );
-
   useEffect(() => {
     persistToken(state.data);
     api.defaults.headers.authorization = `Bearer ${state.data?.token}`;
@@ -63,6 +58,8 @@ export const AuthProvider: FC<AuthContextProviderProps> = props => {
     clearPersistedToken();
     dispatch({ type: AuthActions.SignOut });
   }, []);
+
+  const isAuthenticated = useMemo(() => state.data !== null, [state.data]);
 
   return (
     <AuthContext.Provider
