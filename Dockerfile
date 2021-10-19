@@ -1,5 +1,5 @@
 ### STAGE 1: Build ###
-FROM node:10 AS build
+FROM node:12 AS build
 ARG yarn_build=build:prod
 WORKDIR /usr/src/app
 COPY package.json yarn.lock ./
