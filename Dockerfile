@@ -2,7 +2,7 @@
 FROM node:10 AS build
 ARG npm_build_command=build:prod
 WORKDIR /usr/src/app
-COPY package.json package-lock.json ./
+COPY package.json ./
 RUN npm install
 COPY . .
 RUN npm run $npm_build_command
