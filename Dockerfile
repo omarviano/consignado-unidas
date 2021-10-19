@@ -1,11 +1,11 @@
 ### STAGE 1: Build ###
 FROM node:12 AS build
-ARG yarn_build=build:prod
+ARG npm_build_command=build:prod
 WORKDIR /usr/src/app
-COPY package.json yarn.lock ./
-RUN yarn
+COPY package.json package-lock.json ./
+RUN npm install
 COPY . .
-RUN yarn build
+RUN npm run $npm_build_command
 
 ### STAGE 2: Run ###
 FROM nginx:1.21.1
