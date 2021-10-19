@@ -1,5 +1,5 @@
 ### STAGE 1: Build ###
-FROM node:12 AS build
+FROM node:10 AS build
 ARG npm_build_command=build:prod
 WORKDIR /usr/src/app
 COPY package.json package-lock.json ./
