@@ -29,6 +29,12 @@ export const Header = styled.div`
   }
 `;
 
+export const Container = styled.div`
+  .modal-error {
+    background: red;
+  }
+`;
+
 export const StepsContainer = styled.div`
   position: absolute;
   width: 100%;
@@ -70,7 +76,7 @@ export const BackButton = styled.button`
   margin: 0 auto 36px 0;
 `;
 
-export const EmailModalContent = styled(Box)`
+export const ModalContent = styled(Box)`
   position: absolute;
   top: 50%;
   left: 50%;

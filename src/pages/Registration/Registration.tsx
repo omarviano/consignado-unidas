@@ -1,7 +1,15 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { ExitToApp, ArrowBack, MailOutlined } from '@material-ui/icons';
-import { Badge, Modal } from '@material-ui/core';
+import {
+  Badge,
+  Dialog,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  Modal,
+} from '@material-ui/core';
+import { AxiosError } from 'axios';
 
 import useModal from 'hooks/modal';
 
@@ -25,6 +33,8 @@ const Registration: React.FC = () => {
   const [currentStep, setCurrentStep] = useState(0);
   const [formsData, setFormsData] = useState<Register>();
   const { open: emailModalOpen, toggle: toggleEmailModal } = useModal();
+  const { open: errorModalOpen, toggle: toggleErrorModal } = useModal();
+  const [responseErros, setResponseErros] = useState<string>();
   const history = useHistory();
 
   const handleClickPrev = (): void => {
@@ -50,9 +60,10 @@ const Registration: React.FC = () => {
       });
 
       toggleEmailModal();
-      history.push('/');
     } catch (error) {
-      console.log('error', error);
+      const { response } = error as AxiosError;
+      setResponseErros(response?.data?.errors?.join(', '));
+      toggleErrorModal();
     }
   };
 
@@ -66,8 +77,12 @@ const Registration: React.FC = () => {
     registration({ ...formsData, ...data });
   };
 
+  const onModalEmailClose = (): void => {
+    history.push('/');
+  };
+
   return (
-    <>
+    <Styled.Container>
       <Styled.Header>
         <Link to="/">
           Login
@@ -146,8 +161,8 @@ const Registration: React.FC = () => {
         </Styled.Step>
       </Styled.StepsContainer>
 
-      <Modal open={emailModalOpen} onClose={toggleEmailModal}>
-        <Styled.EmailModalContent>
+      <Modal open={emailModalOpen} onClose={onModalEmailClose}>
+        <Styled.ModalContent>
           <Badge badgeContent="!" color="secondary">
             <MailOutlined color="action" fontSize="large" />
           </Badge>
@@ -156,9 +171,17 @@ const Registration: React.FC = () => {
             Olá <b>{formsData?.name}</b>? Favor acessar o seu e-mail e confirmar
             a conta.
           </Styled.EmailModalText>
-        </Styled.EmailModalContent>
+        </Styled.ModalContent>
       </Modal>
-    </>
+
+      <Dialog open={errorModalOpen} onClose={toggleErrorModal}>
+        <DialogTitle>Erro ao tentar fazer o cadastro</DialogTitle>
+
+        <DialogContent>
+          <DialogContentText>{responseErros}</DialogContentText>
+        </DialogContent>
+      </Dialog>
+    </Styled.Container>
   );
 };
 

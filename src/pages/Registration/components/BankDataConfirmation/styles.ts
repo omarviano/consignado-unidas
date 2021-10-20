@@ -55,7 +55,7 @@ export const TermsLink = styled.button`
 
 export const IAgreeTermsContainerButtons = styled.div`
   display: flex;
-  margin-top: 32px;
+  margin: 32px 0;
 
   button + button {
     margin-left: 40px;

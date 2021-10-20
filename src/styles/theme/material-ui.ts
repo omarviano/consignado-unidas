@@ -74,20 +74,20 @@ const materialUiTheme = createTheme(
         contrastText: '#E3F6FD',
       },
       error: {
-        main: '#EB5757',
+        main: '#D81616',
       },
       success: {
-        main: '#27AE60',
+        main: '#08803A',
       },
       warning: {
         main: '#F2C94C',
       },
       grey: {
-        '50': '#D1D3D4',
-        '100': '#BDBDBD',
-        '200': '#828282',
+        '50': '#C4C4C4',
+        '100': '#848484',
+        '200': '#646464',
         '300': '#4F4F4F',
-        '400': '#333333',
+        '400': '#3D3D3D',
         '500': '#848484',
       },
     },

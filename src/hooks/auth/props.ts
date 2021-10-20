@@ -1,15 +1,18 @@
 import { AxiosResponse } from 'axios';
 import { ActionMapData } from 'hooks/props';
-import { RequestStatus } from 'interface/common';
 
 export interface LoginCredentials {
   cpf: string;
   password: string;
 }
 
+export type User = {
+  name: string;
+};
+
 export type TokenProps = {
   token: string;
-  name: string;
+  user: User;
 };
 
 export type AuthResponse = {
@@ -17,9 +20,8 @@ export type AuthResponse = {
 };
 
 export interface AuthState {
-  user: TokenProps | null;
+  data: TokenProps | null;
   isAuthenticating: boolean;
-  requestProfileStatus: RequestStatus;
 }
 
 export enum AuthActions {
@@ -48,4 +50,7 @@ export type AuthContextData = AuthState & {
   isAuthenticated: boolean;
   signIn(credentials: LoginCredentials): Promise<void>;
   signOut(): void;
+  messageError: string;
+  modalActive: boolean;
+  resetModalActive(): void;
 };

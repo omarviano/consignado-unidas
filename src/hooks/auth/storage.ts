@@ -5,9 +5,9 @@ const storage = typeof window !== 'undefined' ? localStorage : null;
 
 const AUTH_PERSIST_KEY = '@UserInfo:persist';
 
-export const persistToken = (user: TokenProps | null) => {
+export const persistToken = (data: TokenProps | null) => {
   if (!storage) return;
-  storage.setItem(AUTH_PERSIST_KEY, JSON.stringify(user));
+  storage.setItem(AUTH_PERSIST_KEY, JSON.stringify(data));
 };
 
 export const clearPersistedToken = () => {

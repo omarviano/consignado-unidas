@@ -6,6 +6,7 @@ import {
   FC,
   useMemo,
   useReducer,
+  useState,
 } from 'react';
 
 import { api } from 'services/api';
@@ -15,7 +16,6 @@ import {
   AuthContextData,
   LoginCredentials,
   AuthActions,
-  AuthResponse,
   AuthContextProviderProps,
 } from './props';
 import authReducer, { initialState } from './reducer';
@@ -26,20 +26,18 @@ const AuthContext = createContext(initialValues);
 
 export const AuthProvider: FC<AuthContextProviderProps> = props => {
   const { children, initialProps } = props;
+  const [messageError, setMessageError] = useState('');
+  const [modalActive, setModalActive] = useState(false);
 
   const [state, dispatch] = useReducer(
     authReducer,
     initialProps || initialState,
   );
 
-  const isAuthenticated = useMemo(
-    () => state.user?.token != null,
-    [state.user?.token],
-  );
-
   useEffect(() => {
-    persistToken(state.user);
-    api.defaults.headers.authorization = `Bearer ${state.user?.token}`;
+    persistToken(state.data);
+    api.defaults.headers.authorization = `Bearer ${state.data?.token}`;
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -49,11 +47,16 @@ export const AuthProvider: FC<AuthContextProviderProps> = props => {
 
       credentials.cpf = Document.removeMask(credentials.cpf);
 
-      const response = await api.post<AuthResponse>('/auth', credentials);
-      const { token } = response.data;
-      persistToken(token);
+      const response = await api.post('/auth', credentials);
+      const { data } = response.data;
+      persistToken(data);
+
       dispatch({ type: AuthActions.RequestUserSuccess, payload: response });
-    } catch (error) {
+    } catch (error: any) {
+      const { response } = error;
+      const { ...errorObject } = response;
+      setMessageError(errorObject.data.message);
+      setModalActive(true);
       dispatch({ type: AuthActions.RequestUserError });
     }
   }, []);
@@ -63,13 +66,22 @@ export const AuthProvider: FC<AuthContextProviderProps> = props => {
     dispatch({ type: AuthActions.SignOut });
   }, []);
 
+  const resetModalActive = useCallback(() => {
+    setModalActive(false);
+  }, []);
+
+  const isAuthenticated = useMemo(() => state.data !== null, [state.data]);
+
   return (
     <AuthContext.Provider
       value={{
         ...state,
+        resetModalActive,
+        messageError,
         isAuthenticated,
         signIn,
         signOut,
+        modalActive,
       }}
     >
       {children}
