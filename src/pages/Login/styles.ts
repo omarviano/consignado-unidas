@@ -30,6 +30,15 @@ export const ContentTexts = styled.div`
   margin-top: 17px;
 `;
 
-export const TextSignUp = styled(TypographyStyles)``;
+export const TextSignUp = styled(TypographyStyles)`
+  a {
+    color: inherit;
+  }
+
+  a:hover,
+  a:focus {
+    text-decoration: underline;
+  }
+`;
 
 export const TextForgotPassword = styled(TypographyStyles)``;

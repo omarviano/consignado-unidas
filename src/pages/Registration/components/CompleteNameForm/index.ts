@@ -1,0 +1,1 @@
+export { CompleteNameForm } from './CompleteNameForm';
