@@ -14,7 +14,7 @@ const CPFForm: React.FC<CPFFormProps> = ({ onSubmit }) => (
     onSubmit={onSubmit}
     validationSchema={schema}
     validateOnBlur={false}
-    validateOnChange
+    validateOnChange={false}
   >
     <StepTitle>
       Para começar a simulação, precisamos que informe alguns dados ok? É bem
