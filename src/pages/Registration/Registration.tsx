@@ -1,14 +1,12 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { ExitToApp, ArrowBack, MailOutlined } from '@material-ui/icons';
 import {
-  Badge,
-  Dialog,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
-  Modal,
-} from '@material-ui/core';
+  ExitToApp,
+  ArrowBack,
+  MailOutlined,
+  Warning,
+} from '@material-ui/icons';
+import { Badge, Dialog, DialogContent, Modal } from '@material-ui/core';
 import { AxiosError } from 'axios';
 
 import useModal from 'hooks/modal';
@@ -32,9 +30,10 @@ const NUMBER_OF_STEPS = 8;
 const Registration: React.FC = () => {
   const [currentStep, setCurrentStep] = useState(0);
   const [formsData, setFormsData] = useState<Register>();
+  const [responseErros, setResponseErros] = useState<string>();
+  const [registering, setRegistering] = useState(false);
   const { open: emailModalOpen, toggle: toggleEmailModal } = useModal();
   const { open: errorModalOpen, toggle: toggleErrorModal } = useModal();
-  const [responseErros, setResponseErros] = useState<string>();
   const history = useHistory();
 
   const handleClickPrev = (): void => {
@@ -53,6 +52,8 @@ const Registration: React.FC = () => {
 
   const registration = async (data: Register): Promise<void> => {
     try {
+      setRegistering(true);
+
       await RegistrationServices.register({
         ...data,
         cpf: data.cpf.replace(/\D/g, ''),
@@ -64,6 +65,8 @@ const Registration: React.FC = () => {
       const { response } = error as AxiosError;
       setResponseErros(response?.data?.errors?.join(', '));
       toggleErrorModal();
+    } finally {
+      setRegistering(false);
     }
   };
 
@@ -141,6 +144,7 @@ const Registration: React.FC = () => {
           </Styled.BackButton>
 
           <BankDataConfirmation
+            submitting={registering}
             onSubmit={onSubmit}
             onClickNoButton={registerWhithoutBankData}
             username={formsData?.name}
@@ -154,6 +158,7 @@ const Registration: React.FC = () => {
           </Styled.BackButton>
 
           <BankDataForm
+            submitting={registering}
             onSubmit={completeRegistration}
             username={formsData?.name}
             email={formsData?.email}
@@ -174,11 +179,13 @@ const Registration: React.FC = () => {
         </Styled.ModalContent>
       </Modal>
 
-      <Dialog open={errorModalOpen} onClose={toggleErrorModal}>
-        <DialogTitle>Erro ao tentar fazer o cadastro</DialogTitle>
+      <Dialog open={errorModalOpen} onClose={toggleErrorModal} fullWidth>
+        <Styled.DialogTitle>
+          <Warning color="error" />
+        </Styled.DialogTitle>
 
         <DialogContent>
-          <DialogContentText>{responseErros}</DialogContentText>
+          <Styled.DialogContentText>{responseErros}</Styled.DialogContentText>
         </DialogContent>
       </Dialog>
     </Styled.Container>

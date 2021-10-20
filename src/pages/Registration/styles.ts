@@ -1,4 +1,8 @@
-import { Box } from '@material-ui/core';
+import {
+  Box,
+  DialogContentText as DialogContentTextMUI,
+  DialogTitle as DialogTitleMUI,
+} from '@material-ui/core';
 import styled, { css } from 'styled-components';
 
 interface StepProps {
@@ -30,8 +34,8 @@ export const Header = styled.div`
 `;
 
 export const Container = styled.div`
-  .modal-error {
-    background: red;
+  .dialog-icon {
+    margin: auto !important;
   }
 `;
 
@@ -92,4 +96,12 @@ export const EmailModalText = styled.p`
   margin-top: 32px;
   font-size: 18px;
   line-height: 34px;
+`;
+
+export const DialogTitle = styled(DialogTitleMUI)`
+  text-align: center;
+`;
+
+export const DialogContentText = styled(DialogContentTextMUI)`
+  text-align: center;
 `;

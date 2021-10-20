@@ -13,6 +13,7 @@ import * as Styled from './styles';
 import { BankDataFormProps } from './props';
 
 const BankDataForm: React.FC<BankDataFormProps> = ({
+  submitting,
   onSubmit,
   username,
   email,
@@ -78,9 +79,7 @@ const BankDataForm: React.FC<BankDataFormProps> = ({
         size="small"
         variant="contained"
         color="primary"
-        style={{
-          marginBottom: 24,
-        }}
+        disabled={submitting}
       />
     </Formik>
   );

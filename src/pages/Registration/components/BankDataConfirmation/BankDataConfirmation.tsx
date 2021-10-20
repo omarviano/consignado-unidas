@@ -9,6 +9,7 @@ import * as Styled from './styles';
 import { BankDataConfirmationProps } from './props';
 
 const BankDataConfirmation: React.FC<BankDataConfirmationProps> = ({
+  submitting,
   onSubmit,
   onClickNoButton,
   username,
@@ -47,8 +48,9 @@ const BankDataConfirmation: React.FC<BankDataConfirmationProps> = ({
           variant="outlined"
           color="primary"
           onClick={onClickNoButton}
+          disabled={submitting}
         >
-          Agora não
+          {submitting ? 'Cadastrando...' : 'Agora não'}
         </Button>
       </Styled.IAgreeTermsContainerButtons>
     </Styled.BankDetailsConfirmationContainer>
