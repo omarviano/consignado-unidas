@@ -12,7 +12,7 @@ export const Header = styled.div`
   display: flex;
   width: 100%;
   height: 54px;
-  background-color: ${({ theme }) => theme.palette.secondary.dark};
+  background-color: ${({ theme }) => theme.palette.secondary.main};
   padding: 0 8%;
   z-index: 999;
 

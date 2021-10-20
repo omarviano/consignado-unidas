@@ -1,13 +1,22 @@
-import React from 'react';
+import React, { useMemo } from 'react';
+import { useFormikContext } from 'formik';
 import { ArrowRightAlt } from '@material-ui/icons';
 
 import { ContinueButtonProps } from './props';
 import * as Styled from './styles';
 
-const ContinueButton: React.FC<ContinueButtonProps> = props => (
-  <Styled.ContinueButton {...props}>
-    Continuar <ArrowRightAlt />
-  </Styled.ContinueButton>
-);
+const ContinueButton: React.FC<ContinueButtonProps> = ({
+  disabled,
+  ...rest
+}) => {
+  const { isValid } = useFormikContext();
+  const isDisabled = useMemo(() => !isValid || disabled, [disabled, isValid]);
+
+  return (
+    <Styled.ContinueButton {...rest} disabled={isDisabled}>
+      Continuar <ArrowRightAlt />
+    </Styled.ContinueButton>
+  );
+};
 
 export { ContinueButton };
