@@ -1,42 +1,33 @@
-import React, { useState } from 'react';
-import { KeyboardDatePicker } from '@material-ui/pickers';
+import React from 'react';
 
 import { Formik } from 'components/Formik';
+import { DatePicker } from 'components/DatePicker';
 import { StepSmallTitle } from '../StepSmallTitle';
-import { ContinueButton } from '../ContinueButton/styles';
+import { ContinueButton } from '../ContinueButton';
 
 import { schema } from './schema';
 
 import { BirthDateFormProps } from './props';
 
-const BirthDateForm: React.FC<BirthDateFormProps> = ({ onSubmit }) => {
-  const [selectedDate, handleDateChange] = useState(new Date());
+const BirthDateForm: React.FC<BirthDateFormProps> = ({ onSubmit }) => (
+  <Formik initialValues={{}} validationSchema={schema} onSubmit={onSubmit}>
+    <StepSmallTitle>Qual a sua data de nascimento?</StepSmallTitle>
 
-  return (
-    <Formik initialValues={{}} validationSchema={schema} onSubmit={onSubmit}>
-      <StepSmallTitle>Qual a sua data de nascimento?</StepSmallTitle>
+    <DatePicker
+      name="birthDate"
+      maxDate={new Date()}
+      minDateMessage="Data de nascimento inválida"
+      maxDateMessage="Data de nascimento inválida"
+      invalidDateMessage="Data de nascimento inválida"
+    />
 
-      <KeyboardDatePicker
-        value={selectedDate}
-        placeholder="10/10/2018"
-        onChange={date => console.log(date)}
-        format="dd/MM/yyyy"
-        variant="dialog"
-        name="birthDate"
-        todayLabel="Hoje"
-        cancelLabel="Cancelar"
-        clearable={false}
-        inputVariant="outlined"
-      />
-
-      <ContinueButton
-        type="submit"
-        size="small"
-        variant="contained"
-        color="primary"
-      />
-    </Formik>
-  );
-};
+    <ContinueButton
+      type="submit"
+      size="small"
+      variant="contained"
+      color="primary"
+    />
+  </Formik>
+);
 
 export { BirthDateForm };

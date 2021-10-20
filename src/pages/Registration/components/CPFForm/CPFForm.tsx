@@ -9,7 +9,13 @@ import { schema } from './schema';
 import { CPFFormProps } from './props';
 
 const CPFForm: React.FC<CPFFormProps> = ({ onSubmit }) => (
-  <Formik initialValues={{}} onSubmit={onSubmit} validationSchema={schema}>
+  <Formik
+    initialValues={{}}
+    onSubmit={onSubmit}
+    validationSchema={schema}
+    validateOnBlur={false}
+    validateOnChange
+  >
     <StepTitle>
       Para começar a simulação, precisamos que informe alguns dados ok? É bem
       rapidinho.

@@ -6,7 +6,7 @@ const schema = Yup.object().shape({
   cpf: Yup.string()
     .required('Campo obrigatório')
     .min(14, 'CPF incompleto')
-    .test('validator-custom-name', async (cpf, { createError, path }) => {
+    .test('CPF_validation', async (cpf, { createError, path }) => {
       if (!cpf || cpf.length !== 14) return false;
 
       try {

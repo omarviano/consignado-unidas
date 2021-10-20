@@ -10,11 +10,14 @@ import { BankDataConfirmationProps } from './props';
 
 const BankDataConfirmation: React.FC<BankDataConfirmationProps> = ({
   onSubmit,
+  onClickNoButton,
+  username,
+  email,
 }) => (
   <Formik initialValues={{}} onSubmit={onSubmit}>
     <Styled.BankDetailsConfirmationContainer>
-      <Styled.Hello>Olá João da Silva Ribeiro!</Styled.Hello>
-      <Styled.Email>joaodasilvaribeiro@gmail.com</Styled.Email>
+      <Styled.Hello>Olá {username}!</Styled.Hello>
+      <Styled.Email>{email}</Styled.Email>
 
       <Styled.BankDetailsConfirmationTitle>
         Você deseja informar os dados bancários para futuros empréstimos?
@@ -39,7 +42,12 @@ const BankDataConfirmation: React.FC<BankDataConfirmationProps> = ({
         <Button type="submit" variant="contained" color="primary">
           Sim
         </Button>
-        <Button variant="outlined" color="primary">
+        <Button
+          type="button"
+          variant="outlined"
+          color="primary"
+          onClick={onClickNoButton}
+        >
           Agora não
         </Button>
       </Styled.IAgreeTermsContainerButtons>

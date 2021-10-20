@@ -10,7 +10,7 @@ import { PasswordFormProps } from './props';
 
 const PasswordForm: React.FC<PasswordFormProps> = ({ onSubmit }) => (
   <Formik initialValues={{}} validationSchema={schema} onSubmit={onSubmit}>
-    <StepSmallTitle>Deseja fazer a simulação do seu empréstimo?</StepSmallTitle>
+    <StepSmallTitle>Criar senha</StepSmallTitle>
 
     <Input
       name="password"
