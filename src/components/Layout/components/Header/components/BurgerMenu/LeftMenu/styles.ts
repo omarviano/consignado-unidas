@@ -14,9 +14,8 @@ export const ContainerUl = styled.ul<ContainerUlProps>`
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
-  padding: 0 30px;
 
-  margin-top: 55px;
+  margin-top: 54px;
   box-shadow: 4px 0px 12px rgba(0, 0, 0, 0.25);
   flex-flow: column nowrap;
   background-color: ${({ theme }) => theme.palette.primary.contrastText};
@@ -25,59 +24,51 @@ export const ContainerUl = styled.ul<ContainerUlProps>`
   top: 0;
   left: 0;
   height: 100vh;
-  width: 225px;
+  width: 226px;
   align-items: flex-start;
   z-index: 10000;
   transition: transform 0.25s ease-in-out;
 `;
 
 export const Items = styled(Link)<ItensProps>`
-  display: inline-block;
-  position: relative;
-  padding: 0 20px;
-  font-weight: 400;
-  font-size: 16px;
-  color: ${({ theme }) => theme.palette.secondary.light};
-
-  ${({ active }) =>
-    active &&
-    css`
-      ::after {
-        content: '';
-        position: absolute;
-        height: 3px;
-        background-color: ${({ theme }) => theme.palette.primary.dark};
-        width: 100%;
-        left: 0;
-        top: 28px;
-      }
-    `}
-
+  display: flex;
   width: 100%;
-  font-size: 18px;
+  align-items: center;
   font-weight: 400;
-  color: ${({ theme }) => theme.palette.grey[400]};
-  padding: 8px 0;
+  padding: 0 16px;
+  font-size: 16px;
+  text-decoration: none;
+  color: ${({ theme }) => theme.palette.grey[500]};
+  height: 50px;
 
-  ${({ active }) =>
-    active &&
-    css`
-      ::after {
-        content: '';
-        position: absolute;
-        height: 3px;
-        background-color: transparent;
-        width: 100%;
-        left: 0;
-        top: 28px;
-      }
-    `}
+  transition: ease-in-out 0.3s;
 
   & + a {
-    border-top: 1.5px solid ${({ theme }) => theme.palette.grey[200]};
+    margin-top: 30px;
   }
 
   :first-child {
-    padding-top: 20px;
+    margin-top: 200px;
+  }
+
+  ${({ active }) =>
+    active &&
+    css`
+        height: 50px;
+        background-color: ${({ theme }) => theme.palette.primary.main};
+        width: 100%;
+        color: ${({ theme }) => theme.palette.primary.contrastText};
+        font-weight: 500;
+        font-size: 16px;
+      }
+    `}
+
+  &:hover {
+    height: 50px;
+    background-color: ${({ theme }) => theme.palette.primary.main};
+    width: 100%;
+    color: ${({ theme }) => theme.palette.primary.contrastText};
+    font-weight: 500;
+    font-size: 16px;
   }
 `;

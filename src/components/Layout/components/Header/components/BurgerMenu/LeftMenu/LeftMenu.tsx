@@ -1,7 +1,6 @@
 import { FC } from 'react';
 import { useLocation } from 'react-router-dom';
 
-import { useHeaderMobile } from 'hooks/headerMobile';
 import { RoutingPath } from 'utils/routing';
 
 import { LeftMenuProps } from './props';
@@ -9,7 +8,6 @@ import * as Styled from './styles';
 
 const LeftMenu: FC<LeftMenuProps> = props => {
   const { open } = props;
-  const { toggle } = useHeaderMobile();
   const { pathname } = useLocation();
 
   return (
@@ -17,9 +15,20 @@ const LeftMenu: FC<LeftMenuProps> = props => {
       <Styled.Items
         to={RoutingPath.LOGGEDAREA}
         active={RoutingPath.LOGGEDAREA === pathname}
-        onClick={() => toggle()}
       >
-        Início
+        Simular Empréstimo
+      </Styled.Items>
+      <Styled.Items to="/" active={false}>
+        Meus Contratos
+      </Styled.Items>
+      <Styled.Items to="/" active={false}>
+        Ajuda
+      </Styled.Items>
+      <Styled.Items to="/" active={false}>
+        FAQ
+      </Styled.Items>
+      <Styled.Items to="/" active={false}>
+        Sair
       </Styled.Items>
     </Styled.ContainerUl>
   );

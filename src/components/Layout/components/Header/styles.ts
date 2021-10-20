@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import ContainerStyles from '@material-ui/core/Container';
+import TypographyStyles from '@material-ui/core/Typography';
 
 export const Container = styled.header`
   top: 0;
@@ -17,7 +18,11 @@ export const Content = styled(ContainerStyles)`
   width: 100%;
   justify-content: space-between;
   align-items: center;
-  padding: 0;
-  max-width: 1120px;
+  padding: 0 20px;
   height: 54px;
+`;
+
+export const TextUserLogged = styled(TypographyStyles)`
+  color: ${({ theme }) => theme.palette.primary.contrastText};
+  font-weight: 400;
 `;
