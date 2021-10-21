@@ -48,7 +48,7 @@ export const Items = styled(Link)<ItensProps>`
   }
 
   :first-child {
-    margin-top: 200px;
+    margin-top: 100px;
   }
 
   ${({ active }) =>

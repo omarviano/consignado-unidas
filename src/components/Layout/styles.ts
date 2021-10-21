@@ -10,7 +10,7 @@ export const Main = styled.main`
 `;
 
 export const MainContent = styled(ContainerStyles)`
-  max-width: 1120px;
+  max-width: 958px;
   overflow-y: hidden;
   overflow-x: hidden;
 `;
