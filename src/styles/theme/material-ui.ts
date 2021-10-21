@@ -68,10 +68,11 @@ const materialUiTheme = createTheme(
         contrastText: '#FFFF',
       },
       secondary: {
-        main: '#FFDD00',
+        main: '#4A5970',
         light: '#ED1C24',
         dark: '#0B3A7A',
         contrastText: '#E3F6FD',
+        '100': '#',
       },
       error: {
         main: '#D81616',
