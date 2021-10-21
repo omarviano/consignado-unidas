@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import TypographyStyles from '@material-ui/core/Typography';
-import TooltipStyles from '@material-ui/core/Tooltip';
+import ReactTooltip from 'react-tooltip';
 
 export const Container = styled.div`
   margin-top: 127px;
@@ -35,8 +35,12 @@ export const TextInformation = styled(TypographyStyles)`
   }
 `;
 
-export const Tooltip = styled(TooltipStyles)`
-  .MuiTooltip-popper {
-    background-color: ${({ theme }) => theme.palette.primary.contrastText};
-  }
+export const TextInformationTooltip = styled.p`
+  padding: 18px 20px 14px 13px;
+  width: 241px;
+  box-shadow: 0px 2px 6px rgba(46, 43, 80, 0.25);
+  font-size: 14px;
+  font-weight: 400;
+  color: #848484;
+  border-radius: 6px;
 `;

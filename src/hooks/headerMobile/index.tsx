@@ -1,13 +1,8 @@
 import { FC } from 'react';
-
 import { useCallback } from 'react';
-
 import { useContext } from 'react';
-
 import { useState } from 'react';
-
 import { createContext } from 'react';
-
 import { HeaderMobileContextData } from './props';
 
 const initialValue = {} as HeaderMobileContextData;
