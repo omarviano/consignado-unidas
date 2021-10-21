@@ -10,13 +10,13 @@ import { EmailFormProps } from './props';
 
 const EmailForm: React.FC<EmailFormProps> = ({ onSubmit }) => (
   <Formik initialValues={{}} validationSchema={schema} onSubmit={onSubmit}>
-    <StepSmallTitle>Qual o seu melhor email?</StepSmallTitle>
+    <StepSmallTitle>Qual o seu melhor e-mail?</StepSmallTitle>
 
     <Input
       name="email"
       type="text"
-      label="Seu melhor email"
-      placeholder="Seu melhor email"
+      label="Seu melhor e-mail"
+      placeholder="Seu melhor e-mail"
       variant="outlined"
     />
 
