@@ -72,3 +72,26 @@ export const Items = styled(Link)<ItensProps>`
     font-size: 16px;
   }
 `;
+
+export const ItemCustom = styled.a`
+  display: flex;
+  width: 100%;
+  align-items: center;
+  font-weight: 400;
+  padding: 0 16px;
+  font-size: 16px;
+  text-decoration: none;
+  color: ${({ theme }) => theme.palette.grey[500]};
+  height: 50px;
+
+  transition: ease-in-out 0.3s;
+
+  &:hover {
+    height: 50px;
+    background-color: ${({ theme }) => theme.palette.primary.main};
+    width: 100%;
+    color: ${({ theme }) => theme.palette.primary.contrastText};
+    font-weight: 500;
+    font-size: 16px;
+  }
+`;

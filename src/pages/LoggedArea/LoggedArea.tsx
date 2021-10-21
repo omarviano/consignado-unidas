@@ -45,7 +45,7 @@ const LoggedArea: FC = withContext(() => {
               effect="solid"
             >
               <Styled.TextInformationTooltip>
-                Este valor se refêre ao valor da parcela disponível para você.
+                Este valor se refere ao valor da parcela disponível para você.
               </Styled.TextInformationTooltip>
             </ReactTooltip>
           </Styled.TextInformation>

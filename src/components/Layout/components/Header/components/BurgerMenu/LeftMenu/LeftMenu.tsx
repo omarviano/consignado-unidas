@@ -1,3 +1,4 @@
+import { useModalLogout } from 'components/Layout/components/ModalLogout/context';
 import { FC } from 'react';
 import { useLocation } from 'react-router-dom';
 
@@ -9,6 +10,7 @@ import * as Styled from './styles';
 const LeftMenu: FC<LeftMenuProps> = props => {
   const { open } = props;
   const { pathname } = useLocation();
+  const { toggleModal } = useModalLogout();
 
   return (
     <Styled.ContainerUl open={open}>
@@ -27,9 +29,7 @@ const LeftMenu: FC<LeftMenuProps> = props => {
       <Styled.Items to="/" active={false}>
         FAQ
       </Styled.Items>
-      <Styled.Items to="/" active={false}>
-        Sair
-      </Styled.Items>
+      <Styled.ItemCustom onClick={() => toggleModal()}>Sair</Styled.ItemCustom>
     </Styled.ContainerUl>
   );
 };
