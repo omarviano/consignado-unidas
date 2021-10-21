@@ -10,6 +10,7 @@ import { Badge, Dialog, DialogContent, Modal } from '@material-ui/core';
 import { AxiosError } from 'axios';
 
 import useModal from 'hooks/modal';
+import { Document } from 'utils/document';
 
 import { CPFForm } from './components/CPFForm';
 import { CompleteNameForm } from './components/CompleteNameForm';
@@ -21,9 +22,9 @@ import { BankDataConfirmation } from './components/BankDataConfirmation';
 import { BankDataForm } from './components/BankDataForm';
 
 import { Register } from './models/register';
+import { RegistrationServices } from './services/registration.services';
 
 import * as Styled from './styles';
-import { RegistrationServices } from './services/registration.services';
 
 const NUMBER_OF_STEPS = 8;
 
@@ -56,8 +57,8 @@ const Registration: React.FC = () => {
 
       await RegistrationServices.register({
         ...data,
-        cpf: data.cpf.replace(/\D/g, ''),
-        phoneNumber: data.phoneNumber.replace(/\D/g, ''),
+        cpf: Document.removeMask(data.cpf),
+        phoneNumber: Document.removeMask(data.phoneNumber),
       });
 
       toggleEmailModal();

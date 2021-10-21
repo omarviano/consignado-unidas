@@ -2,6 +2,8 @@ import { AxiosError } from 'axios';
 import { api } from 'services/api';
 import * as Yup from 'yup';
 
+import { Document } from 'utils/document';
+
 const schema = Yup.object().shape({
   cpf: Yup.string()
     .required('Campo obrigatório')
@@ -11,7 +13,7 @@ const schema = Yup.object().shape({
 
       try {
         await api.post('/auth/verify', {
-          cpf: cpf.replace(/\D/g, ''),
+          cpf: Document.removeMask(cpf),
         });
 
         return true;
