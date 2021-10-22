@@ -56,6 +56,7 @@ const Form: FC = memo(() => {
       validationSchema={schema}
     >
       <Styled.InputEmail
+        type="text"
         variant="outlined"
         name="cpf"
         label="Cpf"

@@ -1,8 +1,8 @@
 import { AxiosError } from 'axios';
-import { api } from 'services/api';
 import * as Yup from 'yup';
 
 import { Document } from 'utils/document';
+import { RegistrationServices } from 'pages/Registration/services/registration.services';
 
 const schema = Yup.object().shape({
   cpf: Yup.string()
@@ -12,9 +12,7 @@ const schema = Yup.object().shape({
       if (!cpf || cpf.length !== 14) return false;
 
       try {
-        await api.post('/auth/verify', {
-          cpf: Document.removeMask(cpf),
-        });
+        await RegistrationServices.validateCPF(Document.removeMask(cpf));
 
         return true;
       } catch (error) {
@@ -23,8 +21,7 @@ const schema = Yup.object().shape({
         return createError({
           path,
           message:
-            response?.data?.errors[0] ||
-            'Falha ao verificar CPF. Contate o RH.',
+            response?.data?.message || 'Falha ao verificar CPF. Contate o RH.',
         });
       }
     }),

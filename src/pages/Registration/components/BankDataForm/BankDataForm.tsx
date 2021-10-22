@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import { ArrowRightAlt } from '@material-ui/icons';
+import { Grid } from '@material-ui/core';
 
 import { Formik } from 'components/Formik';
 import { Input } from 'components/Inputs/Input';
 import { Select } from 'components/Select/Select';
 import { RegistrationServices } from 'pages/Registration/services/registration.services';
 import { Bank } from 'pages/Registration/models/bank';
-import { ContinueButton } from '../ContinueButton';
 
 import { schema } from './schema';
 
@@ -49,6 +50,15 @@ const BankDataForm: React.FC<BankDataFormProps> = ({
         </Styled.BankDetailsConfirmationText>
 
         <Styled.BankDataInputs>
+          <Input
+            name="accountType"
+            type="number"
+            label="Tipo de conta"
+            placeholder="Conta corrente"
+            variant="outlined"
+            disabled
+          />
+
           <Select
             name="bankCode"
             options={banks}
@@ -56,31 +66,48 @@ const BankDataForm: React.FC<BankDataFormProps> = ({
             variant="outlined"
           />
 
-          <Input
+          <Styled.AgencyInput
             name="agency"
-            type="text"
+            type="number"
             label="Agência"
             placeholder="N° da sua agência"
             variant="outlined"
           />
 
-          <Input
-            name="accountNumber"
-            type="text"
-            label="N° da Conta Corrente"
-            placeholder="XXXXXX"
-            variant="outlined"
-          />
-        </Styled.BankDataInputs>
-      </Styled.BankDataContainer>
+          <Grid container spacing={2}>
+            <Grid item xs={6}>
+              <Styled.AccountInput
+                name="accountNumber"
+                type="number"
+                label="N° da Conta Corrente"
+                placeholder="XXXXXX"
+                variant="outlined"
+              />
+            </Grid>
 
-      <ContinueButton
-        type="submit"
-        size="small"
-        variant="contained"
-        color="primary"
-        disabled={submitting}
-      />
+            <Grid item xs={4}>
+              <Styled.DigitInput
+                name="digit"
+                type="number"
+                label="Dígito"
+                placeholder="XX"
+                variant="outlined"
+              />
+            </Grid>
+          </Grid>
+        </Styled.BankDataInputs>
+
+        <Styled.SubmitButton
+          type="submit"
+          size="small"
+          variant="contained"
+          color="primary"
+          disabled={submitting}
+        >
+          {submitting ? 'Finalizando' : 'Finalizar cadastro '}
+          <ArrowRightAlt />
+        </Styled.SubmitButton>
+      </Styled.BankDataContainer>
     </Formik>
   );
 };

@@ -19,10 +19,6 @@ export const Content = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-
-  img {
-    margin-top: 90px;
-  }
 `;
 
 export const Dialog = styled(DialogStyles)`
@@ -49,28 +45,27 @@ export const Icon = styled.img`
   cursor: pointer;
   width: 14px;
   height: 14px;
-  margin: 10px 12px 0 0;
 `;
 
 export const Title = styled(TypographyStyles)`
-  margin-top: 100px;
   font-weight: 400px;
   color: ${({ theme }) => theme.palette.grey[200]};
+  margin-top: 17px;
 `;
 
 export const DivButtons = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
-  margin-top: 70px;
+  margin-top: 40px;
 `;
 
 export const ButtonYes = styled(Button)`
   width: 188px;
-  margin-left: 60px;
+  margin-left: 40px;
 `;
 
 export const ButtonNo = styled(Button)`
   width: 188px;
-  margin-right: 60px;
+  margin-right: 40px;
 `;
