@@ -7,5 +7,6 @@ export interface Register {
   bankCode: number;
   agency: string;
   accountNumber: string;
+  digit?: string;
   birthDate: Date;
 }

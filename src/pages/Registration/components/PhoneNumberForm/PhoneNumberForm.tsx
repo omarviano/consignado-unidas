@@ -1,18 +1,19 @@
 import React from 'react';
 
 import { Formik } from 'components/Formik';
-import { Input } from 'components/Inputs/Input';
 import { ContinueButton } from '../ContinueButton';
 import { StepSmallTitle } from '../StepSmallTitle';
 
 import { schema } from './schema';
+
+import * as Styled from './styles';
 import { PhoneNumberFormProps } from './props';
 
 const PhoneNumberForm: React.FC<PhoneNumberFormProps> = ({ onSubmit }) => (
   <Formik initialValues={{}} validationSchema={schema} onSubmit={onSubmit}>
     <StepSmallTitle>Qual o seu celular?</StepSmallTitle>
 
-    <Input
+    <Styled.PhonenumberInput
       name="phoneNumber"
       type="text"
       label="Digite o número do seu telefone"
