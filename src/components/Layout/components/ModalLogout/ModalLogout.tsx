@@ -28,7 +28,7 @@ const ModalLogout: FC = memo(() => {
   return (
     <Styled.Dialog
       PaperProps={{
-        style: { position: 'absolute', top: 50, width: 544, height: 400 },
+        style: { position: 'absolute', top: 50, width: 507, height: 206 },
       }}
       open={modalActive}
       onClose={toggleModal}
