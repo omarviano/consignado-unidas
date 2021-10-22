@@ -1,18 +1,18 @@
 import React from 'react';
 
 import { Formik } from 'components/Formik';
-import { Input } from 'components/Inputs/Input';
 import { ContinueButton } from '../ContinueButton';
 import { StepSmallTitle } from '../StepSmallTitle';
 
 import { schema } from './schema';
+import * as Styled from './styles';
 import { PasswordFormProps } from './props';
 
 const PasswordForm: React.FC<PasswordFormProps> = ({ onSubmit }) => (
   <Formik initialValues={{}} validationSchema={schema} onSubmit={onSubmit}>
     <StepSmallTitle>Criar senha</StepSmallTitle>
 
-    <Input
+    <Styled.PasswordInput
       name="password"
       type="password"
       label="Cadastre uma senha"
@@ -20,7 +20,7 @@ const PasswordForm: React.FC<PasswordFormProps> = ({ onSubmit }) => (
       variant="outlined"
     />
 
-    <Input
+    <Styled.PasswordInput
       name="passwordConfirmation"
       type="password"
       label="Confirme sua senha"

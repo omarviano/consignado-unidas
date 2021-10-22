@@ -15,7 +15,7 @@ const BirthDateForm: React.FC<BirthDateFormProps> = ({ onSubmit }) => (
 
     <DatePicker
       name="birthDate"
-      maxDate={new Date()}
+      maxDate={new Date(Date.now())}
       minDateMessage="Data de nascimento inválida"
       maxDateMessage="Data de nascimento inválida"
       invalidDateMessage="Data de nascimento inválida"

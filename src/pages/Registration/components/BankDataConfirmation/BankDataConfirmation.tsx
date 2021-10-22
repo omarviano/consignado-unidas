@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
-import { Checkbox } from '@material-ui/core';
+import { Checkbox, Modal } from '@material-ui/core';
+import { Warning, Close } from '@material-ui/icons';
+
+import useModal from 'hooks/modal';
 
 import { Formik } from 'components/Formik';
 import { Button } from 'components/Buttons/Button';
@@ -16,10 +19,20 @@ const BankDataConfirmation: React.FC<BankDataConfirmationProps> = ({
   email,
 }) => {
   const [agree, setAgree] = useState(false);
+  const { open: modalMessage, toggle: toggleModalMessage } = useModal();
+
+  const handleSubmit = data => {
+    if (!agree) {
+      toggleModalMessage();
+      return;
+    }
+
+    onSubmit(data);
+  };
 
   return (
-    <Formik initialValues={{}} onSubmit={onSubmit}>
-      <Styled.BankDetailsConfirmationContainer>
+    <Styled.BankDetailsConfirmationContainer>
+      <Formik initialValues={{}} onSubmit={handleSubmit}>
         <Styled.Hello>Olá {username}!</Styled.Hello>
         <Styled.Email>{email}</Styled.Email>
 
@@ -28,7 +41,7 @@ const BankDataConfirmation: React.FC<BankDataConfirmationProps> = ({
         </Styled.BankDetailsConfirmationTitle>
         <Styled.BankDetailsConfirmationText>
           Caso você não queira preeencher os dados, não se preocupe, poderá
-          cadsatrar em um outro momento ok? Lembrando que para esta operação, só
+          cadastrar em um outro momento ok? Lembrando que para esta operação, só
           é possível utilizar conta corrente.
         </Styled.BankDetailsConfirmationText>
 
@@ -37,32 +50,49 @@ const BankDataConfirmation: React.FC<BankDataConfirmationProps> = ({
 
           <Styled.TermsText>
             Estou de acordo com os{' '}
-            <Styled.TermsLink>termos e condições</Styled.TermsLink> da{' '}
-            <Styled.TermsLink>política de privacidade</Styled.TermsLink>.
+            <Styled.TermsLink type="button">
+              termos e condições
+            </Styled.TermsLink>{' '}
+            da{' '}
+            <Styled.TermsLink type="button">
+              política de privacidade
+            </Styled.TermsLink>
+            .
           </Styled.TermsText>
         </Styled.IAgreeTermsContainer>
 
         <Styled.IAgreeTermsContainerButtons>
-          <Button
-            type="submit"
-            variant="contained"
-            color="primary"
-            disabled={!agree}
-          >
+          <Button type="submit" variant="contained" color="primary">
             Sim
           </Button>
+
           <Button
             type="button"
             variant="outlined"
             color="primary"
-            onClick={onClickNoButton}
-            disabled={!agree || submitting}
+            onClick={() => (agree ? onClickNoButton() : toggleModalMessage())}
+            disabled={submitting}
           >
             {submitting ? 'Cadastrando...' : 'Agora não'}
           </Button>
         </Styled.IAgreeTermsContainerButtons>
-      </Styled.BankDetailsConfirmationContainer>
-    </Formik>
+      </Formik>
+
+      <Modal open={modalMessage} onClose={toggleModalMessage}>
+        <Styled.ModalContent>
+          <Styled.CloseButton onClick={toggleModalMessage}>
+            <Close fontSize="medium" color="primary" />
+          </Styled.CloseButton>
+
+          <Warning fontSize="large" className="warning-icon" />
+
+          <Styled.ModalText>
+            Para prosseguir, você precisa estar de acordo com os termos e
+            condições da política de privacidade.
+          </Styled.ModalText>
+        </Styled.ModalContent>
+      </Modal>
+    </Styled.BankDetailsConfirmationContainer>
   );
 };
 
