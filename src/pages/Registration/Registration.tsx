@@ -10,7 +10,9 @@ import { Badge, Dialog, DialogContent, Modal } from '@material-ui/core';
 import { AxiosError } from 'axios';
 
 import useModal from 'hooks/modal';
+import { Document } from 'utils/document';
 
+import { Button } from 'components/Buttons/Button';
 import { CPFForm } from './components/CPFForm';
 import { CompleteNameForm } from './components/CompleteNameForm';
 import { BirthDateForm } from './components/BirthDateForm';
@@ -21,9 +23,9 @@ import { BankDataConfirmation } from './components/BankDataConfirmation';
 import { BankDataForm } from './components/BankDataForm';
 
 import { Register } from './models/register';
+import { RegistrationServices } from './services/registration.services';
 
 import * as Styled from './styles';
-import { RegistrationServices } from './services/registration.services';
 
 const NUMBER_OF_STEPS = 8;
 
@@ -34,6 +36,9 @@ const Registration: React.FC = () => {
   const [registering, setRegistering] = useState(false);
   const { open: emailModalOpen, toggle: toggleEmailModal } = useModal();
   const { open: errorModalOpen, toggle: toggleErrorModal } = useModal();
+  const { open: validationModalOpen, toggle: toggleValidationModal } =
+    useModal();
+  const [validationDataMessage, setvalidationDataMessage] = useState('');
   const history = useHistory();
 
   const handleClickPrev = (): void => {
@@ -46,8 +51,23 @@ const Registration: React.FC = () => {
 
   const onSubmit = (data): void => {
     setFormsData(state => ({ ...state, ...data }));
-
     nextStep();
+  };
+
+  const validateData = async ({ birthDate }: Register) => {
+    try {
+      await RegistrationServices.validateData({
+        cpf: Document.removeMask(formsData?.cpf || ''),
+        name: formsData?.name,
+        birthDate,
+      });
+      onSubmit({ birthDate });
+    } catch (error) {
+      const { response } = error as AxiosError;
+
+      setvalidationDataMessage(response?.data?.message);
+      toggleValidationModal();
+    }
   };
 
   const registration = async (data: Register): Promise<void> => {
@@ -56,14 +76,15 @@ const Registration: React.FC = () => {
 
       await RegistrationServices.register({
         ...data,
-        cpf: data.cpf.replace(/\D/g, ''),
-        phoneNumber: data.phoneNumber.replace(/\D/g, ''),
+        cpf: Document.removeMask(data.cpf),
+        phoneNumber: Document.removeMask(data.phoneNumber),
+        accountNumber: `${data.accountNumber}${data.digit}`,
       });
 
       toggleEmailModal();
     } catch (error) {
       const { response } = error as AxiosError;
-      setResponseErros(response?.data?.errors?.join(', '));
+      setResponseErros(response?.data?.message);
       toggleErrorModal();
     } finally {
       setRegistering(false);
@@ -82,6 +103,11 @@ const Registration: React.FC = () => {
 
   const onModalEmailClose = (): void => {
     history.push('/');
+  };
+
+  const handleClickButtonModalValidation = () => {
+    setCurrentStep(0);
+    toggleValidationModal();
   };
 
   return (
@@ -111,7 +137,7 @@ const Registration: React.FC = () => {
             <ArrowBack />
           </Styled.BackButton>
 
-          <BirthDateForm onSubmit={onSubmit} />
+          <BirthDateForm onSubmit={validateData} />
         </Styled.Step>
 
         <Styled.Step step={3} currentStep={currentStep}>
@@ -179,9 +205,27 @@ const Registration: React.FC = () => {
         </Styled.ModalContent>
       </Modal>
 
+      <Modal open={validationModalOpen}>
+        <Styled.ModalContent>
+          <Warning fontSize="large" className="warning-icon" />
+
+          <Styled.EmailModalText>{validationDataMessage}</Styled.EmailModalText>
+
+          <Button
+            type="button"
+            color="primary"
+            variant="contained"
+            className="button-modal-validation"
+            onClick={handleClickButtonModalValidation}
+          >
+            Informar dados novamente
+          </Button>
+        </Styled.ModalContent>
+      </Modal>
+
       <Dialog open={errorModalOpen} onClose={toggleErrorModal} fullWidth>
         <Styled.DialogTitle>
-          <Warning color="error" />
+          <Warning color="action" />
         </Styled.DialogTitle>
 
         <DialogContent>

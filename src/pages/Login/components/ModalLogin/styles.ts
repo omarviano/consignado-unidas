@@ -48,7 +48,6 @@ export const Icon = styled.img`
   cursor: pointer;
   width: 14px;
   height: 14px;
-  margin: 10px 12px 0 0;
 `;
 
 export const MessaError = styled(TypographyStyles)`

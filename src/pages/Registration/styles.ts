@@ -33,11 +33,7 @@ export const Header = styled.div`
   }
 `;
 
-export const Container = styled.div`
-  .dialog-icon {
-    margin: auto !important;
-  }
-`;
+export const Container = styled.div``;
 
 export const StepsContainer = styled.div`
   position: absolute;
@@ -90,6 +86,15 @@ export const ModalContent = styled(Box)`
   background: #fff;
   padding: 64px 24px;
   text-align: center;
+
+  .warning-icon {
+    color: ${({ theme }) => theme.palette.warning.main};
+  }
+
+  .button-modal-validation {
+    max-width: 300px;
+    margin: 24px auto 0;
+  }
 `;
 
 export const EmailModalText = styled.p`
