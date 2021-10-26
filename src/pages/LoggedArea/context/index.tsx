@@ -26,6 +26,7 @@ export const MarginUserProvider: FC = props => {
 
       setDataMargin(data);
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.log(error);
     }
   }, []);

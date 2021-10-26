@@ -92,21 +92,6 @@ const materialUiTheme = createTheme(
         '500': '#848484',
       },
     },
-    overrides: {
-      MuiButton: {
-        containedPrimary: {
-          '&.Mui-disabled': {
-            backgroundColor: '#BDBDBD',
-            color: '#FFFF',
-          },
-        },
-        outlinedPrimary: {
-          '&.Mui-disabled': {
-            color: '#BDBDBD',
-          },
-        },
-      },
-    },
   },
   ptBR,
 );
