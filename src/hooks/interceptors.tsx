@@ -3,7 +3,7 @@ import { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
 
 import { Error500 } from 'components/Error500';
 
-import showModal from 'utils/confirm';
+import showModal from 'utils/alert';
 import { api } from 'services/api';
 
 const useInterceptors = (): boolean[] => {
@@ -37,8 +37,6 @@ const useInterceptors = (): boolean[] => {
 
           return Promise.reject(error);
         }
-
-        showModal({ content: <Error500 /> });
 
         return Promise.reject(error);
       },
