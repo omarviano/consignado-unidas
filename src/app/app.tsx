@@ -12,22 +12,28 @@ import {
   StylesProvider,
 } from '@material-ui/core';
 import { MuiPickersUtilsProvider as ThemeProviderPickers } from '@material-ui/pickers';
+import useInterceptors from 'hooks/interceptors';
+
 import { Routes } from './routes';
 
-const App: FC = () => (
-  <ThemeProviderMaterialUi theme={materialUiTheme}>
-    <ThemeProviderPickers utils={DateFnsUtils} locale={ptBR}>
-      <StylesProvider injectFirst>
-        <ThemeProviderStyledComponents theme={materialUiTheme}>
-          <GlobalStyles />
-          <CssBaseline />
-          <AppProvider>
-            <Routes />
-          </AppProvider>
-        </ThemeProviderStyledComponents>
-      </StylesProvider>
-    </ThemeProviderPickers>
-  </ThemeProviderMaterialUi>
-);
+const App: FC = () => {
+  useInterceptors();
+
+  return (
+    <ThemeProviderMaterialUi theme={materialUiTheme}>
+      <ThemeProviderPickers utils={DateFnsUtils} locale={ptBR}>
+        <StylesProvider injectFirst>
+          <ThemeProviderStyledComponents theme={materialUiTheme}>
+            <GlobalStyles />
+            <CssBaseline />
+            <AppProvider>
+              <Routes />
+            </AppProvider>
+          </ThemeProviderStyledComponents>
+        </StylesProvider>
+      </ThemeProviderPickers>
+    </ThemeProviderMaterialUi>
+  );
+};
 
 export { App };
