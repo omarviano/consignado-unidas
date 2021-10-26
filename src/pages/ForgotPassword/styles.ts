@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import TypographyStyles from '@material-ui/core/Typography';
 
 import ImageBackground from 'assets/images/background.png';
-import { Box } from '@material-ui/core';
+import { Box, IconButton } from '@material-ui/core';
 
 export const Container = styled.div`
   min-height: 100vh;
@@ -48,7 +48,7 @@ export const ModalContent = styled(Box)`
   padding: 64px 96px;
   text-align: center;
 
-  button {
+  .resend {
     margin-top: 32px;
   }
 
@@ -69,7 +69,7 @@ export const EmailModalTitle = styled(TypographyStyles)`
   color: ${({ theme }) => theme.palette.grey[100]};
 `;
 
-export const EmailModalText = styled(TypographyStyles)`
+export const ModalText = styled(TypographyStyles)`
   margin-top: 16px;
   font-size: 18px;
   line-height: 34px;
@@ -79,4 +79,11 @@ export const EmailModalText = styled(TypographyStyles)`
   b {
     display: block;
   }
+`;
+
+export const CloseButton = styled(IconButton)`
+  position: absolute;
+  right: 8px;
+  top: 8px;
+  margin: 0;
 `;

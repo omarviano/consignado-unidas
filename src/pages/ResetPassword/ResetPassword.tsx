@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { AxiosError } from 'axios';
+import { useHistory, useLocation } from 'react-router-dom';
 import { Card, Modal } from '@material-ui/core';
-import { CheckCircle } from '@material-ui/icons';
+import { CheckCircle, Cancel } from '@material-ui/icons';
 
 import useModal from 'hooks/modal';
 
@@ -20,15 +21,34 @@ interface FormData {
 
 const ResetPassword: React.FC = () => {
   const history = useHistory();
-  const [resettingPassword, setResettingPassword] = useState(false);
-  const { open: modalSuccessOpen, toggle: toggleModalSuccess } = useModal();
 
-  const handleSubmit = ({ password }: FormData) => {
-    console.log('password', password);
-    toggleModalSuccess();
+  const { search } = useLocation();
+  const token = new URLSearchParams(search).get('token');
+
+  const [resettingPassword, setResettingPassword] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string>();
+  const { open: modalSuccessOpen, toggle: toggleModalSuccess } = useModal();
+  const { open: modalErrorOpen, toggle: toggleModalError } = useModal();
+
+  const handleSubmit = async ({ password }: FormData) => {
+    if (!password || !token) return;
+
+    try {
+      setResettingPassword(true);
+
+      await ResetPasswordServices.resetPassword(password, token);
+      toggleModalSuccess();
+    } catch (error) {
+      const { response } = error as AxiosError;
+      setErrorMessage(response?.data?.message);
+      toggleModalError();
+    } finally {
+      setResettingPassword(false);
+    }
   };
 
   const redirectToLogin = () => {
+    toggleModalSuccess();
     history.push('/');
   };
 
@@ -70,13 +90,15 @@ const ResetPassword: React.FC = () => {
         </Formik>
       </Card>
 
-      <Modal open={modalSuccessOpen} onClose={toggleModalSuccess}>
+      <Modal open={modalSuccessOpen} onClose={redirectToLogin}>
         <Styled.ModalContent>
-          <CheckCircle color="action" fontSize="inherit" />
+          <CheckCircle
+            color="action"
+            fontSize="inherit"
+            className="success-icon"
+          />
 
-          <Styled.EmailModalTitle>
-            Senha redefinida com sucesso
-          </Styled.EmailModalTitle>
+          <Styled.ModalTitle>Senha redefinida com sucesso</Styled.ModalTitle>
 
           <Button
             type="button"
@@ -86,6 +108,14 @@ const ResetPassword: React.FC = () => {
           >
             Entrar na minha conta
           </Button>
+        </Styled.ModalContent>
+      </Modal>
+
+      <Modal open={modalErrorOpen} onClose={toggleModalError}>
+        <Styled.ModalContent>
+          <Cancel color="error" fontSize="inherit" />
+
+          <Styled.ModalTitle>{errorMessage}</Styled.ModalTitle>
         </Styled.ModalContent>
       </Modal>
     </Styled.Container>

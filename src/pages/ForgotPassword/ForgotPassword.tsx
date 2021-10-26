@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Badge, Card, Modal } from '@material-ui/core';
-import { MailOutlined, Check } from '@material-ui/icons';
+import { MailOutlined, Check, Cancel, Close } from '@material-ui/icons';
+import { AxiosError } from 'axios';
 
 import useModal from 'hooks/modal';
 
@@ -20,18 +21,23 @@ interface FormData {
 
 const ForgotPassword: React.FC = () => {
   const [email, setEmail] = useState<string>();
+  const [errorMessage, setErrorMessage] = useState<string>();
   const [sendingEmail, setSendingEmail] = useState(false);
   const { open: emailModalOpen, toggle: toggleEmailModal } = useModal();
+  const { open: modalErrorOpen, toggle: toggleModalError } = useModal();
 
   const sendEmail = async (emailToSend: string, toggleModal = true) => {
     try {
       setSendingEmail(true);
 
-      await ForgotPasswordServices.resetPassword(emailToSend);
+      await ForgotPasswordServices.forgotPassword(emailToSend);
 
       if (toggleModal) toggleEmailModal();
     } catch (error) {
-      console.log('error', error);
+      const { response } = error as AxiosError;
+
+      setErrorMessage(response?.data?.message || 'ERRO');
+      toggleModalError();
     } finally {
       setSendingEmail(false);
     }
@@ -86,11 +92,11 @@ const ForgotPassword: React.FC = () => {
 
           <Styled.EmailModalTitle>Verifique o seu email</Styled.EmailModalTitle>
 
-          <Styled.EmailModalText>
+          <Styled.ModalText>
             A recuperação de senha foi enviada para o seu email
             <b>{email}</b>
             verifique também sua caixa de spam.
-          </Styled.EmailModalText>
+          </Styled.ModalText>
 
           <Button
             type="button"
@@ -98,9 +104,21 @@ const ForgotPassword: React.FC = () => {
             color="primary"
             onClick={resendEmail}
             disabled={sendingEmail}
+            className="resend"
           >
             {sendingEmail ? 'Enviando e-mail...' : 'Enviar novamente'}
           </Button>
+        </Styled.ModalContent>
+      </Modal>
+
+      <Modal open={modalErrorOpen} onClose={toggleModalError}>
+        <Styled.ModalContent>
+          <Styled.CloseButton onClick={toggleModalError}>
+            <Close fontSize="medium" color="primary" />
+          </Styled.CloseButton>
+          <Cancel color="error" fontSize="large" />
+
+          <Styled.ModalText>{errorMessage}</Styled.ModalText>
         </Styled.ModalContent>
       </Modal>
     </Styled.Container>

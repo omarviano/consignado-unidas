@@ -15,7 +15,8 @@ export const Container = styled.div`
   background-size: cover;
 
   .card {
-    padding: 6% 5%;
+    padding: 101px 119px;
+    width: 685px;
   }
 
   .card form > button {
@@ -53,12 +54,12 @@ export const ModalContent = styled(Box)`
     max-width: 260px;
   }
 
-  > svg {
+  .success-icon {
     color: ${({ theme }) => theme.palette.success.main};
   }
 `;
 
-export const EmailModalTitle = styled(TypographyStyles)`
+export const ModalTitle = styled(TypographyStyles)`
   margin-top: 32px;
   font-size: 24px;
   line-height: 34px;

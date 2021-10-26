@@ -5,7 +5,7 @@ class RoutingPath {
 
   static FORGOT_PASSWORD = '/recuperacao-senha';
 
-  static RESET_PASSWORD = '/redefinicao-senha';
+  static RESET_PASSWORD = '/password-reset';
 
   static LOGGEDAREA = '/area-logada';
 }
