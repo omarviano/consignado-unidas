@@ -26,7 +26,7 @@ export const Email = styled.div`
   font-size: 14px;
   line-height: 26px;
   letter-spacing: 0.2px;
-  color: #848484;
+  color: ${({ theme }) => theme.palette.grey[100]};
 `;
 
 export const BankDetailsConfirmationTitle = styled.div`
@@ -42,7 +42,7 @@ export const BankDetailsConfirmationText = styled.div`
   font-size: 14px;
   line-height: 26px;
   letter-spacing: 0.2px;
-  color: #848484;
+  color: ${({ theme }) => theme.palette.grey[100]};
   max-width: 450px;
 `;
 
