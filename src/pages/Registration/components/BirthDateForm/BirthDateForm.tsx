@@ -2,6 +2,7 @@ import React from 'react';
 
 import { Formik } from 'components/Formik';
 import { DatePicker } from 'components/DatePicker';
+import { TextField } from '@material-ui/core';
 import { StepSmallTitle } from '../StepSmallTitle';
 import { ContinueButton } from '../ContinueButton';
 
@@ -14,11 +15,10 @@ const BirthDateForm: React.FC<BirthDateFormProps> = ({ onSubmit }) => (
     <StepSmallTitle>Qual a sua data de nascimento?</StepSmallTitle>
 
     <DatePicker
+      value=""
       name="birthDate"
       maxDate={new Date(Date.now())}
-      minDateMessage="Data de nascimento inválida"
-      maxDateMessage="Data de nascimento inválida"
-      invalidDateMessage="Data de nascimento inválida"
+      renderInput={params => <TextField {...params} />}
     />
 
     <ContinueButton

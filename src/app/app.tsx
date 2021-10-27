@@ -4,16 +4,15 @@ import { ptBR } from 'date-fns/locale';
 import { ThemeProvider as ThemeProviderStyledComponents } from 'styled-components';
 import { GlobalStyles } from 'styles';
 import { materialUiTheme } from 'styles/theme/material-ui';
-import DateFnsUtils from '@date-io/date-fns';
+import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
 import { AppProvider } from 'hooks';
 import {
   ThemeProvider as ThemeProviderMaterialUi,
   CssBaseline,
-  StylesProvider,
+  StyledEngineProvider,
 } from '@material-ui/core';
-import { MuiPickersUtilsProvider as ThemeProviderPickers } from '@material-ui/pickers';
+import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
 import useInterceptors from 'hooks/interceptors';
-
 import { Routes } from './routes';
 
 const App: FC = () => {
@@ -21,8 +20,8 @@ const App: FC = () => {
 
   return (
     <ThemeProviderMaterialUi theme={materialUiTheme}>
-      <ThemeProviderPickers utils={DateFnsUtils} locale={ptBR}>
-        <StylesProvider injectFirst>
+      <LocalizationProvider dateAdapter={AdapterDateFns} locale={ptBR}>
+        <StyledEngineProvider injectFirst>
           <ThemeProviderStyledComponents theme={materialUiTheme}>
             <GlobalStyles />
             <CssBaseline />
@@ -30,8 +29,8 @@ const App: FC = () => {
               <Routes />
             </AppProvider>
           </ThemeProviderStyledComponents>
-        </StylesProvider>
-      </ThemeProviderPickers>
+        </StyledEngineProvider>
+      </LocalizationProvider>
     </ThemeProviderMaterialUi>
   );
 };

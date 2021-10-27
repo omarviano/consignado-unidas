@@ -28,6 +28,7 @@ export const AuthProvider: FC<AuthContextProviderProps> = props => {
   const { children, initialProps } = props;
   const [messageError, setMessageError] = useState('');
   const [modalActive, setModalActive] = useState(false);
+  const [statusCode, setStatusCode] = useState(0);
 
   const [state, dispatch] = useReducer(
     authReducer,
@@ -55,6 +56,7 @@ export const AuthProvider: FC<AuthContextProviderProps> = props => {
     } catch (error: any) {
       const { response } = error;
       const { ...errorObject } = response;
+      setStatusCode(response.status);
       setMessageError(errorObject.data.message);
       setModalActive(true);
       dispatch({ type: AuthActions.RequestUserError });
@@ -82,6 +84,7 @@ export const AuthProvider: FC<AuthContextProviderProps> = props => {
         signIn,
         signOut,
         modalActive,
+        statusCode,
       }}
     >
       {children}

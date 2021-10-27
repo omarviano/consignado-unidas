@@ -13,7 +13,13 @@ import { useModalLogin } from '../ModalLogin/context';
 import * as Styled from './styles';
 
 const Form: FC = memo(() => {
-  const { signIn, modalActive, resetModalActive, isAuthenticating } = useAuth();
+  const {
+    signIn,
+    modalActive,
+    resetModalActive,
+    isAuthenticating,
+    statusCode,
+  } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
   const { toggleModal } = useModalLogin();
 
@@ -43,7 +49,7 @@ const Form: FC = memo(() => {
   }, []);
 
   useEffect(() => {
-    if (modalActive) return toggleModal();
+    if (modalActive && statusCode !== 500) return toggleModal();
     return () => {
       <> </>;
     };
