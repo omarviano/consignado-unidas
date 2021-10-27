@@ -4,6 +4,7 @@ import TypographyStyles from '@material-ui/core/Typography';
 
 export const Container = styled.header`
   top: 0;
+  position: fixed;
   width: 100%;
   display: flex;
   justify-content: center;

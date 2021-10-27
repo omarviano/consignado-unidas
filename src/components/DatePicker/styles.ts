@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { KeyboardDatePicker } from '@material-ui/pickers';
+import DatePickerStyles from '@material-ui/lab/DatePicker';
 
-export const DatePicker = styled(KeyboardDatePicker)`
+export const DatePicker = styled(DatePickerStyles)`
   .MuiOutlinedInput-root {
     border-radius: 8px;
     height: 38px;

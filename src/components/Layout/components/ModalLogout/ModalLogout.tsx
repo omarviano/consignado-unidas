@@ -12,7 +12,7 @@ const ModalLogout: FC = memo(() => {
 
   const DialogTitle = useMemo(
     () => (
-      <Styled.DialogTitle disableTypography>
+      <Styled.DialogTitle>
         <Styled.ContenDialogTitle>
           {toggleModal && (
             <Styled.IconButton aria-label="close" onClick={toggleModal}>
