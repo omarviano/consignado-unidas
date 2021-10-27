@@ -5,6 +5,9 @@ import { withContext } from 'utils/withContext';
 import { MarginUserProvider, useMarginUser } from './context';
 import { CardMarginAvailable } from './components/CardMarginAvailable';
 import { CardSimulateLoan } from './components/CardSimulateLoan';
+import { CreditUnderAnalysis } from './components/CreditUnderAnalysis';
+
+import * as Styled from './styles';
 
 const LoggedArea: FC = withContext(() => {
   const { getMargin } = useMarginUser();
@@ -17,7 +20,10 @@ const LoggedArea: FC = withContext(() => {
   return (
     <RouteAccess typesOfAccess="auth">
       <Layout>
-        <CardMarginAvailable />
+        <Styled.CardsContainer>
+          <CardMarginAvailable />
+          <CreditUnderAnalysis />
+        </Styled.CardsContainer>
         <CardSimulateLoan />
       </Layout>
     </RouteAccess>

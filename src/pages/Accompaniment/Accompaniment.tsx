@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Layout } from 'components/Layout';
 import { RouteAccess } from 'components/RouteAccess';
 import { Step, StepIconProps, Stepper } from '@material-ui/core';
 import { CheckCircle, CropSquare } from '@material-ui/icons';
+import { useHistory } from 'react-router-dom';
 
+import { RoutingPath } from 'utils/routing';
 import { RequestUnderAnalysis } from './components/RequestUnderAnalysis';
+import { AccompanimentServices } from './services/accompaniment.services';
 
 import * as Styled from './styles';
 import * as MUIStyled from './muiStyles';
@@ -34,12 +37,20 @@ function QontoStepIcon(props: StepIconProps) {
 
 const Accompaniment: React.FC = () => {
   const [activeStep] = useState(1);
+  const history = useHistory();
 
   const getIcon = (index: number) => {
     if (index === 1) return <CheckCircle color="success" />;
 
     return <CropSquare className="tranparent-icon" />;
   };
+
+  useEffect(() => {
+    AccompanimentServices.checkCreditUnderReview().then(({ data }) => {
+      if (data?.data?.quotationStatusId !== 0)
+        history.push(RoutingPath.LOGGEDAREA);
+    });
+  }, [history]);
 
   return (
     <RouteAccess typesOfAccess="auth">
