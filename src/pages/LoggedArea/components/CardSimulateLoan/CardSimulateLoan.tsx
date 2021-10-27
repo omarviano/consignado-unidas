@@ -8,7 +8,7 @@ import * as Styled from './styles';
 
 const CardSimulateLoan: FC = memo(() => {
   const { dataMargin, simulateLoan, resetModalActive } = useMarginUser();
-  const [value, setValue] = useState(3000);
+  const [value, setValue] = useState(5000);
 
   const handleSliderChange = useCallback(
     (event: Event, newValue: number | number[]) => {
@@ -48,7 +48,7 @@ const CardSimulateLoan: FC = memo(() => {
           size="medium"
           onChange={handleSliderChange}
           step={100}
-          min={3000}
+          min={5000}
           max={100000}
           valueLabelDisplay="auto"
         />
