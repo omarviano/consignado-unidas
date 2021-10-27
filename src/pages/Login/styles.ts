@@ -30,7 +30,7 @@ export const ContentTexts = styled.div`
   margin-top: 17px;
 `;
 
-export const TextSignUp = styled(TypographyStyles)`
+export const LinkContainer = styled(TypographyStyles)`
   a {
     color: inherit;
   }
@@ -40,5 +40,3 @@ export const TextSignUp = styled(TypographyStyles)`
     text-decoration: underline;
   }
 `;
-
-export const TextForgotPassword = styled(TypographyStyles)``;

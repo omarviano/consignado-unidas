@@ -20,13 +20,13 @@ const Login: FC = memo(
             </Styled.TextAccessAccount>
             <Form />
             <Styled.ContentTexts>
-              <Styled.TextSignUp color="primary" variant="h3">
-                <Link to="/registration">Cadastre-se</Link>
-              </Styled.TextSignUp>
+              <Styled.LinkContainer color="primary" variant="h3">
+                <Link to="/cadastro">Cadastre-se</Link>
+              </Styled.LinkContainer>
 
-              {/* <Styled.TextSignUp color="primary" variant="h3">
-                Esqueci minha senha
-              </Styled.TextSignUp> */}
+              <Styled.LinkContainer color="primary" variant="h3">
+                <Link to="/recuperacao-senha">Esqueci minha senha</Link>
+              </Styled.LinkContainer>
             </Styled.ContentTexts>
           </Card>
           <ModalLogin />
