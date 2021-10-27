@@ -7,13 +7,15 @@ import { LayoutProps } from './props';
 import * as Styled from './styles';
 
 const Layout: FC<LayoutProps> = memo(props => {
-  const { children } = props;
+  const { children, containerStyles } = props;
 
   return (
     <ModalLogoutProvider>
       <Styled.Main>
         <Header />
-        <Styled.MainContent>{children}</Styled.MainContent>
+        <Styled.MainContent style={containerStyles}>
+          {children}
+        </Styled.MainContent>
       </Styled.Main>
       <ModalLogout />
     </ModalLogoutProvider>

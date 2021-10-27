@@ -10,7 +10,7 @@ export const Container = styled.header`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  z-index: 1;
+  z-index: 999;
   background-color: ${({ theme }) => theme.palette.secondary.main};
 `;
 
