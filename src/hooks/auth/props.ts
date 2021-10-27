@@ -53,4 +53,5 @@ export type AuthContextData = AuthState & {
   messageError: string;
   modalActive: boolean;
   resetModalActive(): void;
+  statusCode: number;
 };

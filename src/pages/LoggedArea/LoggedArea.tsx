@@ -6,28 +6,48 @@ import { MarginUserProvider, useMarginUser } from './context';
 import { CardMarginAvailable } from './components/CardMarginAvailable';
 import { CardSimulateLoan } from './components/CardSimulateLoan';
 import { CreditUnderAnalysis } from './components/CreditUnderAnalysis';
+import { ModalSimulateLoan } from './components/ModalSimulateLoan';
 
 import * as Styled from './styles';
+import {
+  ModalSimulateLoanProvider,
+  useModalSimulateLoan,
+} from './components/ModalSimulateLoan/context';
 
-const LoggedArea: FC = withContext(() => {
-  const { getMargin } = useMarginUser();
+const LoggedArea: FC = withContext(
+  () => {
+    const { getMargin, modalActive, statusCode } = useMarginUser();
+    const { toggleModal } = useModalSimulateLoan();
 
-  useEffect(() => {
-    getMargin();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    useEffect(() => {
+      getMargin();
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
-  return (
-    <RouteAccess typesOfAccess="auth">
-      <Layout>
-        <Styled.CardsContainer>
-          <CardMarginAvailable />
-          <CreditUnderAnalysis />
-        </Styled.CardsContainer>
-        <CardSimulateLoan />
-      </Layout>
-    </RouteAccess>
-  );
-}, MarginUserProvider);
+    useEffect(() => {
+      if (modalActive && statusCode !== 500) return toggleModal();
+      return () => {
+        <> </>;
+      };
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [modalActive]);
+
+    return (
+      <RouteAccess typesOfAccess="auth">
+        <Layout>
+          <Styled.CardsContainer>
+            <CardMarginAvailable />
+            <CreditUnderAnalysis />
+          </Styled.CardsContainer>
+
+          <CardSimulateLoan />
+          <ModalSimulateLoan />
+        </Layout>
+      </RouteAccess>
+    );
+  },
+  MarginUserProvider,
+  ModalSimulateLoanProvider,
+);
 
 export { LoggedArea };
