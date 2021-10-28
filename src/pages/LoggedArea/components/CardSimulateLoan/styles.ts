@@ -39,6 +39,17 @@ export const TextValueSlider = styled(TypographyStyles)`
 export const Slider = styled(SliderStyles)`
   margin-top: 30px;
   color: ${({ theme }) => theme.palette.primary.main};
+
+  .MuiSlider-thumb {
+    height: 38px;
+    width: 38px;
+    background-color: ${({ theme }) => theme.palette.primary.contrastText};
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  }
+`;
+
+export const Icon = styled.img`
+  margin-top: 8px;
 `;
 
 export const ButtonSimluteLoan = styled(Button)`

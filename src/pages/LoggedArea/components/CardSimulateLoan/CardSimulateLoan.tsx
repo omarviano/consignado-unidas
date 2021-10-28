@@ -1,6 +1,8 @@
+import { SliderThumb } from '@material-ui/core';
 import { Formik } from 'components/Formik';
 import { useSimulateLoan } from 'hooks/simulate';
 import { SimulateLoanProps } from 'hooks/simulate/props';
+import ImageSlider from 'assets/icons/slider.svg';
 import { FC, memo, useCallback, useMemo, useState } from 'react';
 
 import { formatValue } from 'utils/formatValue';
@@ -49,6 +51,18 @@ const CardSimulateLoan: FC = memo(() => {
     [dataMargin],
   );
 
+  type SliderComponentProps = React.HTMLAttributes<unknown>;
+
+  function SliderThumbComponent(props: SliderComponentProps) {
+    const { children, ...other } = props;
+    return (
+      <SliderThumb {...other}>
+        {children}
+        <Styled.Icon src={ImageSlider} alt="Imagem" />
+      </SliderThumb>
+    );
+  }
+
   return (
     <Formik initialValues={{}} onSubmit={handleSubmit}>
       <Styled.Container>
@@ -63,6 +77,7 @@ const CardSimulateLoan: FC = memo(() => {
         <Styled.TextValueSlider>{formatValue(value)}</Styled.TextValueSlider>
         <Styled.Slider
           value={value}
+          components={{ Thumb: SliderThumbComponent }}
           size="medium"
           onChange={handleSliderChange}
           step={100}
