@@ -1,13 +1,13 @@
 import { Formik } from 'components/Formik';
-import { useMarginUser } from 'pages/LoggedArea/context';
-import { SimulateLoanProps } from 'pages/LoggedArea/context/props';
+import { useSimulateLoan } from 'hooks/simulate';
+import { SimulateLoanProps } from 'hooks/simulate/props';
 import { FC, memo, useCallback, useState } from 'react';
 
 import { formatValue } from 'utils/formatValue';
 import * as Styled from './styles';
 
 const CardSimulateLoan: FC = memo(() => {
-  const { dataMargin, simulateLoan, resetModalActive } = useMarginUser();
+  const { dataMargin, simulateLoan, resetModalActive } = useSimulateLoan();
   const [value, setValue] = useState(5000);
 
   const handleSliderChange = useCallback(

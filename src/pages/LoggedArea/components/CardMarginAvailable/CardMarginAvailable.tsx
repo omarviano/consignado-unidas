@@ -5,11 +5,11 @@ import ReactTooltip from 'react-tooltip';
 import { getToken } from 'hooks/auth/storage';
 import { formatValue } from 'utils/formatValue';
 
-import { useMarginUser } from 'pages/LoggedArea/context';
+import { useSimulateLoan } from 'hooks/simulate';
 import * as Styled from './styles';
 
 const CardMarginAvailable: FC = memo(() => {
-  const { dataMargin } = useMarginUser();
+  const { dataMargin } = useSimulateLoan();
 
   return (
     <Styled.Container>

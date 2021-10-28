@@ -2,7 +2,7 @@ import { FC, useEffect } from 'react';
 import { RouteAccess } from 'components/RouteAccess';
 import { Layout } from 'components/Layout';
 import { withContext } from 'utils/withContext';
-import { MarginUserProvider, useMarginUser } from './context';
+import { SimulateLoanProvider, useSimulateLoan } from 'hooks/simulate';
 import { CardMarginAvailable } from './components/CardMarginAvailable';
 import { CardSimulateLoan } from './components/CardSimulateLoan';
 import { CreditUnderAnalysis } from './components/CreditUnderAnalysis';
@@ -16,7 +16,7 @@ import {
 
 const LoggedArea: FC = withContext(
   () => {
-    const { getMargin, modalActive, statusCode } = useMarginUser();
+    const { getMargin, modalActive, statusCode } = useSimulateLoan();
     const { toggleModal } = useModalSimulateLoan();
 
     useEffect(() => {
@@ -46,7 +46,7 @@ const LoggedArea: FC = withContext(
       </RouteAccess>
     );
   },
-  MarginUserProvider,
+  SimulateLoanProvider,
   ModalSimulateLoanProvider,
 );
 

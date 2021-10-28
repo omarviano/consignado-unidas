@@ -6,13 +6,13 @@ import { useContext } from 'react';
 import { useState } from 'react';
 import { createContext } from 'react';
 import { api } from 'services/api';
-import { MarginUserContextData, SimulateLoanProps } from './props';
+import { SimulateLoanContextData, SimulateLoanProps } from './props';
 
-const initialValue = {} as MarginUserContextData;
+const initialValue = {} as SimulateLoanContextData;
 
-const MarginUserContext = createContext(initialValue);
+const SimulateLoanContext = createContext(initialValue);
 
-export const MarginUserProvider: FC = props => {
+export const SimulateLoanProvider: FC = props => {
   const { children } = props;
   api.defaults.headers.authorization = `Bearer ${getToken()?.token}`;
 
@@ -53,7 +53,7 @@ export const MarginUserProvider: FC = props => {
   }, []);
 
   return (
-    <MarginUserContext.Provider
+    <SimulateLoanContext.Provider
       value={{
         dataMargin,
         statusCode,
@@ -65,15 +65,17 @@ export const MarginUserProvider: FC = props => {
       }}
     >
       {children}
-    </MarginUserContext.Provider>
+    </SimulateLoanContext.Provider>
   );
 };
 
-export function useMarginUser(): MarginUserContextData {
-  const context = useContext(MarginUserContext);
+export function useSimulateLoan(): SimulateLoanContextData {
+  const context = useContext(SimulateLoanContext);
 
   if (!context || context === initialValue) {
-    throw new Error('useMarginUser must be used within a MarginUserProvider');
+    throw new Error(
+      'useSimulateLoan must be used within a SimulateLoanProvider',
+    );
   }
 
   return context;
