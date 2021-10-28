@@ -38,6 +38,7 @@ export const TextValueSlider = styled(TypographyStyles)`
 
 export const Slider = styled(SliderStyles)`
   margin-top: 30px;
+  color: ${({ theme }) => theme.palette.primary.main};
 `;
 
 export const ButtonSimluteLoan = styled(Button)`

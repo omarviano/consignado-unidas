@@ -36,6 +36,7 @@ export const TextValueSlider = styled(TypographyStyles)`
 
 export const Slider = styled(SliderStyles)`
   margin-top: 15px;
+  color: ${({ theme }) => theme.palette.primary.main};
 `;
 
 export const ContentTextInformation = styled.div`
