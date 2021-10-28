@@ -1,0 +1,1 @@
+export { Accompaniment } from './Accompaniment';

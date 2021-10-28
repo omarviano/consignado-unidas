@@ -5,7 +5,10 @@ import { withContext } from 'utils/withContext';
 import { MarginUserProvider, useMarginUser } from './context';
 import { CardMarginAvailable } from './components/CardMarginAvailable';
 import { CardSimulateLoan } from './components/CardSimulateLoan';
+import { CreditUnderAnalysis } from './components/CreditUnderAnalysis';
 import { ModalSimulateLoan } from './components/ModalSimulateLoan';
+
+import * as Styled from './styles';
 import {
   ModalSimulateLoanProvider,
   useModalSimulateLoan,
@@ -32,7 +35,11 @@ const LoggedArea: FC = withContext(
     return (
       <RouteAccess typesOfAccess="auth">
         <Layout>
-          <CardMarginAvailable />
+          <Styled.CardsContainer>
+            <CardMarginAvailable />
+            <CreditUnderAnalysis />
+          </Styled.CardsContainer>
+
           <CardSimulateLoan />
           <ModalSimulateLoan />
         </Layout>
