@@ -17,6 +17,10 @@ const GlobalStyles = createGlobalStyle`
     }
   }
 
+  body.react-confirm-alert-body-element{
+    overflow: hidden;
+  }
+
   button, a {
     cursor: pointer;
   }
@@ -46,7 +50,7 @@ const GlobalStyles = createGlobalStyle`
     opacity: 1;
     visibility: visible;
     transition: opacity 0.3s ease-in-out 0s, visibility 0.3s ease-in-out 0s;
-    z-index: 100000;
+    z-index: 999;
     overflow: auto;
   }
 `;

@@ -8,6 +8,8 @@ class RoutingPath {
   static RESET_PASSWORD = '/password-reset';
 
   static LOGGEDAREA = '/area-logada';
+
+  static ACCOMPANIMENT = '/acompanhamento';
 }
 
 export { RoutingPath };

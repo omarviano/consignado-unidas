@@ -6,6 +6,7 @@ import { Login } from 'pages/Login';
 import { Registration } from 'pages/Registration';
 import { ForgotPassword } from 'pages/ForgotPassword';
 import { ResetPassword } from 'pages/ResetPassword';
+import { Accompaniment } from 'pages/Accompaniment';
 
 import { RoutingPath } from 'utils/routing';
 
@@ -21,6 +22,8 @@ const Routes: FC = memo(() => (
       <Route path={RoutingPath.RESET_PASSWORD} component={ResetPassword} />
 
       <Route path={RoutingPath.LOGGEDAREA} component={LoggedArea} exact />
+
+      <Route path={RoutingPath.ACCOMPANIMENT} component={Accompaniment} exact />
     </Switch>
   </BrowserRouter>
 ));

@@ -12,4 +12,5 @@ export const Container = styled(Card)`
 
 export const CloseButton = styled(IconButton)`
   float: right;
+  z-index: 1;
 `;
