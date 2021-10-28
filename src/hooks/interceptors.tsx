@@ -5,9 +5,11 @@ import { Error500 } from 'components/Error500';
 
 import showModal from 'utils/alert';
 import { api } from 'services/api';
+import { useSession } from './session';
 
 const useInterceptors = (): boolean[] => {
   const [counter, setCounter] = useState(0);
+  const { updateSession } = useSession();
 
   const inc = useCallback(() => setCounter(state => state + 1), [setCounter]);
   const dec = useCallback(() => setCounter(state => state - 1), [setCounter]);
@@ -15,6 +17,7 @@ const useInterceptors = (): boolean[] => {
   const interceptors = useMemo(
     () => ({
       request: (request: AxiosRequestConfig) => {
+        updateSession(new Date());
         inc();
 
         return request;
@@ -41,7 +44,7 @@ const useInterceptors = (): boolean[] => {
         return Promise.reject(error);
       },
     }),
-    [inc, dec],
+    [inc, dec, updateSession],
   );
 
   useEffect(() => {
