@@ -1,14 +1,17 @@
 import { Formik } from 'components/Formik';
 import { useSimulateLoan } from 'hooks/simulate';
 import { SimulateLoanProps } from 'hooks/simulate/props';
-import { FC, memo, useCallback, useState } from 'react';
+import { FC, memo, useCallback, useMemo, useState } from 'react';
 
 import { formatValue } from 'utils/formatValue';
 import * as Styled from './styles';
 
 const CardSimulateLoan: FC = memo(() => {
   const { dataMargin, simulateLoan, resetModalActive } = useSimulateLoan();
-  const [value, setValue] = useState(5000);
+
+  const [value, setValue] = useState(
+    dataMargin[0]?.availableValue <= 0 ? 0 : 5000,
+  );
 
   const handleSliderChange = useCallback(
     (event: Event, newValue: number | number[]) => {
@@ -31,6 +34,21 @@ const CardSimulateLoan: FC = memo(() => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dataMargin, value]);
 
+  const disableSliderAndButton = useMemo(
+    () => dataMargin[0]?.availableValue <= 0,
+    [dataMargin],
+  );
+
+  const valueMin = useMemo(
+    () => (dataMargin[0]?.availableValue <= 0 ? 0 : 5000),
+    [dataMargin],
+  );
+
+  const valueMax = useMemo(
+    () => (dataMargin[0]?.availableValue <= 0 ? 0 : 100000),
+    [dataMargin],
+  );
+
   return (
     <Formik initialValues={{}} onSubmit={handleSubmit}>
       <Styled.Container>
@@ -48,13 +66,15 @@ const CardSimulateLoan: FC = memo(() => {
           size="medium"
           onChange={handleSliderChange}
           step={100}
-          min={5000}
-          max={100000}
+          disabled={disableSliderAndButton}
+          min={valueMin}
+          max={valueMax}
           valueLabelDisplay="auto"
         />
         <Styled.ButtonSimluteLoan
           type="submit"
           variant="contained"
+          disabled={disableSliderAndButton}
           color="primary"
         >
           Simular Empréstimo
