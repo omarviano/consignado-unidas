@@ -1,22 +1,51 @@
 import { useMemo, useState, useCallback, useEffect } from 'react';
-import { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
+import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
 
 import { Error500 } from 'components/Error500';
 
 import showModal from 'utils/alert';
 import { api } from 'services/api';
+import { useAuth } from './auth';
+import { useSession } from './session';
 
 const useInterceptors = (): boolean[] => {
   const [counter, setCounter] = useState(0);
+  const { updateSession } = useSession();
+  const { refreshToken } = useAuth();
 
   const inc = useCallback(() => setCounter(state => state + 1), [setCounter]);
   const dec = useCallback(() => setCounter(state => state - 1), [setCounter]);
 
   const interceptors = useMemo(
     () => ({
-      request: (request: AxiosRequestConfig) => {
+      request: async (request: AxiosRequestConfig) => {
         inc();
 
+        const { headers } = request;
+
+        if (headers.authorization) {
+          try {
+            updateSession(new Date());
+
+            const {
+              data: { data },
+            } = await axios.get(
+              `${process.env.REACT_APP_BASE_URL}auth/refresh-token`,
+              {
+                headers,
+              },
+            );
+
+            refreshToken(data.token);
+
+            request.headers.authorization = `Bearer ${data.token}`;
+            return Promise.resolve(request);
+          } catch (error) {
+            return Promise.resolve(request);
+          }
+        }
+
+        updateSession(new Date());
         return request;
       },
       response: (response: AxiosResponse) => {
@@ -28,7 +57,7 @@ const useInterceptors = (): boolean[] => {
         dec();
 
         /* if (error.request.status === 0) {
-          // NETWORK ERROR showModal({ content: <NetworkError /> });
+          NETWORK ERROR showModal({ content: <NetworkError /> });
           return Promise.reject(error);
         } */
 
@@ -41,7 +70,7 @@ const useInterceptors = (): boolean[] => {
         return Promise.reject(error);
       },
     }),
-    [inc, dec],
+    [inc, dec, updateSession, refreshToken],
   );
 
   useEffect(() => {
