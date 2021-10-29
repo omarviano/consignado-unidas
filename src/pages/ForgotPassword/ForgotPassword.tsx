@@ -55,9 +55,9 @@ const ForgotPassword: React.FC = () => {
   return (
     <Styled.Container>
       <Card className="card">
-        <Styled.Title>Acesse sua conta</Styled.Title>
+        <Styled.Title>Esqueceu sua senha? </Styled.Title>
 
-        <Styled.SubTitle>Informe o email para recuperação </Styled.SubTitle>
+        <Styled.SubTitle>Informe o email para recuperação</Styled.SubTitle>
 
         <Formik
           initialValues={{ email: '' }}

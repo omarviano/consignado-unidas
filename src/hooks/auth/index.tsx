@@ -37,7 +37,8 @@ export const AuthProvider: FC<AuthContextProviderProps> = props => {
 
   useEffect(() => {
     persistToken(state.data);
-    api.defaults.headers.authorization = `Bearer ${state.data?.token}`;
+    if (state.data?.token)
+      api.defaults.headers.authorization = `Bearer ${state.data?.token}`;
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -72,6 +73,15 @@ export const AuthProvider: FC<AuthContextProviderProps> = props => {
     setModalActive(false);
   }, []);
 
+  const refreshToken = (token: string) => {
+    if (state.data) persistToken({ ...state.data, token });
+  };
+
+  const clearSessionData = () => {
+    api.defaults.headers.authorization = undefined;
+    clearPersistedToken();
+  };
+
   const isAuthenticated = useMemo(() => state.data !== null, [state.data]);
 
   return (
@@ -83,6 +93,8 @@ export const AuthProvider: FC<AuthContextProviderProps> = props => {
         isAuthenticated,
         signIn,
         signOut,
+        refreshToken,
+        clearSessionData,
         modalActive,
         statusCode,
       }}

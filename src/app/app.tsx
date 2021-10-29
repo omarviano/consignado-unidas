@@ -12,27 +12,24 @@ import {
   StyledEngineProvider,
 } from '@material-ui/core';
 import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
-import useInterceptors from 'hooks/interceptors';
+import { Interceptors } from 'components/Interceptors';
 import { Routes } from './routes';
 
-const App: FC = () => {
-  useInterceptors();
-
-  return (
-    <ThemeProviderMaterialUi theme={materialUiTheme}>
-      <LocalizationProvider dateAdapter={AdapterDateFns} locale={ptBR}>
-        <StyledEngineProvider injectFirst>
-          <ThemeProviderStyledComponents theme={materialUiTheme}>
-            <GlobalStyles />
-            <CssBaseline />
-            <AppProvider>
-              <Routes />
-            </AppProvider>
-          </ThemeProviderStyledComponents>
-        </StyledEngineProvider>
-      </LocalizationProvider>
-    </ThemeProviderMaterialUi>
-  );
-};
+const App: FC = () => (
+  <ThemeProviderMaterialUi theme={materialUiTheme}>
+    <LocalizationProvider dateAdapter={AdapterDateFns} locale={ptBR}>
+      <StyledEngineProvider injectFirst>
+        <ThemeProviderStyledComponents theme={materialUiTheme}>
+          <GlobalStyles />
+          <CssBaseline />
+          <AppProvider>
+            <Interceptors />
+            <Routes />
+          </AppProvider>
+        </ThemeProviderStyledComponents>
+      </StyledEngineProvider>
+    </LocalizationProvider>
+  </ThemeProviderMaterialUi>
+);
 
 export { App };

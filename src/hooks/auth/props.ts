@@ -50,6 +50,8 @@ export type AuthContextData = AuthState & {
   isAuthenticated: boolean;
   signIn(credentials: LoginCredentials): Promise<void>;
   signOut(): void;
+  refreshToken(token: string): void;
+  clearSessionData(): void;
   messageError: string;
   modalActive: boolean;
   resetModalActive(): void;

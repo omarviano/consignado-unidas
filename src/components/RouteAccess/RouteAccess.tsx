@@ -2,6 +2,7 @@ import { useAuth } from 'hooks/auth';
 import { FC, Fragment, memo, useEffect, useMemo, useRef } from 'react';
 import { Redirect } from 'react-router-dom';
 import { RoutingPath } from 'utils/routing';
+import { SessionModal } from 'components/SessionModal';
 
 import { RouteAccessProps } from './props';
 
@@ -34,6 +35,7 @@ const RouteAccess: FC<RouteAccessProps> = memo(props => {
   return (
     <Fragment>
       <Styled.Container>{children}</Styled.Container>
+      {isAuthenticated && <SessionModal />}
     </Fragment>
   );
 });
