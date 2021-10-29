@@ -1,14 +1,14 @@
 import { useMemo, memo, FC } from 'react';
 import ImageClose from 'assets/icons/close.svg';
 import ImageAlert from 'assets/icons/alert.svg';
-import { useMarginUser } from 'pages/LoggedArea/context';
+import { useSimulateLoan } from 'hooks/simulate';
 import { useModalSimulateLoan } from './context';
 
 import * as Styled from './styles';
 
 const ModalSimulateLoan: FC = memo(() => {
   const { modalActive, toggleModal } = useModalSimulateLoan();
-  const { messageError } = useMarginUser();
+  const { messageError } = useSimulateLoan();
 
   const DialogTitle = useMemo(
     () => (

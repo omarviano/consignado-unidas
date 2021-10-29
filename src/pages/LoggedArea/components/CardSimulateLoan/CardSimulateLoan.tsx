@@ -1,14 +1,20 @@
+import { SliderThumb } from '@material-ui/core';
 import { Formik } from 'components/Formik';
-import { useMarginUser } from 'pages/LoggedArea/context';
-import { SimulateLoanProps } from 'pages/LoggedArea/context/props';
-import { FC, memo, useCallback, useState } from 'react';
+import { useSimulateLoan } from 'hooks/simulate';
+import { SimulateLoanProps } from 'hooks/simulate/props';
+import ImageSlider from 'assets/icons/slider.svg';
+import { FC, memo, useCallback, useMemo, useState } from 'react';
 
 import { formatValue } from 'utils/formatValue';
 import * as Styled from './styles';
 
 const CardSimulateLoan: FC = memo(() => {
-  const { dataMargin, simulateLoan, resetModalActive } = useMarginUser();
-  const [value, setValue] = useState(5000);
+  const { dataMargin, simulateLoan, resetModalActive, requestStatus } =
+    useSimulateLoan();
+
+  const [value, setValue] = useState(
+    dataMargin[0]?.availableValue <= 0 ? 0 : 5000,
+  );
 
   const handleSliderChange = useCallback(
     (event: Event, newValue: number | number[]) => {
@@ -31,6 +37,33 @@ const CardSimulateLoan: FC = memo(() => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dataMargin, value]);
 
+  const disableSliderAndButton = useMemo(
+    () => dataMargin[0]?.availableValue <= 0,
+    [dataMargin],
+  );
+
+  const valueMin = useMemo(
+    () => (dataMargin[0]?.availableValue <= 0 ? 0 : 5000),
+    [dataMargin],
+  );
+
+  const valueMax = useMemo(
+    () => (dataMargin[0]?.availableValue <= 0 ? 0 : 100000),
+    [dataMargin],
+  );
+
+  type SliderComponentProps = React.HTMLAttributes<unknown>;
+
+  function SliderThumbComponent(props: SliderComponentProps) {
+    const { children, ...other } = props;
+    return (
+      <SliderThumb {...other}>
+        {children}
+        <Styled.Icon src={ImageSlider} alt="Imagem" />
+      </SliderThumb>
+    );
+  }
+
   return (
     <Formik initialValues={{}} onSubmit={handleSubmit}>
       <Styled.Container>
@@ -42,19 +75,24 @@ const CardSimulateLoan: FC = memo(() => {
           empréstimo e realizando apenas uma simulação. O aceite será feito em
           etapas posteriores.
         </Styled.TextInfomation>
-        <Styled.TextValueSlider>{formatValue(value)}</Styled.TextValueSlider>
+        <Styled.TextValueSlider disabled={disableSliderAndButton}>
+          {formatValue(value)}
+        </Styled.TextValueSlider>
         <Styled.Slider
           value={value}
+          components={{ Thumb: SliderThumbComponent }}
           size="medium"
           onChange={handleSliderChange}
           step={100}
-          min={5000}
-          max={100000}
+          disabled={disableSliderAndButton}
+          min={valueMin}
+          max={valueMax}
           valueLabelDisplay="auto"
         />
         <Styled.ButtonSimluteLoan
           type="submit"
           variant="contained"
+          disabled={disableSliderAndButton || requestStatus.loading}
           color="primary"
         >
           Simular Empréstimo

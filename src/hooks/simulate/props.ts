@@ -1,4 +1,5 @@
 import { DataProps } from 'interface/margin';
+import { RequestStatus } from 'interface/common';
 
 export interface SimulateLoanProps {
   value: number;
@@ -8,7 +9,7 @@ export interface SimulateLoanProps {
   admissionDate: Date;
 }
 
-export interface MarginUserContextData {
+export interface SimulateLoanContextData {
   getMargin(): Promise<void>;
 
   dataMargin: DataProps[];
@@ -22,4 +23,6 @@ export interface MarginUserContextData {
   statusCode: number;
 
   simulateLoan(data: SimulateLoanProps): Promise<void>;
+
+  requestStatus: RequestStatus;
 }

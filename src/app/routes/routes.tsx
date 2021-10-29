@@ -9,6 +9,7 @@ import { ResetPassword } from 'pages/ResetPassword';
 import { Accompaniment } from 'pages/Accompaniment';
 
 import { RoutingPath } from 'utils/routing';
+import { SimulateLoan } from 'pages/SimulateLoan';
 
 const Routes: FC = memo(() => (
   <BrowserRouter>
@@ -24,6 +25,8 @@ const Routes: FC = memo(() => (
       <Route path={RoutingPath.LOGGEDAREA} component={LoggedArea} exact />
 
       <Route path={RoutingPath.ACCOMPANIMENT} component={Accompaniment} exact />
+
+      <Route path={RoutingPath.SIMULATE_LOAN} component={SimulateLoan} exact />
     </Switch>
   </BrowserRouter>
 ));

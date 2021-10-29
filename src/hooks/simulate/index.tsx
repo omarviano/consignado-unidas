@@ -1,4 +1,5 @@
 import { getToken } from 'hooks/auth/storage';
+import { RequestStatus } from 'interface/common';
 import { DataProps, MarginProps } from 'interface/margin';
 import { FC } from 'react';
 import { useCallback } from 'react';
@@ -6,13 +7,13 @@ import { useContext } from 'react';
 import { useState } from 'react';
 import { createContext } from 'react';
 import { api } from 'services/api';
-import { MarginUserContextData, SimulateLoanProps } from './props';
+import { SimulateLoanContextData, SimulateLoanProps } from './props';
 
-const initialValue = {} as MarginUserContextData;
+const initialValue = {} as SimulateLoanContextData;
 
-const MarginUserContext = createContext(initialValue);
+const SimulateLoanContext = createContext(initialValue);
 
-export const MarginUserProvider: FC = props => {
+export const SimulateLoanProvider: FC = props => {
   const { children } = props;
   api.defaults.headers.authorization = `Bearer ${getToken()?.token}`;
 
@@ -21,6 +22,11 @@ export const MarginUserProvider: FC = props => {
   const [messageError, setMessageError] = useState('');
   const [modalActive, setModalActive] = useState(false);
   const [statusCode, setStatusCode] = useState(0);
+  const [requestStatus, setRequestStatus] = useState<RequestStatus>({
+    error: false,
+    loading: false,
+    success: false,
+  });
 
   const getMargin = useCallback(async () => {
     try {
@@ -37,7 +43,19 @@ export const MarginUserProvider: FC = props => {
 
   const simulateLoan = useCallback(async (data: SimulateLoanProps) => {
     try {
+      setRequestStatus({
+        error: false,
+        loading: true,
+        success: false,
+      });
+
       await api.post('/financial/simulate', data);
+
+      setRequestStatus({
+        error: false,
+        loading: false,
+        success: true,
+      });
     } catch (error: any) {
       const { response } = error;
 
@@ -45,6 +63,11 @@ export const MarginUserProvider: FC = props => {
       setStatusCode(response.status);
       setMessageError(errorObject.data.message);
       setModalActive(true);
+      setRequestStatus({
+        error: true,
+        loading: false,
+        success: false,
+      });
     }
   }, []);
 
@@ -53,7 +76,7 @@ export const MarginUserProvider: FC = props => {
   }, []);
 
   return (
-    <MarginUserContext.Provider
+    <SimulateLoanContext.Provider
       value={{
         dataMargin,
         statusCode,
@@ -62,18 +85,21 @@ export const MarginUserProvider: FC = props => {
         modalActive,
         resetModalActive,
         simulateLoan,
+        requestStatus,
       }}
     >
       {children}
-    </MarginUserContext.Provider>
+    </SimulateLoanContext.Provider>
   );
 };
 
-export function useMarginUser(): MarginUserContextData {
-  const context = useContext(MarginUserContext);
+export function useSimulateLoan(): SimulateLoanContextData {
+  const context = useContext(SimulateLoanContext);
 
   if (!context || context === initialValue) {
-    throw new Error('useMarginUser must be used within a MarginUserProvider');
+    throw new Error(
+      'useSimulateLoan must be used within a SimulateLoanProvider',
+    );
   }
 
   return context;

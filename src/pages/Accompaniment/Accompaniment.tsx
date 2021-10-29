@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Layout } from 'components/Layout';
 import { RouteAccess } from 'components/RouteAccess';
-import { Step, StepIconProps, Stepper } from '@material-ui/core';
+import { Step, StepIconProps, Stepper, Box, Skeleton } from '@material-ui/core';
 import { CheckCircle, CropSquare } from '@material-ui/icons';
 import { useHistory } from 'react-router-dom';
 
@@ -37,6 +37,7 @@ function QontoStepIcon(props: StepIconProps) {
 
 const Accompaniment: React.FC = () => {
   const [activeStep] = useState(1);
+  const [checking, setChecking] = useState(true);
   const history = useHistory();
 
   const getIcon = (index: number) => {
@@ -46,10 +47,14 @@ const Accompaniment: React.FC = () => {
   };
 
   useEffect(() => {
-    AccompanimentServices.checkCreditUnderReview().then(({ data }) => {
-      if (data?.data?.quotationStatusId !== 0)
-        history.push(RoutingPath.LOGGEDAREA);
-    });
+    AccompanimentServices.checkCreditUnderReview()
+      .then(({ data }) => {
+        if (data?.data?.quotationStatusId !== 0)
+          history.push(RoutingPath.LOGGEDAREA);
+
+        setChecking(false);
+      })
+      .catch(() => history.push(RoutingPath.LOGGEDAREA));
   }, [history]);
 
   return (
@@ -61,26 +66,33 @@ const Accompaniment: React.FC = () => {
         }}
       >
         <Styled.Container>
-          <Styled.StepperCard>
-            <Stepper
-              alternativeLabel
-              activeStep={activeStep}
-              connector={<MUIStyled.QontoConnector />}
-            >
-              {steps.map((label, index) => (
-                <Step key={label}>
-                  <Styled.StepLabel StepIconComponent={QontoStepIcon}>
-                    <Styled.StepLabelContent active={activeStep === index}>
-                      {getIcon(index)}
-                      {label}
-                    </Styled.StepLabelContent>
-                  </Styled.StepLabel>
-                </Step>
-              ))}
-            </Stepper>
-          </Styled.StepperCard>
-
-          {activeStep === 1 && <RequestUnderAnalysis />}
+          {checking ? (
+            <Box>
+              <Skeleton animation="wave" height={416} />
+            </Box>
+          ) : (
+            <>
+              <Styled.StepperCard>
+                <Stepper
+                  alternativeLabel
+                  activeStep={activeStep}
+                  connector={<MUIStyled.QontoConnector />}
+                >
+                  {steps.map((label, index) => (
+                    <Step key={label}>
+                      <Styled.StepLabel StepIconComponent={QontoStepIcon}>
+                        <Styled.StepLabelContent active={activeStep === index}>
+                          {getIcon(index)}
+                          {label}
+                        </Styled.StepLabelContent>
+                      </Styled.StepLabel>
+                    </Step>
+                  ))}
+                </Stepper>
+              </Styled.StepperCard>
+              {activeStep === 1 && <RequestUnderAnalysis />})
+            </>
+          )}
         </Styled.Container>
       </Layout>
     </RouteAccess>
