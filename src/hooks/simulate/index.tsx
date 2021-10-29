@@ -1,4 +1,5 @@
 import { getToken } from 'hooks/auth/storage';
+import { RequestStatus } from 'interface/common';
 import { DataProps, MarginProps } from 'interface/margin';
 import { FC } from 'react';
 import { useCallback } from 'react';
@@ -21,6 +22,11 @@ export const SimulateLoanProvider: FC = props => {
   const [messageError, setMessageError] = useState('');
   const [modalActive, setModalActive] = useState(false);
   const [statusCode, setStatusCode] = useState(0);
+  const [requestStatus, setRequestStatus] = useState<RequestStatus>({
+    error: false,
+    loading: false,
+    success: false,
+  });
 
   const getMargin = useCallback(async () => {
     try {
@@ -37,7 +43,19 @@ export const SimulateLoanProvider: FC = props => {
 
   const simulateLoan = useCallback(async (data: SimulateLoanProps) => {
     try {
+      setRequestStatus({
+        error: false,
+        loading: true,
+        success: false,
+      });
+
       await api.post('/financial/simulate', data);
+
+      setRequestStatus({
+        error: false,
+        loading: false,
+        success: true,
+      });
     } catch (error: any) {
       const { response } = error;
 
@@ -45,6 +63,11 @@ export const SimulateLoanProvider: FC = props => {
       setStatusCode(response.status);
       setMessageError(errorObject.data.message);
       setModalActive(true);
+      setRequestStatus({
+        error: true,
+        loading: false,
+        success: false,
+      });
     }
   }, []);
 
@@ -62,6 +85,7 @@ export const SimulateLoanProvider: FC = props => {
         modalActive,
         resetModalActive,
         simulateLoan,
+        requestStatus,
       }}
     >
       {children}

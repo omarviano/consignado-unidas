@@ -9,7 +9,8 @@ import { formatValue } from 'utils/formatValue';
 import * as Styled from './styles';
 
 const CardSimulateLoan: FC = memo(() => {
-  const { dataMargin, simulateLoan, resetModalActive } = useSimulateLoan();
+  const { dataMargin, simulateLoan, resetModalActive, requestStatus } =
+    useSimulateLoan();
 
   const [value, setValue] = useState(
     dataMargin[0]?.availableValue <= 0 ? 0 : 5000,
@@ -91,7 +92,7 @@ const CardSimulateLoan: FC = memo(() => {
         <Styled.ButtonSimluteLoan
           type="submit"
           variant="contained"
-          disabled={disableSliderAndButton}
+          disabled={disableSliderAndButton || requestStatus.loading}
           color="primary"
         >
           Simular Empréstimo
