@@ -1,7 +1,11 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import TypographyStyles from '@material-ui/core/Typography';
 import { Button } from 'components/Buttons/Button';
 import SliderStyles from '@material-ui/core/Slider';
+
+interface TextTextValueSliderProps {
+  disabled: boolean;
+}
 
 export const Container = styled.div`
   margin-top: 35px;
@@ -29,11 +33,19 @@ export const TextInfomation = styled(TypographyStyles)`
   margin-top: 10px;
 `;
 
-export const TextValueSlider = styled(TypographyStyles)`
+export const TextValueSlider = styled(
+  TypographyStyles,
+)<TextTextValueSliderProps>`
   color: ${({ theme }) => theme.palette.grey[400]};
   font-size: 30px;
   font-weight: 500;
   margin-top: 32px;
+
+  ${({ disabled }) =>
+    disabled &&
+    css`
+      color: ${({ theme }) => theme.palette.grey[50]};
+    `}
 `;
 
 export const Slider = styled(SliderStyles)`
@@ -41,10 +53,14 @@ export const Slider = styled(SliderStyles)`
   color: ${({ theme }) => theme.palette.primary.main};
 
   .MuiSlider-thumb {
-    height: 38px;
-    width: 38px;
+    height: 34px;
+    width: 34px;
     background-color: ${({ theme }) => theme.palette.primary.contrastText};
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  }
+
+  .MuiSlider-rail {
+    color: ${({ theme }) => theme.palette.grey[50]};
   }
 `;
 
