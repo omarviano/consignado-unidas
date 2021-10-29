@@ -23,8 +23,8 @@ const App: FC = () => (
           <GlobalStyles />
           <CssBaseline />
           <AppProvider>
-            <Routes />
             <Interceptors />
+            <Routes />
           </AppProvider>
         </ThemeProviderStyledComponents>
       </StyledEngineProvider>

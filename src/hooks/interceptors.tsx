@@ -5,11 +5,13 @@ import { Error500 } from 'components/Error500';
 
 import showModal from 'utils/alert';
 import { api } from 'services/api';
+import { useAuth } from './auth';
 import { useSession } from './session';
 
 const useInterceptors = (): boolean[] => {
   const [counter, setCounter] = useState(0);
   const { updateSession } = useSession();
+  const { refreshToken } = useAuth();
 
   const inc = useCallback(() => setCounter(state => state + 1), [setCounter]);
   const dec = useCallback(() => setCounter(state => state - 1), [setCounter]);
@@ -21,10 +23,10 @@ const useInterceptors = (): boolean[] => {
 
         const { headers } = request;
 
-        console.log('request', request);
-
         if (headers.authorization) {
           try {
+            updateSession(new Date());
+
             const {
               data: { data },
             } = await axios.get(
@@ -34,11 +36,9 @@ const useInterceptors = (): boolean[] => {
               },
             );
 
+            refreshToken(data.token);
+
             request.headers.authorization = `Bearer ${data.token}`;
-            api.defaults.headers.authorization = `Bearer ${data.token}`;
-
-            updateSession(new Date());
-
             return Promise.resolve(request);
           } catch (error) {
             return Promise.resolve(request);
@@ -57,7 +57,7 @@ const useInterceptors = (): boolean[] => {
         dec();
 
         /* if (error.request.status === 0) {
-          // NETWORK ERROR showModal({ content: <NetworkError /> });
+          NETWORK ERROR showModal({ content: <NetworkError /> });
           return Promise.reject(error);
         } */
 
@@ -70,7 +70,7 @@ const useInterceptors = (): boolean[] => {
         return Promise.reject(error);
       },
     }),
-    [inc, dec, updateSession],
+    [inc, dec, updateSession, refreshToken],
   );
 
   useEffect(() => {

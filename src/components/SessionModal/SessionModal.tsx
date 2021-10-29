@@ -13,14 +13,16 @@ const FIFTEEN_MINUTES = 900000;
 
 const SessionModal: React.FC = () => {
   const { lastSession } = useSession();
-  const { signOut } = useAuth();
+  const { signOut, clearSessionData } = useAuth();
   const time = useMemo(
     () => lastSession.getTime() + FIFTEEN_MINUTES,
     [lastSession],
   );
 
   const renderer = ({ completed }) => {
-    if (completed)
+    if (completed) {
+      clearSessionData();
+
       return (
         <Modal open>
           <Styled.ModalContent>
@@ -32,6 +34,7 @@ const SessionModal: React.FC = () => {
           </Styled.ModalContent>
         </Modal>
       );
+    }
 
     return null;
   };

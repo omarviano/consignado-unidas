@@ -73,6 +73,15 @@ export const AuthProvider: FC<AuthContextProviderProps> = props => {
     setModalActive(false);
   }, []);
 
+  const refreshToken = (token: string) => {
+    if (state.data) persistToken({ ...state.data, token });
+  };
+
+  const clearSessionData = () => {
+    api.defaults.headers.authorization = undefined;
+    clearPersistedToken();
+  };
+
   const isAuthenticated = useMemo(() => state.data !== null, [state.data]);
 
   return (
@@ -84,6 +93,8 @@ export const AuthProvider: FC<AuthContextProviderProps> = props => {
         isAuthenticated,
         signIn,
         signOut,
+        refreshToken,
+        clearSessionData,
         modalActive,
         statusCode,
       }}
