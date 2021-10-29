@@ -1,5 +1,5 @@
 import { useMemo, useState, useCallback, useEffect } from 'react';
-import { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
+import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
 
 import { Error500 } from 'components/Error500';
 
@@ -16,10 +16,36 @@ const useInterceptors = (): boolean[] => {
 
   const interceptors = useMemo(
     () => ({
-      request: (request: AxiosRequestConfig) => {
-        updateSession(new Date());
+      request: async (request: AxiosRequestConfig) => {
         inc();
 
+        const { headers } = request;
+
+        console.log('request', request);
+
+        if (headers.authorization) {
+          try {
+            const {
+              data: { data },
+            } = await axios.get(
+              `${process.env.REACT_APP_BASE_URL}auth/refresh-token`,
+              {
+                headers,
+              },
+            );
+
+            request.headers.authorization = `Bearer ${data.token}`;
+            api.defaults.headers.authorization = `Bearer ${data.token}`;
+
+            updateSession(new Date());
+
+            return Promise.resolve(request);
+          } catch (error) {
+            return Promise.resolve(request);
+          }
+        }
+
+        updateSession(new Date());
         return request;
       },
       response: (response: AxiosResponse) => {

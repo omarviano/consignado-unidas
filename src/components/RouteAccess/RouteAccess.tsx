@@ -4,7 +4,6 @@ import { Redirect } from 'react-router-dom';
 import { RoutingPath } from 'utils/routing';
 import { SessionModal } from 'components/SessionModal';
 
-import useInterceptors from 'hooks/interceptors';
 import { RouteAccessProps } from './props';
 
 import * as Styled from './styles';
@@ -13,7 +12,6 @@ const RouteAccess: FC<RouteAccessProps> = memo(props => {
   const { children, typesOfAccess } = props;
   const { isAuthenticated, isAuthenticating } = useAuth();
   const loadRef = useRef(false);
-  useInterceptors();
 
   useEffect(() => {
     if (!isAuthenticating) {

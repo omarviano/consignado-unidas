@@ -37,7 +37,8 @@ export const AuthProvider: FC<AuthContextProviderProps> = props => {
 
   useEffect(() => {
     persistToken(state.data);
-    api.defaults.headers.authorization = `Bearer ${state.data?.token}`;
+    if (state.data?.token)
+      api.defaults.headers.authorization = `Bearer ${state.data?.token}`;
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
