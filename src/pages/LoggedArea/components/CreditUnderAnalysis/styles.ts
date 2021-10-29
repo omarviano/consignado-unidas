@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import TypographyStyles from '@material-ui/core/Typography';
+import TypographyStyles from '@mui/material/Typography';
 import { Link } from 'react-router-dom';
 
 export const Container = styled(Link)`

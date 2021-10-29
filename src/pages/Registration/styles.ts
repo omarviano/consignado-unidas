@@ -2,7 +2,7 @@ import {
   Box,
   DialogContentText as DialogContentTextMUI,
   DialogTitle as DialogTitleMUI,
-} from '@material-ui/core';
+} from '@mui/material';
 import styled, { css } from 'styled-components';
 
 interface StepProps {

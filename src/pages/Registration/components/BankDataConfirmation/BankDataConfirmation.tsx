@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Checkbox, Modal } from '@material-ui/core';
-import { Warning, Close } from '@material-ui/icons';
+import { Checkbox, Modal } from '@mui/material';
+import { Warning, Close } from '@mui/icons-material';
 
 import useModal from 'hooks/modal';
 

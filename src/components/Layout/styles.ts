@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import ContainerStyles from '@material-ui/core/Container';
+import ContainerStyles from '@mui/material/Container';
 
 export const Main = styled.main`
   width: 100vw;

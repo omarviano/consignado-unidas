@@ -1,4 +1,4 @@
-import { SliderThumb } from '@material-ui/core';
+import { SliderThumb } from '@mui/material';
 import { Formik } from 'components/Formik';
 import { useSimulateLoan } from 'hooks/simulate';
 import { SimulateLoanProps } from 'hooks/simulate/props';

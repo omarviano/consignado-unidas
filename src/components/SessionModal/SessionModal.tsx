@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import Countdown from 'react-countdown';
-import { Modal } from '@material-ui/core';
-import { Update } from '@material-ui/icons';
+import { Modal } from '@mui/material';
+import { Update } from '@mui/icons-material';
 import { Button } from 'components/Buttons/Button';
 
 import { useSession } from 'hooks/session';

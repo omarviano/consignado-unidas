@@ -1,7 +1,7 @@
 import 'styled-components';
 
-import { Theme } from '@material-ui/core';
-import { Palette } from '@material-ui/core/styles/createPalette';
+import { Theme } from '@mui/material';
+import { Palette } from '@mui/material/styles/createPalette';
 
 declare module 'styled-components' {
   // eslint-disable-next-line @typescript-eslint/no-empty-interface

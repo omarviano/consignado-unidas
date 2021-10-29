@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Badge, Card, Modal } from '@material-ui/core';
-import { MailOutlined, Check, Cancel, Close } from '@material-ui/icons';
+import { Badge, Card, Modal } from '@mui/material';
+import { MailOutlined, Check, Cancel, Close } from '@mui/icons-material';
 import { AxiosError } from 'axios';
 
 import useModal from 'hooks/modal';

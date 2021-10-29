@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Layout } from 'components/Layout';
 import { RouteAccess } from 'components/RouteAccess';
-import { Step, StepIconProps, Stepper, Box, Skeleton } from '@material-ui/core';
-import { CheckCircle, CropSquare } from '@material-ui/icons';
+import { Step, StepIconProps, Stepper, Box, Skeleton } from '@mui/material';
+import { CheckCircle, CropSquare } from '@mui/icons-material';
 import { useHistory } from 'react-router-dom';
 
 import { RoutingPath } from 'utils/routing';

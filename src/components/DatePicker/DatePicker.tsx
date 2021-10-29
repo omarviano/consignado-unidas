@@ -1,6 +1,6 @@
 import { forwardRef } from 'react';
 import { useField } from 'formik';
-import DesktopDatePicker from '@material-ui/lab/DesktopDatePicker';
+import DesktopDatePicker from '@mui/lab/DesktopDatePicker';
 
 import { DatePickerProps } from './props';
 import * as Styled from './styles';

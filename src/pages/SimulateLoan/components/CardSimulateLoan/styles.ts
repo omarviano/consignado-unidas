@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import SliderStyles from '@material-ui/core/Slider';
-import TypographyStyles from '@material-ui/core/Typography';
+import SliderStyles from '@mui/material/Slider';
+import TypographyStyles from '@mui/material/Typography';
 
 export const Container = styled.div`
   margin-top: 102px;

@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
-import TypographyStyles from '@material-ui/core/Typography';
+import TypographyStyles from '@mui/material/Typography';
 import { Button } from 'components/Buttons/Button';
-import SliderStyles from '@material-ui/core/Slider';
+import SliderStyles from '@mui/material/Slider';
 
 interface TextTextValueSliderProps {
   disabled: boolean;

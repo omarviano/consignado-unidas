@@ -1,7 +1,7 @@
-import { styled } from '@material-ui/core/styles';
+import { styled } from '@mui/material/styles';
 import StepConnector, {
   stepConnectorClasses,
-} from '@material-ui/core/StepConnector';
+} from '@mui/material/StepConnector';
 
 export const QontoConnector = styled(StepConnector)(() => ({
   [`&.${stepConnectorClasses.alternativeLabel}`]: {
