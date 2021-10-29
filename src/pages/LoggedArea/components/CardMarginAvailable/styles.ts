@@ -43,3 +43,15 @@ export const TextInformationTooltip = styled.p`
   color: #848484;
   border-radius: 6px;
 `;
+
+export const TextMarginNotAvailable = styled(TypographyStyles)`
+  color: ${({ theme }) => theme.palette.grey[100]};
+  font-weight: 500;
+  line-height: 25.5px;
+  letter-spacing: 0.2px;
+  margin-top: 6px;
+
+  img {
+    margin: 0 10px 0 -30px;
+  }
+`;

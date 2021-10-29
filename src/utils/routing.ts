@@ -10,6 +10,8 @@ class RoutingPath {
   static LOGGEDAREA = '/area-logada';
 
   static ACCOMPANIMENT = '/acompanhamento';
+
+  static SIMULATE_LOAN = '/simulacao';
 }
 
 export { RoutingPath };

@@ -8,7 +8,7 @@ export interface SimulateLoanProps {
   admissionDate: Date;
 }
 
-export interface MarginUserContextData {
+export interface SimulateLoanContextData {
   getMargin(): Promise<void>;
 
   dataMargin: DataProps[];
