@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import { formatValue } from 'utils/formatValue';
+import { Slider } from 'components/Slider';
 
 import * as Styled from './styles';
 
@@ -13,7 +14,7 @@ const CardSimulateLoan: FC = props => {
           Proposta de contratos para o empréstimo no valor de
         </Styled.TextContractProposal>
         <Styled.TextValueSlider>{formatValue(30000)}</Styled.TextValueSlider>
-        <Styled.Slider />
+        <Slider />
       </Styled.ContentSlider>
 
       <Styled.ContentTextInformation>

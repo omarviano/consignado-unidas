@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import SliderStyles from '@mui/material/Slider';
 import TypographyStyles from '@mui/material/Typography';
 
 export const Container = styled.div`
@@ -32,11 +31,6 @@ export const TextValueSlider = styled(TypographyStyles)`
   font-size: 30px;
   font-weight: 500;
   margin-top: 25px;
-`;
-
-export const Slider = styled(SliderStyles)`
-  margin-top: 15px;
-  color: ${({ theme }) => theme.palette.primary.main};
 `;
 
 export const ContentTextInformation = styled.div`
