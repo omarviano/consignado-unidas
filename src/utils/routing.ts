@@ -12,6 +12,8 @@ class RoutingPath {
   static ACCOMPANIMENT = '/acompanhamento';
 
   static SIMULATE_LOAN = '/simulacao';
+
+  static ACCOUNT_CONFIRMATION = '/confirmacao-conta';
 }
 
 export { RoutingPath };
