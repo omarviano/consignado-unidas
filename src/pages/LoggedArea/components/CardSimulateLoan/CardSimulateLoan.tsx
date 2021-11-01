@@ -1,16 +1,18 @@
 import { Formik } from 'components/Formik';
 import { useSimulateLoan } from 'hooks/simulate';
-import { SimulateLoanProps } from 'hooks/simulate/props';
+import { SimulateLoanProps } from 'interface/simulate';
 import { Slider } from 'components/Slider';
 
 import { FC, memo, useCallback, useMemo, useState } from 'react';
 
 import { formatValue } from 'utils/formatValue';
+
+import { useSimulateLoanRealTime } from 'hooks/simulateRealtime';
 import * as Styled from './styles';
 
 const CardSimulateLoan: FC = memo(() => {
-  const { dataMargin, simulateLoan, resetModalActive, requestStatus } =
-    useSimulateLoan();
+  const { simulateLoan, resetModalActive, requestStatus } = useSimulateLoan();
+  const { addValueSliderSimulate, dataMargin } = useSimulateLoanRealTime();
 
   const [value, setValue] = useState(
     dataMargin[0]?.availableValue <= 0 ? 0 : 5000,
@@ -32,6 +34,7 @@ const CardSimulateLoan: FC = memo(() => {
       relationship: dataMargin[0].situation,
     };
 
+    addValueSliderSimulate(value);
     await simulateLoan(data);
     resetModalActive();
     // eslint-disable-next-line react-hooks/exhaustive-deps
