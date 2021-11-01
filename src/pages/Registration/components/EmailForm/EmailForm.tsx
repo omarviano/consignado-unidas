@@ -14,6 +14,7 @@ const EmailForm: React.FC<EmailFormProps> = ({ onSubmit }) => (
     initialValues={{}}
     validationSchema={schema}
     onSubmit={onSubmit}
+    validateOnBlur={false}
     validateOnChange
   >
     <StepSmallTitle>Qual o seu melhor e-mail?</StepSmallTitle>
