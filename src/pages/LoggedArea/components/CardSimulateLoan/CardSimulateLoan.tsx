@@ -29,7 +29,7 @@ const CardSimulateLoan: FC = memo(() => {
       admissionDate: dataMargin[0].admissionDate,
       marginAvailableValue: dataMargin[0].availableValue,
       marginTotalValue: dataMargin[0].totalValue,
-      relationship: dataMargin[0].relationship,
+      relationship: dataMargin[0].situation,
     };
 
     await simulateLoan(data);

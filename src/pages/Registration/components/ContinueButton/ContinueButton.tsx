@@ -9,15 +9,12 @@ const ContinueButton: React.FC<ContinueButtonProps> = ({
   disabled,
   ...rest
 }) => {
-  const { isValid, isValidating } = useFormikContext();
-  const isDisabled = useMemo(
-    () => !isValid || disabled || isValidating,
-    [disabled, isValid, isValidating],
-  );
+  const { isValid } = useFormikContext();
+  const isDisabled = useMemo(() => !isValid || disabled, [disabled, isValid]);
 
   return (
     <Styled.ContinueButton {...rest} disabled={isDisabled}>
-      {isValidating ? 'Validando dados' : 'Continuar'} <ArrowRightAlt />
+      Continuar <ArrowRightAlt />
     </Styled.ContinueButton>
   );
 };

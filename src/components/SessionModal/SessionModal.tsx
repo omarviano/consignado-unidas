@@ -29,7 +29,7 @@ const SessionModal: React.FC = () => {
             <Update />
             <Styled.ModalText>Sessão expirada</Styled.ModalText>
             <Button type="button" variant="contained" onClick={signOut}>
-              Loggar novamente
+              Logar novamente
             </Button>
           </Styled.ModalContent>
         </Modal>

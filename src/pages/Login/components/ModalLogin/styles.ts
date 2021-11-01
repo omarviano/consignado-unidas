@@ -55,4 +55,7 @@ export const MessaError = styled(TypographyStyles)`
   font-size: 24px;
   font-weight: 400;
   margin-top: 49px;
+  padding: 0 16px;
+  line-height: 1.5;
+  text-align: center;
 `;

@@ -3,6 +3,7 @@ export interface DataProps {
   totalValue: number;
   availableValue: number;
   admissionDate: Date;
+  situation: string;
 }
 
 export interface MarginProps {
