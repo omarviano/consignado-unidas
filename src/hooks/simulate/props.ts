@@ -1,19 +1,7 @@
-import { DataProps } from 'interface/margin';
 import { RequestStatus } from 'interface/common';
-
-export interface SimulateLoanProps {
-  value: number;
-  marginTotalValue: number;
-  marginAvailableValue: number;
-  relationship: string;
-  admissionDate: Date;
-}
+import { SimulateLoanProps } from 'interface/simulate';
 
 export interface SimulateLoanContextData {
-  getMargin(): Promise<void>;
-
-  dataMargin: DataProps[];
-
   messageError: string;
 
   modalActive: boolean;

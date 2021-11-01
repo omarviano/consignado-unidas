@@ -1,15 +1,16 @@
-import { FC, useState, useMemo } from 'react';
-import { GridColumns, GridRowId } from '@mui/x-data-grid';
-
+import { FC, useMemo, useState } from 'react';
 import { Layout } from 'components/Layout';
 import { RouteAccess } from 'components/RouteAccess';
-import { Table } from 'components/Table';
+import { GridColumns, GridRowId } from '@mui/x-data-grid';
 
+import { SimulateLoanProvider } from 'hooks/simulate';
+import { withContext } from 'utils/withContext';
+import { Table } from 'components/Table';
 import { CardSimulateLoan } from './components/CardSimulateLoan';
 
 import * as Styled from './styles';
 
-const SimulateLoan: FC = () => {
+const SimulateLoan: FC = withContext(() => {
   const [selectionModel, setSelectionModel] = useState<GridRowId[]>([]);
   const columns = useMemo<GridColumns>(
     () => [
@@ -58,7 +59,6 @@ const SimulateLoan: FC = () => {
         }}
       >
         <CardSimulateLoan />
-
         <Styled.SelectMostSuitableOption>
           Selecione a opção mais adequada para sua situação financeira atual
         </Styled.SelectMostSuitableOption>
@@ -132,6 +132,6 @@ const SimulateLoan: FC = () => {
       </Layout>
     </RouteAccess>
   );
-};
+}, SimulateLoanProvider);
 
 export { SimulateLoan };

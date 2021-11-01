@@ -1,16 +1,18 @@
-import { SliderThumb } from '@mui/material';
 import { Formik } from 'components/Formik';
 import { useSimulateLoan } from 'hooks/simulate';
-import { SimulateLoanProps } from 'hooks/simulate/props';
-import ImageSlider from 'assets/icons/slider.svg';
+import { SimulateLoanProps } from 'interface/simulate';
+import { Slider } from 'components/Slider';
+
 import { FC, memo, useCallback, useMemo, useState } from 'react';
 
 import { formatValue } from 'utils/formatValue';
+
+import { useSimulateLoanRealTime } from 'hooks/simulateRealtime';
 import * as Styled from './styles';
 
 const CardSimulateLoan: FC = memo(() => {
-  const { dataMargin, simulateLoan, resetModalActive, requestStatus } =
-    useSimulateLoan();
+  const { simulateLoan, resetModalActive, requestStatus } = useSimulateLoan();
+  const { addValueSliderSimulate, dataMargin } = useSimulateLoanRealTime();
 
   const [value, setValue] = useState(
     dataMargin[0]?.availableValue <= 0 ? 0 : 5000,
@@ -32,6 +34,7 @@ const CardSimulateLoan: FC = memo(() => {
       relationship: dataMargin[0].situation,
     };
 
+    addValueSliderSimulate(value);
     await simulateLoan(data);
     resetModalActive();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -52,18 +55,6 @@ const CardSimulateLoan: FC = memo(() => {
     [dataMargin],
   );
 
-  type SliderComponentProps = React.HTMLAttributes<unknown>;
-
-  function SliderThumbComponent(props: SliderComponentProps) {
-    const { children, ...other } = props;
-    return (
-      <SliderThumb {...other}>
-        {children}
-        <Styled.Icon src={ImageSlider} alt="Imagem" />
-      </SliderThumb>
-    );
-  }
-
   return (
     <Formik initialValues={{}} onSubmit={handleSubmit}>
       <Styled.Container>
@@ -78,9 +69,8 @@ const CardSimulateLoan: FC = memo(() => {
         <Styled.TextValueSlider disabled={disableSliderAndButton}>
           {formatValue(value)}
         </Styled.TextValueSlider>
-        <Styled.Slider
+        <Slider
           value={value}
-          components={{ Thumb: SliderThumbComponent }}
           size="medium"
           onChange={handleSliderChange}
           step={100}

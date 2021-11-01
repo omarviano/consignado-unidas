@@ -1,10 +1,39 @@
-import { FC } from 'react';
+import { FC, useCallback } from 'react';
 import { formatValue } from 'utils/formatValue';
+import { Slider } from 'components/Slider';
 
+import { useSimulateLoan } from 'hooks/simulate';
+import { SimulateLoanProps } from 'interface/simulate';
+import { useSimulateLoanRealTime } from 'hooks/simulateRealtime';
 import * as Styled from './styles';
 
-const CardSimulateLoan: FC = props => {
-  const { children } = props;
+const CardSimulateLoan: FC = () => {
+  const { valueSliderSimulate, addValueSliderSimulate, dataMargin } =
+    useSimulateLoanRealTime();
+
+  const { simulateLoan } = useSimulateLoan();
+
+  const handleSliderChange = useCallback(
+    (event: Event, newValue: number | number[]) => {
+      addValueSliderSimulate(newValue as number);
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [],
+  );
+
+  const handleSubmit = useCallback(async () => {
+    const data: SimulateLoanProps = {
+      value: valueSliderSimulate,
+      admissionDate: dataMargin[0].admissionDate,
+      marginAvailableValue: dataMargin[0].availableValue,
+      marginTotalValue: dataMargin[0].totalValue,
+      relationship: dataMargin[0].situation,
+    };
+
+    await simulateLoan(data);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dataMargin, valueSliderSimulate]);
 
   return (
     <Styled.Container>
@@ -12,8 +41,19 @@ const CardSimulateLoan: FC = props => {
         <Styled.TextContractProposal variant="h2">
           Proposta de contratos para o empréstimo no valor de
         </Styled.TextContractProposal>
-        <Styled.TextValueSlider>{formatValue(30000)}</Styled.TextValueSlider>
-        <Styled.Slider />
+        <Styled.TextValueSlider>
+          {formatValue(valueSliderSimulate)}
+        </Styled.TextValueSlider>
+        <Slider
+          value={valueSliderSimulate}
+          size="medium"
+          onChange={handleSliderChange}
+          onChangeCommitted={handleSubmit}
+          step={100}
+          min={5000}
+          max={100000}
+          valueLabelDisplay="auto"
+        />
       </Styled.ContentSlider>
 
       <Styled.ContentTextInformation>
