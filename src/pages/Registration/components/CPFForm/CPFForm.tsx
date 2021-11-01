@@ -14,7 +14,7 @@ const CPFForm: React.FC<CPFFormProps> = ({ onSubmit }) => (
     initialValues={{}}
     onSubmit={onSubmit}
     validationSchema={schema}
-    validateOnBlur
+    validateOnBlur={false}
     validateOnChange
   >
     <StepTitle>
