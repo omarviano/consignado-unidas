@@ -6,7 +6,9 @@ import { useCallback } from 'react';
 import { useContext } from 'react';
 import { useState } from 'react';
 import { createContext } from 'react';
+import { useHistory } from 'react-router-dom';
 import { api } from 'services/api';
+import { RoutingPath } from 'utils/routing';
 import { SimulateLoanContextData, SimulateLoanProps } from './props';
 
 const initialValue = {} as SimulateLoanContextData;
@@ -15,6 +17,7 @@ const SimulateLoanContext = createContext(initialValue);
 
 export const SimulateLoanProvider: FC = props => {
   const { children } = props;
+  const history = useHistory();
   api.defaults.headers.authorization = `Bearer ${getToken()?.token}`;
 
   const [dataMargin, setDataMargin] = useState<DataProps[]>([]);
@@ -41,35 +44,40 @@ export const SimulateLoanProvider: FC = props => {
     }
   }, []);
 
-  const simulateLoan = useCallback(async (data: SimulateLoanProps) => {
-    try {
-      setRequestStatus({
-        error: false,
-        loading: true,
-        success: false,
-      });
+  const simulateLoan = useCallback(
+    async (data: SimulateLoanProps) => {
+      try {
+        setRequestStatus({
+          error: false,
+          loading: true,
+          success: false,
+        });
 
-      await api.post('/financial/simulate', data);
+        await api.post('/financial/simulate', data);
 
-      setRequestStatus({
-        error: false,
-        loading: false,
-        success: true,
-      });
-    } catch (error: any) {
-      const { response } = error;
+        setRequestStatus({
+          error: false,
+          loading: false,
+          success: true,
+        });
 
-      const { ...errorObject } = response;
-      setStatusCode(response.status);
-      setMessageError(errorObject.data.message);
-      setModalActive(true);
-      setRequestStatus({
-        error: true,
-        loading: false,
-        success: false,
-      });
-    }
-  }, []);
+        history.push(RoutingPath.SIMULATE_LOAN);
+      } catch (error: any) {
+        const { response } = error;
+
+        const { ...errorObject } = response;
+        setStatusCode(response.status);
+        setMessageError(errorObject.data.message);
+        setModalActive(true);
+        setRequestStatus({
+          error: true,
+          loading: false,
+          success: false,
+        });
+      }
+    },
+    [history],
+  );
 
   const resetModalActive = useCallback(() => {
     setModalActive(false);
