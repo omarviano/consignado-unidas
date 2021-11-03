@@ -98,6 +98,10 @@ const SimulateLoan: FC = withContext(() => {
           columns={columns}
           rows={tableData}
         />
+
+        <Styled.RequestButton type="button">
+          Solicitar Empréstimo
+        </Styled.RequestButton>
       </Layout>
     </RouteAccess>
   );
