@@ -1,0 +1,1 @@
+export { NoDataTable } from './NoDataTable';
