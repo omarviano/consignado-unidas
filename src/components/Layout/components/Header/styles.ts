@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import ContainerStyles from '@material-ui/core/Container';
-import TypographyStyles from '@material-ui/core/Typography';
+import ContainerStyles from '@mui/material/Container';
+import TypographyStyles from '@mui/material/Typography';
 
 export const Container = styled.header`
   top: 0;

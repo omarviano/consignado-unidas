@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useHistory } from 'react-router-dom';
-import { ExitToApp, CheckCircle, Error, Close } from '@material-ui/icons';
 import { AxiosError } from 'axios';
 
 import { RouteAccess } from 'components/RouteAccess';
 import { Button } from 'components/Buttons/Button';
 
-import { Modal } from '@material-ui/core';
+import { Modal } from '@mui/material';
 import useModal from 'hooks/modal';
+import { ExitToApp, CheckCircle, Error, Close } from '@mui/icons-material';
 import * as Styled from './styles';
 import { AccountConfirmationServices } from './services/account-confirmation.services';
 

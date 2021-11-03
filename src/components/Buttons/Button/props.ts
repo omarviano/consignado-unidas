@@ -1,4 +1,4 @@
-import { ButtonProps as ButtonMaterialProps } from '@material-ui/core/Button';
+import { ButtonProps as ButtonMaterialProps } from '@mui/material/Button';
 
 export type ButtonProps = ButtonMaterialProps & {
   component?: string;

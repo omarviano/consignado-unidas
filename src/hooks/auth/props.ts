@@ -8,6 +8,8 @@ export interface LoginCredentials {
 
 export type User = {
   name: string;
+  email: string;
+  phoneNumber: string;
 };
 
 export type TokenProps = {

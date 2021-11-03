@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
-import ContainerStyles from '@material-ui/core/Container';
-import DialogStyles from '@material-ui/core/Dialog';
-import IconButtonProps from '@material-ui/core/IconButton';
-import TypographyStyles from '@material-ui/core/Typography';
-import DialogTitleStyles from '@material-ui/core/DialogTitle';
+import ContainerStyles from '@mui/material/Container';
+import DialogStyles from '@mui/material/Dialog';
+import IconButtonProps from '@mui/material/IconButton';
+import TypographyStyles from '@mui/material/Typography';
+import DialogTitleStyles from '@mui/material/DialogTitle';
 
 export const DialogTitle = styled(DialogTitleStyles)``;
 

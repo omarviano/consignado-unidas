@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-import TypographyStyles from '@material-ui/core/Typography';
+import TypographyStyles from '@mui/material/Typography';
 
 import ImageBackground from 'assets/images/background.png';
-import { Box, IconButton } from '@material-ui/core';
+import { Box, IconButton } from '@mui/material';
 
 export const Container = styled.div`
   min-height: 100vh;

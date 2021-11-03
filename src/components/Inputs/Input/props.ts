@@ -1,7 +1,7 @@
 import { ComponentType } from 'react';
 import { IconBaseProps } from 'react-icons';
 
-import { TextFieldProps } from '@material-ui/core';
+import { TextFieldProps } from '@mui/material/TextField';
 
 export type InputProps = TextFieldProps & {
   name: string;

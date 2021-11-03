@@ -1,5 +1,5 @@
 import React from 'react';
-import { MailOutline } from '@material-ui/icons';
+import { MailOutline } from '@mui/icons-material';
 import { getToken } from 'hooks/auth/storage';
 
 import * as Styled from './styles';

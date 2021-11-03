@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 import { Input } from 'components/Inputs/Input';
 import { Button } from 'components/Buttons/Button';
-import InputAdornmentStyles from '@material-ui/core/InputAdornment';
-import IconButtonStyles from '@material-ui/core/IconButton';
+import InputAdornmentStyles from '@mui/material/InputAdornment';
+import IconButtonStyles from '@mui/material/IconButton';
 
 export const InputEmail = styled(Input)`
   margin-bottom: 36px;

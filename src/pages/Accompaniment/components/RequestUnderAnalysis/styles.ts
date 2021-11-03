@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { Card as MUICard } from '@material-ui/core';
-import TypographyStyles from '@material-ui/core/Typography';
+import { Card as MUICard } from '@mui/material';
+import TypographyStyles from '@mui/material/Typography';
 
 export const DataCard = styled(MUICard)`
   padding: 97px 150px;

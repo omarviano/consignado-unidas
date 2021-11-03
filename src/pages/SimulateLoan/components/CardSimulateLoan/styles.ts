@@ -1,6 +1,5 @@
 import styled from 'styled-components';
-import SliderStyles from '@material-ui/core/Slider';
-import TypographyStyles from '@material-ui/core/Typography';
+import TypographyStyles from '@mui/material/Typography';
 
 export const Container = styled.div`
   margin-top: 102px;
@@ -32,11 +31,6 @@ export const TextValueSlider = styled(TypographyStyles)`
   font-size: 30px;
   font-weight: 500;
   margin-top: 25px;
-`;
-
-export const Slider = styled(SliderStyles)`
-  margin-top: 15px;
-  color: ${({ theme }) => theme.palette.primary.main};
 `;
 
 export const ContentTextInformation = styled.div`

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Card, IconButton } from '@material-ui/core';
+import { Card, IconButton } from '@mui/material';
 
 export const Container = styled(Card)`
   position: absolute;

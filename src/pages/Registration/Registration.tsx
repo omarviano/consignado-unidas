@@ -5,8 +5,8 @@ import {
   ArrowBack,
   MailOutlined,
   Warning,
-} from '@material-ui/icons';
-import { Badge, Dialog, DialogContent, Modal } from '@material-ui/core';
+} from '@mui/icons-material';
+import { Badge, Dialog, DialogContent, Modal } from '@mui/material';
 import { AxiosError } from 'axios';
 
 import useModal from 'hooks/modal';

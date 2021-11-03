@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { ArrowRightAlt } from '@material-ui/icons';
-import { Grid } from '@material-ui/core';
+import { ArrowRightAlt } from '@mui/icons-material';
+import { Grid } from '@mui/material';
 
 import { Formik } from 'components/Formik';
 import { Input } from 'components/Inputs/Input';

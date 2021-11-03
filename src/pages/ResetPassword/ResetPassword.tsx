@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { AxiosError } from 'axios';
 import { useHistory, useLocation } from 'react-router-dom';
-import { Card, Modal } from '@material-ui/core';
-import { CheckCircle, Cancel } from '@material-ui/icons';
+import { Card, Modal } from '@mui/material';
+import { CheckCircle, Cancel } from '@mui/icons-material';
 
 import useModal from 'hooks/modal';
 

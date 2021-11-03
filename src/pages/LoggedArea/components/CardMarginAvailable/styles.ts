@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import TypographyStyles from '@material-ui/core/Typography';
+import TypographyStyles from '@mui/material/Typography';
 
 export const Container = styled.div`
   margin-top: 127px;
