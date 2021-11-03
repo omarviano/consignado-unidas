@@ -22,7 +22,7 @@ const SimulateLoan: FC = withContext(() => {
     const data = dataSimulateLoan.installments.map(item => ({
       id: Math.random(),
       value: formatValue(item.value),
-      effectiveCostPerYear: item.effectiveCostPerYear.toFixed(2),
+      effectiveCostPerYear: formatValue(item.effectiveCostPerYear),
       feesPerMonth: `${item.feesPerMonth.toFixed(2)}%`,
       quantity: item.quantity.toString().padStart(2, '0'),
     }));
