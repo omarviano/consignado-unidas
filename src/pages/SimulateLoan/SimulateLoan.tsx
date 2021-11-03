@@ -1,16 +1,34 @@
-import { FC, useMemo, useState } from 'react';
+import { FC, useEffect, useMemo, useState } from 'react';
 import { Layout } from 'components/Layout';
 import { RouteAccess } from 'components/RouteAccess';
 import { GridColumns, GridRowId } from '@mui/x-data-grid';
 
-import { SimulateLoanProvider } from 'hooks/simulate';
+import { SimulateLoanProvider, useSimulateLoan } from 'hooks/simulate';
 import { withContext } from 'utils/withContext';
 import { Table } from 'components/Table';
+import { useSimulateLoanRealTime } from 'hooks/simulateRealtime';
+import { formatValue } from 'utils/formatValue';
+import { TableSimulateProps } from 'interface/tableSimulate';
 import { CardSimulateLoan } from './components/CardSimulateLoan';
 
 import * as Styled from './styles';
 
 const SimulateLoan: FC = withContext(() => {
+  const { dataSimulateLoan } = useSimulateLoanRealTime();
+  const { requestStatus } = useSimulateLoan();
+  const [tableData, setTableData] = useState<TableSimulateProps[]>([]);
+
+  useEffect(() => {
+    const data = dataSimulateLoan.installments.map(item => ({
+      id: Math.random(),
+      value: formatValue(item.value),
+      effectiveCostPerYear: item.effectiveCostPerYear.toFixed(2),
+      feesPerMonth: `${item.feesPerMonth.toFixed(2)}%`,
+      quantity: item.quantity.toString().padStart(2, '0'),
+    }));
+    setTableData(data);
+  }, [dataSimulateLoan.id, dataSimulateLoan.installments]);
+
   const [selectionModel, setSelectionModel] = useState<GridRowId[]>([]);
   const columns = useMemo<GridColumns>(
     () => [
@@ -64,6 +82,7 @@ const SimulateLoan: FC = withContext(() => {
         </Styled.SelectMostSuitableOption>
 
         <Table
+          loading={requestStatus.loading}
           checkboxSelection
           selectionModel={selectionModel}
           onSelectionModelChange={selection => {
@@ -77,57 +96,7 @@ const SimulateLoan: FC = withContext(() => {
             }
           }}
           columns={columns}
-          rows={[
-            {
-              id: 1,
-              quantity: 36,
-              value: 'R$1.200,00',
-              feesPerMonth: '2%',
-              effectiveCostPerYear: '0.002',
-            },
-            {
-              id: 2,
-              quantity: 36,
-              value: 'R$1.200,00',
-              feesPerMonth: '2%',
-              effectiveCostPerYear: '0.002',
-            },
-            {
-              id: 3,
-              quantity: 36,
-              value: 'R$1.200,00',
-              feesPerMonth: '2%',
-              effectiveCostPerYear: '0.002',
-            },
-            {
-              id: 4,
-              quantity: 36,
-              value: 'R$1.200,00',
-              feesPerMonth: '2%',
-              effectiveCostPerYear: '0.002',
-            },
-            {
-              id: 5,
-              quantity: 36,
-              value: 'R$1.200,00',
-              feesPerMonth: '2%',
-              effectiveCostPerYear: '0.002',
-            },
-            {
-              id: 6,
-              quantity: 36,
-              value: 'R$1.200,00',
-              feesPerMonth: '2%',
-              effectiveCostPerYear: '0.002',
-            },
-            {
-              id: 7,
-              quantity: 36,
-              value: 'R$1.200,00',
-              feesPerMonth: '2%',
-              effectiveCostPerYear: '0.002',
-            },
-          ]}
+          rows={tableData}
         />
       </Layout>
     </RouteAccess>
