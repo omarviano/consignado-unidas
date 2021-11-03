@@ -1,13 +1,12 @@
+import { FC, useCallback, useContext, useState, createContext } from 'react';
 import { getToken } from 'hooks/auth/storage';
 import { RequestStatus } from 'interface/common';
-import { DataProps, MarginProps } from 'interface/margin';
-import { FC } from 'react';
-import { useCallback } from 'react';
-import { useContext } from 'react';
-import { useState } from 'react';
-import { createContext } from 'react';
+import { SimulateLoanProps, SimulateLoanResponse } from 'interface/simulate';
+import { useHistory } from 'react-router-dom';
 import { api } from 'services/api';
-import { SimulateLoanContextData, SimulateLoanProps } from './props';
+import { RoutingPath } from 'utils/routing';
+import { useSimulateLoanRealTime } from 'hooks/simulateRealtime';
+import { SimulateLoanContextData } from './props';
 
 const initialValue = {} as SimulateLoanContextData;
 
@@ -15,9 +14,9 @@ const SimulateLoanContext = createContext(initialValue);
 
 export const SimulateLoanProvider: FC = props => {
   const { children } = props;
+  const history = useHistory();
+  const { addDataSimulateLoan } = useSimulateLoanRealTime();
   api.defaults.headers.authorization = `Bearer ${getToken()?.token}`;
-
-  const [dataMargin, setDataMargin] = useState<DataProps[]>([]);
 
   const [messageError, setMessageError] = useState('');
   const [modalActive, setModalActive] = useState(false);
@@ -28,20 +27,7 @@ export const SimulateLoanProvider: FC = props => {
     success: false,
   });
 
-  const getMargin = useCallback(async () => {
-    try {
-      const response = await api.get<MarginProps>('/margins');
-
-      const { data } = response.data;
-
-      setDataMargin(data);
-    } catch (error) {
-      // eslint-disable-next-line no-console
-      console.log(error);
-    }
-  }, []);
-
-  const simulateLoan = useCallback(async (data: SimulateLoanProps) => {
+  const simulateLoan = useCallback(async (dataProps: SimulateLoanProps) => {
     try {
       setRequestStatus({
         error: false,
@@ -49,13 +35,20 @@ export const SimulateLoanProvider: FC = props => {
         success: false,
       });
 
-      await api.post('/financial/simulate', data);
+      const response = await api.post<SimulateLoanResponse>(
+        '/financial/simulate',
+        dataProps,
+      );
+
+      addDataSimulateLoan(response.data.data);
 
       setRequestStatus({
         error: false,
         loading: false,
         success: true,
       });
+
+      history.push(RoutingPath.SIMULATE_LOAN);
     } catch (error: any) {
       const { response } = error;
 
@@ -69,6 +62,7 @@ export const SimulateLoanProvider: FC = props => {
         success: false,
       });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const resetModalActive = useCallback(() => {
@@ -78,9 +72,7 @@ export const SimulateLoanProvider: FC = props => {
   return (
     <SimulateLoanContext.Provider
       value={{
-        dataMargin,
         statusCode,
-        getMargin,
         messageError,
         modalActive,
         resetModalActive,

@@ -3,6 +3,7 @@ import { RouteAccess } from 'components/RouteAccess';
 import { Layout } from 'components/Layout';
 import { withContext } from 'utils/withContext';
 import { SimulateLoanProvider, useSimulateLoan } from 'hooks/simulate';
+import { useSimulateLoanRealTime } from 'hooks/simulateRealtime';
 import { CardMarginAvailable } from './components/CardMarginAvailable';
 import { CardSimulateLoan } from './components/CardSimulateLoan';
 import { CreditUnderAnalysis } from './components/CreditUnderAnalysis';
@@ -16,7 +17,8 @@ import {
 
 const LoggedArea: FC = withContext(
   () => {
-    const { getMargin, modalActive, statusCode } = useSimulateLoan();
+    const { modalActive, statusCode } = useSimulateLoan();
+    const { getMargin } = useSimulateLoanRealTime();
     const { toggleModal } = useModalSimulateLoan();
 
     useEffect(() => {

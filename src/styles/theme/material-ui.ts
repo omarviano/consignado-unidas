@@ -1,5 +1,5 @@
-import { createTheme } from '@material-ui/core';
-import { ptBR } from '@material-ui/core/locale';
+import { createTheme } from '@mui/material';
+import { ptBR } from '@mui/material/locale';
 
 const materialUiTheme = createTheme(
   {

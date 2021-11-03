@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import { useFormikContext } from 'formik';
-import { ArrowRightAlt } from '@material-ui/icons';
+import { ArrowRightAlt } from '@mui/icons-material';
 
 import { ContinueButtonProps } from './props';
 import * as Styled from './styles';

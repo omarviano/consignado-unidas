@@ -1,5 +1,5 @@
 import React from 'react';
-import { Close } from '@material-ui/icons';
+import { Close } from '@mui/icons-material';
 
 import * as Styled from './styles';
 import { CardWithCloseIconProps } from './props';

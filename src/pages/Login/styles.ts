@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import TypographyStyles from '@material-ui/core/Typography';
+import TypographyStyles from '@mui/material/Typography';
 
 import ImageBackground from 'assets/images/background.png';
 

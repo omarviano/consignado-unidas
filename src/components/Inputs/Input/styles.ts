@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
-import FormControlStyles from '@material-ui/core/FormControl';
-import TextFieldStyles from '@material-ui/core/TextField';
+import FormControlStyles from '@mui/material/FormControl';
+import TextFieldStyles from '@mui/material/TextField';
 
 export const Input = styled(TextFieldStyles)`
   .MuiOutlinedInput-root {

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import MUTextField from '@material-ui/core/TextField';
+import MUTextField from '@mui/material/TextField';
 
 export const Select = styled(MUTextField)`
   border-radius: 6px;

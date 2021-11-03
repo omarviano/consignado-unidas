@@ -1,6 +1,6 @@
 import React, { FC, useMemo, useRef, useCallback } from 'react';
 import { useField } from 'formik';
-import MenuItem from '@material-ui/core/MenuItem';
+import MenuItem from '@mui/material/MenuItem';
 
 import { SelectProps, OptionSelectType } from './props';
 import * as Styled from './styles';

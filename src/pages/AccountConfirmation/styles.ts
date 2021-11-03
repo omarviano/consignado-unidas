@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import TypographyStyles from '@material-ui/core/Typography';
-import { Box } from '@material-ui/core';
+import TypographyStyles from '@mui/material/Typography';
+import { Box } from '@mui/material';
 
 export const Header = styled.div`
   position: fixed;

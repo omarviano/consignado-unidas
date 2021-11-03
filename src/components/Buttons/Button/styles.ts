@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import ButtonStyles from '@material-ui/core/Button';
+import ButtonStyles from '@mui/material/Button';
 
 export const Button = styled(ButtonStyles)`
   height: 50px;

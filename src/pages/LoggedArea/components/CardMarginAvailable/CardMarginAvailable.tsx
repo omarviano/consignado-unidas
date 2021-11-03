@@ -6,11 +6,11 @@ import { getToken } from 'hooks/auth/storage';
 import { formatValue } from 'utils/formatValue';
 import ImageAlertYellow from 'assets/icons/alert-yellow.svg';
 
-import { useSimulateLoan } from 'hooks/simulate';
+import { useSimulateLoanRealTime } from 'hooks/simulateRealtime';
 import * as Styled from './styles';
 
 const CardMarginAvailable: FC = memo(() => {
-  const { dataMargin } = useSimulateLoan();
+  const { dataMargin } = useSimulateLoanRealTime();
 
   return (
     <Styled.Container>

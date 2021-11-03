@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { Card as MUICard, StepLabel as MUIStepLabel } from '@material-ui/core';
+import { Card as MUICard, StepLabel as MUIStepLabel } from '@mui/material';
 
 interface StepLabelContentProps {
   active: boolean;

@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Formik } from 'components/Formik';
 import { DatePicker } from 'components/DatePicker';
-import { TextField } from '@material-ui/core';
+import { TextField } from '@mui/material';
 import { StepSmallTitle } from '../StepSmallTitle';
 import { ContinueButton } from '../ContinueButton';
 
