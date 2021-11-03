@@ -30,6 +30,7 @@ const SimulateLoan: FC = withContext(() => {
   }, [dataSimulateLoan.id, dataSimulateLoan.installments]);
 
   const [selectionModel, setSelectionModel] = useState<GridRowId[]>([]);
+
   const columns = useMemo<GridColumns>(
     () => [
       {
