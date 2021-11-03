@@ -1,6 +1,8 @@
 import React, { memo } from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 
+import { NoDataTable } from 'components/NoDataTable';
+
 import { useStyles } from './muiTableStyles';
 import * as Styled from './style';
 import { TableProps } from './props';
@@ -31,6 +33,9 @@ const Table: React.FC<TableProps> = memo(
           rowHeight={rowHeight}
           autoHeight={autoHeight}
           disableSelectionOnClick={disableSelectionOnClick}
+          components={{
+            NoRowsOverlay: NoDataTable,
+          }}
           {...rest}
         />
       </Styled.Container>
