@@ -51,7 +51,7 @@ const CardSimulateLoan: FC = memo(() => {
   );
 
   const valueMax = useMemo(
-    () => (dataMargin[0]?.availableValue <= 0 ? 0 : 100000),
+    () => (dataMargin[0]?.availableValue <= 0 ? 0 : 50000),
     [dataMargin],
   );
 

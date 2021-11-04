@@ -11,7 +11,7 @@ const CardSimulateLoan: FC = () => {
   const { valueSliderSimulate, addValueSliderSimulate, dataMargin } =
     useSimulateLoanRealTime();
 
-  const { simulateLoan } = useSimulateLoan();
+  const { simulateLoan, resetModalActive } = useSimulateLoan();
 
   const handleSliderChange = useCallback(
     (event: Event, newValue: number | number[]) => {
@@ -31,6 +31,7 @@ const CardSimulateLoan: FC = () => {
     };
 
     await simulateLoan(data);
+    resetModalActive();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dataMargin, valueSliderSimulate]);
@@ -51,7 +52,7 @@ const CardSimulateLoan: FC = () => {
           onChangeCommitted={handleSubmit}
           step={100}
           min={5000}
-          max={100000}
+          max={50000}
           valueLabelDisplay="auto"
         />
       </Styled.ContentSlider>
