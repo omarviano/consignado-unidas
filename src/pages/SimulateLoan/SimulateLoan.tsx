@@ -1,7 +1,7 @@
 import { FC, useEffect, useMemo, useState } from 'react';
 import { Layout } from 'components/Layout';
 import { RouteAccess } from 'components/RouteAccess';
-import { GridColumns, GridRowId } from '@mui/x-data-grid';
+import { GridColumns, GridRowId, GridSelectionModel } from '@mui/x-data-grid';
 import { Modal } from '@mui/material';
 import { Close, CheckCircle, Cancel } from '@mui/icons-material';
 import { useHistory } from 'react-router-dom';
@@ -19,23 +19,27 @@ import { RoutingPath } from 'utils/routing';
 import { CardSimulateLoan } from './components/CardSimulateLoan';
 
 import * as Styled from './styles';
+import { SimulateLoanServices } from './services/simulate-loan.services';
 
 const SimulateLoan: FC = withContext(() => {
   const history = useHistory();
   const { dataSimulateLoan } = useSimulateLoanRealTime();
   const { requestStatus } = useSimulateLoan();
-  const [tableData, setTableData] = useState<TableSimulateProps[]>([]);
+  const [tableData, setTableData] = useState<any>([]);
+  const [selectedRow, setSelectedRow] = useState<TableSimulateProps>();
   const { open: modalSuccesOpen, toggle: toggleModalSucces } = useModal();
   const { open: modalErrorOpen, toggle: toggleModalError } = useModal();
   const { open: modalConfirmOpen, toggle: toggleModalConfirm } = useModal();
+  const [requestingLoan, setRequestingLoan] = useState(false);
 
   useEffect(() => {
     const data = dataSimulateLoan.installments.map(item => ({
+      ...item,
       id: Math.random(),
-      value: formatValue(item.value),
-      effectiveCostPerYear: formatValue(item.effectiveCostPerYear),
-      feesPerMonth: `${item.feesPerMonth.toFixed(2)}%`,
-      quantity: item.quantity.toString().padStart(2, '0'),
+      valueFormatted: formatValue(item.value),
+      effectiveCostPerYearFormatted: formatValue(item.effectiveCostPerYear),
+      feesPerMonthFormatted: `${item.feesPerMonth.toFixed(2)}%`,
+      quantityFormatted: item.quantity.toString().padStart(2, '0'),
     }));
     setTableData(data);
   }, [dataSimulateLoan.id, dataSimulateLoan.installments]);
@@ -45,14 +49,14 @@ const SimulateLoan: FC = withContext(() => {
   const columns = useMemo<GridColumns>(
     () => [
       {
-        field: 'quantity',
+        field: 'quantityFormatted',
         headerName: 'Parcelas',
         hideSortIcons: true,
         disableColumnMenu: true,
         headerAlign: 'center',
       },
       {
-        field: 'value',
+        field: 'valueFormatted',
         headerName: 'Valor da parcela',
         hideSortIcons: true,
         disableReorder: true,
@@ -61,7 +65,7 @@ const SimulateLoan: FC = withContext(() => {
         flex: 1,
       },
       {
-        field: 'feesPerMonth',
+        field: 'feesPerMonthFormatted',
         headerName: 'Juros',
         hideSortIcons: true,
         disableColumnMenu: true,
@@ -69,7 +73,7 @@ const SimulateLoan: FC = withContext(() => {
         flex: 1,
       },
       {
-        field: 'effectiveCostPerYear',
+        field: 'effectiveCostPerYearFormatted',
         headerName: 'CET',
         hideSortIcons: true,
         disableColumnMenu: true,
@@ -82,6 +86,54 @@ const SimulateLoan: FC = withContext(() => {
 
   const goToAccompaniment = () => {
     history.push(RoutingPath.ACCOMPANIMENT);
+  };
+
+  const handleSelectionModelChange = (selection: GridSelectionModel) => {
+    if (selection.length > 1) {
+      const selectionSet = new Set(selectionModel);
+      const result = selection.filter(s => !selectionSet.has(s));
+
+      setSelectionModel(result);
+      setSelectedRow(tableData.find(item => item.id === result[0]));
+    } else {
+      setSelectionModel(selection);
+      setSelectedRow(tableData.find(item => item.id === selection[0]));
+    }
+  };
+
+  const applyForLoan = async () => {
+    try {
+      const {
+        data: { data },
+      } = await SimulateLoanServices.checkCreditUnderReview();
+
+      if (data === null) toggleModalConfirm();
+      else toggleModalError();
+    } catch {
+      toggleModalError();
+    }
+  };
+
+  const confirmLoanRequest = async () => {
+    if (!selectedRow) return;
+
+    try {
+      setRequestingLoan(true);
+
+      await SimulateLoanServices.checkCreditUnderReview();
+
+      await SimulateLoanServices.simulate({
+        value: dataSimulateLoan.value,
+        simulationId: dataSimulateLoan.id,
+        installment: selectedRow,
+      });
+
+      toggleModalSucces();
+    } catch {
+      toggleModalError();
+    } finally {
+      setRequestingLoan(false);
+    }
   };
 
   return (
@@ -101,29 +153,25 @@ const SimulateLoan: FC = withContext(() => {
           loading={requestStatus.loading}
           checkboxSelection
           selectionModel={selectionModel}
-          onSelectionModelChange={selection => {
-            if (selection.length > 1) {
-              const selectionSet = new Set(selectionModel);
-              const result = selection.filter(s => !selectionSet.has(s));
-
-              setSelectionModel(result);
-            } else {
-              setSelectionModel(selection);
-            }
-          }}
+          onSelectionModelChange={handleSelectionModelChange}
           columns={columns}
           rows={tableData}
         />
 
         <Styled.ContainerButton>
-          <Styled.RequestButton type="button" variant="contained">
+          <Styled.RequestButton
+            type="button"
+            variant="contained"
+            onClick={applyForLoan}
+            disabled={!selectedRow}
+          >
             Solicitar Empréstimo
           </Styled.RequestButton>
         </Styled.ContainerButton>
 
-        <Modal open={modalSuccesOpen} onClose={toggleModalSucces}>
+        <Modal open={modalSuccesOpen} onClose={goToAccompaniment}>
           <Styled.ModalSuccessContent>
-            <Styled.CloseModalButton type="button" onClick={toggleModalSucces}>
+            <Styled.CloseModalButton type="button" onClick={goToAccompaniment}>
               <Close fontSize="small" color="primary" />
             </Styled.CloseModalButton>
 
@@ -179,15 +227,21 @@ const SimulateLoan: FC = withContext(() => {
             <Styled.ModalConfirmData>
               email: {getToken()?.user.email}
               <br />
-              telefone: {getToken()?.user.phoneNumber}
+              telefone:{' '}
+              {getToken()?.user.phoneNumber?.replace(
+                /(\d{2})(\d{5})(\d{4})/,
+                '($1) $2-$3',
+              )}
             </Styled.ModalConfirmData>
 
             <Button
               type="button"
               className="confirm-button"
               variant="contained"
+              onClick={confirmLoanRequest}
+              disabled={requestingLoan}
             >
-              Confirmar
+              {requestingLoan ? 'Confirmando...' : 'Confirmar'}
             </Button>
           </Styled.ModalConfirmContent>
         </Modal>

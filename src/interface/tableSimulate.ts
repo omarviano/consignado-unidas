@@ -1,7 +1,7 @@
 export interface TableSimulateProps {
   id: number;
-  quantity: string;
-  value: string;
-  feesPerMonth: string;
-  effectiveCostPerYear: string;
+  quantity: number;
+  value: number;
+  feesPerMonth: number;
+  effectiveCostPerYear: number;
 }
