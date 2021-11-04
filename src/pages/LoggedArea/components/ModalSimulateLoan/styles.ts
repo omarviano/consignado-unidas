@@ -18,6 +18,7 @@ export const Content = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  padding: 0 40px;
 
   img {
     margin-top: 90px;
@@ -55,4 +56,6 @@ export const MessaError = styled(TypographyStyles)`
   font-size: 24px;
   font-weight: 400;
   margin-top: 49px;
+  line-height: 40px;
+  text-align: center;
 `;
