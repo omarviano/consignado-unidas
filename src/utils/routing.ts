@@ -14,6 +14,8 @@ class RoutingPath {
   static SIMULATE_LOAN = '/simulacao';
 
   static ACCOUNT_CONFIRMATION = '/confirmacao-conta';
+
+  static CHANGE_PASSWORD = '/alterar-senha';
 }
 
 export { RoutingPath };
