@@ -3,5 +3,5 @@ import { api } from 'services/api';
 
 export const ResetPasswordServices = {
   resetPassword: (password: string, token: string): Promise<AxiosResponse> =>
-    api.post(`/auth/password-reset`, { password, token }),
+    api.post(`/auth/password-reset-token`, { password, token }),
 };
