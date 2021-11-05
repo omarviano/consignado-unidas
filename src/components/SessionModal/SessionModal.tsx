@@ -16,18 +16,14 @@ const SessionModal: React.FC = () => {
     [lastSession],
   );
 
-  const renderer = ({ hours, minutes, seconds, completed }) => {
+  const renderer = ({ completed }) => {
     if (completed) {
       clearSessionData();
 
       return <SessionExpired />;
     }
 
-    return (
-      <span>
-        {hours}:{minutes}:{seconds}
-      </span>
-    );
+    return null;
   };
 
   return <Countdown date={time} renderer={renderer} />;
