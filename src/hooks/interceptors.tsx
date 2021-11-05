@@ -61,7 +61,7 @@ const useInterceptors = (): boolean[] => {
           return Promise.reject(error);
         } */
 
-        if (error.request.status >= 401) {
+        if (error.request.status === 401) {
           signOut();
 
           return Promise.reject(error);
