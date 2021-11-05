@@ -26,7 +26,9 @@ const Header: FC = () => {
         </Styled.Content>
 
         <Styled.Menu menuOpen={menuOpen}>
-          <Link to={RoutingPath.CHANGE_PASSWORD}>Alterar minha senha</Link>
+          <Link to={RoutingPath.CHANGE_PASSWORD} onClick={toggleMenu}>
+            Alterar minha senha
+          </Link>
         </Styled.Menu>
       </Styled.Container>
     </Fragment>
