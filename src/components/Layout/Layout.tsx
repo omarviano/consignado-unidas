@@ -11,13 +11,13 @@ const Layout: FC<LayoutProps> = memo(props => {
 
   return (
     <ModalLogoutProvider>
+      <ModalLogout />
       <Styled.Main>
         <Header />
         <Styled.MainContent style={containerStyles}>
           {children}
         </Styled.MainContent>
       </Styled.Main>
-      <ModalLogout />
     </ModalLogoutProvider>
   );
 });
