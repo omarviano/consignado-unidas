@@ -42,22 +42,26 @@ export const Menu = styled.div<MenuProps>`
   position: absolute;
   top: 54px;
   right: 20px;
-  padding: 21px 33px 16px;
-  background: #ffffff;
+  background: #fff;
   box-shadow: 0px 2px 6px rgba(46, 43, 80, 0.25);
   border-radius: 4px;
   display: ${({ menuOpen }) => (menuOpen ? 'block' : 'none')};
 
   a {
+    display: block;
     font-size: 18px;
     line-height: 34px;
     text-align: center;
     letter-spacing: 0.2px;
     color: ${({ theme }) => theme.palette.grey[500]};
+    padding: 21px 33px 16px;
 
     &:focus,
     &:hover {
-      text-decoration: underline;
+      background: ${({ theme }) => theme.palette.primary.main};
+      color: #fff;
+      border-radius: 4px;
+      font-weight: bold;
     }
   }
 `;
