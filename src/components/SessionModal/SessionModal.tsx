@@ -1,42 +1,33 @@
 import React, { useMemo } from 'react';
 import Countdown from 'react-countdown';
-import { Modal } from '@mui/material';
-import { Update } from '@mui/icons-material';
-import { Button } from 'components/Buttons/Button';
 
 import { useSession } from 'hooks/session';
 import { useAuth } from 'hooks/auth';
 
-import * as Styled from './styles';
+import { SessionExpired } from 'components/SessionExpired';
 
-const FIFTEEN_MINUTES = 900000;
+const FIFTEEN_MINUTES = 30000;
 
 const SessionModal: React.FC = () => {
   const { lastSession } = useSession();
-  const { signOut, clearSessionData } = useAuth();
+  const { clearSessionData } = useAuth();
   const time = useMemo(
     () => lastSession.getTime() + FIFTEEN_MINUTES,
     [lastSession],
   );
 
-  const renderer = ({ completed }) => {
+  const renderer = ({ hours, minutes, seconds, completed }) => {
     if (completed) {
       clearSessionData();
 
-      return (
-        <Modal open>
-          <Styled.ModalContent>
-            <Update />
-            <Styled.ModalText>Sessão expirada</Styled.ModalText>
-            <Button type="button" variant="contained" onClick={signOut}>
-              Logar novamente
-            </Button>
-          </Styled.ModalContent>
-        </Modal>
-      );
+      return <SessionExpired />;
     }
 
-    return null;
+    return (
+      <span>
+        {hours}:{minutes}:{seconds}
+      </span>
+    );
   };
 
   return <Countdown date={time} renderer={renderer} />;
