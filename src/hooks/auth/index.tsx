@@ -65,6 +65,7 @@ export const AuthProvider: FC<AuthContextProviderProps> = props => {
   }, []);
 
   const signOut = useCallback(() => {
+    api.defaults.headers.authorization = undefined;
     clearPersistedToken();
     dispatch({ type: AuthActions.SignOut });
   }, []);

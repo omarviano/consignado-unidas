@@ -11,7 +11,7 @@ import { useSession } from './session';
 const useInterceptors = (): boolean[] => {
   const [counter, setCounter] = useState(0);
   const { updateSession } = useSession();
-  const { refreshToken } = useAuth();
+  const { refreshToken, signOut } = useAuth();
 
   const inc = useCallback(() => setCounter(state => state + 1), [setCounter]);
   const dec = useCallback(() => setCounter(state => state - 1), [setCounter]);
@@ -61,6 +61,12 @@ const useInterceptors = (): boolean[] => {
           return Promise.reject(error);
         } */
 
+        if (error.request.status >= 401) {
+          signOut();
+
+          return Promise.reject(error);
+        }
+
         if (error.request.status >= 500) {
           showModal({ content: <Error500 /> });
 
@@ -70,7 +76,7 @@ const useInterceptors = (): boolean[] => {
         return Promise.reject(error);
       },
     }),
-    [inc, dec, updateSession, refreshToken],
+    [inc, dec, updateSession, refreshToken, signOut],
   );
 
   useEffect(() => {

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Box, IconButton } from '@mui/material';
+import { Box } from '@mui/material';
 
 export const ModalContent = styled(Box)`
   position: absolute;
