@@ -6,7 +6,7 @@ import { useAuth } from 'hooks/auth';
 
 import { SessionExpired } from 'components/SessionExpired';
 
-const FIFTEEN_MINUTES = 30000;
+const FIFTEEN_MINUTES = 900000;
 
 const SessionModal: React.FC = () => {
   const { lastSession } = useSession();
