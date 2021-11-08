@@ -1,5 +1,4 @@
 import { FC, useCallback, useContext, useState, createContext } from 'react';
-import { getToken } from 'hooks/auth/storage';
 import { RequestStatus } from 'interface/common';
 import { SimulateLoanProps, SimulateLoanResponse } from 'interface/simulate';
 import { useHistory } from 'react-router-dom';
@@ -16,9 +15,6 @@ export const SimulateLoanProvider: FC = props => {
   const { children } = props;
   const history = useHistory();
   const { addDataSimulateLoan } = useSimulateLoanRealTime();
-  api.defaults.headers.authorization = getToken()?.token
-    ? `Bearer ${getToken()?.token}`
-    : undefined;
 
   const [messageError, setMessageError] = useState('');
   const [modalActive, setModalActive] = useState(false);
