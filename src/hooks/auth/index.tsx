@@ -51,6 +51,7 @@ export const AuthProvider: FC<AuthContextProviderProps> = props => {
 
       const response = await api.post('/auth', credentials);
       const { data } = response.data;
+      api.defaults.headers.authorization = `Bearer ${response.data.data.token}`;
       persistToken(data);
 
       dispatch({ type: AuthActions.RequestUserSuccess, payload: response });
