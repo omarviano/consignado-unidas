@@ -16,7 +16,9 @@ export const SimulateLoanProvider: FC = props => {
   const { children } = props;
   const history = useHistory();
   const { addDataSimulateLoan } = useSimulateLoanRealTime();
-  api.defaults.headers.authorization = `Bearer ${getToken()?.token}`;
+  api.defaults.headers.authorization = getToken()?.token
+    ? `Bearer ${getToken()?.token}`
+    : undefined;
 
   const [messageError, setMessageError] = useState('');
   const [modalActive, setModalActive] = useState(false);
