@@ -12,7 +12,9 @@ const SimulateLoanRealTimeContext = createContext(initialValue);
 
 export const SimulateLoanRealTimeProvider: FC = props => {
   const { children } = props;
-  api.defaults.headers.authorization = `Bearer ${getToken()?.token}`;
+  api.defaults.headers.authorization = getToken()?.token
+    ? `Bearer ${getToken()?.token}`
+    : undefined;
 
   const [requestStatus, setRequestStatus] = useState<RequestStatus>({
     error: false,
