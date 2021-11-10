@@ -8,6 +8,7 @@ import { useHistory } from 'react-router-dom';
 import { RoutingPath } from 'utils/routing';
 import { RequestUnderAnalysis } from './components/RequestUnderAnalysis';
 import { AccompanimentServices } from './services/accompaniment.services';
+import { ApprovedLoan } from './components/ApprovedLoan';
 
 import * as Styled from './styles';
 import * as MUIStyled from './muiStyles';
@@ -91,6 +92,7 @@ const Accompaniment: React.FC = () => {
                 </Stepper>
               </Styled.StepperCard>
               {activeStep === 1 && <RequestUnderAnalysis />}
+              {activeStep === 4 && <ApprovedLoan />}
             </>
           )}
         </Styled.Container>
