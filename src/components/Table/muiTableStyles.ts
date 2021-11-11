@@ -1,13 +1,12 @@
 import { makeStyles } from '@mui/styles';
-import { Theme } from '@mui/material';
 
-export const useStyles = makeStyles<Theme>((theme: Theme) => ({
+export const useStyles = makeStyles(() => ({
   root: () => ({
     border: 'none',
 
     '& .MuiDataGrid-columnsContainer': {
-      backgroundColor: theme.palette.secondary.main,
-      color: theme.palette.primary.contrastText,
+      backgroundColor: '#4A5970',
+      color: '#FFFF',
       border: 'none',
       fontSize: 16,
       boxShadow: '0px 4px 6px rgba(46, 43, 80, 0.25)',
@@ -22,7 +21,7 @@ export const useStyles = makeStyles<Theme>((theme: Theme) => ({
       border: 'none',
       textAlign: 'center',
       fontSize: 18,
-      color: theme.palette.grey[500],
+      color: '#848484',
     },
     '& .MuiDataGrid-columnHeaderCheckbox': {
       visibility: 'hidden',
