@@ -19,10 +19,12 @@ export const Title = styled(TypographyStyles)`
   font-size: 24px;
   color: ${({ theme }) => theme.palette.grey[200]};
   margin-top: 32px;
+  line-height: 1.5;
 `;
 
 export const Text = styled(TypographyStyles)`
   font-size: 18px;
   color: ${({ theme }) => theme.palette.grey[200]};
   margin-top: 24px;
+  line-height: 1.5;
 `;

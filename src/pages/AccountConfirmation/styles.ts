@@ -47,12 +47,7 @@ export const Title = styled(TypographyStyles)`
 `;
 
 export const ModalContent = styled(Box)`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 100%;
-  max-width: 364px;
+  width: 364px;
   background: #fff;
   padding: 78px 24px;
   text-align: center;
@@ -72,28 +67,10 @@ export const ModalContent = styled(Box)`
   .success-icon {
     color: ${({ theme }) => theme.palette.success.main};
   }
-
-  .error-icon {
-    color: ${({ theme }) => theme.palette.error.main};
-  }
 `;
 
 export const ModalTitle = styled(TypographyStyles)`
   margin: 36px 0 30px;
   font-size: 18px;
   line-height: 34px;
-`;
-
-export const CloseButton = styled.button`
-  position: absolute;
-  right: 8px;
-  top: 8px;
-  padding: 0;
-  border: 0;
-  background: none;
-
-  svg {
-    width: 22px;
-    height: 22px;
-  }
 `;

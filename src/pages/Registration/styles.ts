@@ -1,8 +1,4 @@
-import {
-  Box,
-  DialogContentText as DialogContentTextMUI,
-  DialogTitle as DialogTitleMUI,
-} from '@mui/material';
+import { Box } from '@mui/material';
 import styled, { css } from 'styled-components';
 
 interface StepProps {
@@ -77,19 +73,9 @@ export const BackButton = styled.button`
 `;
 
 export const ModalContent = styled(Box)`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 100%;
-  max-width: 685px;
-  background: #fff;
+  width: 685px;
   padding: 64px 24px;
   text-align: center;
-
-  .warning-icon {
-    color: ${({ theme }) => theme.palette.warning.main};
-  }
 
   .button-modal-validation {
     max-width: 300px;
@@ -101,12 +87,4 @@ export const EmailModalText = styled.p`
   margin-top: 32px;
   font-size: 18px;
   line-height: 34px;
-`;
-
-export const DialogTitle = styled(DialogTitleMUI)`
-  text-align: center;
-`;
-
-export const DialogContentText = styled(DialogContentTextMUI)`
-  text-align: center;
 `;
