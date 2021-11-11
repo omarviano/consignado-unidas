@@ -16,6 +16,8 @@ class RoutingPath {
   static ACCOUNT_CONFIRMATION = '/confirmacao-conta';
 
   static CHANGE_PASSWORD = '/alterar-senha';
+
+  static FAQ = '/faq';
 }
 
 export { RoutingPath };
