@@ -9,4 +9,6 @@ export interface ModalMessageProps {
   icon?: ReactNode;
   title?: ReactNode;
   text?: ReactNode;
+  width?: string;
+  height?: string;
 }
