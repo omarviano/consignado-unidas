@@ -62,7 +62,10 @@ const useInterceptors = (): boolean[] => {
           return Promise.reject(error);
         } */
 
-        if (error.request.status === 401) {
+        if (
+          error.request.status === 401 &&
+          error.request.responseURL !== `${process.env.REACT_APP_BASE_URL}auth`
+        ) {
           showModal({ content: <SessionExpired /> });
 
           return Promise.reject(error);
