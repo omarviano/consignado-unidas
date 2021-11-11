@@ -2,11 +2,11 @@ import { FC, useState } from 'react';
 import { Layout } from 'components/Layout';
 import { RouteAccess } from 'components/RouteAccess';
 
-import Accordion from '@mui/material/Accordion';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
-import Typography from '@mui/material/Typography';
-import { ExpandMore, Add, Remove } from '@mui/icons-material';
+import { Add, Remove } from '@mui/icons-material';
+
+import { DataQuestions } from './dataQuestions';
 
 import * as Styled from './styles';
 
@@ -17,104 +17,55 @@ const FAQ: FC = () => {
     (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
       setExpanded(isExpanded ? panel : false);
     };
+
   return (
     <RouteAccess typesOfAccess="auth">
       <Layout
         containerStyles={{
           maxWidth: '1276px',
-          padding: 0,
+          padding: '0 24px 24px',
         }}
       >
         <Styled.Container>
-          <div>
-            <Accordion
-              expanded={expanded === 'panel1'}
-              onChange={handleChange('panel1')}
-              style={{
-                marginBottom: '10px',
-                border: ' 1px solid #C4C4C4',
-                background: 'transparent',
-                width: '1000px',
-                marginLeft: '20px',
-                filter: 'drop-shadow(0px 2px 6px rgba(46, 43, 80, 0.25))',
-                boxShadow: 'none',
-                borderRadius: '4px',
-              }}
-            >
-              <AccordionSummary
-                expandIcon={
-                  expanded === 'panel1' ? <Remove color="secondary" /> : <Add />
-                }
-                aria-controls="panel4bh-content"
-                id="panel4bh-header"
-              >
-                <Typography sx={{ width: '33%', flexShrink: 0 }}>
-                  Personal data
-                </Typography>
-              </AccordionSummary>
-              <AccordionDetails>
-                <Typography>
-                  Nunc vitae orci ultricies, auctor nunc in, volutpat nisl.
-                  Integer sit amet egestas eros, vitae egestas augue. Duis vel
-                  est augue.
-                </Typography>
-              </AccordionDetails>
-            </Accordion>
+          <Styled.Header>
+            <Styled.FAQ>faq</Styled.FAQ>
+          </Styled.Header>
 
-            <Accordion
-              expanded={expanded === 'panel2'}
-              onChange={handleChange('panel2')}
-              style={{
-                marginBottom: '10px',
-              }}
-            >
-              <AccordionSummary
-                expandIcon={
-                  expanded === 'panel2' ? <Remove color="secondary" /> : <Add />
-                }
-                aria-controls="panel4bh-content"
-                id="panel4bh-header"
-              >
-                <Typography sx={{ width: '33%', flexShrink: 0 }}>
-                  Personal data
-                </Typography>
-              </AccordionSummary>
-              <AccordionDetails>
-                <Typography>
-                  Nunc vitae orci ultricies, auctor nunc in, volutpat nisl.
-                  Integer sit amet egestas eros, vitae egestas augue. Duis vel
-                  est augue.
-                </Typography>
-              </AccordionDetails>
-            </Accordion>
+          <Styled.Content>
+            <Styled.CommonQuestions>
+              Perguntas Frequentes
+            </Styled.CommonQuestions>
 
-            <Accordion
-              expanded={expanded === 'panel3'}
-              onChange={handleChange('panel3')}
-              style={{
-                marginBottom: '10px',
-              }}
-            >
-              <AccordionSummary
-                expandIcon={
-                  expanded === 'panel3' ? <Remove color="secondary" /> : <Add />
-                }
-                aria-controls="panel4bh-content"
-                id="panel4bh-header"
+            {DataQuestions.map(item => (
+              <Styled.Accordion
+                key={item.id}
+                expanded={expanded === item.id}
+                onChange={handleChange(item.id)}
               >
-                <Typography sx={{ width: '33%', flexShrink: 0 }}>
-                  Personal data
-                </Typography>
-              </AccordionSummary>
-              <AccordionDetails>
-                <Typography>
-                  Nunc vitae orci ultricies, auctor nunc in, volutpat nisl.
-                  Integer sit amet egestas eros, vitae egestas augue. Duis vel
-                  est augue.
-                </Typography>
-              </AccordionDetails>
-            </Accordion>
-          </div>
+                <AccordionSummary
+                  expandIcon={
+                    expanded === item.id ? <Remove color="primary" /> : <Add />
+                  }
+                  aria-controls="panel4bh-content"
+                  id="panel4bh-header"
+                >
+                  <Styled.TitleQuestion changeColor={expanded === item.id}>
+                    {item.title}
+                  </Styled.TitleQuestion>
+                </AccordionSummary>
+                <AccordionDetails>
+                  <Styled.QuestionAnswered>
+                    {item.questionAnswered}
+                  </Styled.QuestionAnswered>
+                </AccordionDetails>
+              </Styled.Accordion>
+            ))}
+
+            <Styled.HaveQuestions>
+              Ainda possui dúvidas? Entrem em contato com a gente! <br />
+              <Styled.Email>loremunidas@unidas.com.br</Styled.Email>
+            </Styled.HaveQuestions>
+          </Styled.Content>
         </Styled.Container>
       </Layout>
     </RouteAccess>
