@@ -4,10 +4,11 @@ import { AxiosError } from 'axios';
 
 import { RouteAccess } from 'components/RouteAccess';
 import { Button } from 'components/Buttons/Button';
+import { Modal } from 'components/Modal';
+import { ModalMessage } from 'components/ModalMessage';
 
-import { Modal } from '@mui/material';
 import useModal from 'hooks/modal';
-import { ExitToApp, CheckCircle, Error, Close } from '@mui/icons-material';
+import { ExitToApp, CheckCircle, Error } from '@mui/icons-material';
 import * as Styled from './styles';
 import { AccountConfirmationServices } from './services/account-confirmation.services';
 
@@ -91,15 +92,12 @@ const AccountConfirmation: React.FC = () => {
         </Styled.ModalContent>
       </Modal>
 
-      <Modal open={modalErrorOpen} onClose={toggleModalError}>
-        <Styled.ModalContent>
-          <Styled.CloseButton onClick={toggleModalError}>
-            <Close fontSize="small" color="primary" />
-          </Styled.CloseButton>
-          <Error className="error-icon" />
-          <Styled.ModalTitle>{errorMessage}</Styled.ModalTitle>
-        </Styled.ModalContent>
-      </Modal>
+      <ModalMessage
+        open={modalErrorOpen}
+        onClose={toggleModalError}
+        icon={<Error color="error" />}
+        text={errorMessage}
+      />
     </RouteAccess>
   );
 };

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import TypographyStyles from '@mui/material/Typography';
 
 import ImageBackground from 'assets/images/background.png';
-import { Box, IconButton } from '@mui/material';
+import { Box } from '@mui/material';
 
 export const Container = styled.div`
   min-height: 100vh;
@@ -38,12 +38,7 @@ export const SubTitle = styled(TypographyStyles)`
 `;
 
 export const ModalContent = styled(Box)`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 100%;
-  max-width: 685px;
+  width: 685px;
   background: #fff;
   padding: 64px 96px;
   text-align: center;
@@ -79,11 +74,4 @@ export const ModalText = styled(TypographyStyles)`
   b {
     display: block;
   }
-`;
-
-export const CloseButton = styled(IconButton)`
-  position: absolute;
-  right: 8px;
-  top: 8px;
-  margin: 0;
 `;

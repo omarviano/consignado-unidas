@@ -1,7 +1,6 @@
 import React, { useState, useCallback, useMemo } from 'react';
 import { getToken } from 'hooks/auth/storage';
-import { Modal } from '@mui/material';
-import { CheckCircle, Warning, Close } from '@mui/icons-material';
+import { CheckCircle, Warning } from '@mui/icons-material';
 import { useHistory } from 'react-router-dom';
 import { AxiosError } from 'axios';
 
@@ -16,6 +15,7 @@ import { Layout } from 'components/Layout';
 import { Formik } from 'components/Formik';
 import { Input } from 'components/Inputs/Input';
 import { SubmitButton } from 'components/Buttons/SubmitButton';
+import { ModalMessage } from 'components/ModalMessage';
 
 import { ChangePasswordServices } from './services/change-password.services';
 
@@ -138,33 +138,19 @@ const ChangePassword: React.FC = () => {
           </Styled.Box>
         </Styled.Container>
 
-        <Modal open={modalSuccessOpen} onClose={goToHome}>
-          <Styled.ModalContent>
-            <Styled.CloseModalButton type="button" onClick={goToHome}>
-              <Close fontSize="small" color="primary" />
-            </Styled.CloseModalButton>
+        <ModalMessage
+          open={modalSuccessOpen}
+          onClose={goToHome}
+          icon={<CheckCircle color="success" />}
+          text="Senha redefinida com sucesso"
+        />
 
-            <CheckCircle
-              color="action"
-              fontSize="inherit"
-              className="success-icon"
-            />
-
-            <Styled.ModalTitle>Senha redefinida com sucesso</Styled.ModalTitle>
-          </Styled.ModalContent>
-        </Modal>
-
-        <Modal open={modalErrorOpen} onClose={toggleModalError}>
-          <Styled.ModalContent>
-            <Styled.CloseModalButton type="button">
-              <Close fontSize="small" color="primary" />
-            </Styled.CloseModalButton>
-
-            <Warning fontSize="inherit" className="warning-icon" />
-
-            <Styled.ModalTitle>{errorMessage}</Styled.ModalTitle>
-          </Styled.ModalContent>
-        </Modal>
+        <ModalMessage
+          open={modalErrorOpen}
+          onClose={toggleModalError}
+          icon={<Warning color="warning" />}
+          text={errorMessage}
+        />
       </Layout>
     </RouteAccess>
   );

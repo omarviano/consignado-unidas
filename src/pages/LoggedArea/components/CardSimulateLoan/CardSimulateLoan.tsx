@@ -85,7 +85,9 @@ const CardSimulateLoan: FC = memo(() => {
           disabled={disableSliderAndButton || requestStatus.loading}
           color="primary"
         >
-          Simular Empréstimo
+          {requestStatus.loading
+            ? 'Simulando Empréstimo'
+            : 'Simular Empréstimo'}
         </Styled.ButtonSimluteLoan>
       </Styled.Container>
     </Formik>

@@ -67,6 +67,7 @@ const Input = memo(
 
     return (
       <Styled.FormControl fullWidth>
+        <Styled.Label isError={errors.error}>{label}</Styled.Label>
         <InputMask
           mask={mask}
           maskChar={null}
@@ -84,7 +85,6 @@ const Input = memo(
               defaultValue={defaultValue}
               id={name}
               inputRef={ref}
-              label={label}
               type={type}
               onFocus={onFocus}
               disabled={disabled}

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { AxiosError } from 'axios';
 import { useHistory, useLocation } from 'react-router-dom';
-import { Card, Modal } from '@mui/material';
+import { Card } from '@mui/material';
 import { CheckCircle, Cancel } from '@mui/icons-material';
 
 import useModal from 'hooks/modal';
@@ -9,6 +9,8 @@ import useModal from 'hooks/modal';
 import { Formik } from 'components/Formik';
 import { Button } from 'components/Buttons/Button';
 import { Input } from 'components/Inputs/Input';
+import { Modal } from 'components/Modal';
+import { ModalMessage } from 'components/ModalMessage';
 
 import { ResetPasswordServices } from './services/reset-password.services';
 
@@ -111,13 +113,12 @@ const ResetPassword: React.FC = () => {
         </Styled.ModalContent>
       </Modal>
 
-      <Modal open={modalErrorOpen} onClose={toggleModalError}>
-        <Styled.ModalContent>
-          <Cancel color="error" fontSize="inherit" />
-
-          <Styled.ModalTitle>{errorMessage}</Styled.ModalTitle>
-        </Styled.ModalContent>
-      </Modal>
+      <ModalMessage
+        open={modalErrorOpen}
+        onClose={toggleModalError}
+        icon={<Cancel color="error" fontSize="inherit" />}
+        text={errorMessage}
+      />
     </Styled.Container>
   );
 };

@@ -22,14 +22,16 @@ const CPFForm: React.FC<CPFFormProps> = ({ onSubmit }) => (
       rapidinho.
     </StepTitle>
 
-    <Styled.CPFInput
-      name="cpf"
-      type="text"
-      label="Digite seu CPF"
-      placeholder="Digite seu CPF"
-      variant="outlined"
-      mask="999.999.999-99"
-    />
+    <Styled.ContentCPFInput>
+      <Styled.CPFInput
+        name="cpf"
+        type="text"
+        label="Digite seu CPF"
+        placeholder="Digite seu CPF"
+        variant="outlined"
+        mask="999.999.999-99"
+      />
+    </Styled.ContentCPFInput>
 
     <ContinueButton
       type="submit"

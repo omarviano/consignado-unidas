@@ -59,20 +59,24 @@ const BankDataForm: React.FC<BankDataFormProps> = ({
             disabled
           />
 
-          <Select
-            name="bankCode"
-            options={banks}
-            label="Banco"
-            variant="outlined"
-          />
+          <Styled.Div>
+            <Select
+              name="bankCode"
+              options={banks}
+              label="Banco"
+              variant="outlined"
+            />
+          </Styled.Div>
 
-          <Styled.AgencyInput
-            name="agency"
-            type="number"
-            label="Agência"
-            placeholder="N° da sua agência"
-            variant="outlined"
-          />
+          <Styled.Div>
+            <Styled.AgencyInput
+              name="agency"
+              type="number"
+              label="Agência"
+              placeholder="N° da sua agência"
+              variant="outlined"
+            />
+          </Styled.Div>
 
           <Grid container spacing={2}>
             <Grid item xs={6}>
