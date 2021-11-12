@@ -15,6 +15,10 @@ export const BankDataInputs = styled.div`
   }
 `;
 
+export const Div = styled.div`
+  margin-top: 15px;
+`;
+
 export const Hello = styled.div`
   font-size: 16px;
   line-height: 26px;
