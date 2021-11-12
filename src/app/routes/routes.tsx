@@ -9,9 +9,10 @@ import { ResetPassword } from 'pages/ResetPassword';
 import { AccountConfirmation } from 'pages/AccountConfirmation';
 import { Accompaniment } from 'pages/Accompaniment';
 import { ChangePassword } from 'pages/ChangePassword';
+import { SimulateLoan } from 'pages/SimulateLoan';
+import { FAQ } from 'pages/FAQ';
 
 import { RoutingPath } from 'utils/routing';
-import { SimulateLoan } from 'pages/SimulateLoan';
 
 import { SimulateLoanRealTimeProvider } from 'hooks/simulateRealtime';
 
@@ -34,6 +35,8 @@ const Routes: FC = memo(() => (
       <Route path={RoutingPath.ACCOMPANIMENT} component={Accompaniment} />
 
       <Route path={RoutingPath.CHANGE_PASSWORD} component={ChangePassword} />
+
+      <Route path={RoutingPath.FAQ} component={FAQ} />
 
       <SimulateLoanRealTimeProvider>
         <Route path={RoutingPath.LOGGEDAREA} component={LoggedArea} />
