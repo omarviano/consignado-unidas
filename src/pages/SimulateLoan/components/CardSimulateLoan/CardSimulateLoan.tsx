@@ -3,18 +3,23 @@ import { formatValue } from 'utils/formatValue';
 import { Slider } from 'components/Slider';
 
 import { useSimulateLoan } from 'hooks/simulate';
-import { SimulateLoanProps } from 'interface/simulate';
+import { DataSimulateProps, SimulateLoanProps } from 'interface/simulate';
 import { useSimulateLoanRealTime } from 'hooks/simulateRealtime';
 import * as Styled from './styles';
 
 const CardSimulateLoan: FC = () => {
-  const { valueSliderSimulate, addValueSliderSimulate, dataMargin } =
-    useSimulateLoanRealTime();
+  const {
+    valueSliderSimulate,
+    addValueSliderSimulate,
+    dataMargin,
+    addDataSimulateLoan,
+  } = useSimulateLoanRealTime();
 
   const { simulateLoan, resetModalActive } = useSimulateLoan();
 
   const handleSliderChange = useCallback(
     (event: Event, newValue: number | number[]) => {
+      addDataSimulateLoan({} as DataSimulateProps);
       addValueSliderSimulate(newValue as number);
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps

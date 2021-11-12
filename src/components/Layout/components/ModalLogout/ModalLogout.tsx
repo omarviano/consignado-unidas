@@ -11,6 +11,11 @@ const ModalLogout: FC = memo(() => {
   const { modalActive, toggleModal } = useModalLogout();
   const { signOut } = useAuth();
 
+  const clearSessionStorage = () => {
+    localStorage.clear();
+    signOut();
+  };
+
   return (
     <Modal open={modalActive} onClose={toggleModal}>
       <Styled.Content>
@@ -20,7 +25,7 @@ const ModalLogout: FC = memo(() => {
           <Styled.ButtonYes
             color="primary"
             variant="contained"
-            onClick={() => signOut()}
+            onClick={clearSessionStorage}
           >
             Sim
           </Styled.ButtonYes>
