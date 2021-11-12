@@ -4,6 +4,7 @@ import { RouteAccess } from 'components/RouteAccess';
 import { GridColumns, GridRowId, GridSelectionModel } from '@mui/x-data-grid';
 import { CheckCircle, Cancel } from '@mui/icons-material';
 import { useHistory } from 'react-router-dom';
+import { AxiosError } from 'axios';
 
 import { getToken } from 'hooks/auth/storage';
 import useModal from 'hooks/modal';
@@ -138,8 +139,10 @@ const SimulateLoan: FC = withContext(
 
         if (data === null) toggleModalConfirm();
         else toggleModalError();
-      } catch {
-        toggleModalError();
+      } catch (error) {
+        const { response } = error as AxiosError;
+
+        if (response && response.status < 500) toggleModalError();
       }
     };
 
@@ -158,8 +161,10 @@ const SimulateLoan: FC = withContext(
         });
 
         toggleModalSucces();
-      } catch {
-        toggleModalError();
+      } catch (error) {
+        const { response } = error as AxiosError;
+
+        if (response && response.status < 500) toggleModalError();
       } finally {
         setRequestingLoan(false);
       }
