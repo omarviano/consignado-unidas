@@ -72,7 +72,6 @@ const materialUiTheme = createTheme(
         light: '#ED1C24',
         dark: '#0B3A7A',
         contrastText: '#E3F6FD',
-        '100': '#',
       },
       error: {
         main: '#D81616',
