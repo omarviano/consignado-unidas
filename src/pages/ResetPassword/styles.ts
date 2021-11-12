@@ -38,13 +38,7 @@ export const Title = styled(TypographyStyles)`
 `;
 
 export const ModalContent = styled(Box)`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 100%;
-  max-width: 685px;
-  background: #fff;
+  width: 685px;
   padding: 64px 96px;
   text-align: center;
   font-size: 40px;

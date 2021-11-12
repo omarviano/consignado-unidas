@@ -29,27 +29,31 @@ const Select: FC<SelectProps> = React.memo(
     );
 
     return (
-      <Styled.Select
-        {...field}
-        placeholder={label}
-        fullWidth
-        select
-        label={label}
-        variant="outlined"
-        inputRef={inputRef}
-        id={name}
-        name={field.name}
-        value={field.value}
-        onChange={handleChange}
-        InputLabelProps={{
-          shrink: true,
-        }}
-        {...rest}
-        error={!!meta.error && meta.touched}
-        helperText={meta.touched ? meta.error : undefined}
-      >
-        {optionsMap}
-      </Styled.Select>
+      <>
+        <Styled.Label isError={!!meta.error && meta.touched}>
+          {label}
+        </Styled.Label>
+        <Styled.Select
+          {...field}
+          placeholder={label}
+          fullWidth
+          select
+          variant="outlined"
+          inputRef={inputRef}
+          id={name}
+          name={field.name}
+          value={field.value}
+          onChange={handleChange}
+          InputLabelProps={{
+            shrink: true,
+          }}
+          {...rest}
+          error={!!meta.error && meta.touched}
+          helperText={meta.touched ? meta.error : undefined}
+        >
+          {optionsMap}
+        </Styled.Select>
+      </>
     );
   },
 );
