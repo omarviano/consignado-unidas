@@ -8,6 +8,9 @@ import { useHistory } from 'react-router-dom';
 import { getToken } from 'hooks/auth/storage';
 import useModal from 'hooks/modal';
 import { SimulateLoanProvider, useSimulateLoan } from 'hooks/simulate';
+
+import { DataSimulateProps } from 'interface/simulate';
+
 import { withContext } from 'utils/withContext';
 import { Table } from 'components/Table';
 import { useSimulateLoanRealTime } from 'hooks/simulateRealtime';
@@ -29,7 +32,7 @@ import { SimulateLoanServices } from './services/simulate-loan.services';
 const SimulateLoan: FC = withContext(
   () => {
     const history = useHistory();
-    const { dataSimulateLoan } = useSimulateLoanRealTime();
+    const { dataSimulateLoan, valueSliderSimulate } = useSimulateLoanRealTime();
     const { requestStatus, modalActive, statusCode } = useSimulateLoan();
     const { toggleModal } = useModalSimulateLoan();
     const [tableData, setTableData] = useState<any>([]);
@@ -40,6 +43,14 @@ const SimulateLoan: FC = withContext(
     const [requestingLoan, setRequestingLoan] = useState(false);
 
     useEffect(() => {
+      if (valueSliderSimulate <= 0) history.push(RoutingPath.LOGGEDAREA);
+    }, [history, valueSliderSimulate]);
+
+    useEffect(() => {
+      if (Object.keys(dataSimulateLoan).length === 0) {
+        return;
+      }
+
       const data = dataSimulateLoan.installments.map(item => ({
         ...item,
         id: Math.random(),
@@ -49,7 +60,7 @@ const SimulateLoan: FC = withContext(
         quantityFormatted: item.quantity.toString().padStart(2, '0'),
       }));
       setTableData(data);
-    }, [dataSimulateLoan.id, dataSimulateLoan.installments]);
+    }, [dataSimulateLoan]);
 
     useEffect(() => {
       if (modalActive && statusCode !== 500) {
@@ -163,6 +174,7 @@ const SimulateLoan: FC = withContext(
           }}
         >
           <CardSimulateLoan />
+
           <Styled.SelectMostSuitableOption>
             Selecione a opção mais adequada para sua situação financeira atual
           </Styled.SelectMostSuitableOption>
