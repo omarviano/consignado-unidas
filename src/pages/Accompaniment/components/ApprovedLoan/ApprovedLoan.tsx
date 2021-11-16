@@ -1,4 +1,4 @@
-import { FC, useMemo } from 'react';
+import { FC, useMemo, useEffect, useState } from 'react';
 import { GridColumns } from '@mui/x-data-grid';
 import { formatDate } from 'utils/formatDate';
 import { formatValue } from 'utils/formatValue';
@@ -13,6 +13,8 @@ import ufs from 'constants/ufs';
 import { Input } from 'components/Inputs/Input';
 import { ModalMessage } from 'components/ModalMessage';
 import { CheckCircle, Warning } from '@mui/icons-material';
+import { Bank } from 'pages/Accompaniment/models/bank';
+import { AccompanimentServices } from 'pages/Accompaniment/services/accompaniment.services';
 import * as Styled from './styles';
 
 const ApprovedLoan: FC = () => {
@@ -20,6 +22,20 @@ const ApprovedLoan: FC = () => {
     useModal();
   const { open: modalSuccessOpen, toggle: toggleModalSuccess } = useModal();
   const { open: modalErrorOpen, toggle: toggleModalError } = useModal();
+  const [banks, setBanks] = useState<{ name: string; value: string }[]>([]);
+
+  useEffect(() => {
+    AccompanimentServices.fetchBanks().then(({ data }) => {
+      const response = data.data as Bank[];
+
+      setBanks(
+        response.map(item => ({
+          value: item.id.toString(),
+          name: item.description,
+        })),
+      );
+    });
+  }, []);
 
   const columns = useMemo<GridColumns>(
     () => [
@@ -228,7 +244,7 @@ const ApprovedLoan: FC = () => {
                 <Styled.DivSelect>
                   <Select
                     name="bankCode"
-                    options={[{ name: 'sas', value: 'qw' }]}
+                    options={banks}
                     label="Selecione o seu banco"
                     placeholder="xxx - Meu banco"
                     variant="outlined"
