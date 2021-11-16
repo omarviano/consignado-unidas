@@ -2,12 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { Layout } from 'components/Layout';
 import { RouteAccess } from 'components/RouteAccess';
 import { Step, StepIconProps, Stepper, Box, Skeleton } from '@mui/material';
-import { CheckCircle, CropSquare } from '@mui/icons-material';
+import { CheckCircle, CropSquare, Cancel } from '@mui/icons-material';
 import { useHistory } from 'react-router-dom';
 
 import { RoutingPath } from 'utils/routing';
 import { RequestUnderAnalysis } from './components/RequestUnderAnalysis';
 import { AccompanimentServices } from './services/accompaniment.services';
+import { ApprovedLoan } from './components/ApprovedLoan';
+import { ReprovidedLoan } from './components/ReprovidedLoan';
 
 import * as Styled from './styles';
 import * as MUIStyled from './muiStyles';
@@ -42,6 +44,8 @@ const Accompaniment: React.FC = () => {
 
   const getIcon = (index: number) => {
     if (index === 1) return <CheckCircle color="success" />;
+    if (index === 4) return <CheckCircle color="success" />;
+    if (index === 5) return <Cancel color="error" />;
 
     return <CropSquare className="tranparent-icon" />;
   };
@@ -91,6 +95,8 @@ const Accompaniment: React.FC = () => {
                 </Stepper>
               </Styled.StepperCard>
               {activeStep === 1 && <RequestUnderAnalysis />}
+              {activeStep === 4 && <ApprovedLoan />}
+              {activeStep === 5 && <ReprovidedLoan />}
             </>
           )}
         </Styled.Container>

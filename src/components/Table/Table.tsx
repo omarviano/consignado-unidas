@@ -17,12 +17,13 @@ const Table: React.FC<TableProps> = memo(
     rowHeight = 49,
     autoHeight = true,
     disableSelectionOnClick = true,
+    disableBoxShadow,
     ...rest
   }) => {
     const classes = useStyles();
 
     return (
-      <Styled.Container>
+      <Styled.Container disableBoxShadow={disableBoxShadow}>
         <DataGrid
           className={classes.root}
           columns={columns}

@@ -1,3 +1,5 @@
 import { DataGridProps } from '@mui/x-data-grid';
 
-export type TableProps = DataGridProps;
+export type TableProps = DataGridProps & {
+  disableBoxShadow?: boolean;
+};
