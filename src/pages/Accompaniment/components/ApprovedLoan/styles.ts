@@ -1,6 +1,9 @@
 import styled from 'styled-components';
 import { Card as MUICard } from '@mui/material';
 import TypographyStyles from '@mui/material/Typography';
+import { Button } from 'components/Buttons/Button';
+import BoxStyles from '@mui/material/Box';
+import GridStyles from '@mui/material/Grid';
 
 export const Card = styled(MUICard)`
   padding: 36px 25px 0 33px;
@@ -43,4 +46,50 @@ export const ProposalInformation = styled(TypographyStyles)`
 export const TextBlack = styled.span`
   color: ${({ theme }) => theme.palette.grey[400]};
   font-weight: 500;
+`;
+
+export const DivButtons = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 50px 0;
+`;
+
+export const ButtonAcceptProposal = styled(Button)`
+  text-transform: capitalize;
+  width: 186px;
+  background-color: #005b9e;
+`;
+
+export const AdditionalData = styled(TypographyStyles)`
+  color: #969696;
+  font-weight: 500;
+  margin-bottom: 30px;
+`;
+
+export const ContainerModal = styled(BoxStyles)`
+  max-width: 969px;
+  padding: 30px 52px;
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  @media (min-width: 1000px) {
+    max-height: 100vh;
+  }
+`;
+
+export const GridContainer = styled(GridStyles)`
+  margin-bottom: 22px;
+`;
+
+export const BankData = styled(AdditionalData)``;
+
+export const DivSelect = styled.div`
+  margin-top: 4px;
+`;
+
+export const ButtonToSend = styled(Button)`
+  text-transform: capitalize;
+  width: 205px;
+  background-color: #005b9e;
 `;
