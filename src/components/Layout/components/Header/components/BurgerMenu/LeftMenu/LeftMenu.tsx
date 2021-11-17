@@ -20,7 +20,10 @@ const LeftMenu: FC<LeftMenuProps> = props => {
       >
         Simular Empréstimo
       </Styled.Items>
-      <Styled.Items to="/" active={false}>
+      <Styled.Items
+        to={RoutingPath.CONTRACTS}
+        active={RoutingPath.CONTRACTS === pathname}
+      >
         Meus Contratos
       </Styled.Items>
       <Styled.Items to="/" active={false}>

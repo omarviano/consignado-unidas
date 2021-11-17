@@ -17,6 +17,7 @@ const Table: React.FC<TableProps> = memo(
     rowHeight = 49,
     autoHeight = true,
     disableSelectionOnClick = true,
+    noData,
     ...rest
   }) => {
     const classes = useStyles();
@@ -34,7 +35,7 @@ const Table: React.FC<TableProps> = memo(
           autoHeight={autoHeight}
           disableSelectionOnClick={disableSelectionOnClick}
           components={{
-            NoRowsOverlay: NoDataTable,
+            NoRowsOverlay: noData || NoDataTable,
           }}
           {...rest}
         />
