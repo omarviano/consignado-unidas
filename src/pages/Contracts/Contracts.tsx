@@ -10,6 +10,9 @@ import { Button } from 'components/Buttons/Button';
 import { Table } from 'components/Table';
 import { NoDataTable } from 'components/NoDataTable';
 
+import { formatDate } from 'utils/formatDate';
+import { formatValue } from 'utils/formatValue';
+
 import * as Styled from './styles';
 import { ContractsServices } from './services/contracts-services';
 
@@ -21,10 +24,11 @@ const Contracts: React.FC = () => {
     () => [
       {
         field: 'date',
-        headerName: 'Data',
+        headerName: 'Data da contratação',
         hideSortIcons: true,
         disableColumnMenu: true,
         headerAlign: 'center',
+        flex: 1,
       },
       {
         field: 'number',
@@ -40,7 +44,7 @@ const Contracts: React.FC = () => {
         hideSortIcons: true,
         disableColumnMenu: true,
         headerAlign: 'center',
-        flex: 1,
+        width: 160,
       },
       {
         field: 'value',
@@ -48,7 +52,7 @@ const Contracts: React.FC = () => {
         hideSortIcons: true,
         disableColumnMenu: true,
         headerAlign: 'center',
-        flex: 1,
+        width: 240,
       },
       {
         field: 'installmentValue',
@@ -66,6 +70,17 @@ const Contracts: React.FC = () => {
         headerAlign: 'center',
         flex: 1,
       },
+      {
+        field: 'details',
+        headerName: 'Detalhes',
+        hideSortIcons: true,
+        disableColumnMenu: true,
+        headerAlign: 'center',
+        flex: 1,
+        renderCell: () => (
+          <Styled.TableButton variant="contained">Acessar</Styled.TableButton>
+        ),
+      },
     ],
     [],
   );
@@ -77,7 +92,18 @@ const Contracts: React.FC = () => {
   useEffect(() => {
     ContractsServices.fetchContracts()
       .then(({ data }) => {
-        setTableData([]);
+        const contracts = data.data || [];
+
+        setTableData(
+          contracts.map(contract => ({
+            ...contract,
+            id: contract.number,
+            date: formatDate(contract.date),
+            value: formatValue(contract.value),
+            installmentValue: formatValue(contract.installmentValue),
+            installments: contract.installments?.toString().padStart(2, '0'),
+          })),
+        );
       })
       .finally(() => setFetchingContracts(false));
   }, []);

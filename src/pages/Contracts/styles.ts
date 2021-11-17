@@ -1,3 +1,4 @@
+import { Button } from 'components/Buttons/Button';
 import styled from 'styled-components';
 
 export const Container = styled.div`
@@ -39,4 +40,11 @@ export const BreadcrumbRoot = styled.span`
 export const BreadcrumbPage = styled.span`
   margin-left: 8px;
   color: ${({ theme }) => theme.palette.grey[100]};
+`;
+
+export const TableButton = styled(Button)`
+  height: 31px;
+  width: 95px;
+  text-transform: none;
+  margin: auto;
 `;
