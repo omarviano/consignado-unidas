@@ -1,7 +1,11 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import FormControlStyles from '@mui/material/FormControl';
 import TextFieldStyles from '@mui/material/TextField';
+
+export interface LabelProps {
+  isError: boolean | undefined;
+}
 
 export const Input = styled(TextFieldStyles)`
   .MuiOutlinedInput-root {
@@ -11,3 +15,16 @@ export const Input = styled(TextFieldStyles)`
 `;
 
 export const FormControl = styled(FormControlStyles)``;
+
+export const Label = styled.label<LabelProps>`
+  font-size: 14px;
+  font-weight: 400;
+  margin-bottom: 4px;
+  color: ${({ theme }) => theme.palette.grey[100]};
+
+  ${({ isError }) =>
+    isError &&
+    css`
+      color: ${({ theme }) => theme.palette.error.main};
+    `}
+`;

@@ -2,19 +2,23 @@ import { FC, useEffect, useMemo, useState } from 'react';
 import { Layout } from 'components/Layout';
 import { RouteAccess } from 'components/RouteAccess';
 import { GridColumns, GridRowId, GridSelectionModel } from '@mui/x-data-grid';
-import { Modal } from '@mui/material';
-import { Close, CheckCircle, Cancel } from '@mui/icons-material';
+import { CheckCircle, Cancel } from '@mui/icons-material';
 import { useHistory } from 'react-router-dom';
+import { AxiosError } from 'axios';
 
 import { getToken } from 'hooks/auth/storage';
 import useModal from 'hooks/modal';
 import { SimulateLoanProvider, useSimulateLoan } from 'hooks/simulate';
+
+import { DataSimulateProps } from 'interface/simulate';
+
 import { withContext } from 'utils/withContext';
 import { Table } from 'components/Table';
 import { useSimulateLoanRealTime } from 'hooks/simulateRealtime';
 import { formatValue } from 'utils/formatValue';
 import { TableSimulateProps } from 'interface/tableSimulate';
 import { Button } from 'components/Buttons/Button';
+import { Modal } from 'components/Modal';
 import { RoutingPath } from 'utils/routing';
 import {
   useModalSimulateLoan,
@@ -29,7 +33,7 @@ import { SimulateLoanServices } from './services/simulate-loan.services';
 const SimulateLoan: FC = withContext(
   () => {
     const history = useHistory();
-    const { dataSimulateLoan } = useSimulateLoanRealTime();
+    const { dataSimulateLoan, valueSliderSimulate } = useSimulateLoanRealTime();
     const { requestStatus, modalActive, statusCode } = useSimulateLoan();
     const { toggleModal } = useModalSimulateLoan();
     const [tableData, setTableData] = useState<any>([]);
@@ -40,6 +44,14 @@ const SimulateLoan: FC = withContext(
     const [requestingLoan, setRequestingLoan] = useState(false);
 
     useEffect(() => {
+      if (valueSliderSimulate <= 0) history.push(RoutingPath.LOGGEDAREA);
+    }, [history, valueSliderSimulate]);
+
+    useEffect(() => {
+      if (Object.keys(dataSimulateLoan).length === 0) {
+        return;
+      }
+
       const data = dataSimulateLoan.installments.map(item => ({
         ...item,
         id: Math.random(),
@@ -49,7 +61,7 @@ const SimulateLoan: FC = withContext(
         quantityFormatted: item.quantity.toString().padStart(2, '0'),
       }));
       setTableData(data);
-    }, [dataSimulateLoan.id, dataSimulateLoan.installments]);
+    }, [dataSimulateLoan]);
 
     useEffect(() => {
       if (modalActive && statusCode !== 500) {
@@ -127,8 +139,10 @@ const SimulateLoan: FC = withContext(
 
         if (data === null) toggleModalConfirm();
         else toggleModalError();
-      } catch {
-        toggleModalError();
+      } catch (error) {
+        const { response } = error as AxiosError;
+
+        if (response && response.status < 500) toggleModalError();
       }
     };
 
@@ -147,8 +161,10 @@ const SimulateLoan: FC = withContext(
         });
 
         toggleModalSucces();
-      } catch {
-        toggleModalError();
+      } catch (error) {
+        const { response } = error as AxiosError;
+
+        if (response && response.status < 500) toggleModalError();
       } finally {
         setRequestingLoan(false);
       }
@@ -163,6 +179,7 @@ const SimulateLoan: FC = withContext(
           }}
         >
           <CardSimulateLoan />
+
           <Styled.SelectMostSuitableOption>
             Selecione a opção mais adequada para sua situação financeira atual
           </Styled.SelectMostSuitableOption>
@@ -189,13 +206,6 @@ const SimulateLoan: FC = withContext(
 
           <Modal open={modalSuccesOpen} onClose={goToAccompaniment}>
             <Styled.ModalSuccessContent>
-              <Styled.CloseModalButton
-                type="button"
-                onClick={goToAccompaniment}
-              >
-                <Close fontSize="small" color="primary" />
-              </Styled.CloseModalButton>
-
               <CheckCircle className="success-icon" />
 
               <Styled.ModalText>Solicitação enviada!</Styled.ModalText>
@@ -219,10 +229,6 @@ const SimulateLoan: FC = withContext(
 
           <Modal open={modalErrorOpen} onClose={toggleModalError}>
             <Styled.ModalErrorContent>
-              <Styled.CloseModalButton type="button" onClick={toggleModalError}>
-                <Close fontSize="small" color="primary" />
-              </Styled.CloseModalButton>
-
               <Cancel className="cancel-icon" />
 
               <Styled.ModalText>Solicitação negada</Styled.ModalText>
@@ -236,13 +242,6 @@ const SimulateLoan: FC = withContext(
 
           <Modal open={modalConfirmOpen} onClose={toggleModalConfirm}>
             <Styled.ModalConfirmContent>
-              <Styled.CloseModalButton
-                type="button"
-                onClick={toggleModalConfirm}
-              >
-                <Close fontSize="small" color="primary" />
-              </Styled.CloseModalButton>
-
               <Styled.ModalConfirmHello>
                 Olá, {getToken()?.user.name}! Tudo bem?
                 <b>Você confirma os seus dados abaixo?</b>

@@ -29,7 +29,7 @@ const LeftMenu: FC<LeftMenuProps> = props => {
       <Styled.Items to="/" active={false}>
         Ajuda
       </Styled.Items>
-      <Styled.Items to="/" active={false}>
+      <Styled.Items to={RoutingPath.FAQ} active={RoutingPath.FAQ === pathname}>
         FAQ
       </Styled.Items>
       <Styled.ItemCustom onClick={() => toggleModal()}>Sair</Styled.ItemCustom>

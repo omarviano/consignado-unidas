@@ -10,9 +10,12 @@ import { AccountConfirmation } from 'pages/AccountConfirmation';
 import { Accompaniment } from 'pages/Accompaniment';
 import { ChangePassword } from 'pages/ChangePassword';
 import { Contracts } from 'pages/Contracts';
+import { SimulateLoan } from 'pages/SimulateLoan';
+import { FAQ } from 'pages/FAQ';
 
 import { RoutingPath } from 'utils/routing';
-import { SimulateLoan } from 'pages/SimulateLoan';
+
+import { SimulateLoanRealTimeProvider } from 'hooks/simulateRealtime';
 
 const Routes: FC = memo(() => (
   <BrowserRouter>
@@ -30,15 +33,18 @@ const Routes: FC = memo(() => (
         component={AccountConfirmation}
       />
 
-      <Route path={RoutingPath.LOGGEDAREA} component={LoggedArea} exact />
-
-      <Route path={RoutingPath.ACCOMPANIMENT} component={Accompaniment} exact />
-
-      <Route path={RoutingPath.SIMULATE_LOAN} component={SimulateLoan} exact />
+      <Route path={RoutingPath.ACCOMPANIMENT} component={Accompaniment} />
 
       <Route path={RoutingPath.CHANGE_PASSWORD} component={ChangePassword} />
 
+      <Route path={RoutingPath.FAQ} component={FAQ} />
+
       <Route path={RoutingPath.CONTRACTS} component={Contracts} />
+
+      <SimulateLoanRealTimeProvider>
+        <Route path={RoutingPath.LOGGEDAREA} component={LoggedArea} />
+        <Route path={RoutingPath.SIMULATE_LOAN} component={SimulateLoan} />
+      </SimulateLoanRealTimeProvider>
     </Switch>
   </BrowserRouter>
 ));

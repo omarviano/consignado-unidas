@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { Checkbox, Modal } from '@mui/material';
-import { Warning, Close } from '@mui/icons-material';
+import { Checkbox } from '@mui/material';
+import { Warning } from '@mui/icons-material';
 
 import useModal from 'hooks/modal';
 
+import { ModalMessage } from 'components/ModalMessage';
 import { Formik } from 'components/Formik';
 import { Button } from 'components/Buttons/Button';
 
@@ -78,20 +79,13 @@ const BankDataConfirmation: React.FC<BankDataConfirmationProps> = ({
         </Styled.IAgreeTermsContainerButtons>
       </Formik>
 
-      <Modal open={modalMessage} onClose={toggleModalMessage}>
-        <Styled.ModalContent>
-          <Styled.CloseButton onClick={toggleModalMessage}>
-            <Close fontSize="medium" color="primary" />
-          </Styled.CloseButton>
-
-          <Warning fontSize="large" className="warning-icon" />
-
-          <Styled.ModalText>
-            Para prosseguir, você precisa estar de acordo com os termos e
-            condições da política de privacidade.
-          </Styled.ModalText>
-        </Styled.ModalContent>
-      </Modal>
+      <ModalMessage
+        open={modalMessage}
+        onClose={toggleModalMessage}
+        icon={<Warning color="warning" />}
+        text="Para prosseguir, você precisa estar de acordo com os termos e condições da política de privacidade."
+        width="600px"
+      />
     </Styled.BankDetailsConfirmationContainer>
   );
 };
