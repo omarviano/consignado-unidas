@@ -139,6 +139,7 @@ const Contracts: React.FC = () => {
               columns={columns}
               rows={tableData}
               noData={NoContracts}
+              rowHeight={88}
             />
           </Styled.Box>
         </Styled.Container>
