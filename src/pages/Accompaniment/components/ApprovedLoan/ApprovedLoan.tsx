@@ -15,13 +15,19 @@ import { ModalMessage } from 'components/ModalMessage';
 import { CheckCircle, Warning } from '@mui/icons-material';
 import { Bank } from 'pages/Accompaniment/models/bank';
 import { AccompanimentServices } from 'pages/Accompaniment/services/accompaniment.services';
+import { useHistory } from 'react-router-dom';
+import { RoutingPath } from 'utils/routing';
 import * as Styled from './styles';
 
 const ApprovedLoan: FC = () => {
+  const history = useHistory();
   const { open: modalConfirmationOpen, toggle: toggleModalConfirmation } =
     useModal();
   const { open: modalSuccessOpen, toggle: toggleModalSuccess } = useModal();
   const { open: modalErrorOpen, toggle: toggleModalError } = useModal();
+  const { open: modalRefuseOpen, toggle: toggleModalRefuse } = useModal();
+  const { open: modalRefuseAcceptOpen, toggle: toggleModalRefuseAccept } =
+    useModal();
   const [banks, setBanks] = useState<{ name: string; value: string }[]>([]);
 
   useEffect(() => {
@@ -36,6 +42,11 @@ const ApprovedLoan: FC = () => {
       );
     });
   }, []);
+
+  const goToLoggedArea = () => {
+    toggleModalRefuseAccept();
+    history.push(RoutingPath.LOGGEDAREA);
+  };
 
   const columns = useMemo<GridColumns>(
     () => [
@@ -122,6 +133,13 @@ const ApprovedLoan: FC = () => {
         >
           Aceitar Proposta
         </Styled.ButtonAcceptProposal>
+
+        <Styled.ButtonRefuseProposal
+          variant="outlined"
+          onClick={toggleModalRefuse}
+        >
+          Recusar Proposta
+        </Styled.ButtonRefuseProposal>
       </Styled.DivButtons>
 
       <Modal open={modalConfirmationOpen} onClose={toggleModalConfirmation}>
@@ -304,6 +322,39 @@ const ApprovedLoan: FC = () => {
         icon={<Warning color="warning" />}
         text="Erro"
       />
+
+      <Modal open={modalRefuseOpen} onClose={toggleModalRefuse}>
+        <Styled.ContainerModalRefuseProposal>
+          <Styled.RefuseProposal variant="h2">
+            Tem certeza que deseja recusar a proposta?
+          </Styled.RefuseProposal>
+
+          <Styled.DivButtonsYesOrNo>
+            <Styled.ButtonYes variant="contained">Sim</Styled.ButtonYes>
+
+            <Styled.ButtonNo variant="outlined" onClick={toggleModalRefuse}>
+              Não
+            </Styled.ButtonNo>
+          </Styled.DivButtonsYesOrNo>
+        </Styled.ContainerModalRefuseProposal>
+      </Modal>
+
+      <Modal open={modalRefuseAcceptOpen} onClose={goToLoggedArea}>
+        <Styled.ContainerModalRefuseProposalAccept>
+          <Styled.CheckCircle color="success" />
+
+          <Styled.RefuseProposalAccept variant="h2">
+            Proposta recusada
+          </Styled.RefuseProposalAccept>
+
+          <Styled.ButtonGoToHomeScreen
+            variant="contained"
+            onClick={() => history.push(RoutingPath.LOGGEDAREA)}
+          >
+            Ir para tela inicial
+          </Styled.ButtonGoToHomeScreen>
+        </Styled.ContainerModalRefuseProposalAccept>
+      </Modal>
     </Styled.Card>
   );
 };
