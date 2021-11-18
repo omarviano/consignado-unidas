@@ -28,7 +28,7 @@ const Contracts: React.FC = () => {
         hideSortIcons: true,
         disableColumnMenu: true,
         headerAlign: 'center',
-        flex: 1,
+        width: 180,
       },
       {
         field: 'number',
