@@ -145,7 +145,7 @@ export const RefuseProposalAccept = styled(RefuseProposal)`
 `;
 
 export const ButtonGoToHomeScreen = styled(Button)`
-  text-transform: lowercase;
+  text-transform: none;
   width: 285px;
   background-color: #005b9e;
   margin-top: 24px;
