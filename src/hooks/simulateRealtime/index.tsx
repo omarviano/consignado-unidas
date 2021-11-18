@@ -4,6 +4,7 @@ import { RequestStatus } from 'interface/common';
 import { DataSimulateProps } from 'interface/simulate';
 import { api } from 'services/api';
 import { DataProps, MarginProps } from 'interface/margin';
+import { useAuth } from 'hooks/auth';
 import { SimulateLoanRealTimeContextData } from './props';
 
 const DATA_MARGIN_KEY = '@DATA_MARGIN_KEY';
@@ -18,6 +19,7 @@ const SimulateLoanRealTimeContext = createContext(initialValue);
 
 export const SimulateLoanRealTimeProvider: FC = props => {
   const { children } = props;
+  const { isAuthenticated } = useAuth();
   api.defaults.headers.authorization = getToken()?.token
     ? `Bearer ${getToken()?.token}`
     : undefined;
@@ -53,6 +55,7 @@ export const SimulateLoanRealTimeProvider: FC = props => {
 
   const getMargin = useCallback(async () => {
     try {
+      if (!isAuthenticated) return;
       const response = await api.get<MarginProps>('/margins');
 
       const { data } = response.data;
@@ -63,7 +66,7 @@ export const SimulateLoanRealTimeProvider: FC = props => {
       // eslint-disable-next-line no-console
       console.log(error);
     }
-  }, []);
+  }, [isAuthenticated]);
 
   const addDataSimulateLoan = useCallback((data: DataSimulateProps) => {
     setDataSimulateLoan(data);
