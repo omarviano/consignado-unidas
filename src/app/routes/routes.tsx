@@ -39,7 +39,7 @@ const Routes: FC = memo(() => (
 
       <Route path={RoutingPath.FAQ} component={FAQ} />
 
-      <Route path={RoutingPath.CONTRACTS} component={Contracts} />
+      {/* <Route path={RoutingPath.CONTRACTS} component={Contracts} /> */}
 
       <SimulateLoanRealTimeProvider>
         <Route path={RoutingPath.LOGGEDAREA} component={LoggedArea} />
