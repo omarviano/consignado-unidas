@@ -3,6 +3,7 @@ import { useAuth } from 'hooks/auth';
 
 import { Modal } from 'components/Modal';
 
+import { clearStorage } from 'utils/storage';
 import { useModalLogout } from './context';
 
 import * as Styled from './styles';
@@ -12,7 +13,7 @@ const ModalLogout: FC = memo(() => {
   const { signOut } = useAuth();
 
   const clearSessionStorage = () => {
-    localStorage.clear();
+    clearStorage();
     signOut();
   };
 

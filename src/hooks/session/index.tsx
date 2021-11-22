@@ -1,9 +1,8 @@
 import React, { createContext, useCallback, useState, useContext } from 'react';
+import { SESSION_KEY } from 'utils/storage';
 import { SessionData } from './props';
 
 const SessionContext = createContext<SessionData>({} as SessionData);
-
-const SESSION_KEY = '@SESSION';
 
 const SessionProvider: React.FC = ({ children }) => {
   const [lastSession, setLastSession] = useState<Date>(() => {
