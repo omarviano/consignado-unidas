@@ -86,7 +86,7 @@ const Layout: React.FC<LayoutProps> = ({ children, containerStyles }) => {
         <Styled.Container style={containerStyles}>{children}</Styled.Container>
 
         <Styled.Footer>
-          <Link to="/#">Política de privacidade</Link>
+          <Link to={RoutingPath.PRIVACY}>Política de privacidade</Link>
 
           <Styled.FooterBox>
             <Styled.FooterText>
