@@ -2,7 +2,7 @@ import { Button } from 'components/Buttons/Button';
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  padding: 134px 2% 24px;
+  padding: 54px 2% 24px;
 `;
 
 export const Box = styled.div`

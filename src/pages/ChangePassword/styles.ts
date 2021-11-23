@@ -4,7 +4,7 @@ import InputAdornmentStyles from '@mui/material/InputAdornment';
 import IconButtonStyles from '@mui/material/IconButton';
 
 export const Container = styled.div`
-  margin: 154px 80px;
+  margin: 128px 32px 24px;
   background: #fff;
   box-shadow: 0px 2px 6px rgba(46, 43, 80, 0.25);
   border-radius: 4px;
