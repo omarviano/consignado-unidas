@@ -17,7 +17,6 @@ const Privacy: FC = () => (
     <Layout
       containerStyles={{
         maxWidth: '1120px',
-        padding: '0 24px 60px 24px',
       }}
     >
       <Styled.Container>
