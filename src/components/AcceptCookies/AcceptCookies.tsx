@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import { Button } from 'components/Buttons/Button';
 import { ACCEPTED_COOKIES } from 'utils/storage';
+import { RoutingPath } from 'utils/routing';
+
+import { Button } from 'components/Buttons/Button';
 
 import * as Styled from './styles';
 
@@ -24,7 +26,7 @@ const AcceptCookies: React.FC = () => {
         A Unidas veicula cookies com o objetivo de analisar o tráfego para este
         site. As informações sobre seu uso do nosso site são compartilhadas com
         a Unidas por esse motivo. Saiba mais em nossa{' '}
-        <Link to="/#">Política de privacidade</Link>
+        <Link to={RoutingPath.PRIVACY}>Política de privacidade</Link>
       </Styled.Text>
 
       <Button type="button" variant="contained" onClick={handleClickAgree}>

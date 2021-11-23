@@ -11,7 +11,8 @@ export const Button = styled(ButtonStyles)`
   }
 
   &.MuiButton-containedPrimary:hover {
-    background-color: ${({ theme }) => theme.palette.primary.dark};
+    background-color: #ffdd00;
+    color: ${({ theme }) => theme.palette.primary.main};
   }
 
   &.MuiButton-outlinedPrimary:hover {

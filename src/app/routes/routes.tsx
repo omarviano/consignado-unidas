@@ -12,6 +12,7 @@ import { ChangePassword } from 'pages/ChangePassword';
 import { Contracts } from 'pages/Contracts';
 import { SimulateLoan } from 'pages/SimulateLoan';
 import { FAQ } from 'pages/FAQ';
+import { Privacy } from 'pages/Privacy';
 
 import { RoutingPath } from 'utils/routing';
 
@@ -39,6 +40,8 @@ const Routes: FC = memo(() => (
     <Route path={RoutingPath.FAQ} component={FAQ} />
 
     <Route path={RoutingPath.CONTRACTS} component={Contracts} />
+
+    <Route path={RoutingPath.PRIVACY} component={Privacy} />
 
     <SimulateLoanRealTimeProvider>
       <Route path={RoutingPath.LOGGEDAREA} component={LoggedArea} />
