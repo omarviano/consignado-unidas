@@ -3,13 +3,18 @@ import TypographyStyles from '@mui/material/Typography';
 
 import ImageBackground from 'assets/images/background.png';
 
+export const Logo = styled.img`
+  margin: 56px;
+`;
+
 export const Container = styled.div`
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  min-height: 100vh;
 
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 
   background: url(${ImageBackground}) center no-repeat;
   background-size: cover;

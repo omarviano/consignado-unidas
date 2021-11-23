@@ -6,7 +6,7 @@ interface StepLabelContentProps {
 }
 
 export const Container = styled.div`
-  margin-top: 100px;
+  margin-top: 20px;
   padding: 0 24px;
 `;
 
