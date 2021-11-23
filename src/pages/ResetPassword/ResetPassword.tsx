@@ -4,6 +4,8 @@ import { useHistory, useLocation } from 'react-router-dom';
 import { Card } from '@mui/material';
 import { CheckCircle, Cancel } from '@mui/icons-material';
 
+import Logo from 'assets/images/logo.png';
+
 import useModal from 'hooks/modal';
 
 import { Formik } from 'components/Formik';
@@ -56,6 +58,8 @@ const ResetPassword: React.FC = () => {
 
   return (
     <Styled.Container>
+      <Styled.Logo src={Logo} alt="Unidas" />
+
       <Card className="card">
         <Styled.Title>Confirmar nova senha</Styled.Title>
 

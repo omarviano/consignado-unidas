@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 export const Container = styled(Link)`
   max-width: 329px;
-  margin: 127px 0 0 31px;
+  margin: 107px 0 0 31px;
   padding: 24px 30px;
   background: #fff;
   box-shadow: 0px 2px 6px rgba(46, 43, 80, 0.25);

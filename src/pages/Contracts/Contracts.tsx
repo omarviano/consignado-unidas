@@ -117,7 +117,6 @@ const Contracts: React.FC = () => {
       <Layout
         containerStyles={{
           maxWidth: '1286px',
-          padding: 0,
         }}
       >
         <Styled.Container>
