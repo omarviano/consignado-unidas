@@ -57,7 +57,7 @@ export const Logo = styled.img`
 `;
 
 export const Nav = styled.nav`
-  margin: 0 24px 0 100px;
+  margin: 0 72px 0 100px;
   max-width: 708px;
   display: flex;
   align-items: flex-end;
@@ -91,16 +91,29 @@ export const Nav = styled.nav`
   }
 `;
 
-export const MenuButton = styled(IconButton)`
+export const MenuButton = styled.button`
   display: none;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
   margin-left: auto;
+  background: none;
+  outline: none;
+  border: none;
+  border-radius: 50%;
 
   svg {
     fill: #fff;
   }
 
+  &:hover,
+  &:focus {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
   @media (max-width: 920px) {
-    display: block;
+    display: flex;
   }
 `;
 
@@ -144,7 +157,7 @@ export const Username = styled.span`
 export const Options = styled.div<OptionsProps>`
   position: absolute;
   width: 188px;
-  top: 54px;
+  top: 32px;
   right: -8px;
   background: #fff;
   box-shadow: 0px 2px 6px rgba(46, 43, 80, 0.25);
