@@ -6,41 +6,14 @@ interface StepProps {
   currentStep: number;
 }
 
-export const Header = styled.div`
-  position: fixed;
-  top: 0;
-  display: flex;
-  width: 100%;
-  height: 54px;
-  background-color: ${({ theme }) => theme.palette.secondary.main};
-  padding: 0 8%;
-  z-index: 999;
-
-  a {
-    display: flex;
-    align-items: center;
-    color: ${({ theme }) => theme.palette.primary.contrastText};
-    font-size: 16px;
-    margin-left: auto;
-
-    svg {
-      margin-left: 24px;
-    }
-  }
-`;
-
 export const Container = styled.div``;
 
 export const StepsContainer = styled.div`
-  position: absolute;
-  width: 100%;
-  top: 54px;
-  height: calc(100vh - 54px);
+  position: relative;
 `;
 
 export const Step = styled.div<StepProps>`
-  position: absolute;
-  padding: 64px 4% 0;
+  padding: 96px 4% 0;
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -49,13 +22,14 @@ export const Step = styled.div<StepProps>`
   right: 0;
   left: 0;
   margin: auto;
-  visibility: hidden;
-  height: 0;
+  display: none;
   overflow: hidden;
+  visibility: hidden;
 
   ${({ currentStep, step }) =>
     step === currentStep &&
     css`
+      display: block;
       visibility: visible;
       height: auto;
     `}

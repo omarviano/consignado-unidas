@@ -62,8 +62,8 @@ const materialUiTheme = createTheme(
     },
     palette: {
       primary: {
-        main: '#005CE5',
-        dark: '#003E6B',
+        main: '#005B9E',
+        dark: '#032d4b',
         light: '#00A6D8',
         contrastText: '#FFFF',
       },

@@ -1,17 +1,13 @@
 import React, { useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
-import {
-  ExitToApp,
-  ArrowBack,
-  MailOutlined,
-  Warning,
-} from '@mui/icons-material';
+import { useHistory } from 'react-router-dom';
+import { ArrowBack, MailOutlined, Warning } from '@mui/icons-material';
 import { Badge } from '@mui/material';
 import { AxiosError } from 'axios';
 
 import useModal from 'hooks/modal';
 import { Document } from 'utils/document';
 
+import { Layout } from 'components/Layout';
 import { RouteAccess } from 'components/RouteAccess';
 import { Button } from 'components/Buttons/Button';
 import { ModalMessage } from 'components/ModalMessage';
@@ -115,131 +111,126 @@ const Registration: React.FC = () => {
 
   return (
     <RouteAccess typesOfAccess="guest">
-      <Styled.Container>
-        <Styled.Header>
-          <Link to="/">
-            Login
-            <ExitToApp />
-          </Link>
-        </Styled.Header>
+      <Layout>
+        <Styled.Container>
+          <Styled.StepsContainer>
+            <Styled.Step step={0} currentStep={currentStep}>
+              <CPFForm onSubmit={onSubmit} />
+            </Styled.Step>
 
-        <Styled.StepsContainer>
-          <Styled.Step step={0} currentStep={currentStep}>
-            <CPFForm onSubmit={onSubmit} />
-          </Styled.Step>
+            <Styled.Step step={1} currentStep={currentStep}>
+              <Styled.BackButton type="button" onClick={handleClickPrev}>
+                <ArrowBack />
+              </Styled.BackButton>
 
-          <Styled.Step step={1} currentStep={currentStep}>
-            <Styled.BackButton type="button" onClick={handleClickPrev}>
-              <ArrowBack />
-            </Styled.BackButton>
+              <CompleteNameForm onSubmit={onSubmit} />
+            </Styled.Step>
 
-            <CompleteNameForm onSubmit={onSubmit} />
-          </Styled.Step>
+            <Styled.Step step={2} currentStep={currentStep}>
+              <Styled.BackButton type="button" onClick={handleClickPrev}>
+                <ArrowBack />
+              </Styled.BackButton>
 
-          <Styled.Step step={2} currentStep={currentStep}>
-            <Styled.BackButton type="button" onClick={handleClickPrev}>
-              <ArrowBack />
-            </Styled.BackButton>
+              <BirthDateForm onSubmit={validateData} />
+            </Styled.Step>
 
-            <BirthDateForm onSubmit={validateData} />
-          </Styled.Step>
+            <Styled.Step step={3} currentStep={currentStep}>
+              <Styled.BackButton type="button" onClick={handleClickPrev}>
+                <ArrowBack />
+              </Styled.BackButton>
 
-          <Styled.Step step={3} currentStep={currentStep}>
-            <Styled.BackButton type="button" onClick={handleClickPrev}>
-              <ArrowBack />
-            </Styled.BackButton>
+              <EmailForm onSubmit={onSubmit} />
+            </Styled.Step>
 
-            <EmailForm onSubmit={onSubmit} />
-          </Styled.Step>
+            <Styled.Step step={4} currentStep={currentStep}>
+              <Styled.BackButton type="button" onClick={handleClickPrev}>
+                <ArrowBack />
+              </Styled.BackButton>
 
-          <Styled.Step step={4} currentStep={currentStep}>
-            <Styled.BackButton type="button" onClick={handleClickPrev}>
-              <ArrowBack />
-            </Styled.BackButton>
+              <PhoneNumberForm onSubmit={onSubmit} />
+            </Styled.Step>
 
-            <PhoneNumberForm onSubmit={onSubmit} />
-          </Styled.Step>
+            <Styled.Step step={5} currentStep={currentStep}>
+              <Styled.BackButton type="button" onClick={handleClickPrev}>
+                <ArrowBack />
+              </Styled.BackButton>
 
-          <Styled.Step step={5} currentStep={currentStep}>
-            <Styled.BackButton type="button" onClick={handleClickPrev}>
-              <ArrowBack />
-            </Styled.BackButton>
+              <PasswordForm onSubmit={onSubmit} />
+            </Styled.Step>
 
-            <PasswordForm onSubmit={onSubmit} />
-          </Styled.Step>
+            <Styled.Step step={6} currentStep={currentStep}>
+              <Styled.BackButton type="button" onClick={handleClickPrev}>
+                <ArrowBack />
+              </Styled.BackButton>
 
-          <Styled.Step step={6} currentStep={currentStep}>
-            <Styled.BackButton type="button" onClick={handleClickPrev}>
-              <ArrowBack />
-            </Styled.BackButton>
+              <BankDataConfirmation
+                submitting={registering}
+                onSubmit={onSubmit}
+                onClickNoButton={registerWhithoutBankData}
+                username={formsData?.name}
+                email={formsData?.email}
+              />
+            </Styled.Step>
 
-            <BankDataConfirmation
-              submitting={registering}
-              onSubmit={onSubmit}
-              onClickNoButton={registerWhithoutBankData}
-              username={formsData?.name}
-              email={formsData?.email}
-            />
-          </Styled.Step>
+            <Styled.Step step={7} currentStep={currentStep}>
+              <Styled.BackButton type="button" onClick={handleClickPrev}>
+                <ArrowBack />
+              </Styled.BackButton>
 
-          <Styled.Step step={7} currentStep={currentStep}>
-            <Styled.BackButton type="button" onClick={handleClickPrev}>
-              <ArrowBack />
-            </Styled.BackButton>
+              <BankDataForm
+                submitting={registering}
+                onSubmit={completeRegistration}
+                username={formsData?.name}
+                email={formsData?.email}
+              />
+            </Styled.Step>
+          </Styled.StepsContainer>
 
-            <BankDataForm
-              submitting={registering}
-              onSubmit={completeRegistration}
-              username={formsData?.name}
-              email={formsData?.email}
-            />
-          </Styled.Step>
-        </Styled.StepsContainer>
+          <ModalMessage
+            open={emailModalOpen}
+            onClose={onModalEmailClose}
+            icon={
+              <Badge badgeContent="!" color="secondary">
+                <MailOutlined color="action" fontSize="large" />
+              </Badge>
+            }
+            text={
+              <span>
+                Olá <b>{formsData?.name}</b>? Favor acessar o seu e-mail e
+                confirmar a conta.
+              </span>
+            }
+            width="600px"
+          />
 
-        <ModalMessage
-          open={emailModalOpen}
-          onClose={onModalEmailClose}
-          icon={
-            <Badge badgeContent="!" color="secondary">
-              <MailOutlined color="action" fontSize="large" />
-            </Badge>
-          }
-          text={
-            <span>
-              Olá <b>{formsData?.name}</b>? Favor acessar o seu e-mail e
-              confirmar a conta.
-            </span>
-          }
-          width="600px"
-        />
+          <Modal open={validationModalOpen}>
+            <Styled.ModalContent>
+              <Warning fontSize="large" color="warning" />
 
-        <Modal open={validationModalOpen}>
-          <Styled.ModalContent>
-            <Warning fontSize="large" color="warning" />
+              <Styled.EmailModalText>
+                {validationDataMessage}
+              </Styled.EmailModalText>
 
-            <Styled.EmailModalText>
-              {validationDataMessage}
-            </Styled.EmailModalText>
+              <Button
+                type="button"
+                color="primary"
+                variant="contained"
+                className="button-modal-validation"
+                onClick={handleClickButtonModalValidation}
+              >
+                Informar dados novamente
+              </Button>
+            </Styled.ModalContent>
+          </Modal>
 
-            <Button
-              type="button"
-              color="primary"
-              variant="contained"
-              className="button-modal-validation"
-              onClick={handleClickButtonModalValidation}
-            >
-              Informar dados novamente
-            </Button>
-          </Styled.ModalContent>
-        </Modal>
-
-        <ModalMessage
-          open={errorModalOpen}
-          onClose={toggleErrorModal}
-          icon={<Warning color="error" />}
-          text={responseErros}
-        />
-      </Styled.Container>
+          <ModalMessage
+            open={errorModalOpen}
+            onClose={toggleErrorModal}
+            icon={<Warning color="error" />}
+            text={responseErros}
+          />
+        </Styled.Container>
+      </Layout>
     </RouteAccess>
   );
 };
