@@ -13,5 +13,4 @@ export const InformativeTexts = styled.p`
   line-height: 25.2px;
   color: ${({ theme }) => theme.palette.grey[200]};
   margin-top: 24px;
-  text-align: justify;
 `;
