@@ -20,6 +20,8 @@ class RoutingPath {
   static CONTRACTS = '/contratos';
 
   static FAQ = '/faq';
+
+  static PRIVACY = '/privacidade';
 }
 
 export { RoutingPath };
