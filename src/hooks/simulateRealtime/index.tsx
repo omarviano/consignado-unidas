@@ -5,13 +5,12 @@ import { DataSimulateProps } from 'interface/simulate';
 import { api } from 'services/api';
 import { DataProps, MarginProps } from 'interface/margin';
 import { useAuth } from 'hooks/auth';
+import {
+  DATA_MARGIN_KEY,
+  DATA_SIMULATE_LOAN_KEY,
+  VALUE_SLIDER_KEY,
+} from 'utils/storage';
 import { SimulateLoanRealTimeContextData } from './props';
-
-const DATA_MARGIN_KEY = '@DATA_MARGIN_KEY';
-
-const DATA_SIMULATE_LOAN_KEY = '@DATA_SIMULATE_LOAN';
-
-const VALUE_SLIDER_KEY = '@VALUE_SLIDER';
 
 const initialValue = {} as SimulateLoanRealTimeContextData;
 

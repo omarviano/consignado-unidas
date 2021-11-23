@@ -1,5 +1,5 @@
 import { FC, memo } from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 
 import { LoggedArea } from 'pages/LoggedArea';
 import { Login } from 'pages/Login';
@@ -19,37 +19,35 @@ import { RoutingPath } from 'utils/routing';
 import { SimulateLoanRealTimeProvider } from 'hooks/simulateRealtime';
 
 const Routes: FC = memo(() => (
-  <BrowserRouter>
-    <Switch>
-      <Route path={RoutingPath.LOGIN} component={Login} exact />
+  <>
+    <Route path={RoutingPath.LOGIN} component={Login} exact />
 
-      <Route path={RoutingPath.REGISTRATION} component={Registration} />
+    <Route path={RoutingPath.REGISTRATION} component={Registration} />
 
-      <Route path={RoutingPath.FORGOT_PASSWORD} component={ForgotPassword} />
+    <Route path={RoutingPath.FORGOT_PASSWORD} component={ForgotPassword} />
 
-      <Route path={RoutingPath.RESET_PASSWORD} component={ResetPassword} />
+    <Route path={RoutingPath.RESET_PASSWORD} component={ResetPassword} />
 
-      <Route
-        path={RoutingPath.ACCOUNT_CONFIRMATION}
-        component={AccountConfirmation}
-      />
+    <Route
+      path={RoutingPath.ACCOUNT_CONFIRMATION}
+      component={AccountConfirmation}
+    />
 
-      <Route path={RoutingPath.ACCOMPANIMENT} component={Accompaniment} />
+    <Route path={RoutingPath.ACCOMPANIMENT} component={Accompaniment} />
 
-      <Route path={RoutingPath.CHANGE_PASSWORD} component={ChangePassword} />
+    <Route path={RoutingPath.CHANGE_PASSWORD} component={ChangePassword} />
 
-      <Route path={RoutingPath.FAQ} component={FAQ} />
+    <Route path={RoutingPath.FAQ} component={FAQ} />
 
-      <Route path={RoutingPath.CONTRACTS} component={Contracts} />
+    <Route path={RoutingPath.CONTRACTS} component={Contracts} />
 
-      <Route path={RoutingPath.PRIVACY} component={Privacy} />
+    <Route path={RoutingPath.PRIVACY} component={Privacy} />
 
-      <SimulateLoanRealTimeProvider>
-        <Route path={RoutingPath.LOGGEDAREA} component={LoggedArea} />
-        <Route path={RoutingPath.SIMULATE_LOAN} component={SimulateLoan} />
-      </SimulateLoanRealTimeProvider>
-    </Switch>
-  </BrowserRouter>
+    <SimulateLoanRealTimeProvider>
+      <Route path={RoutingPath.LOGGEDAREA} component={LoggedArea} />
+      <Route path={RoutingPath.SIMULATE_LOAN} component={SimulateLoan} />
+    </SimulateLoanRealTimeProvider>
+  </>
 ));
 
 export { Routes };
