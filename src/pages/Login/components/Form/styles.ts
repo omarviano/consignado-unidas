@@ -5,7 +5,7 @@ import InputAdornmentStyles from '@mui/material/InputAdornment';
 import IconButtonStyles from '@mui/material/IconButton';
 
 export const InputEmail = styled(Input)`
-  margin-bottom: 36px;
+  margin-bottom: 24px;
 `;
 
 export const InputPassword = styled(InputEmail)``;
