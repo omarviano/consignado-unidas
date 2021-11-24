@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useLocation, useHistory } from 'react-router-dom';
+import { useLocation, useHistory } from 'react-router-dom';
 import { AxiosError } from 'axios';
+import { CheckCircle, Error } from '@mui/icons-material';
+
+import useModal from 'hooks/modal';
 
 import { RouteAccess } from 'components/RouteAccess';
 import { Button } from 'components/Buttons/Button';
 import { Modal } from 'components/Modal';
 import { ModalMessage } from 'components/ModalMessage';
+import { Layout } from 'components/Layout';
 
-import useModal from 'hooks/modal';
-import { ExitToApp, CheckCircle, Error } from '@mui/icons-material';
 import * as Styled from './styles';
 import { AccountConfirmationServices } from './services/account-confirmation.services';
 
@@ -50,54 +52,49 @@ const AccountConfirmation: React.FC = () => {
   }, [token, history]);
 
   return (
-    <RouteAccess typesOfAccess="guest">
-      <Styled.Header>
-        <Link to="/">
-          Login
-          <ExitToApp />
-        </Link>
-      </Styled.Header>
-
-      <Styled.Container>
-        <Styled.Title>
-          Agora falta pouco!
-          <br />
-          Clique no botão abaixo para confirmar sua conta.
-        </Styled.Title>
-
-        <Button
-          type="button"
-          variant="contained"
-          onClick={confirmationAccount}
-          disabled={confirmingAccount}
-        >
-          {confirmingAccount ? 'Confirmando...' : 'Confirmar Conta'}
-        </Button>
-      </Styled.Container>
-
-      <Modal open={modalSuccesOpen}>
-        <Styled.ModalContent>
-          <CheckCircle className="success-icon" />
-
-          <Styled.ModalTitle>Conta confirmada com sucesso!</Styled.ModalTitle>
+    <RouteAccess typesOfAccess="none">
+      <Layout>
+        <Styled.Container>
+          <Styled.Title>
+            Agora falta pouco!
+            <br />
+            Clique no botão abaixo para confirmar sua conta.
+          </Styled.Title>
 
           <Button
             type="button"
-            color="primary"
             variant="contained"
-            onClick={goToLogin}
+            onClick={confirmationAccount}
+            disabled={confirmingAccount}
           >
-            Ir para login
+            {confirmingAccount ? 'Confirmando...' : 'Confirmar Conta'}
           </Button>
-        </Styled.ModalContent>
-      </Modal>
+        </Styled.Container>
 
-      <ModalMessage
-        open={modalErrorOpen}
-        onClose={toggleModalError}
-        icon={<Error color="error" />}
-        text={errorMessage}
-      />
+        <Modal open={modalSuccesOpen}>
+          <Styled.ModalContent>
+            <CheckCircle className="success-icon" />
+
+            <Styled.ModalTitle>Conta confirmada com sucesso!</Styled.ModalTitle>
+
+            <Button
+              type="button"
+              color="primary"
+              variant="contained"
+              onClick={goToLogin}
+            >
+              Ir para login
+            </Button>
+          </Styled.ModalContent>
+        </Modal>
+
+        <ModalMessage
+          open={modalErrorOpen}
+          onClose={toggleModalError}
+          icon={<Error color="error" />}
+          text={errorMessage}
+        />
+      </Layout>
     </RouteAccess>
   );
 };
