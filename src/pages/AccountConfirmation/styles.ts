@@ -2,32 +2,9 @@ import styled from 'styled-components';
 import TypographyStyles from '@mui/material/Typography';
 import { Box } from '@mui/material';
 
-export const Header = styled.div`
-  position: fixed;
-  top: 0;
-  display: flex;
-  width: 100%;
-  height: 54px;
-  background-color: ${({ theme }) => theme.palette.secondary.main};
-  padding: 0 8%;
-  z-index: 999;
-
-  a {
-    display: flex;
-    align-items: center;
-    color: ${({ theme }) => theme.palette.primary.contrastText};
-    font-size: 16px;
-    margin-left: auto;
-
-    svg {
-      margin-left: 24px;
-    }
-  }
-`;
-
 export const Container = styled.div`
   max-width: 600px;
-  padding: 295px 2% 32px;
+  padding: 215px 2% 32px;
   margin: auto;
 
   button {
@@ -39,7 +16,6 @@ export const Container = styled.div`
 
 export const Title = styled(TypographyStyles)`
   margin: auto;
-  width: 90%;
   font-size: 24px;
   line-height: 140%;
   color: ${({ theme }) => theme.palette.grey[400]};
