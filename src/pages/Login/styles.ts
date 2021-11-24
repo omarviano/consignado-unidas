@@ -5,6 +5,12 @@ import ImageBackground from 'assets/images/background.png';
 
 export const Logo = styled.img`
   margin: 56px;
+
+  @media (max-width: 768px) {
+    margin-top: -77px;
+    width: 160px;
+    height: 45.87px;
+  }
 `;
 
 export const Container = styled.div`

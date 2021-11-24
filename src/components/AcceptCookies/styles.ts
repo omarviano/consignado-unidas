@@ -20,6 +20,18 @@ export const Container = styled.div`
     margin-left: 40px;
     text-transform: none;
   }
+
+  @media (max-width: 768px) {
+    height: 108px;
+    padding: 24px 16px;
+    justify-content: space-between;
+
+    button {
+      width: 148px;
+      height: 32px;
+      margin-left: 10px;
+    }
+  }
 `;
 
 export const Text = styled(TypographyStyles)`
@@ -32,5 +44,11 @@ export const Text = styled(TypographyStyles)`
     color: ${({ theme }) => theme.palette.primary.main};
     text-decoration: underline;
     font-weight: bold;
+  }
+
+  @media (max-width: 500px) {
+    max-width: 180px;
+    font-size: 10px;
+    line-height: 11.72px;
   }
 `;
