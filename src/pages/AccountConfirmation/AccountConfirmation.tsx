@@ -3,6 +3,8 @@ import { useLocation, useHistory } from 'react-router-dom';
 import { AxiosError } from 'axios';
 import { CheckCircle, Error } from '@mui/icons-material';
 
+import { ReactComponent as ConfirmIcon } from 'assets/icons/confirm.svg';
+
 import useModal from 'hooks/modal';
 
 import { RouteAccess } from 'components/RouteAccess';
@@ -73,7 +75,7 @@ const AccountConfirmation: React.FC = () => {
 
         <Modal open={modalSuccesOpen}>
           <Styled.ModalContent>
-            <CheckCircle className="success-icon" />
+            <ConfirmIcon />
 
             <Styled.ModalTitle>Conta confirmada com sucesso!</Styled.ModalTitle>
 
