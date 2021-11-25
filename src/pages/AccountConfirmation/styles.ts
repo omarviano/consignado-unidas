@@ -12,6 +12,14 @@ export const Container = styled.div`
     max-width: 279px;
     margin: 98px auto 0;
   }
+
+  @media (max-width: 768px) {
+    padding: 80px 2% 32px;
+
+    button {
+      margin: 48px auto 0;
+    }
+  }
 `;
 
 export const Title = styled(TypographyStyles)`
@@ -25,14 +33,8 @@ export const Title = styled(TypographyStyles)`
 export const ModalContent = styled(Box)`
   width: 364px;
   background: #fff;
-  padding: 78px 24px;
+  padding: 64px 24px;
   text-align: center;
-
-  svg {
-    width: 34px;
-    height: 34px;
-    color: ${({ theme }) => theme.palette.grey[200]};
-  }
 
   button {
     max-width: 250px;
@@ -40,13 +42,18 @@ export const ModalContent = styled(Box)`
     text-transform: none;
   }
 
-  .success-icon {
-    color: ${({ theme }) => theme.palette.success.main};
+  @media (max-width: 768px) {
+    width: 329px;
+  }
+
+  @media (max-width: 330px) {
+    width: 200px;
+    padding: 24px;
   }
 `;
 
 export const ModalTitle = styled(TypographyStyles)`
-  margin: 36px 0 30px;
+  margin: 16px 0 30px;
   font-size: 18px;
   line-height: 34px;
 `;

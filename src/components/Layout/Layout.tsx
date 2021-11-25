@@ -89,10 +89,10 @@ const Layout: React.FC<LayoutProps> = ({ children, containerStyles }) => {
           <Link to={RoutingPath.PRIVACY}>Política de privacidade</Link>
 
           <Styled.FooterBox>
-            <Styled.FooterText>
+            <Styled.FooterText className="privacy">
               Somos correspondentes bancários da Mova
             </Styled.FooterText>
-            <Styled.FooterText>
+            <Styled.FooterText className="copyright">
               &copy; 2021 UNIDAS - Todos os direitos reservados.
             </Styled.FooterText>
           </Styled.FooterBox>

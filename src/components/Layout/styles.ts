@@ -40,11 +40,15 @@ export const Header = styled.div`
     svg {
       margin-left: 24px;
     }
+
+    @media (max-width: 920px) {
+      display: none;
+    }
   }
 
   @media (max-width: 920px) {
     height: 56px;
-    padding: 0 40px;
+    padding: 0 16px;
   }
 `;
 
@@ -228,10 +232,21 @@ export const Footer = styled.footer`
     font-weight: 300;
     font-size: 16px;
   }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    justify-content: center;
+    height: auto;
+    padding: 8px 16px;
+  }
 `;
 
 export const FooterBox = styled.div`
   margin-left: auto;
+
+  @media (max-width: 768px) {
+    margin: 4px 0 0;
+  }
 `;
 
 export const FooterText = styled(TypographyStyles)`
@@ -241,6 +256,19 @@ export const FooterText = styled(TypographyStyles)`
 
   & + p {
     margin-top: 5px;
+  }
+
+  @media (max-width: 768px) {
+    text-align: center;
+
+    .privacy,
+    .copyright {
+      font-size: 10px;
+    }
+
+    .copyright {
+      margin: 4px 0 0;
+    }
   }
 `;
 
