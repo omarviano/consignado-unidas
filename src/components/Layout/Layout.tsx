@@ -88,6 +88,27 @@ const Layout: React.FC<LayoutProps> = ({ children, containerStyles }) => {
         <Styled.Footer>
           <Link to={RoutingPath.PRIVACY}>Política de privacidade</Link>
 
+          <Styled.FooterText className="privacy privacy-alt">
+            Somos correspondentes bancários da Mova
+          </Styled.FooterText>
+
+          <Styled.About>
+            <Styled.AboutText>
+              O site consignado.unidas.com.br pertence e é operado pela Unidas,
+              inscrita no CNPJ 10.215.988/0001-60, com sede à Avenida Raja
+              Gabaglia, nº 1.781, 12º andar, Luxemburgo, Belo Horizonte/MG. A
+            </Styled.AboutText>
+
+            <Styled.AboutText>
+              Unidas não é uma instituição financeira e não realiza operações de
+              crédito diretamente. A Unidas atua como correspondente bancário da
+              Mova Sociedade de Empréstimo entre Pessoas S.A. (CNPJ
+              33.959.738/0001-30) e segue as diretrizes do Banco Central do
+              Brasil, nos termos da Resolução nº. 3.954, de 24 de fevereiro de
+              2011.
+            </Styled.AboutText>
+          </Styled.About>
+
           <Styled.FooterBox>
             <Styled.FooterText className="privacy">
               Somos correspondentes bancários da Mova
