@@ -8,4 +8,9 @@ export const Container = styled.div`
   letter-spacing: 0.2px;
   color: #646464;
   margin-bottom: 50px;
+
+  @media (max-width: 768px) {
+    font-size: 18px;
+    margin-bottom: 16px;
+  }
 `;

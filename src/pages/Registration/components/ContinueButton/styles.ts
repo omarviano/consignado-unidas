@@ -10,4 +10,9 @@ export const ContinueButton = styled(Button)`
   svg {
     margin-left: 16px;
   }
+
+  @media (max-width: 768px) {
+    max-width: 100%;
+    margin: 36px 0;
+  }
 `;

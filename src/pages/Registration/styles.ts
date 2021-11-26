@@ -1,41 +1,48 @@
 import { Box } from '@mui/material';
 import styled, { css } from 'styled-components';
 
+interface StepsContainerProps {
+  currentStep: number;
+}
+
 interface StepProps {
   step: number;
   currentStep: number;
 }
 
-export const Container = styled.div``;
-
-export const StepsContainer = styled.div`
-  position: relative;
+export const StepsContainer = styled.div<StepsContainerProps>`
+  height: ${({ currentStep }) =>
+    currentStep < 6 ? 'calc(100vh - 160px)' : 'auto'};
+  padding: 32px 0;
 `;
 
 export const Step = styled.div<StepProps>`
-  padding: 96px 4% 0;
-  display: flex;
-  flex-direction: column;
+  display: none;
+  padding: 0 16px 0;
   width: 100%;
   max-width: 720px;
-  height: 100%;
-  right: 0;
-  left: 0;
   margin: auto;
-  display: none;
-  overflow: hidden;
   visibility: hidden;
+
+  position: relative;
+  top: 35%;
+  transform: ${({ currentStep }) =>
+    currentStep < 6 ? 'translateY(-35%)' : 'none'};
+  height: ${({ currentStep }) => (currentStep < 6 ? '200px' : 'auto')};
 
   ${({ currentStep, step }) =>
     step === currentStep &&
     css`
       display: block;
       visibility: visible;
-      height: auto;
     `}
 
   .MuiFormControl-root + .MuiFormControl-root {
     margin-top: 32px;
+
+    @media (max-width: 768px) {
+      margin-top: 16px;
+    }
   }
 `;
 
@@ -43,7 +50,7 @@ export const BackButton = styled.button`
   border: none;
   background: none;
   color: ${({ theme }) => theme.palette.grey[100]};
-  margin: 0 auto 36px 0;
+  margin-bottom: 36px;
 `;
 
 export const ModalContent = styled(Box)`
