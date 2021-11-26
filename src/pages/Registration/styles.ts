@@ -14,6 +14,10 @@ export const StepsContainer = styled.div<StepsContainerProps>`
   height: ${({ currentStep }) =>
     currentStep < 6 ? 'calc(100vh - 160px)' : 'auto'};
   padding: 32px 0;
+
+  @media (max-height: 600px) {
+    height: auto;
+  }
 `;
 
 export const Step = styled.div<StepProps>`
@@ -43,6 +47,11 @@ export const Step = styled.div<StepProps>`
     @media (max-width: 768px) {
       margin-top: 16px;
     }
+  }
+
+  @media (max-height: 600px) {
+    transform: none;
+    height: auto;
   }
 `;
 
