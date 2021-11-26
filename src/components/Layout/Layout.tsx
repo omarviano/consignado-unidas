@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import { KeyboardArrowDown, ExitToApp } from '@mui/icons-material';
+import { KeyboardArrowDown } from '@mui/icons-material';
+import { useHistory } from 'react-router-dom';
 
 import { ReactComponent as MenuIcon } from 'assets/icons/menu.svg';
-import { ReactComponent as CloseIcon } from 'assets/icons/close.svg';
 
 import Logo from 'assets/images/logo.png';
 
@@ -12,18 +12,21 @@ import { useAuth } from 'hooks/auth';
 import { getToken } from 'hooks/auth/storage';
 import useModal from 'hooks/modal';
 import { RoutingPath } from 'utils/routing';
+import { clearStorage } from 'utils/storage';
 
 import { LayoutProps } from './props';
 import * as Styled from './styles';
 
 const Layout: React.FC<LayoutProps> = ({ children, containerStyles }) => {
+  const history = useHistory();
   const [menuOpen, setMenuOpen] = useState(false);
   const { open, toggle } = useModal();
   const { isAuthenticated, signOut } = useAuth();
 
   const clearSessionStorage = () => {
-    localStorage.clear();
+    clearStorage();
     signOut();
+    history.push(RoutingPath.LOGIN);
   };
 
   const toggleMenu = () => {
@@ -41,7 +44,7 @@ const Layout: React.FC<LayoutProps> = ({ children, containerStyles }) => {
         <Styled.Header>
           <Styled.Logo src={Logo} alt="Unidas" />
 
-          {isAuthenticated ? (
+          {isAuthenticated && (
             <>
               <Styled.Nav>
                 <NavLink to={RoutingPath.LOGGEDAREA}>
@@ -71,16 +74,15 @@ const Layout: React.FC<LayoutProps> = ({ children, containerStyles }) => {
                 </Styled.Options>
               </Styled.UserOptionsContainer>
             </>
-          ) : (
-            <Link to={RoutingPath.LOGIN}>
-              Login
-              <ExitToApp />
-            </Link>
           )}
 
-          <Styled.MenuButton>
-            <MenuIcon />
-          </Styled.MenuButton>
+          {!isAuthenticated ? (
+            <Link to={RoutingPath.LOGIN}>Entrar</Link>
+          ) : (
+            <Styled.MenuButton>
+              <MenuIcon />
+            </Styled.MenuButton>
+          )}
         </Styled.Header>
 
         <Styled.Container style={containerStyles}>{children}</Styled.Container>

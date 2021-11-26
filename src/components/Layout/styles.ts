@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import TypographyStyles from '@mui/material/Typography';
-import { IconButton } from '@mui/material';
 
 import { Button } from 'components/Buttons/Button';
 
@@ -33,16 +32,18 @@ export const Header = styled.div`
   > a {
     display: flex;
     align-items: center;
+    justify-content: center;
     color: ${({ theme }) => theme.palette.primary.contrastText};
-    font-size: 16px;
+    width: 108px;
+    height: 35px;
     margin-left: auto;
+    border: 1px solid #ffffff;
+    border-radius: 60px;
+    font-size: 16px;
 
-    svg {
-      margin-left: 24px;
-    }
-
-    @media (max-width: 920px) {
-      display: none;
+    &:hover,
+    &:focus {
+      filter: brightness(0.9);
     }
   }
 
