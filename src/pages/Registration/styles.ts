@@ -12,10 +12,10 @@ interface StepProps {
 
 export const StepsContainer = styled.div<StepsContainerProps>`
   height: ${({ currentStep }) =>
-    currentStep < 6 ? 'calc(100vh - 160px)' : 'auto'};
+    currentStep < 6 ? 'calc(100vh - 320px)' : 'auto'};
   padding: 32px 0;
 
-  @media (max-height: 600px) {
+  @media (max-height: 450px) {
     height: auto;
   }
 `;
@@ -31,7 +31,7 @@ export const Step = styled.div<StepProps>`
   position: relative;
   top: 35%;
   transform: ${({ currentStep }) =>
-    currentStep < 6 ? 'translateY(-35%)' : 'none'};
+    currentStep < 6 ? 'translateY(-20%)' : 'none'};
   height: ${({ currentStep }) => (currentStep < 6 ? '200px' : 'auto')};
 
   ${({ currentStep, step }) =>
@@ -49,7 +49,7 @@ export const Step = styled.div<StepProps>`
     }
   }
 
-  @media (max-height: 600px) {
+  @media (max-height: 450px) {
     transform: none;
     height: auto;
   }
