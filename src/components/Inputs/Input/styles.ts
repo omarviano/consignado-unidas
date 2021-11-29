@@ -12,6 +12,10 @@ export const Input = styled(TextFieldStyles)`
     border-radius: 8px;
     height: 38px;
   }
+
+  p {
+    margin: 3px 0 0;
+  }
 `;
 
 export const FormControl = styled(FormControlStyles)``;
