@@ -26,7 +26,7 @@ const CPFForm: React.FC<CPFFormProps> = ({ onSubmit }) => (
       <Styled.CPFInput
         name="cpf"
         type="text"
-        label="Digite seu CPF"
+        label="CPF"
         placeholder="Digite seu CPF"
         variant="outlined"
         mask="999.999.999-99"
