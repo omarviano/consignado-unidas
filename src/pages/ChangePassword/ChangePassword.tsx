@@ -72,7 +72,6 @@ const ChangePassword: React.FC = () => {
       <Layout
         containerStyles={{
           maxWidth: '1276px',
-          padding: 0,
         }}
       >
         <Styled.Container>

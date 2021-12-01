@@ -1,67 +1,57 @@
 import { Box } from '@mui/material';
 import styled, { css } from 'styled-components';
 
+interface StepsContainerProps {
+  currentStep: number;
+}
+
 interface StepProps {
   step: number;
   currentStep: number;
 }
 
-export const Header = styled.div`
-  position: fixed;
-  top: 0;
-  display: flex;
-  width: 100%;
-  height: 54px;
-  background-color: ${({ theme }) => theme.palette.secondary.main};
-  padding: 0 8%;
-  z-index: 999;
+export const StepsContainer = styled.div<StepsContainerProps>`
+  height: ${({ currentStep }) =>
+    currentStep < 6 ? 'calc(100vh - 320px)' : 'auto'};
+  padding: 32px 0;
 
-  a {
-    display: flex;
-    align-items: center;
-    color: ${({ theme }) => theme.palette.primary.contrastText};
-    font-size: 16px;
-    margin-left: auto;
-
-    svg {
-      margin-left: 24px;
-    }
+  @media (max-height: 450px) {
+    height: auto;
   }
 `;
 
-export const Container = styled.div``;
-
-export const StepsContainer = styled.div`
-  position: absolute;
-  width: 100%;
-  top: 54px;
-  height: calc(100vh - 54px);
-`;
-
 export const Step = styled.div<StepProps>`
-  position: absolute;
-  padding: 64px 4% 0;
-  display: flex;
-  flex-direction: column;
+  display: none;
+  padding: 0 16px 0;
   width: 100%;
   max-width: 720px;
-  height: 100%;
-  right: 0;
-  left: 0;
   margin: auto;
   visibility: hidden;
-  height: 0;
-  overflow: hidden;
+
+  position: relative;
+  top: 35%;
+  transform: ${({ currentStep }) =>
+    currentStep < 6 ? 'translateY(-20%)' : 'none'};
+  height: ${({ currentStep }) => (currentStep < 6 ? '200px' : 'auto')};
 
   ${({ currentStep, step }) =>
     step === currentStep &&
     css`
+      display: block;
       visibility: visible;
-      height: auto;
     `}
 
   .MuiFormControl-root + .MuiFormControl-root {
     margin-top: 32px;
+
+    @media (max-width: 768px) {
+      margin-top: 16px;
+    }
+  }
+
+  @media (max-height: 450px) {
+    transform: none;
+    height: auto;
   }
 `;
 
@@ -69,7 +59,7 @@ export const BackButton = styled.button`
   border: none;
   background: none;
   color: ${({ theme }) => theme.palette.grey[100]};
-  margin: 0 auto 36px 0;
+  margin-bottom: 36px;
 `;
 
 export const ModalContent = styled(Box)`
