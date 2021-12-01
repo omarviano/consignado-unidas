@@ -68,12 +68,12 @@ export const AccountInput = styled(Input)`
 `;
 
 export const DigitInput = styled(Input)`
-  display: inline-flex;
-  width: 80px;
-  margin: 0;
+  .MuiOutlinedInput-root {
+    width: 80px;
 
-  @media (max-width: 768px) {
-    width: 100%;
+    @media (max-width: 768px) {
+      width: 100%;
+    }
   }
 `;
 
