@@ -1,0 +1,1 @@
+export { BankDataForm } from './BankDataForm';

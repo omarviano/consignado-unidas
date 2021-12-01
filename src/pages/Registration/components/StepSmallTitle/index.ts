@@ -1,0 +1,1 @@
+export { StepSmallTitle } from './StepSmallTitle';
