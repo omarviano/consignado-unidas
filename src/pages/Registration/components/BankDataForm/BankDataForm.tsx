@@ -7,6 +7,7 @@ import useViaCEP from 'hooks/viaCEP';
 import { Formik } from 'components/Formik';
 import { Input } from 'components/Inputs/Input';
 import { Select } from 'components/Select/Select';
+import { Autocomplete } from 'components/Autocomplete';
 import { RegistrationServices } from 'pages/Registration/services/registration.services';
 import { Bank } from 'pages/Registration/models/bank';
 
@@ -170,7 +171,7 @@ const BankDataForm: React.FC<BankDataFormProps> = ({
           />
 
           <Styled.Div>
-            <Select
+            <Autocomplete
               name="bankCode"
               options={banks}
               label="Banco"
