@@ -18,6 +18,9 @@ import { AccompanimentServices } from 'pages/Accompaniment/services/accompanimen
 import { LoanDataProps } from 'pages/Accompaniment/models/loanData';
 import { Autocomplete } from 'components/Autocomplete';
 import useViaCEP from 'hooks/viaCEP';
+import { AxiosError } from 'axios';
+import { Document } from 'utils/document';
+import { UserDataProps } from '../../models/userData';
 import { schema } from './schema';
 import * as Styled from './styles';
 
@@ -31,6 +34,8 @@ const ApprovedLoan: FC = () => {
   const [tableData, setTableData] = useState<any>([]);
   const { fetchCEP, notFound, address } = useViaCEP();
   const [cep, setCep] = useState<string>();
+  const [loading, setLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string>();
 
   const handleInput = () => {
     const cepInput = document.getElementById('cep') as HTMLInputElement;
@@ -78,6 +83,52 @@ const ApprovedLoan: FC = () => {
     fetchCEP(cep);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cep]);
+
+  const dataProps = {
+    name: '',
+    nationality: 'Brasileira',
+    profession: '',
+    bankCode: '',
+    number: '',
+    agency: undefined,
+    accountNumber: undefined,
+    digit: undefined,
+    complement: '',
+  };
+
+  const handleSubmit = async (data): Promise<void> => {
+    try {
+      setLoading(true);
+
+      const dataSubmit: UserDataProps = {
+        name: data?.name,
+        nationality: data?.nationality,
+        profession: data?.profession,
+        number: data?.number,
+        complement: data?.complement,
+        bankCode: data?.bankCode,
+        agency: data?.agency,
+        digit: data?.digit,
+        accountNumber: data?.accountNumber,
+        zipCode: `${Document.removeMask(data?.cep)}`,
+        publicPlace: data?.logradouro,
+        district: data?.bairro,
+        city: data?.localidade,
+        state: data?.uf,
+      };
+
+      await AccompanimentServices.approveLoan(dataSubmit);
+
+      toggleModalSuccess();
+    } catch (error) {
+      setLoading(true);
+      const { response } = error as AxiosError;
+      setErrorMessage(response?.data?.message || 'ERRO');
+      toggleModalError();
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const columns = useMemo<GridColumns>(
     () => [
@@ -160,8 +211,11 @@ const ApprovedLoan: FC = () => {
 
       <Modal open={modalConfirmationOpen} onClose={toggleModalConfirmation}>
         <Formik
-          initialValues={{ nationality: 'Brasileira', ...address }}
-          onSubmit={() => console.log('aqwui')}
+          initialValues={{
+            ...address,
+            ...dataProps,
+          }}
+          onSubmit={handleSubmit}
           validationSchema={schema}
           enableReinitialize
         >
@@ -328,7 +382,7 @@ const ApprovedLoan: FC = () => {
                 />
               </Grid>
             </Styled.GridContainer>
-            <Styled.ButtonToSend variant="contained">
+            <Styled.ButtonToSend type="submit" variant="contained">
               Enviar
             </Styled.ButtonToSend>
           </Styled.ContainerModal>
@@ -348,7 +402,7 @@ const ApprovedLoan: FC = () => {
         open={modalErrorOpen}
         onClose={toggleModalError}
         icon={<Warning color="warning" />}
-        text="Erro"
+        text={errorMessage}
       />
     </Styled.Card>
   );
