@@ -2,11 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { Layout } from 'components/Layout';
 import { RouteAccess } from 'components/RouteAccess';
 import { Step, StepIconProps, Stepper, Box, Skeleton } from '@mui/material';
-import { CheckCircle, CropSquare } from '@mui/icons-material';
+import { CheckCircle, CropSquare, WatchLater } from '@mui/icons-material';
 import { useHistory } from 'react-router-dom';
 
 import { RoutingPath } from 'utils/routing';
 import { RequestUnderAnalysis } from './components/RequestUnderAnalysis';
+import { AwaitingSubmissionOfDocumentation } from './components/AwaitingSubmissionOfDocumentation';
+import { DocumentationSent } from './components/DocumentationSent';
 import { AccompanimentServices } from './services/accompaniment.services';
 
 import * as Styled from './styles';
@@ -36,12 +38,14 @@ function QontoStepIcon(props: StepIconProps) {
 }
 
 const Accompaniment: React.FC = () => {
-  const [activeStep] = useState(1);
+  const [activeStep] = useState(2);
   const [checking, setChecking] = useState(true);
   const history = useHistory();
 
   const getIcon = (index: number) => {
-    if (index === 1) return <CheckCircle color="success" />;
+    if (index === 1 && activeStep === 1) return <CheckCircle color="success" />;
+
+    if (index === 2 && activeStep === 2) return <WatchLater color="warning" />;
 
     return <CropSquare className="tranparent-icon" />;
   };
@@ -89,7 +93,10 @@ const Accompaniment: React.FC = () => {
                   ))}
                 </Stepper>
               </Styled.StepperCard>
+
               {activeStep === 1 && <RequestUnderAnalysis />}
+              {activeStep === 2 && <AwaitingSubmissionOfDocumentation />}
+              {activeStep === 3 && <DocumentationSent />}
             </>
           )}
         </Styled.Container>
