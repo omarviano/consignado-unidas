@@ -18,6 +18,7 @@ import { AccompanimentServices } from 'pages/Accompaniment/services/accompanimen
 import { LoanDataProps } from 'pages/Accompaniment/models/loanData';
 import { Autocomplete } from 'components/Autocomplete';
 import useViaCEP from 'hooks/viaCEP';
+import { schema } from './schema';
 import * as Styled from './styles';
 
 const ApprovedLoan: FC = () => {
@@ -30,6 +31,11 @@ const ApprovedLoan: FC = () => {
   const [tableData, setTableData] = useState<any>([]);
   const { fetchCEP, notFound, address } = useViaCEP();
   const [cep, setCep] = useState<string>();
+
+  const handleInput = () => {
+    const cepInput = document.getElementById('cep') as HTMLInputElement;
+    setCep(cepInput?.value);
+  };
 
   useEffect(() => {
     AccompanimentServices.checkCreditUnderReview().then(({ data }) => {
@@ -67,11 +73,6 @@ const ApprovedLoan: FC = () => {
       );
     });
   }, []);
-
-  const handleInput = () => {
-    const cepInput = document.getElementById('cep') as HTMLInputElement;
-    setCep(cepInput?.value);
-  };
 
   useEffect(() => {
     fetchCEP(cep);
@@ -161,6 +162,8 @@ const ApprovedLoan: FC = () => {
         <Formik
           initialValues={{ nationality: 'Brasileira', ...address }}
           onSubmit={() => console.log('aqwui')}
+          validationSchema={schema}
+          enableReinitialize
         >
           <Styled.ContainerModal>
             <Styled.AdditionalData variant="h2">
@@ -177,8 +180,8 @@ const ApprovedLoan: FC = () => {
               </Grid>
               <Grid item xs={4}>
                 <Input
-                  name="nacionalidade"
-                  label="nationality"
+                  name="nationality"
+                  label="Nacionalidade"
                   placeholder="Informe sua nacionalidade"
                   variant="outlined"
                 />
