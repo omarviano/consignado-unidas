@@ -1,14 +1,19 @@
 import React, { useState } from 'react';
 import { AxiosError } from 'axios';
 import { useHistory, useLocation } from 'react-router-dom';
-import { Card, Modal } from '@mui/material';
-import { CheckCircle, Cancel } from '@mui/icons-material';
+import { Card } from '@mui/material';
+import { Cancel } from '@mui/icons-material';
+
+import { ReactComponent as ConfirmIcon } from 'assets/icons/confirm.svg';
+import Logo from 'assets/images/logo.png';
 
 import useModal from 'hooks/modal';
 
 import { Formik } from 'components/Formik';
 import { Button } from 'components/Buttons/Button';
 import { Input } from 'components/Inputs/Input';
+import { Modal } from 'components/Modal';
+import { ModalMessage } from 'components/ModalMessage';
 
 import { ResetPasswordServices } from './services/reset-password.services';
 
@@ -54,6 +59,8 @@ const ResetPassword: React.FC = () => {
 
   return (
     <Styled.Container>
+      <Styled.Logo src={Logo} alt="Unidas" />
+
       <Card className="card">
         <Styled.Title>Confirmar nova senha</Styled.Title>
 
@@ -92,11 +99,7 @@ const ResetPassword: React.FC = () => {
 
       <Modal open={modalSuccessOpen} onClose={redirectToLogin}>
         <Styled.ModalContent>
-          <CheckCircle
-            color="action"
-            fontSize="inherit"
-            className="success-icon"
-          />
+          <ConfirmIcon />
 
           <Styled.ModalTitle>Senha redefinida com sucesso</Styled.ModalTitle>
 
@@ -111,13 +114,12 @@ const ResetPassword: React.FC = () => {
         </Styled.ModalContent>
       </Modal>
 
-      <Modal open={modalErrorOpen} onClose={toggleModalError}>
-        <Styled.ModalContent>
-          <Cancel color="error" fontSize="inherit" />
-
-          <Styled.ModalTitle>{errorMessage}</Styled.ModalTitle>
-        </Styled.ModalContent>
-      </Modal>
+      <ModalMessage
+        open={modalErrorOpen}
+        onClose={toggleModalError}
+        icon={<Cancel color="error" fontSize="inherit" />}
+        text={errorMessage}
+      />
     </Styled.Container>
   );
 };

@@ -4,7 +4,7 @@ import InputAdornmentStyles from '@mui/material/InputAdornment';
 import IconButtonStyles from '@mui/material/IconButton';
 
 export const Container = styled.div`
-  margin: 154px 80px;
+  margin: 128px 32px 24px;
   background: #fff;
   box-shadow: 0px 2px 6px rgba(46, 43, 80, 0.25);
   border-radius: 4px;
@@ -51,52 +51,5 @@ export const Text = styled(TypographyStyles)`
   line-height: 26px;
   letter-spacing: 0.2px;
   margin-bottom: 40px;
-  color: ${({ theme }) => theme.palette.grey[200]};
-`;
-
-export const CloseModalButton = styled.button`
-  position: absolute;
-  right: 8px;
-  top: -24px;
-  padding: 0;
-  border: 0;
-  background: none;
-
-  svg {
-    width: 22px;
-    height: 22px;
-  }
-`;
-
-export const ModalContent = styled(Box)`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 100%;
-  max-width: 364px;
-  background: #fff;
-  padding: 96px 58px;
-  text-align: center;
-  font-size: 48px;
-
-  button {
-    margin-top: 32px;
-    max-width: 260px;
-  }
-
-  .success-icon {
-    color: ${({ theme }) => theme.palette.success.main};
-  }
-
-  .warning-icon {
-    color: ${({ theme }) => theme.palette.warning.main};
-  }
-`;
-
-export const ModalTitle = styled(TypographyStyles)`
-  margin-top: 15px;
-  font-size: 18px;
-  line-height: 34px;
   color: ${({ theme }) => theme.palette.grey[200]};
 `;

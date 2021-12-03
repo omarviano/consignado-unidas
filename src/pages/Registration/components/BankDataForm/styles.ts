@@ -11,8 +11,12 @@ export const BankDataInputs = styled.div`
   margin-top: 32px;
 
   .MuiGrid-container {
-    margin-top: 30px;
+    margin-top: 10px;
   }
+`;
+
+export const Div = styled.div`
+  margin-top: 24px;
 `;
 
 export const Hello = styled.div`
@@ -48,17 +52,29 @@ export const BankDetailsConfirmationText = styled.div`
 
 export const AgencyInput = styled(Input)`
   max-width: 166px;
+
+  @media (max-width: 768px) {
+    width: 147px;
+  }
 `;
 
 export const AccountInput = styled(Input)`
   display: inline-flex;
   width: 212px;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 export const DigitInput = styled(Input)`
-  display: inline-flex;
-  width: 80px;
-  margin: 0;
+  .MuiOutlinedInput-root {
+    width: 80px;
+
+    @media (max-width: 768px) {
+      width: 100%;
+    }
+  }
 `;
 
 export const SubmitButton = styled(Button)`
@@ -69,5 +85,10 @@ export const SubmitButton = styled(Button)`
 
   svg {
     margin-left: 16px;
+  }
+
+  @media (max-width: 768px) {
+    max-width: 100%;
+    margin: 48px 0;
   }
 `;

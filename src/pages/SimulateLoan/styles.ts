@@ -1,8 +1,12 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import TypographyStyles from '@mui/material/Typography';
 import { Box } from '@mui/material';
 
 import { Button } from 'components/Buttons/Button';
+
+export const Container = styled.div`
+  padding: 0 24px;
+`;
 
 export const SelectMostSuitableOption = styled(TypographyStyles)`
   font-size: 18px;
@@ -24,32 +28,8 @@ export const RequestButton = styled(Button)`
   text-transform: capitalize;
 `;
 
-export const CloseModalButton = styled.button`
-  position: absolute;
-  right: 8px;
-  top: 8px;
-  padding: 0;
-  border: 0;
-  background: none;
-
-  svg {
-    width: 22px;
-    height: 22px;
-  }
-`;
-
-const cssModal = css`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 100%;
-`;
-
 export const ModalSuccessContent = styled(Box)`
-  ${cssModal}
-  max-width: 546px;
-  background: #fff;
+  width: 546px;
   text-align: center;
   padding: 48px;
 
@@ -67,9 +47,7 @@ export const ModalSuccessContent = styled(Box)`
 `;
 
 export const ModalErrorContent = styled(Box)`
-  ${cssModal}
-  max-width: 530px;
-  background: #fff;
+  width: 530px;
   text-align: center;
   padding: 40px;
 
@@ -89,9 +67,7 @@ export const ModalText = styled(TypographyStyles)`
 `;
 
 export const ModalConfirmContent = styled(Box)`
-  ${cssModal}
-  max-width: 464px;
-  background: #fff;
+  width: 464px;
   text-align: center;
   padding: 40px;
 

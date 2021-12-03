@@ -1,13 +1,17 @@
 import React, { useState } from 'react';
-import { Badge, Card, Modal } from '@mui/material';
-import { MailOutlined, Check, Cancel, Close } from '@mui/icons-material';
+import { Badge, Card } from '@mui/material';
+import { MailOutlined, Check, Cancel } from '@mui/icons-material';
 import { AxiosError } from 'axios';
+
+import Logo from 'assets/images/logo.png';
 
 import useModal from 'hooks/modal';
 
 import { Formik } from 'components/Formik';
 import { Button } from 'components/Buttons/Button';
 import { Input } from 'components/Inputs/Input';
+import { Modal } from 'components/Modal';
+import { ModalMessage } from 'components/ModalMessage';
 
 import { ForgotPasswordServices } from './services/forgot-password.services';
 
@@ -54,6 +58,8 @@ const ForgotPassword: React.FC = () => {
 
   return (
     <Styled.Container>
+      <Styled.Logo src={Logo} alt="Unidas" />
+
       <Card className="card">
         <Styled.Title>Esqueceu sua senha? </Styled.Title>
 
@@ -84,7 +90,11 @@ const ForgotPassword: React.FC = () => {
         </Formik>
       </Card>
 
-      <Modal open={emailModalOpen} onClose={toggleEmailModal}>
+      <Modal
+        open={emailModalOpen}
+        onClose={toggleEmailModal}
+        showCloseIcon={false}
+      >
         <Styled.ModalContent>
           <Badge badgeContent={<Check />} color="primary" className="badge">
             <MailOutlined color="action" fontSize="inherit" />
@@ -111,16 +121,12 @@ const ForgotPassword: React.FC = () => {
         </Styled.ModalContent>
       </Modal>
 
-      <Modal open={modalErrorOpen} onClose={toggleModalError}>
-        <Styled.ModalContent>
-          <Styled.CloseButton onClick={toggleModalError}>
-            <Close fontSize="medium" color="primary" />
-          </Styled.CloseButton>
-          <Cancel color="error" fontSize="large" />
-
-          <Styled.ModalText>{errorMessage}</Styled.ModalText>
-        </Styled.ModalContent>
-      </Modal>
+      <ModalMessage
+        open={modalErrorOpen}
+        onClose={toggleModalError}
+        icon={<Cancel color="error" />}
+        text={errorMessage}
+      />
     </Styled.Container>
   );
 };

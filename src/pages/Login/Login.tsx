@@ -1,6 +1,8 @@
 import { FC, memo } from 'react';
 import { Link } from 'react-router-dom';
 
+import Logo from 'assets/images/logo.png';
+
 import { Card } from 'components/Card';
 import { RouteAccess } from 'components/RouteAccess';
 import { withContext } from 'utils/withContext';
@@ -14,6 +16,8 @@ const Login: FC = memo(
     () => (
       <RouteAccess typesOfAccess="guest">
         <Styled.Container>
+          <Styled.Logo src={Logo} alt="Unidas" />
+
           <Card>
             <Styled.TextAccessAccount>
               Acesse sua conta

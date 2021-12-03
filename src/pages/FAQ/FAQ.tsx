@@ -23,7 +23,6 @@ const FAQ: FC = () => {
       <Layout
         containerStyles={{
           maxWidth: '1276px',
-          padding: '0 24px 24px',
         }}
       >
         <Styled.Container>

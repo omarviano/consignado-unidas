@@ -1,47 +1,25 @@
-import { useMemo, memo, FC } from 'react';
-import ImageClose from 'assets/icons/close.svg';
-import ImageAlert from 'assets/icons/alert.svg';
-import { useAuth } from 'hooks/auth';
-import { useModalLogin } from './context';
+import { memo, FC } from 'react';
 
-import * as Styled from './styles';
+import ImageAlert from 'assets/icons/alert.svg';
+
+import { useAuth } from 'hooks/auth';
+
+import { ModalMessage } from 'components/ModalMessage';
+import { useModalLogin } from './context';
 
 const ModalLogin: FC = memo(() => {
   const { modalActive, toggleModal } = useModalLogin();
   const { messageError } = useAuth();
 
-  const DialogTitle = useMemo(
-    () => (
-      <Styled.DialogTitle>
-        <Styled.ContenDialogTitle>
-          {toggleModal && (
-            <Styled.IconButton aria-label="close" onClick={toggleModal}>
-              <Styled.Icon src={ImageClose} />
-            </Styled.IconButton>
-          )}
-        </Styled.ContenDialogTitle>
-      </Styled.DialogTitle>
-    ),
-    [toggleModal],
-  );
-
   return (
-    <Styled.Dialog
-      PaperProps={{
-        style: { position: 'absolute', top: 50, width: 544, height: 400 },
-      }}
+    <ModalMessage
       open={modalActive}
       onClose={toggleModal}
-      fullWidth
-    >
-      <Styled.Container>
-        {DialogTitle}
-        <Styled.Content>
-          <img src={ImageAlert} alt="Alert" />
-          <Styled.MessaError>{messageError}</Styled.MessaError>
-        </Styled.Content>
-      </Styled.Container>
-    </Styled.Dialog>
+      icon={<img src={ImageAlert} alt="Alert" />}
+      text={messageError}
+      width="544px"
+      height="400px"
+    />
   );
 });
 

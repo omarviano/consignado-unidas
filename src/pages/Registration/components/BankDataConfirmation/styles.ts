@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { Box, IconButton } from '@mui/material';
 
 export const BankDetailsConfirmationContainer = styled.div`
   max-width: 450px;
@@ -68,38 +67,8 @@ export const IAgreeTermsContainerButtons = styled.div`
   button + button {
     margin-left: 40px;
   }
-`;
 
-export const ModalContent = styled(Box)`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 100%;
-  max-width: 685px;
-  background: #fff;
-  padding: 64px 24px;
-  text-align: center;
-
-  .warning-icon {
-    color: ${({ theme }) => theme.palette.warning.main};
+  @media (max-width: 768px) {
+    margin: 32px 0 60px;
   }
-
-  .button-modal-validation {
-    max-width: 300px;
-    margin: 24px auto 0;
-  }
-`;
-
-export const ModalText = styled.p`
-  font-size: 18px;
-  line-height: 34px;
-  max-width: 447px;
-  margin: 32px auto 0;
-`;
-
-export const CloseButton = styled(IconButton)`
-  position: absolute;
-  right: 8px;
-  top: 8px;
 `;

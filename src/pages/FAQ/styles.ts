@@ -8,7 +8,7 @@ interface TitleQuestionProps {
 }
 
 export const Container = styled(MUICard)`
-  margin-top: 76px;
+  margin: 22px 0 16px;
   box-shadow: 0px 2px 6px rgba(46, 43, 80, 0.25);
 `;
 
@@ -57,7 +57,6 @@ export const Accordion = styled(AccordionStyles)`
   margin-bottom: 10px;
   border: 1px solid #c4c4c4;
   background: transparent;
-  filter: drop-shadow(0px 2px 6px rgba(46, 43, 80, 0.25));
   box-shadow: none;
   border-radius: 4px;
 `;

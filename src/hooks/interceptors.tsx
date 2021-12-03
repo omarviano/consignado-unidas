@@ -1,6 +1,7 @@
 import { useMemo, useState, useCallback, useEffect } from 'react';
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
 
+import { SessionExpired } from 'components/SessionExpired';
 import { Error500 } from 'components/Error500';
 
 import showModal from 'utils/alert';
@@ -11,7 +12,7 @@ import { useSession } from './session';
 const useInterceptors = (): boolean[] => {
   const [counter, setCounter] = useState(0);
   const { updateSession } = useSession();
-  const { refreshToken, signOut } = useAuth();
+  const { refreshToken } = useAuth();
 
   const inc = useCallback(() => setCounter(state => state + 1), [setCounter]);
   const dec = useCallback(() => setCounter(state => state - 1), [setCounter]);
@@ -61,8 +62,11 @@ const useInterceptors = (): boolean[] => {
           return Promise.reject(error);
         } */
 
-        if (error.request.status === 401) {
-          signOut();
+        if (
+          error.request.status === 401 &&
+          error.request.responseURL !== `${process.env.REACT_APP_BASE_URL}auth`
+        ) {
+          showModal({ content: <SessionExpired /> });
 
           return Promise.reject(error);
         }
@@ -76,7 +80,7 @@ const useInterceptors = (): boolean[] => {
         return Promise.reject(error);
       },
     }),
-    [inc, dec, updateSession, refreshToken, signOut],
+    [inc, dec, updateSession, refreshToken],
   );
 
   useEffect(() => {

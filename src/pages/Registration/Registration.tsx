@@ -1,19 +1,17 @@
 import React, { useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
-import {
-  ExitToApp,
-  ArrowBack,
-  MailOutlined,
-  Warning,
-} from '@mui/icons-material';
-import { Badge, Dialog, DialogContent, Modal } from '@mui/material';
+import { useHistory } from 'react-router-dom';
+import { ArrowBack, MailOutlined, Warning } from '@mui/icons-material';
+import { Badge } from '@mui/material';
 import { AxiosError } from 'axios';
 
 import useModal from 'hooks/modal';
 import { Document } from 'utils/document';
 
+import { Layout } from 'components/Layout';
 import { RouteAccess } from 'components/RouteAccess';
 import { Button } from 'components/Buttons/Button';
+import { ModalMessage } from 'components/ModalMessage';
+import { Modal } from 'components/Modal';
 import { CPFForm } from './components/CPFForm';
 import { CompleteNameForm } from './components/CompleteNameForm';
 import { BirthDateForm } from './components/BirthDateForm';
@@ -113,15 +111,8 @@ const Registration: React.FC = () => {
 
   return (
     <RouteAccess typesOfAccess="guest">
-      <Styled.Container>
-        <Styled.Header>
-          <Link to="/">
-            Login
-            <ExitToApp />
-          </Link>
-        </Styled.Header>
-
-        <Styled.StepsContainer>
+      <Layout>
+        <Styled.StepsContainer currentStep={currentStep}>
           <Styled.Step step={0} currentStep={currentStep}>
             <CPFForm onSubmit={onSubmit} />
           </Styled.Step>
@@ -194,22 +185,26 @@ const Registration: React.FC = () => {
           </Styled.Step>
         </Styled.StepsContainer>
 
-        <Modal open={emailModalOpen} onClose={onModalEmailClose}>
-          <Styled.ModalContent>
+        <ModalMessage
+          open={emailModalOpen}
+          onClose={onModalEmailClose}
+          icon={
             <Badge badgeContent="!" color="secondary">
               <MailOutlined color="action" fontSize="large" />
             </Badge>
-
-            <Styled.EmailModalText>
+          }
+          text={
+            <span>
               Olá <b>{formsData?.name}</b>? Favor acessar o seu e-mail e
               confirmar a conta.
-            </Styled.EmailModalText>
-          </Styled.ModalContent>
-        </Modal>
+            </span>
+          }
+          width="600px"
+        />
 
         <Modal open={validationModalOpen}>
           <Styled.ModalContent>
-            <Warning fontSize="large" className="warning-icon" />
+            <Warning fontSize="large" color="warning" />
 
             <Styled.EmailModalText>
               {validationDataMessage}
@@ -227,16 +222,13 @@ const Registration: React.FC = () => {
           </Styled.ModalContent>
         </Modal>
 
-        <Dialog open={errorModalOpen} onClose={toggleErrorModal} fullWidth>
-          <Styled.DialogTitle>
-            <Warning color="action" />
-          </Styled.DialogTitle>
-
-          <DialogContent>
-            <Styled.DialogContentText>{responseErros}</Styled.DialogContentText>
-          </DialogContent>
-        </Dialog>
-      </Styled.Container>
+        <ModalMessage
+          open={errorModalOpen}
+          onClose={toggleErrorModal}
+          icon={<Warning color="error" />}
+          text={responseErros}
+        />
+      </Layout>
     </RouteAccess>
   );
 };
