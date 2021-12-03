@@ -1,9 +1,8 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
+import { AUTH_PERSIST_KEY } from 'utils/storage';
 import { TokenProps } from './props';
 
 const storage = typeof window !== 'undefined' ? localStorage : null;
-
-const AUTH_PERSIST_KEY = '@UserInfo:persist';
 
 export const persistToken = (data: TokenProps | null) => {
   if (!storage) return;

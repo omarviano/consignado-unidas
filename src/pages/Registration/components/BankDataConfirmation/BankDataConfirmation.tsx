@@ -48,7 +48,10 @@ const BankDataConfirmation: React.FC<BankDataConfirmationProps> = ({
         </Styled.BankDetailsConfirmationText>
 
         <Styled.IAgreeTermsContainer>
-          <Checkbox onChange={e => setAgree(e.target.checked)} />
+          <Checkbox
+            onChange={e => setAgree(e.target.checked)}
+            style={{ marginLeft: -8 }}
+          />
 
           <Styled.TermsText>
             Estou de acordo com os{' '}

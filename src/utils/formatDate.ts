@@ -1,5 +1,7 @@
-export function formatDate(value: Date | string): string {
-  const valueFormated = new Date(value);
+export function formatDate(date: Date): string | null {
+  if (!date) return null;
 
-  return valueFormated.toLocaleDateString();
+  return new Intl.DateTimeFormat('pt-BR', { timeZone: 'UTC' }).format(
+    new Date(date),
+  );
 }

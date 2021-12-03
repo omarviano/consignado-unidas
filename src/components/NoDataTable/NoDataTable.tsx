@@ -1,8 +1,9 @@
 import React from 'react';
-import { GridOverlay } from '@mui/x-data-grid';
 
-const NoDataTable: React.FC = () => (
-  <GridOverlay>Nenhum dado disponível</GridOverlay>
+import * as Styled from './styles';
+
+const NoDataTable: React.FC = ({ children }) => (
+  <Styled.NoData>{children || 'Nenhum dado disponível'}</Styled.NoData>
 );
 
 export { NoDataTable };

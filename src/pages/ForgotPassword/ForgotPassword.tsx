@@ -3,6 +3,8 @@ import { Badge, Card } from '@mui/material';
 import { MailOutlined, Check, Cancel } from '@mui/icons-material';
 import { AxiosError } from 'axios';
 
+import Logo from 'assets/images/logo.png';
+
 import useModal from 'hooks/modal';
 
 import { Formik } from 'components/Formik';
@@ -56,6 +58,8 @@ const ForgotPassword: React.FC = () => {
 
   return (
     <Styled.Container>
+      <Styled.Logo src={Logo} alt="Unidas" />
+
       <Card className="card">
         <Styled.Title>Esqueceu sua senha? </Styled.Title>
 

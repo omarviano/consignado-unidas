@@ -4,6 +4,10 @@ import { Box } from '@mui/material';
 
 import { Button } from 'components/Buttons/Button';
 
+export const Container = styled.div`
+  padding: 0 24px;
+`;
+
 export const SelectMostSuitableOption = styled(TypographyStyles)`
   font-size: 18px;
   line-height: 34px;

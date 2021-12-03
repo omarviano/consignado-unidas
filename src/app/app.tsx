@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import { BrowserRouter, Switch } from 'react-router-dom';
 
 import { ptBR } from 'date-fns/locale';
 import { ThemeProvider as ThemeProviderStyledComponents } from 'styled-components';
@@ -13,6 +14,7 @@ import {
 } from '@mui/material';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import { Interceptors } from 'components/Interceptors';
+import { AcceptCookies } from 'components/AcceptCookies';
 import { Routes } from './routes';
 
 const App: FC = () => (
@@ -24,7 +26,13 @@ const App: FC = () => (
           <CssBaseline />
           <AppProvider>
             <Interceptors />
-            <Routes />
+
+            <BrowserRouter>
+              <Switch>
+                <Routes />
+              </Switch>
+              <AcceptCookies />
+            </BrowserRouter>
           </AppProvider>
         </ThemeProviderStyledComponents>
       </StyledEngineProvider>

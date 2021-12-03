@@ -20,6 +20,12 @@ const DatePicker = forwardRef<typeof DesktopDatePicker, DatePickerProps>(
         value={field.value}
         onChange={value => helpers.setValue(value as Date)}
         inputFormat="dd/MM/yyyy"
+        InputProps={{
+          style: {
+            borderRadius: 8,
+            height: 38,
+          },
+        }}
         {...rest}
       />
     );
