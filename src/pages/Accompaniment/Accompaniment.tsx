@@ -69,8 +69,8 @@ const Accompaniment: React.FC = () => {
       0: <RequestUnderAnalysis />,
       1: <AwaitingSubmissionOfDocumentation />,
       2: <DocumentationSent />,
-      3: null,
-      4: null,
+      3: <ApprovedLoan />,
+      4: <ReprovidedLoan />,
       5: null,
       6: null,
       7: null,
@@ -94,13 +94,7 @@ const Accompaniment: React.FC = () => {
   );
 
   const getIcon = (index: number) => {
-<<<<<<< HEAD
-    if (index === 1) return <CheckCircle color="success" />;
-    if (index === 4) return <CheckCircle color="success" />;
-    if (index === 5) return <Cancel color="error" />;
-=======
     if (activeStep === index) return STEPS_ICON[step];
->>>>>>> e76de9583441132f14811c0a7bf621a87962685f
 
     return STEPS_ICON.default;
   };
@@ -151,14 +145,7 @@ const Accompaniment: React.FC = () => {
                   ))}
                 </Stepper>
               </Styled.StepperCard>
-<<<<<<< HEAD
-              {activeStep === 1 && <RequestUnderAnalysis />}
-              {activeStep === 3 && <ApprovedLoan />}
-              {activeStep === 4 && <ReprovidedLoan />}
-=======
-
               {STEPS_COMPONENTS[step]}
->>>>>>> e76de9583441132f14811c0a7bf621a87962685f
             </>
           )}
         </Styled.Container>

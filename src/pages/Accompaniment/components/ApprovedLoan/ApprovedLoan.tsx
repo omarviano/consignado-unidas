@@ -92,9 +92,7 @@ const ApprovedLoan: FC = () => {
 
       <Styled.InstallmentDueDate variant="h2">
         Data de Vencimento da 1ª parcela:{' '}
-        <Styled.TextBlack>
-          {formatDate(String(loanData?.dueDate))}
-        </Styled.TextBlack>
+        <Styled.TextBlack>{formatDate(loanData?.dueDate)}</Styled.TextBlack>
       </Styled.InstallmentDueDate>
 
       <Styled.ProposalInformation variant="h6">
