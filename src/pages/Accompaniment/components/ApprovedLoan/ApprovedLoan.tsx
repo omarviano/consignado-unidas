@@ -16,6 +16,8 @@ import { CheckCircle, Warning } from '@mui/icons-material';
 import { Bank } from 'pages/Accompaniment/models/bank';
 import { AccompanimentServices } from 'pages/Accompaniment/services/accompaniment.services';
 import { LoanDataProps } from 'pages/Accompaniment/models/loanData';
+import { Autocomplete } from 'components/Autocomplete';
+import useViaCEP from 'hooks/viaCEP';
 import * as Styled from './styles';
 
 const ApprovedLoan: FC = () => {
@@ -26,6 +28,8 @@ const ApprovedLoan: FC = () => {
   const [banks, setBanks] = useState<{ name: string; value: string }[]>([]);
   const [loanData, setLoanData] = useState<LoanDataProps>();
   const [tableData, setTableData] = useState<any>([]);
+  const { fetchCEP, notFound, address } = useViaCEP();
+  const [cep, setCep] = useState<string>();
 
   useEffect(() => {
     AccompanimentServices.checkCreditUnderReview().then(({ data }) => {
@@ -63,6 +67,16 @@ const ApprovedLoan: FC = () => {
       );
     });
   }, []);
+
+  const handleInput = () => {
+    const cepInput = document.getElementById('cep') as HTMLInputElement;
+    setCep(cepInput?.value);
+  };
+
+  useEffect(() => {
+    fetchCEP(cep);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [cep]);
 
   const columns = useMemo<GridColumns>(
     () => [
@@ -144,7 +158,10 @@ const ApprovedLoan: FC = () => {
       </Styled.DivButtons>
 
       <Modal open={modalConfirmationOpen} onClose={toggleModalConfirmation}>
-        <Formik initialValues={{}} onSubmit={() => console.log('aqwui')}>
+        <Formik
+          initialValues={{ nationality: 'Brasileira', ...address }}
+          onSubmit={() => console.log('aqwui')}
+        >
           <Styled.ContainerModal>
             <Styled.AdditionalData variant="h2">
               Dados complementares
@@ -161,14 +178,14 @@ const ApprovedLoan: FC = () => {
               <Grid item xs={4}>
                 <Input
                   name="nacionalidade"
-                  label="Nacionalidade "
+                  label="nationality"
                   placeholder="Informe sua nacionalidade"
                   variant="outlined"
                 />
               </Grid>
               <Grid item xs={4}>
                 <Input
-                  name="profissão"
+                  name="profession"
                   label="Profissão"
                   placeholder="Informe sua profissão"
                   variant="outlined"
@@ -185,14 +202,20 @@ const ApprovedLoan: FC = () => {
                   placeholder="_____--___"
                   mask="99999-999"
                   variant="outlined"
+                  onKeyUp={handleInput}
+                  error={notFound}
+                  helperText={notFound ? 'CEP não encontrado' : undefined}
                 />
               </Grid>
               <Grid item xs={4}>
                 <Input
-                  name="endereço"
+                  name="logradouro"
                   label="Endereço"
                   placeholder="Informe seu endereço"
                   variant="outlined"
+                  disabled={
+                    cep?.length !== 9 || notFound || !!address?.logradouro
+                  }
                 />
               </Grid>
               <Grid item xs={2}>
@@ -210,6 +233,7 @@ const ApprovedLoan: FC = () => {
                   label="Bairro"
                   placeholder="Informe seu bairro"
                   variant="outlined"
+                  disabled={cep?.length !== 9 || notFound || !!address?.bairro}
                 />
               </Grid>
             </Styled.GridContainer>
@@ -217,7 +241,7 @@ const ApprovedLoan: FC = () => {
             <Styled.GridContainer container spacing={1}>
               <Grid item xs={4}>
                 <Input
-                  name="complemento"
+                  name="complement"
                   label="Complemento"
                   placeholder="apto, bloco, casa"
                   variant="outlined"
@@ -261,7 +285,7 @@ const ApprovedLoan: FC = () => {
               </Grid>
               <Grid item xs={4}>
                 <Styled.DivSelect>
-                  <Select
+                  <Autocomplete
                     name="bankCode"
                     options={banks}
                     label="Selecione o seu banco"
