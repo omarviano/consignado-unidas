@@ -20,6 +20,8 @@ import { Autocomplete } from 'components/Autocomplete';
 import useViaCEP from 'hooks/viaCEP';
 import { AxiosError } from 'axios';
 import { Document } from 'utils/document';
+import { RoutingPath } from 'utils/routing';
+import { useHistory } from 'react-router-dom';
 import { UserDataProps } from '../../models/userData';
 import { schema } from './schema';
 import * as Styled from './styles';
@@ -29,6 +31,9 @@ const ApprovedLoan: FC = () => {
     useModal();
   const { open: modalSuccessOpen, toggle: toggleModalSuccess } = useModal();
   const { open: modalErrorOpen, toggle: toggleModalError } = useModal();
+  const { open: modalProposalOpen, toggle: toggleModalProposal } = useModal();
+  const { open: modalProposalRecusedOpen, toggle: toggleModalProposalRecused } =
+    useModal();
   const [banks, setBanks] = useState<{ name: string; value: string }[]>([]);
   const [loanData, setLoanData] = useState<LoanDataProps>();
   const [tableData, setTableData] = useState<any>([]);
@@ -36,6 +41,7 @@ const ApprovedLoan: FC = () => {
   const [cep, setCep] = useState<string>();
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string>();
+  const history = useHistory();
 
   const handleInput = () => {
     const cepInput = document.getElementById('cep') as HTMLInputElement;
@@ -207,6 +213,13 @@ const ApprovedLoan: FC = () => {
         >
           Aceitar Proposta
         </Styled.ButtonAcceptProposal>
+
+        <Styled.ButtonRecusedProposal
+          variant="outlined"
+          onClick={toggleModalProposal}
+        >
+          Recusar Proposta
+        </Styled.ButtonRecusedProposal>
       </Styled.DivButtons>
 
       <Modal open={modalConfirmationOpen} onClose={toggleModalConfirmation}>
@@ -404,6 +417,45 @@ const ApprovedLoan: FC = () => {
         icon={<Warning color="warning" />}
         text={errorMessage}
       />
+
+      <Modal open={modalProposalOpen} onClose={toggleModalProposal}>
+        <Styled.ContainerModalProposal>
+          <Styled.TextProposal>
+            Tem certeza que deseja recusar a proposta?
+          </Styled.TextProposal>
+
+          <Styled.DivProposal>
+            <Styled.ButtonYes
+              variant="contained"
+              onClick={toggleModalProposalRecused}
+            >
+              Sim
+            </Styled.ButtonYes>
+
+            <Styled.ButtonNo variant="outlined">Não</Styled.ButtonNo>
+          </Styled.DivProposal>
+        </Styled.ContainerModalProposal>
+      </Modal>
+
+      <Modal
+        open={modalProposalRecusedOpen}
+        onClose={toggleModalProposalRecused}
+      >
+        <Styled.ContainerModalProposalRecused>
+          <Styled.CheckCircle color="success" />
+
+          <Styled.TextProposalRecuse>
+            Proposta recusada
+          </Styled.TextProposalRecuse>
+
+          <Styled.ButtonGoLoggedArea
+            variant="contained"
+            onClick={() => history.push(RoutingPath.LOGGEDAREA)}
+          >
+            Ir para tela inicial
+          </Styled.ButtonGoLoggedArea>
+        </Styled.ContainerModalProposalRecused>
+      </Modal>
     </Styled.Card>
   );
 };
