@@ -14,8 +14,8 @@ const ApprovedLoan: FC = () => {
   const [tableData, setTableData] = useState<any>([]);
 
   useEffect(() => {
-    AccompanimentServices.loanData().then(({ data }) => {
-      const response = data.data as LoanDataProps;
+    AccompanimentServices.checkCreditUnderReview().then(({ data }) => {
+      const response = data.data?.lastQuotation as LoanDataProps;
 
       setLoanData(response);
     });
