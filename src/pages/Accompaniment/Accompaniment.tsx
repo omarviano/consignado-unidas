@@ -1,12 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { Layout } from 'components/Layout';
 import { RouteAccess } from 'components/RouteAccess';
 import { Step, StepIconProps, Stepper, Box, Skeleton } from '@mui/material';
-import { CheckCircle, CropSquare, Cancel } from '@mui/icons-material';
+import {
+  CheckCircle,
+  CropSquare,
+  WatchLater,
+  Cancel,
+} from '@mui/icons-material';
 import { useHistory } from 'react-router-dom';
 
 import { RoutingPath } from 'utils/routing';
 import { RequestUnderAnalysis } from './components/RequestUnderAnalysis';
+import { AwaitingSubmissionOfDocumentation } from './components/AwaitingSubmissionOfDocumentation';
+import { DocumentationSent } from './components/DocumentationSent';
 import { AccompanimentServices } from './services/accompaniment.services';
 import { ApprovedLoan } from './components/ApprovedLoan';
 import { ReprovidedLoan } from './components/ReprovidedLoan';
@@ -23,7 +30,7 @@ const steps = [
   'Crédito Liberado',
 ];
 
-function QontoStepIcon(props: StepIconProps) {
+const qontoStepIcon = (props: StepIconProps) => {
   const { active, className, completed } = props;
 
   return (
@@ -35,31 +42,76 @@ function QontoStepIcon(props: StepIconProps) {
       )}
     </MUIStyled.QontoStepIconRoot>
   );
-}
+};
 
 const Accompaniment: React.FC = () => {
-  const [activeStep] = useState(1);
+  const [activeStep, setActiveStep] = useState(0);
+  const [step, setStep] = useState(0);
   const [checking, setChecking] = useState(true);
   const history = useHistory();
 
-  const getIcon = (index: number) => {
-    if (index === 1) return <CheckCircle color="success" />;
-    if (index === 4) return <CheckCircle color="success" />;
-    if (index === 5) return <Cancel color="error" />;
+  const STEP_NUMBER = useMemo(
+    () => ({
+      0: 1,
+      1: 2,
+      2: 2,
+      3: 3,
+      4: 3,
+      5: 4,
+      6: 4,
+      7: 5,
+    }),
+    [],
+  );
 
-    return <CropSquare className="tranparent-icon" />;
+  const STEPS_COMPONENTS = useMemo(
+    () => ({
+      0: <RequestUnderAnalysis />,
+      1: <AwaitingSubmissionOfDocumentation />,
+      2: <DocumentationSent />,
+      3: <ApprovedLoan />,
+      4: <ReprovidedLoan />,
+      5: null,
+      6: null,
+      7: null,
+    }),
+    [],
+  );
+
+  const STEPS_ICON = useMemo(
+    () => ({
+      0: <CheckCircle color="success" />,
+      1: <WatchLater color="warning" />,
+      2: <CheckCircle color="success" />,
+      3: <CheckCircle color="success" />,
+      4: <Cancel color="error" />,
+      5: <WatchLater color="warning" />,
+      6: <Cancel color="error" />,
+      7: <CheckCircle color="success" />,
+      default: <CropSquare className="tranparent-icon" />,
+    }),
+    [],
+  );
+
+  const getIcon = (index: number) => {
+    if (activeStep === index) return STEPS_ICON[step];
+
+    return STEPS_ICON.default;
   };
 
   useEffect(() => {
     AccompanimentServices.checkCreditUnderReview()
       .then(({ data }) => {
-        if (data?.data?.quotationStatusId !== 0)
+        if (!data?.data?.quotationStatusId)
           history.push(RoutingPath.LOGGEDAREA);
+
+        setActiveStep(STEP_NUMBER[data?.data?.quotationStatusId]);
+        setStep(data?.data?.quotationStatusId);
 
         setChecking(false);
       })
       .catch(() => history.push(RoutingPath.LOGGEDAREA));
-  }, [history]);
+  }, [history, STEP_NUMBER]);
 
   return (
     <RouteAccess typesOfAccess="auth">
@@ -83,7 +135,7 @@ const Accompaniment: React.FC = () => {
                 >
                   {steps.map((label, index) => (
                     <Step key={label}>
-                      <Styled.StepLabel StepIconComponent={QontoStepIcon}>
+                      <Styled.StepLabel StepIconComponent={qontoStepIcon}>
                         <Styled.StepLabelContent active={activeStep === index}>
                           {getIcon(index)}
                           {label}
@@ -93,9 +145,7 @@ const Accompaniment: React.FC = () => {
                   ))}
                 </Stepper>
               </Styled.StepperCard>
-              {activeStep === 1 && <RequestUnderAnalysis />}
-              {activeStep === 3 && <ApprovedLoan />}
-              {activeStep === 4 && <ReprovidedLoan />}
+              {STEPS_COMPONENTS[step]}
             </>
           )}
         </Styled.Container>

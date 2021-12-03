@@ -2,6 +2,10 @@ import styled from 'styled-components';
 import TypographyStyles from '@mui/material/Typography';
 import { Link } from 'react-router-dom';
 
+interface TitleProps {
+  releasedCredit?: boolean;
+}
+
 export const Container = styled(Link)`
   max-width: 329px;
   margin: 107px 0 0 31px;
@@ -23,12 +27,13 @@ export const PreTitle = styled(TypographyStyles)`
   color: ${({ theme }) => theme.palette.grey[500]};
 `;
 
-export const Title = styled(TypographyStyles)`
+export const Title = styled(TypographyStyles)<TitleProps>`
   font-weight: bold;
   font-size: 18px;
   line-height: 16px;
   letter-spacing: 0.2px;
-  color: ${({ theme }) => theme.palette.grey[400]};
+  color: ${({ theme, releasedCredit }) =>
+    releasedCredit ? '#27AE60' : theme.palette.grey[400]};
   margin-top: 8px;
 `;
 

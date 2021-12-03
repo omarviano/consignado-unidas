@@ -1,0 +1,1 @@
+export { AwaitingSubmissionOfDocumentation } from './AwaitingSubmissionOfDocumentation';
