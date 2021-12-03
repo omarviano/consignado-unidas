@@ -95,8 +95,8 @@ const Accompaniment: React.FC = () => {
                 </Stepper>
               </Styled.StepperCard>
               {activeStep === 1 && <RequestUnderAnalysis />}
-              {activeStep === 4 && <ApprovedLoan />}
-              {activeStep === 5 && <ReprovidedLoan />}
+              {activeStep === 3 && <ApprovedLoan />}
+              {activeStep === 4 && <ReprovidedLoan />}
             </>
           )}
         </Styled.Container>

@@ -1,24 +1,53 @@
-import { FC, useMemo } from 'react';
+import { FC, useEffect, useMemo, useState } from 'react';
 import { GridColumns } from '@mui/x-data-grid';
 import { formatDate } from 'utils/formatDate';
 import { formatValue } from 'utils/formatValue';
 import { Table } from 'components/Table';
 
 import { getToken } from 'hooks/auth/storage';
+import { AccompanimentServices } from 'pages/Accompaniment/services/accompaniment.services';
+import { LoanDataProps } from 'pages/Accompaniment/models/loanData';
 import * as Styled from './styles';
 
 const ApprovedLoan: FC = () => {
+  const [loanData, setLoanData] = useState<LoanDataProps>();
+  const [tableData, setTableData] = useState<any>([]);
+
+  useEffect(() => {
+    AccompanimentServices.loanData().then(({ data }) => {
+      const response = data.data as LoanDataProps;
+
+      setLoanData(response);
+    });
+  }, []);
+
+  useEffect(() => {
+    const data = [
+      {
+        id: Math.random(),
+        valueFormatted: formatValue(Number(loanData?.value)),
+        effectiveCostPerYearFormatted: formatValue(
+          Number(loanData?.effectiveCostPerYear),
+        ),
+        feesPerMonthFormatted: `${loanData?.feesPerMonth.toFixed(2)}%`,
+        quantityFormatted: loanData?.quantity.toString().padStart(2, '0'),
+      },
+    ];
+
+    setTableData(data);
+  }, [loanData]);
+
   const columns = useMemo<GridColumns>(
     () => [
       {
-        field: 'installments',
+        field: 'quantityFormatted',
         headerName: 'Parcelas',
         hideSortIcons: true,
         disableColumnMenu: true,
         headerAlign: 'center',
       },
       {
-        field: 'valueInstallments',
+        field: 'valueFormatted',
         headerName: 'Valor da parcela',
         hideSortIcons: true,
         disableReorder: true,
@@ -27,7 +56,7 @@ const ApprovedLoan: FC = () => {
         flex: 1,
       },
       {
-        field: 'feesPerMonth',
+        field: 'feesPerMonthFormatted',
         headerName: 'Juros',
         hideSortIcons: true,
         disableColumnMenu: true,
@@ -35,7 +64,7 @@ const ApprovedLoan: FC = () => {
         flex: 1,
       },
       {
-        field: 'effectiveCostPerYear',
+        field: 'effectiveCostPerYearFormatted',
         headerName: 'CET',
         hideSortIcons: true,
         disableColumnMenu: true,
@@ -46,32 +75,26 @@ const ApprovedLoan: FC = () => {
     [],
   );
 
-  const tableData = [
-    {
-      id: 1,
-      installments: '24',
-      valueInstallments: 'R$ 200,00',
-      feesPerMonth: '0,95%',
-      effectiveCostPerYear: '0,02%',
-    },
-  ];
-
   return (
     <Styled.Card>
       <Styled.LoanInformation variant="h2">
         Olá {getToken()?.user.name}! Tudo bem? Temos uma ótima notícia! <br /> A
         sua propósta de empréstimo foi{' '}
-        <Styled.Approved>APROVADA</Styled.Approved>!
+        <Styled.Approved>{loanData?.status && 'APROVADA'}</Styled.Approved>!
       </Styled.LoanInformation>
 
       <Styled.TotalAmountOfLoanRequested variant="h2">
         Valor total do empréstimo solicitado:{' '}
-        <Styled.TextBlack>{formatValue(30000)}</Styled.TextBlack>
+        <Styled.TextBlack>
+          {formatValue(Number(loanData?.requestedAmount))}
+        </Styled.TextBlack>
       </Styled.TotalAmountOfLoanRequested>
 
       <Styled.InstallmentDueDate variant="h2">
         Data de Vencimento da 1ª parcela:{' '}
-        <Styled.TextBlack>{formatDate('2022-11-01T00:00:00')}</Styled.TextBlack>
+        <Styled.TextBlack>
+          {formatDate(String(loanData?.dueDate))}
+        </Styled.TextBlack>
       </Styled.InstallmentDueDate>
 
       <Styled.ProposalInformation variant="h6">

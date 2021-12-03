@@ -4,4 +4,5 @@ import { api } from 'services/api';
 export const AccompanimentServices = {
   checkCreditUnderReview: (): Promise<AxiosResponse> =>
     api.get(`/financial/quote`),
+  loanData: (): Promise<AxiosResponse> => api.get('/xxxx'),
 };
