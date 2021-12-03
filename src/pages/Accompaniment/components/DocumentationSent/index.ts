@@ -1,0 +1,1 @@
+export { DocumentationSent } from './DocumentationSent';
