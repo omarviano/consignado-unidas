@@ -2,7 +2,10 @@ import React, { useState } from 'react';
 import { AxiosError } from 'axios';
 import { useHistory, useLocation } from 'react-router-dom';
 import { Card } from '@mui/material';
-import { CheckCircle, Cancel } from '@mui/icons-material';
+import { Cancel } from '@mui/icons-material';
+
+import { ReactComponent as ConfirmIcon } from 'assets/icons/confirm.svg';
+import Logo from 'assets/images/logo.png';
 
 import useModal from 'hooks/modal';
 
@@ -56,6 +59,8 @@ const ResetPassword: React.FC = () => {
 
   return (
     <Styled.Container>
+      <Styled.Logo src={Logo} alt="Unidas" />
+
       <Card className="card">
         <Styled.Title>Confirmar nova senha</Styled.Title>
 
@@ -94,11 +99,7 @@ const ResetPassword: React.FC = () => {
 
       <Modal open={modalSuccessOpen} onClose={redirectToLogin}>
         <Styled.ModalContent>
-          <CheckCircle
-            color="action"
-            fontSize="inherit"
-            className="success-icon"
-          />
+          <ConfirmIcon />
 
           <Styled.ModalTitle>Senha redefinida com sucesso</Styled.ModalTitle>
 

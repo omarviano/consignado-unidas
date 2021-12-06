@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import TypographyStyles from '@mui/material/Typography';
 
 export const Container = styled.div`
-  margin-top: 102px;
+  margin-top: 22px;
   display: flex;
   align-items: center;
   justify-content: space-between;

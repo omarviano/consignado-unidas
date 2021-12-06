@@ -1,4 +1,4 @@
-import { FC, useMemo, useEffect, useState } from 'react';
+import { FC, useMemo, useEffect, useState, useRef } from 'react';
 import { GridColumns } from '@mui/x-data-grid';
 import { formatDate } from 'utils/formatDate';
 import { formatValue } from 'utils/formatValue';
@@ -17,6 +17,14 @@ import { Bank } from 'pages/Accompaniment/models/bank';
 import { AccompanimentServices } from 'pages/Accompaniment/services/accompaniment.services';
 import { useHistory } from 'react-router-dom';
 import { RoutingPath } from 'utils/routing';
+import { LoanDataProps } from 'pages/Accompaniment/models/loanData';
+import { Autocomplete } from 'components/Autocomplete';
+import useViaCEP from 'hooks/viaCEP';
+import { AxiosError } from 'axios';
+import { Document } from 'utils/document';
+import { FormikProps } from 'formik';
+import { UserDataProps, FormProps } from '../../models/userData';
+import { schema } from './schema';
 import * as Styled from './styles';
 
 const ApprovedLoan: FC = () => {
@@ -29,6 +37,54 @@ const ApprovedLoan: FC = () => {
   const { open: modalRefuseAcceptOpen, toggle: toggleModalRefuseAccept } =
     useModal();
   const [banks, setBanks] = useState<{ name: string; value: string }[]>([]);
+  const [loanData, setLoanData] = useState<LoanDataProps>();
+  const [tableData, setTableData] = useState<any>([]);
+  const { fetchCEP, notFound, address } = useViaCEP();
+  const [cep, setCep] = useState<string>();
+  const [loading, setLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string>();
+  const [formValues, setFormValues] = useState<any>();
+
+  const refFormik = useRef<FormikProps<FormProps> | null>();
+
+  useEffect(() => {
+    setFormValues({
+      nationality: 'Brasileira',
+      ...refFormik?.current?.values,
+      ...address,
+    });
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [address]);
+
+  const handleInput = () => {
+    const cepInput = document.getElementById('cep') as HTMLInputElement;
+    setCep(cepInput?.value);
+  };
+
+  useEffect(() => {
+    AccompanimentServices.checkCreditUnderReview().then(({ data }) => {
+      const response = data.data?.lastQuotation as LoanDataProps;
+
+      setLoanData(response);
+    });
+  }, []);
+
+  useEffect(() => {
+    const data = [
+      {
+        id: Math.random(),
+        valueFormatted: formatValue(Number(loanData?.value)),
+        effectiveCostPerYearFormatted: formatValue(
+          Number(loanData?.effectiveCostPerYear),
+        ),
+        feesPerMonthFormatted: `${loanData?.feesPerMonth.toFixed(2)}%`,
+        quantityFormatted: loanData?.quantity.toString().padStart(2, '0'),
+      },
+    ];
+
+    setTableData(data);
+  }, [loanData]);
 
   useEffect(() => {
     AccompanimentServices.fetchBanks().then(({ data }) => {
@@ -43,6 +99,44 @@ const ApprovedLoan: FC = () => {
     });
   }, []);
 
+  useEffect(() => {
+    fetchCEP(cep);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [cep]);
+
+  const handleSubmit = async (data): Promise<void> => {
+    try {
+      setLoading(true);
+
+      const dataSubmit: UserDataProps = {
+        nationality: data?.nationality,
+        profession: data?.profession,
+        number: data?.number,
+        complement: data?.complement,
+        bankCode: data?.bankCode,
+        agency: data?.agency,
+        digit: data?.digit,
+        accountNumber: data?.accountNumber,
+        zipCode: `${Document.removeMask(data?.cep)}`,
+        publicPlace: data?.logradouro,
+        district: data?.bairro,
+        city: data?.localidade,
+        state: data?.uf,
+      };
+
+      await AccompanimentServices.approveLoan(dataSubmit);
+
+      toggleModalSuccess();
+    } catch (error) {
+      setLoading(true);
+      const { response } = error as AxiosError;
+      setErrorMessage(response?.data?.message || 'ERRO');
+      toggleModalError();
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const goToLoggedArea = () => {
     toggleModalRefuseAccept();
     history.push(RoutingPath.LOGGEDAREA);
@@ -51,14 +145,14 @@ const ApprovedLoan: FC = () => {
   const columns = useMemo<GridColumns>(
     () => [
       {
-        field: 'installments',
+        field: 'quantityFormatted',
         headerName: 'Parcelas',
         hideSortIcons: true,
         disableColumnMenu: true,
         headerAlign: 'center',
       },
       {
-        field: 'valueInstallments',
+        field: 'valueFormatted',
         headerName: 'Valor da parcela',
         hideSortIcons: true,
         disableReorder: true,
@@ -67,7 +161,7 @@ const ApprovedLoan: FC = () => {
         flex: 1,
       },
       {
-        field: 'feesPerMonth',
+        field: 'feesPerMonthFormatted',
         headerName: 'Juros',
         hideSortIcons: true,
         disableColumnMenu: true,
@@ -75,7 +169,7 @@ const ApprovedLoan: FC = () => {
         flex: 1,
       },
       {
-        field: 'effectiveCostPerYear',
+        field: 'effectiveCostPerYearFormatted',
         headerName: 'CET',
         hideSortIcons: true,
         disableColumnMenu: true,
@@ -86,32 +180,24 @@ const ApprovedLoan: FC = () => {
     [],
   );
 
-  const tableData = [
-    {
-      id: 1,
-      installments: '24',
-      valueInstallments: 'R$ 200,00',
-      feesPerMonth: '0,95%',
-      effectiveCostPerYear: '0,02%',
-    },
-  ];
-
   return (
     <Styled.Card>
       <Styled.LoanInformation variant="h2">
         Olá {getToken()?.user.name}! Tudo bem? Temos uma ótima notícia! <br /> A
         sua propósta de empréstimo foi{' '}
-        <Styled.Approved>APROVADA</Styled.Approved>!
+        <Styled.Approved>{loanData?.status && 'APROVADA'}</Styled.Approved>!
       </Styled.LoanInformation>
 
       <Styled.TotalAmountOfLoanRequested variant="h2">
         Valor total do empréstimo solicitado:{' '}
-        <Styled.TextBlack>{formatValue(30000)}</Styled.TextBlack>
+        <Styled.TextBlack>
+          {formatValue(Number(loanData?.requestedAmount))}
+        </Styled.TextBlack>
       </Styled.TotalAmountOfLoanRequested>
 
       <Styled.InstallmentDueDate variant="h2">
         Data de Vencimento da 1ª parcela:{' '}
-        <Styled.TextBlack>{formatDate('2022-11-01T00:00:00')}</Styled.TextBlack>
+        <Styled.TextBlack>{formatDate(loanData?.dueDate)}</Styled.TextBlack>
       </Styled.InstallmentDueDate>
 
       <Styled.ProposalInformation variant="h6">
@@ -143,7 +229,13 @@ const ApprovedLoan: FC = () => {
       </Styled.DivButtons>
 
       <Modal open={modalConfirmationOpen} onClose={toggleModalConfirmation}>
-        <Formik initialValues={{}} onSubmit={() => console.log('aqwui')}>
+        <Formik
+          initialValues={formValues}
+          onSubmit={handleSubmit}
+          validationSchema={schema}
+          enableReinitialize
+          innerRef={refFormik as any}
+        >
           <Styled.ContainerModal>
             <Styled.AdditionalData variant="h2">
               Dados complementares
@@ -155,19 +247,20 @@ const ApprovedLoan: FC = () => {
                   label="Nome"
                   placeholder="Informe seu nome"
                   variant="outlined"
+                  disabled
                 />
               </Grid>
               <Grid item xs={4}>
                 <Input
-                  name="nacionalidade"
-                  label="Nacionalidade "
+                  name="nationality"
+                  label="Nacionalidade"
                   placeholder="Informe sua nacionalidade"
                   variant="outlined"
                 />
               </Grid>
               <Grid item xs={4}>
                 <Input
-                  name="profissão"
+                  name="profession"
                   label="Profissão"
                   placeholder="Informe sua profissão"
                   variant="outlined"
@@ -184,14 +277,20 @@ const ApprovedLoan: FC = () => {
                   placeholder="_____--___"
                   mask="99999-999"
                   variant="outlined"
+                  onKeyUp={handleInput}
+                  error={notFound}
+                  helperText={notFound ? 'CEP não encontrado' : undefined}
                 />
               </Grid>
               <Grid item xs={4}>
                 <Input
-                  name="endereço"
+                  name="logradouro"
                   label="Endereço"
                   placeholder="Informe seu endereço"
                   variant="outlined"
+                  disabled={
+                    cep?.length !== 9 || notFound || !!address?.logradouro
+                  }
                 />
               </Grid>
               <Grid item xs={2}>
@@ -209,6 +308,7 @@ const ApprovedLoan: FC = () => {
                   label="Bairro"
                   placeholder="Informe seu bairro"
                   variant="outlined"
+                  disabled={cep?.length !== 9 || notFound || !!address?.bairro}
                 />
               </Grid>
             </Styled.GridContainer>
@@ -216,7 +316,7 @@ const ApprovedLoan: FC = () => {
             <Styled.GridContainer container spacing={1}>
               <Grid item xs={4}>
                 <Input
-                  name="complemento"
+                  name="complement"
                   label="Complemento"
                   placeholder="apto, bloco, casa"
                   variant="outlined"
@@ -228,7 +328,9 @@ const ApprovedLoan: FC = () => {
                   label="Cidade"
                   placeholder="Informe sua cidade"
                   variant="outlined"
-                  disabled
+                  disabled={
+                    cep?.length !== 9 || notFound || !!address?.localidade
+                  }
                 />
               </Grid>
               <Grid item xs={4}>
@@ -239,7 +341,7 @@ const ApprovedLoan: FC = () => {
                     label="Estado"
                     placeholder="Selecione seu estado"
                     variant="outlined"
-                    disabled
+                    disabled={cep?.length !== 9 || notFound || !!address?.uf}
                   />
                 </Styled.DivSelect>
               </Grid>
@@ -260,7 +362,7 @@ const ApprovedLoan: FC = () => {
               </Grid>
               <Grid item xs={4}>
                 <Styled.DivSelect>
-                  <Select
+                  <Autocomplete
                     name="bankCode"
                     options={banks}
                     label="Selecione o seu banco"
@@ -300,7 +402,7 @@ const ApprovedLoan: FC = () => {
                 />
               </Grid>
             </Styled.GridContainer>
-            <Styled.ButtonToSend variant="contained">
+            <Styled.ButtonToSend type="submit" variant="contained">
               Enviar
             </Styled.ButtonToSend>
           </Styled.ContainerModal>
@@ -320,7 +422,7 @@ const ApprovedLoan: FC = () => {
         open={modalErrorOpen}
         onClose={toggleModalError}
         icon={<Warning color="warning" />}
-        text="Erro"
+        text={errorMessage}
       />
 
       <Modal open={modalRefuseOpen} onClose={toggleModalRefuse}>

@@ -7,6 +7,7 @@ import useViaCEP from 'hooks/viaCEP';
 import { Formik } from 'components/Formik';
 import { Input } from 'components/Inputs/Input';
 import { Select } from 'components/Select/Select';
+import { Autocomplete } from 'components/Autocomplete';
 import { RegistrationServices } from 'pages/Registration/services/registration.services';
 import { Bank } from 'pages/Registration/models/bank';
 
@@ -124,7 +125,7 @@ const BankDataForm: React.FC<BankDataFormProps> = ({
           </Styled.Div>
 
           <Input
-            name="complemento"
+            name="complement"
             label="Complemento"
             placeholder="Informe o complemento"
             variant="outlined"
@@ -156,7 +157,7 @@ const BankDataForm: React.FC<BankDataFormProps> = ({
         <Styled.BankDetailsConfirmationText>
           Caso você não queira preeencher os dados, não se preocupe, poderá
           cadsatrar em um outro momento ok? Lembrando que para esta operação,{' '}
-          <b>só é possível utilizar conta corrente</b>.
+          <b>só é possível utilizar conta corrente e de sua titularidade.</b>.
         </Styled.BankDetailsConfirmationText>
 
         <Styled.BankDataInputs>
@@ -170,7 +171,7 @@ const BankDataForm: React.FC<BankDataFormProps> = ({
           />
 
           <Styled.Div>
-            <Select
+            <Autocomplete
               name="bankCode"
               options={banks}
               label="Banco"

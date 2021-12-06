@@ -17,7 +17,11 @@ class RoutingPath {
 
   static CHANGE_PASSWORD = '/alterar-senha';
 
+  static CONTRACTS = '/contratos';
+
   static FAQ = '/faq';
+
+  static PRIVACY = '/privacidade';
 }
 
 export { RoutingPath };

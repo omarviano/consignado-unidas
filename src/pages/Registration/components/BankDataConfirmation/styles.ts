@@ -67,4 +67,8 @@ export const IAgreeTermsContainerButtons = styled.div`
   button + button {
     margin-left: 40px;
   }
+
+  @media (max-width: 768px) {
+    margin: 32px 0 60px;
+  }
 `;

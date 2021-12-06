@@ -3,8 +3,8 @@ import { Card as MUICard } from '@mui/material';
 import TypographyStyles from '@mui/material/Typography';
 import { Button } from 'components/Buttons/Button';
 import BoxStyles from '@mui/material/Box';
-import GridStyles from '@mui/material/Grid';
 import CheckCircleStyles from '@mui/icons-material/CheckCircle';
+import GridStyles from '@mui/material/Grid';
 
 export const Card = styled(MUICard)`
   padding: 36px 25px 0 33px;
@@ -60,6 +60,13 @@ export const ButtonAcceptProposal = styled(Button)`
   text-transform: capitalize;
   width: 186px;
   background-color: #005b9e;
+`;
+
+export const ButtonGoLoggedArea = styled(Button)`
+  text-transform: none;
+  width: 285px;
+  background-color: #005b9e;
+  margin-top: 24px;
 `;
 
 export const AdditionalData = styled(TypographyStyles)`

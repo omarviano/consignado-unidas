@@ -2,12 +2,13 @@ import React from 'react';
 import { Update } from '@mui/icons-material';
 
 import { Modal } from 'components/Modal';
+import { clearStorage } from 'utils/storage';
 
 import * as Styled from './styles';
 
 const SessionExpired: React.FC = () => {
-  const clearStorage = () => {
-    localStorage.clear();
+  const clearStorageData = () => {
+    clearStorage();
     window.location.href = '/';
   };
 
@@ -21,7 +22,7 @@ const SessionExpired: React.FC = () => {
           type="button"
           variant="contained"
           disableElevation
-          onClick={clearStorage}
+          onClick={clearStorageData}
         >
           Logar novamente
         </Styled.Button>
