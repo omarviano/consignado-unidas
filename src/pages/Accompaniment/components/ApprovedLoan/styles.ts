@@ -3,7 +3,6 @@ import { Card as MUICard } from '@mui/material';
 import TypographyStyles from '@mui/material/Typography';
 import { Button } from 'components/Buttons/Button';
 import BoxStyles from '@mui/material/Box';
-import CheckCircleStyles from '@mui/icons-material/CheckCircle';
 import GridStyles from '@mui/material/Grid';
 
 export const Card = styled(MUICard)`
