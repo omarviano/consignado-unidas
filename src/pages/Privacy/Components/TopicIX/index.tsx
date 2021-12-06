@@ -1,0 +1,1 @@
+export { TopicIX } from './TopicIX';
