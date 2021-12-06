@@ -24,3 +24,8 @@ export const InformativeTexts = styled.p`
   color: ${({ theme }) => theme.palette.grey[200]};
   margin-top: 24px;
 `;
+
+export const Link = styled.a`
+  color: #005b9e;
+  text-decoration: underline;
+`;

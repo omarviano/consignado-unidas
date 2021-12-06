@@ -19,3 +19,8 @@ export const Email = styled.a`
   color: #005b9e;
   text-decoration: underline;
 `;
+
+export const Link = styled.a`
+  color: #005b9e;
+  text-decoration: underline;
+`;
