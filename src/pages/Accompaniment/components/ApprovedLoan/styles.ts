@@ -62,63 +62,6 @@ export const ButtonAcceptProposal = styled(Button)`
   background-color: #005b9e;
 `;
 
-export const ButtonRecusedProposal = styled(Button)`
-  text-transform: capitalize;
-  width: 186px;
-  margin-left: 40px;
-`;
-
-export const ContainerModalProposal = styled(BoxStyles)`
-  padding: 0 125px 100px;
-`;
-
-export const TextProposal = styled(TypographyStyles)`
-  color: #646464;
-  font-size: 18px;
-  line-height: 34.5px;
-  font-weight: 400;
-  margin-top: 100px;
-`;
-
-export const DivProposal = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 50px 0;
-`;
-
-export const ButtonYes = styled(Button)`
-  text-transform: capitalize;
-  width: 186px;
-  background-color: #005b9e;
-`;
-
-export const ButtonNo = styled(Button)`
-  text-transform: capitalize;
-  width: 186px;
-  margin-left: 40px;
-`;
-
-export const ContainerModalProposalRecused = styled(BoxStyles)`
-  padding: 60px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-`;
-
-export const CheckCircle = styled(CheckCircleStyles)`
-  width: 48px;
-  height: 48px;
-`;
-
-export const TextProposalRecuse = styled(TypographyStyles)`
-  color: #646464;
-  font-size: 18px;
-  line-height: 34.5px;
-  font-weight: 400;
-`;
-
 export const ButtonGoLoggedArea = styled(Button)`
   text-transform: none;
   width: 285px;

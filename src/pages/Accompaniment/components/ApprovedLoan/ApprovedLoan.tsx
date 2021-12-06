@@ -1,4 +1,4 @@
-import { FC, useMemo, useEffect, useState } from 'react';
+import { FC, useMemo, useEffect, useState, useRef } from 'react';
 import { GridColumns } from '@mui/x-data-grid';
 import { formatDate } from 'utils/formatDate';
 import { formatValue } from 'utils/formatValue';
@@ -20,9 +20,8 @@ import { Autocomplete } from 'components/Autocomplete';
 import useViaCEP from 'hooks/viaCEP';
 import { AxiosError } from 'axios';
 import { Document } from 'utils/document';
-import { RoutingPath } from 'utils/routing';
-import { useHistory } from 'react-router-dom';
-import { UserDataProps } from '../../models/userData';
+import { FormikProps } from 'formik';
+import { UserDataProps, FormProps } from '../../models/userData';
 import { schema } from './schema';
 import * as Styled from './styles';
 
@@ -31,9 +30,6 @@ const ApprovedLoan: FC = () => {
     useModal();
   const { open: modalSuccessOpen, toggle: toggleModalSuccess } = useModal();
   const { open: modalErrorOpen, toggle: toggleModalError } = useModal();
-  const { open: modalProposalOpen, toggle: toggleModalProposal } = useModal();
-  const { open: modalProposalRecusedOpen, toggle: toggleModalProposalRecused } =
-    useModal();
   const [banks, setBanks] = useState<{ name: string; value: string }[]>([]);
   const [loanData, setLoanData] = useState<LoanDataProps>();
   const [tableData, setTableData] = useState<any>([]);
@@ -41,7 +37,19 @@ const ApprovedLoan: FC = () => {
   const [cep, setCep] = useState<string>();
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string>();
-  const history = useHistory();
+  const [formValues, setFormValues] = useState<any>();
+
+  const refFormik = useRef<FormikProps<FormProps> | null>();
+
+  useEffect(() => {
+    setFormValues({
+      nationality: 'Brasileira',
+      ...refFormik?.current?.values,
+      ...address,
+    });
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [address]);
 
   const handleInput = () => {
     const cepInput = document.getElementById('cep') as HTMLInputElement;
@@ -90,24 +98,11 @@ const ApprovedLoan: FC = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cep]);
 
-  const dataProps = {
-    name: '',
-    nationality: 'Brasileira',
-    profession: '',
-    bankCode: '',
-    number: '',
-    agency: undefined,
-    accountNumber: undefined,
-    digit: undefined,
-    complement: '',
-  };
-
   const handleSubmit = async (data): Promise<void> => {
     try {
       setLoading(true);
 
       const dataSubmit: UserDataProps = {
-        name: data?.name,
         nationality: data?.nationality,
         profession: data?.profession,
         number: data?.number,
@@ -213,24 +208,15 @@ const ApprovedLoan: FC = () => {
         >
           Aceitar Proposta
         </Styled.ButtonAcceptProposal>
-
-        <Styled.ButtonRecusedProposal
-          variant="outlined"
-          onClick={toggleModalProposal}
-        >
-          Recusar Proposta
-        </Styled.ButtonRecusedProposal>
       </Styled.DivButtons>
 
       <Modal open={modalConfirmationOpen} onClose={toggleModalConfirmation}>
         <Formik
-          initialValues={{
-            ...address,
-            ...dataProps,
-          }}
+          initialValues={formValues}
           onSubmit={handleSubmit}
           validationSchema={schema}
           enableReinitialize
+          innerRef={refFormik as any}
         >
           <Styled.ContainerModal>
             <Styled.AdditionalData variant="h2">
@@ -243,6 +229,7 @@ const ApprovedLoan: FC = () => {
                   label="Nome"
                   placeholder="Informe seu nome"
                   variant="outlined"
+                  disabled
                 />
               </Grid>
               <Grid item xs={4}>
@@ -323,7 +310,9 @@ const ApprovedLoan: FC = () => {
                   label="Cidade"
                   placeholder="Informe sua cidade"
                   variant="outlined"
-                  disabled
+                  disabled={
+                    cep?.length !== 9 || notFound || !!address?.localidade
+                  }
                 />
               </Grid>
               <Grid item xs={4}>
@@ -334,7 +323,7 @@ const ApprovedLoan: FC = () => {
                     label="Estado"
                     placeholder="Selecione seu estado"
                     variant="outlined"
-                    disabled
+                    disabled={cep?.length !== 9 || notFound || !!address?.uf}
                   />
                 </Styled.DivSelect>
               </Grid>
@@ -417,45 +406,6 @@ const ApprovedLoan: FC = () => {
         icon={<Warning color="warning" />}
         text={errorMessage}
       />
-
-      <Modal open={modalProposalOpen} onClose={toggleModalProposal}>
-        <Styled.ContainerModalProposal>
-          <Styled.TextProposal>
-            Tem certeza que deseja recusar a proposta?
-          </Styled.TextProposal>
-
-          <Styled.DivProposal>
-            <Styled.ButtonYes
-              variant="contained"
-              onClick={toggleModalProposalRecused}
-            >
-              Sim
-            </Styled.ButtonYes>
-
-            <Styled.ButtonNo variant="outlined">Não</Styled.ButtonNo>
-          </Styled.DivProposal>
-        </Styled.ContainerModalProposal>
-      </Modal>
-
-      <Modal
-        open={modalProposalRecusedOpen}
-        onClose={toggleModalProposalRecused}
-      >
-        <Styled.ContainerModalProposalRecused>
-          <Styled.CheckCircle color="success" />
-
-          <Styled.TextProposalRecuse>
-            Proposta recusada
-          </Styled.TextProposalRecuse>
-
-          <Styled.ButtonGoLoggedArea
-            variant="contained"
-            onClick={() => history.push(RoutingPath.LOGGEDAREA)}
-          >
-            Ir para tela inicial
-          </Styled.ButtonGoLoggedArea>
-        </Styled.ContainerModalProposalRecused>
-      </Modal>
     </Styled.Card>
   );
 };
