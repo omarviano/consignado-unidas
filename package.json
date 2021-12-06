@@ -9,6 +9,7 @@
     "eject": "react-scripts eject",
     "build:dev": "env-cmd -f .env.development react-scripts build",
     "build:staging": "env-cmd -f .env.staging react-scripts build",
+    "build:preprod": "env-cmd -f .env.preprod react-scripts build",
     "commit": "cz",
     "prepare": "husky install",
     "lint": "eslint src --ext .ts --fix",
