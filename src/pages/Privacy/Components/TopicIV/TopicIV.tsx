@@ -26,12 +26,12 @@ const TopicIV: FC = () => (
       que poderá ser ofertado a você durante o contato que mantiver com as
       empresas parceiras. A gestão do crédito consignado e das ofertas será
       realizada pela Unidas por meio de ferramentas de gestão oferecidas pela
-      Consignet, mediante a identificação dos clientes derivada do cadastro e
-      por esta fornecidas à Consignet e à Mova.
+      Consignet, mediante a identificação dos clientes derivadas do cadastro e
+      por esta fornecida à Consignet e à Mova.
     </Styled.InformativeTexts>
 
     <Styled.InformativeTexts>
-      <Styled.Strong>• Contato e comunicações comerciais:</Styled.Strong> no
+      <Styled.Strong>• Contato e comunicações comerciais:</Styled.Strong> No
       momento do seu cadastro, poderemos utilizar os seus dados para que
       possamos direcionar nossas ofertas de produtos, serviços e oportunidades,
       bem como para divulgar o lançamento de novos serviços, sempre relacionados

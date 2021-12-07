@@ -46,7 +46,7 @@ const TopicVI: FC = () => (
       incidentes cibernéticos ou ações similares. Na remota hipótese de
       incidência de episódios desta natureza, a Unidas, a Consignet e a Mova
       garantirão a adoção de todas as medidas cabíveis para remediar as
-      consequências do evento, sobretudo aquelas contantes na LGPD, sempre
+      consequências do evento, sobretudo aquelas constantes na LGPD, sempre
       garantindo a devida transparência a você.
     </Styled.InformativeTexts>
   </Fragment>

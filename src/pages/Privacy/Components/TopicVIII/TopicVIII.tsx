@@ -9,7 +9,7 @@ const TopicVIII: FC = () => (
     </Styled.SubTitle>
 
     <Styled.InformativeTexts>
-      Nós da Unidas da Consignet e da Mova, enquanto Co-Controladores de dados,
+      Nós da Unidas, da Consignet e da Mova, enquanto Co Controladores de dados,
       estamos disponíveis para sanar quaisquer outras dúvidas, sugestão ou
       solicitação que envolva este documento ou a proteção de seus Dados
       Pessoais. Teremos satisfação em atendê-lo!
@@ -17,7 +17,7 @@ const TopicVIII: FC = () => (
 
     <Styled.InformativeTexts>
       Para esses casos, solicitamos que acione os nossos Encarregados, o que
-      pode ser feito pelo seguintes canais:{' '}
+      pode ser feito pelos seguintes canais:{' '}
       <Styled.Email href="mailto:dpo@unidas.com.br">
         dpo@unidas.com.br
       </Styled.Email>

@@ -28,7 +28,7 @@ const TopicIII: FC = () => (
     <Table1 />
 
     <Styled.InformativeTexts>
-      A qualquer momento você poderá́ optar por se opor à habilitação dos
+      A qualquer momento você poderá optar por se opor à habilitação dos
       cookies, utilizando, para tanto, as configurações de seu navegador de
       preferência. Alertamos, no entanto, que de acordo com a escolha realizada,
       certas funcionalidades dos nossos sites poderão não funcionar da maneira
