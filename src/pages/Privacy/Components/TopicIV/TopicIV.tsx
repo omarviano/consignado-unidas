@@ -24,9 +24,9 @@ const TopicIV: FC = () => (
       facilitação de diligências pré-contratuais por parte da Mova, no intuito
       de concretizar o serviço de crédito consignado idealizado pela parceria e
       que poderá ser ofertado a você durante o contato que mantiver com as
-      empresas parceiras. A gestão do crédito consignado e das ofertas será
-      realizada pela Unidas por meio de ferramentas de gestão oferecidas pela
-      Consignet, mediante a identificação dos clientes derivadas do cadastro e
+      empresas parceiras. A gestão do crédito consignado e das ofertas serão
+      realizadas pela Unidas por meio de ferramentas de gestão oferecidas pela
+      Consignet, mediante a identificação dos clientes derivados do cadastro e
       por esta fornecida à Consignet e à Mova.
     </Styled.InformativeTexts>
 
