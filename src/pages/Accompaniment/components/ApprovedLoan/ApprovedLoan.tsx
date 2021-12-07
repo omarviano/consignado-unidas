@@ -25,12 +25,18 @@ const ApprovedLoan: FC = () => {
     const data = [
       {
         id: Math.random(),
-        valueFormatted: formatValue(Number(loanData?.value)),
-        effectiveCostPerYearFormatted: formatValue(
-          Number(loanData?.effectiveCostPerYear),
-        ),
-        feesPerMonthFormatted: `${loanData?.feesPerMonth.toFixed(2)}%`,
-        quantityFormatted: loanData?.quantity.toString().padStart(2, '0'),
+        valueFormatted: loanData?.value
+          ? formatValue(Number(loanData?.value))
+          : '-',
+        effectiveCostPerYearFormatted: loanData?.effectiveCostPerYear
+          ? formatValue(Number(loanData?.effectiveCostPerYear))
+          : '-',
+        feesPerMonthFormatted: loanData?.feesPerMonth
+          ? `${loanData?.feesPerMonth?.toFixed(2)}%`
+          : '-',
+        quantityFormatted: loanData?.quantity
+          ? loanData?.quantity?.toString().padStart(2, '0')
+          : '-',
       },
     ];
 
@@ -80,19 +86,26 @@ const ApprovedLoan: FC = () => {
       <Styled.LoanInformation variant="h2">
         Olá {getToken()?.user.name}! Tudo bem? Temos uma ótima notícia! <br /> A
         sua propósta de empréstimo foi{' '}
-        <Styled.Approved>{loanData?.status && 'APROVADA'}</Styled.Approved>!
+        <Styled.Approved>
+          {(loanData?.status && 'APROVADA') || '-'}
+        </Styled.Approved>
+        !
       </Styled.LoanInformation>
 
       <Styled.TotalAmountOfLoanRequested variant="h2">
         Valor total do empréstimo solicitado:{' '}
         <Styled.TextBlack>
-          {formatValue(Number(loanData?.requestedAmount))}
+          {loanData?.requestedAmount
+            ? formatValue(Number(loanData?.requestedAmount))
+            : 'R$ -'}
         </Styled.TextBlack>
       </Styled.TotalAmountOfLoanRequested>
 
       <Styled.InstallmentDueDate variant="h2">
         Data de Vencimento da 1ª parcela:{' '}
-        <Styled.TextBlack>{formatDate(loanData?.dueDate)}</Styled.TextBlack>
+        <Styled.TextBlack>
+          {loanData?.dueDate ? formatDate(loanData?.dueDate) : '-'}
+        </Styled.TextBlack>
       </Styled.InstallmentDueDate>
 
       <Styled.ProposalInformation variant="h6">
