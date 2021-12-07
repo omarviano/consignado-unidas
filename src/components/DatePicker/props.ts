@@ -1,8 +1,9 @@
 import { DesktopDatePickerProps } from '@mui/lab/DesktopDatePicker';
 
-type Optional<T, K extends keyof T> = Pick<Partial<T>, K> & Omit<T, K>;
-
-export type DatePickerProps = Optional<DesktopDatePickerProps, 'onChange'> & {
+export type DatePickerProps = Omit<
+  DesktopDatePickerProps,
+  'onChange' | 'renderInput'
+> & {
   value?: string;
   name?: string;
 };
