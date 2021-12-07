@@ -62,7 +62,7 @@ const FAQ: FC = () => {
 
             <Styled.HaveQuestions>
               Ainda possui dúvidas? Entrem em contato com a gente! <br />
-              <Styled.Email>loremunidas@unidas.com.br</Styled.Email>
+              <Styled.Email>consignado@unidas.com.br</Styled.Email>
             </Styled.HaveQuestions>
           </Styled.Content>
         </Styled.Container>
