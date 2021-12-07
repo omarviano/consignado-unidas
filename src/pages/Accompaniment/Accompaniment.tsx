@@ -17,6 +17,7 @@ import { DocumentationSent } from './components/DocumentationSent';
 import { AccompanimentServices } from './services/accompaniment.services';
 import { ApprovedLoan } from './components/ApprovedLoan';
 import { ReprovidedLoan } from './components/ReprovidedLoan';
+import { ContractSigning } from './components/ContractSigning';
 
 import * as Styled from './styles';
 import * as MUIStyled from './muiStyles';
@@ -71,7 +72,7 @@ const Accompaniment: React.FC = () => {
       2: <DocumentationSent />,
       3: <ApprovedLoan />,
       4: <ReprovidedLoan />,
-      5: null,
+      5: <ContractSigning />,
       6: null,
       7: null,
     }),
