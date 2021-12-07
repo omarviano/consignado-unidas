@@ -13,6 +13,10 @@ export const Select = styled(MUTextField)`
     border-radius: 8px;
     height: 38px;
   }
+
+  p {
+    margin: 3px 0 0;
+  }
 `;
 
 export const Label = styled.label<LabelProps>`
