@@ -8,14 +8,21 @@ export const Modal = styled(MaterialModal)`
   height: 100vh;
   overflow: auto;
 
-  @media (max-height: 555px) {
-    padding: 300px 0;
+  @media (max-height: 500px) {
+    align-items: flex-start;
+    padding: 8% 0;
   }
 `;
 
 export const ModalContent = styled(Box)`
   position: relative;
+  max-width: 90%;
   background: #fff;
+  border-radius: 4px;
+
+  @media (max-width: 768px) {
+    border-radius: 8px;
+  }
 `;
 
 export const CloseButton = styled.button`
