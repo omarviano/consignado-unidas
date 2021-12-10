@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import TypographyStyles from '@mui/material/Typography';
 
 import { Button } from 'components/Buttons/Button';
@@ -6,6 +6,23 @@ import { Button } from 'components/Buttons/Button';
 interface OptionsProps {
   menuOpen: boolean;
 }
+
+interface DivOpacityProps {
+  open: boolean;
+}
+
+export const DivOpacity = styled.div<DivOpacityProps>`
+  ${({ open }) =>
+    open &&
+    css`
+      background-color: rgba(0, 0, 0, 0.5);
+      position: fixed;
+      width: 100%;
+      height: 100vh;
+      z-index: 999;
+      }
+    `}
+`;
 
 export const Page = styled.div`
   max-width: 2000px;
