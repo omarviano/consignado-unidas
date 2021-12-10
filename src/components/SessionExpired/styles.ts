@@ -12,6 +12,11 @@ export const ModalContent = styled(Box)`
     height: 34px;
     color: #646464;
   }
+
+  @media (max-width: 768px) {
+    width: 100%;
+    padding: 40px;
+  }
 `;
 
 export const Button = styled(ButtonStyles)`

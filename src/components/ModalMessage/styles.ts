@@ -13,6 +13,12 @@ export const Container = styled.div`
     width: 48px;
     height: 48px;
   }
+
+  @media (max-width: 768px) {
+    width: 100% !important;
+    min-height: auto !important;
+    padding: 40px 32px;
+  }
 `;
 
 export const Title = styled(TypographyStyles)`
