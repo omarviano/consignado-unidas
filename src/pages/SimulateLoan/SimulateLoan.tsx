@@ -280,13 +280,15 @@ const SimulateLoan: FC = withContext(
                 </Styled.ModalConfirmHello>
 
                 <Styled.ModalConfirmData>
-                  email: {getToken()?.user.email}
+                  email: <span>{getToken()?.user.email}</span>
                   <br />
                   telefone:{' '}
-                  {getToken()?.user.phoneNumber?.replace(
-                    /(\d{2})(\d{5})(\d{4})/,
-                    '($1) $2-$3',
-                  )}
+                  <span>
+                    {getToken()?.user.phoneNumber?.replace(
+                      /(\d{2})(\d{5})(\d{4})/,
+                      '($1) $2-$3',
+                    )}
+                  </span>
                 </Styled.ModalConfirmData>
 
                 <Button
