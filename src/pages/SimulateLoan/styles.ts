@@ -6,6 +6,10 @@ import { Button } from 'components/Buttons/Button';
 
 export const Container = styled.div`
   padding: 0 24px;
+
+  @media (max-width: 1000px) {
+    padding: 0 16px;
+  }
 `;
 
 export const SelectMostSuitableOption = styled(TypographyStyles)`
@@ -97,4 +101,33 @@ export const ModalConfirmData = styled(TypographyStyles)`
   color: ${({ theme }) => theme.palette.grey[400]};
   text-align: left;
   margin-left: 36px;
+`;
+
+export const ResponsiveContainer = styled.div`
+  margin: 8px 0 4px;
+  padding: 8px;
+  background: #fff;
+  box-shadow: 0px 2px 6px rgba(46, 43, 80, 0.25);
+  border-radius: 4px;
+
+  ul {
+    padding-left: 16px;
+  }
+
+  > div {
+    margin-top: 8px;
+  }
+
+  .loading {
+    display: block;
+    margin: auto;
+  }
+`;
+
+export const NoData = styled(TypographyStyles)`
+  font-weight: bold;
+  font-size: 14px;
+  color: ${({ theme }) => theme.palette.grey[200]};
+  padding: 32px;
+  text-align: center;
 `;

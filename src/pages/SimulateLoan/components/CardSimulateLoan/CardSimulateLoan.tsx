@@ -6,6 +6,7 @@ import { useSimulateLoan } from 'hooks/simulate';
 import { DataSimulateProps, SimulateLoanProps } from 'interface/simulate';
 import { useSimulateLoanRealTime } from 'hooks/simulateRealtime';
 import * as Styled from './styles';
+import { LoanDetails } from '../LoanDetails';
 
 const CardSimulateLoan: FC = () => {
   const {
@@ -63,11 +64,7 @@ const CardSimulateLoan: FC = () => {
       </Styled.ContentSlider>
 
       <Styled.ContentTextInformation>
-        <Styled.TextInformation variant="h5">
-          Os valores são estimados e podem mudar de acordo com a análise de
-          crédito que for realizada. O empréstimo será contratado apenas quando
-          você de fato clicar no botão <strong>“solicitar empréstimo”</strong>.
-        </Styled.TextInformation>
+        <LoanDetails />
       </Styled.ContentTextInformation>
     </Styled.Container>
   );

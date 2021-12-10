@@ -5,12 +5,12 @@ import { GridColumns, GridRowId, GridSelectionModel } from '@mui/x-data-grid';
 import { CheckCircle, Cancel } from '@mui/icons-material';
 import { useHistory } from 'react-router-dom';
 import { AxiosError } from 'axios';
+import CircularProgress from '@mui/material/CircularProgress';
 
+import useWindowDimensions from 'hooks/windowDimensions';
 import { getToken } from 'hooks/auth/storage';
 import useModal from 'hooks/modal';
 import { SimulateLoanProvider, useSimulateLoan } from 'hooks/simulate';
-
-import { DataSimulateProps } from 'interface/simulate';
 
 import { withContext } from 'utils/withContext';
 import { Table } from 'components/Table';
@@ -26,17 +26,21 @@ import {
 } from 'pages/LoggedArea/components/ModalSimulateLoan/context';
 import { ModalSimulateLoan } from 'pages/LoggedArea/components/ModalSimulateLoan';
 import { CardSimulateLoan } from './components/CardSimulateLoan';
+import { LoanDetails } from './components/LoanDetails';
 
 import * as Styled from './styles';
 import { SimulateLoanServices } from './services/simulate-loan.services';
+import { InstallmentTableData } from './models/simulate-loan';
+import { InstallmentCard } from './components/InstallmentCard';
 
 const SimulateLoan: FC = withContext(
   () => {
     const history = useHistory();
+    const { width } = useWindowDimensions();
     const { dataSimulateLoan, valueSliderSimulate } = useSimulateLoanRealTime();
     const { requestStatus, modalActive, statusCode } = useSimulateLoan();
     const { toggleModal } = useModalSimulateLoan();
-    const [tableData, setTableData] = useState<any>([]);
+    const [tableData, setTableData] = useState<InstallmentTableData[]>([]);
     const [selectedRow, setSelectedRow] = useState<TableSimulateProps>();
     const { open: modalSuccesOpen, toggle: toggleModalSucces } = useModal();
     const { open: modalErrorOpen, toggle: toggleModalError } = useModal();
@@ -152,8 +156,6 @@ const SimulateLoan: FC = withContext(
       try {
         setRequestingLoan(true);
 
-        await SimulateLoanServices.checkCreditUnderReview();
-
         await SimulateLoanServices.simulate({
           value: dataSimulateLoan.value,
           simulationId: dataSimulateLoan.id,
@@ -170,6 +172,11 @@ const SimulateLoan: FC = withContext(
       }
     };
 
+    const handleApplyForLoan = async (id: number) => {
+      setSelectedRow(tableData.find(item => item.id === id));
+      applyForLoan();
+    };
+
     return (
       <RouteAccess typesOfAccess="auth">
         <Layout
@@ -180,29 +187,54 @@ const SimulateLoan: FC = withContext(
           <Styled.Container>
             <CardSimulateLoan />
 
-            <Styled.SelectMostSuitableOption>
-              Selecione a opção mais adequada para sua situação financeira atual
-            </Styled.SelectMostSuitableOption>
+            {width && width > 1000 ? (
+              <>
+                <Styled.SelectMostSuitableOption>
+                  Selecione a opção mais adequada para sua situação financeira
+                  atual
+                </Styled.SelectMostSuitableOption>
+                <Table
+                  loading={requestStatus.loading}
+                  checkboxSelection
+                  selectionModel={selectionModel}
+                  onSelectionModelChange={handleSelectionModelChange}
+                  columns={columns}
+                  rows={tableData}
+                />
 
-            <Table
-              loading={requestStatus.loading}
-              checkboxSelection
-              selectionModel={selectionModel}
-              onSelectionModelChange={handleSelectionModelChange}
-              columns={columns}
-              rows={tableData}
-            />
+                <Styled.ContainerButton>
+                  <Styled.RequestButton
+                    type="button"
+                    variant="contained"
+                    onClick={applyForLoan}
+                    disabled={!selectedRow}
+                  >
+                    Solicitar Empréstimo
+                  </Styled.RequestButton>
+                </Styled.ContainerButton>
+              </>
+            ) : (
+              <Styled.ResponsiveContainer>
+                <LoanDetails />
 
-            <Styled.ContainerButton>
-              <Styled.RequestButton
-                type="button"
-                variant="contained"
-                onClick={applyForLoan}
-                disabled={!selectedRow}
-              >
-                Solicitar Empréstimo
-              </Styled.RequestButton>
-            </Styled.ContainerButton>
+                {requestStatus.loading && (
+                  <CircularProgress className="loading" />
+                )}
+
+                {!requestStatus.loading &&
+                  tableData.map(item => (
+                    <InstallmentCard
+                      key={item.id}
+                      data={item}
+                      onSelect={handleApplyForLoan}
+                    />
+                  ))}
+
+                {tableData.length === 0 && !requestStatus.loading && (
+                  <Styled.NoData>Nenhum parcela disponível</Styled.NoData>
+                )}
+              </Styled.ResponsiveContainer>
+            )}
 
             <Modal open={modalSuccesOpen} onClose={goToAccompaniment}>
               <Styled.ModalSuccessContent>
