@@ -14,6 +14,7 @@ import { RoutingPath } from 'utils/routing';
 import { RequestUnderAnalysis } from './components/RequestUnderAnalysis';
 import { AwaitingSubmissionOfDocumentation } from './components/AwaitingSubmissionOfDocumentation';
 import { DocumentationSent } from './components/DocumentationSent';
+import { ReleasedCredit } from './components/ReleasedCredit';
 import { AccompanimentServices } from './services/accompaniment.services';
 
 import * as Styled from './styles';
@@ -58,6 +59,7 @@ const Accompaniment: React.FC = () => {
       5: 4,
       6: 4,
       7: 5,
+      8: 4,
     }),
     [],
   );
@@ -71,7 +73,8 @@ const Accompaniment: React.FC = () => {
       4: null,
       5: null,
       6: null,
-      7: null,
+      7: <ReleasedCredit />,
+      8: null,
     }),
     [],
   );
@@ -100,13 +103,16 @@ const Accompaniment: React.FC = () => {
   useEffect(() => {
     AccompanimentServices.checkCreditUnderReview()
       .then(({ data }) => {
-        if (!data?.data?.quotationStatusId)
+        if (data?.data?.quotationStatusId >= 0) {
+          /* setActiveStep(STEP_NUMBER[data?.data?.quotationStatusId]); */
+          /* setStep(data?.data?.quotationStatusId); */
+          setActiveStep(5);
+          setStep(7);
+
+          setChecking(false);
+        } else {
           history.push(RoutingPath.LOGGEDAREA);
-
-        setActiveStep(STEP_NUMBER[data?.data?.quotationStatusId]);
-        setStep(data?.data?.quotationStatusId);
-
-        setChecking(false);
+        }
       })
       .catch(() => history.push(RoutingPath.LOGGEDAREA));
   }, [history, STEP_NUMBER]);

@@ -16,6 +16,7 @@ const CreditUnderAnalysis: React.FC = () => {
       5: <Styled.Title>Assinatura de contrato pendente</Styled.Title>,
       6: <Styled.Title>Assinatura de contrato pendente</Styled.Title>,
       7: <Styled.Title releasedCredit>Crédito liberado</Styled.Title>,
+      8: <Styled.Title>Empréstimo reprovado pelo banco</Styled.Title>,
       default: null,
     }),
     [],
