@@ -6,4 +6,5 @@ export interface LoanDataProps {
   value: number;
   effectiveCostPerYear: number;
   feesPerMonth: number;
+  id: number;
 }

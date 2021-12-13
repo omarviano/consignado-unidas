@@ -137,6 +137,24 @@ const ApprovedLoan: FC = () => {
     }
   };
 
+  const handleRefuseLoan = async (): Promise<void> => {
+    try {
+      setLoading(true);
+
+      await AccompanimentServices.refuseLoan(Number(loanData?.id));
+
+      toggleModalRefuse();
+      toggleModalRefuseAccept();
+    } catch (error) {
+      setLoading(true);
+      const { response } = error as AxiosError;
+      setErrorMessage(response?.data?.message || 'ERRO');
+      toggleModalError();
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const goToLoggedArea = () => {
     toggleModalRefuseAccept();
     history.push(RoutingPath.LOGGEDAREA);
@@ -432,7 +450,13 @@ const ApprovedLoan: FC = () => {
           </Styled.RefuseProposal>
 
           <Styled.DivButtonsYesOrNo>
-            <Styled.ButtonYes variant="contained">Sim</Styled.ButtonYes>
+            <Styled.ButtonYes
+              variant="contained"
+              onClick={handleRefuseLoan}
+              disabled={loading}
+            >
+              Sim
+            </Styled.ButtonYes>
 
             <Styled.ButtonNo variant="outlined" onClick={toggleModalRefuse}>
               Não

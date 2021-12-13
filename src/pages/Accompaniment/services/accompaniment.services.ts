@@ -8,4 +8,6 @@ export const AccompanimentServices = {
   fetchBanks: (): Promise<AxiosResponse> => api.get(`banks`),
   approveLoan: (data: UserDataProps): Promise<AxiosResponse> =>
     api.post('/xxx', data),
+  refuseLoan: (quotationId: number): Promise<AxiosResponse> =>
+    api.patch(`/financial/quote/${quotationId}/refuse`),
 };
