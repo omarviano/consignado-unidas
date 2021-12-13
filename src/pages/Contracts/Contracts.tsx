@@ -10,16 +10,19 @@ import { Button } from 'components/Buttons/Button';
 import { Table } from 'components/Table';
 import { NoDataTable } from 'components/NoDataTable';
 
+import useWindowDimensions from 'hooks/windowDimensions';
 import { formatDate } from 'utils/formatDate';
 import { formatValue } from 'utils/formatValue';
 
 import * as Styled from './styles';
 import { ContractsServices } from './services/contracts-services';
+import { Contract } from './models/contract';
 
 const Contracts: React.FC = () => {
   const history = useHistory();
-  const [tableData, setTableData] = useState([]);
+  const [tableData, setTableData] = useState<Contract[]>([]);
   const [fetchingContracts, setFetchingContracts] = useState(true);
+  const { width } = useWindowDimensions();
   const columns = useMemo<GridColumns>(
     () => [
       {
@@ -60,7 +63,7 @@ const Contracts: React.FC = () => {
         hideSortIcons: true,
         disableColumnMenu: true,
         headerAlign: 'center',
-        flex: 1,
+        width: 148,
       },
       {
         field: 'status',
@@ -68,7 +71,7 @@ const Contracts: React.FC = () => {
         hideSortIcons: true,
         disableColumnMenu: true,
         headerAlign: 'center',
-        flex: 1,
+        width: 127,
       },
       {
         field: 'details',
@@ -76,7 +79,7 @@ const Contracts: React.FC = () => {
         hideSortIcons: true,
         disableColumnMenu: true,
         headerAlign: 'center',
-        flex: 1,
+        width: 168,
         renderCell: () => (
           <Styled.TableButton variant="contained">Acessar</Styled.TableButton>
         ),
@@ -124,22 +127,28 @@ const Contracts: React.FC = () => {
             <Styled.Header>
               <Styled.Breadcrumb>
                 <Styled.BreadcrumbRoot>Meus contratos</Styled.BreadcrumbRoot>
-                {'>'}
+                <span>{'>'}</span>
                 <Styled.BreadcrumbPage>Contrato</Styled.BreadcrumbPage>
               </Styled.Breadcrumb>
 
-              <Button type="button" variant="outlined" onClick={goToHome}>
-                Simular novo empréstimo
-              </Button>
+              <Styled.ButtonContainer className="button-container">
+                <Button type="button" variant="outlined" onClick={goToHome}>
+                  Simular novo empréstimo
+                </Button>
+              </Styled.ButtonContainer>
             </Styled.Header>
 
-            <Table
-              loading={fetchingContracts}
-              columns={columns}
-              rows={tableData}
-              noData={NoContracts}
-              rowHeight={88}
-            />
+            {width && width > 920 ? (
+              <Table
+                loading={fetchingContracts}
+                columns={columns}
+                rows={tableData}
+                noData={NoContracts}
+                rowHeight={88}
+              />
+            ) : (
+              <div>responsive</div>
+            )}
           </Styled.Box>
         </Styled.Container>
       </Layout>
