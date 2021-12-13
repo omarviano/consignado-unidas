@@ -12,10 +12,10 @@ const Table2: FC = () => (
       <Styled.Td1>Internet Explorer</Styled.Td1>
       <Styled.Td2 className="border-none">
         <Styled.LinkPage
-          href="https://support.microsoft.com/pt-br/windows/excluir-e-gerenciar-cookies-168dab11-0753-043d-7c16-ede5947fc64d"
+          href="https://support.microsoft.com/pt-br/topic/excluir-e-gerenciar-cookies-168dab11-0753-043d-7c16-ede5947fc64d"
           target="_blank"
         >
-          https://support.microsoft.com/pt-br/windows/excluir-e-gerenciar-cookies-168dab11-0753-043d-7c16-ede5947fc64d
+          https://support.microsoft.com/pt-br/topic/excluir-e-gerenciar-cookies-168dab11-0753-043d-7c16-ede5947fc64d
         </Styled.LinkPage>
       </Styled.Td2>
     </Styled.Tr>
