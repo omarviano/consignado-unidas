@@ -12,4 +12,9 @@ export const Container = styled.div`
   padding: 120px 120px 70px;
   background-color: ${({ theme }) => theme.palette.primary.contrastText};
   border-radius: 8px;
+
+  @media (max-width: 768px) {
+    margin: 0 16px 0 16px;
+    padding: 16px 16px 28px;
+  }
 `;

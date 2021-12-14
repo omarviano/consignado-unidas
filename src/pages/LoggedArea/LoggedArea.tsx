@@ -36,7 +36,7 @@ const LoggedArea: FC = withContext(
 
     return (
       <RouteAccess typesOfAccess="auth">
-        <Layout>
+        <Layout containerStyles={{ maxWidth: 958 }}>
           <Styled.CardsContainer>
             <CardMarginAvailable />
             <CreditUnderAnalysis />

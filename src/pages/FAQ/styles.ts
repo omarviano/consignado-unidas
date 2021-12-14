@@ -8,7 +8,7 @@ interface TitleQuestionProps {
 }
 
 export const Container = styled(MUICard)`
-  margin-top: 76px;
+  margin: 22px 0 16px;
   box-shadow: 0px 2px 6px rgba(46, 43, 80, 0.25);
 `;
 
