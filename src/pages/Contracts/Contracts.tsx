@@ -1,6 +1,7 @@
 import React, { useMemo, useState, useEffect } from 'react';
 import { GridColumns } from '@mui/x-data-grid';
 import { useHistory } from 'react-router-dom';
+import CircularProgress from '@mui/material/CircularProgress';
 
 import { RoutingPath } from 'utils/routing';
 
@@ -16,11 +17,13 @@ import { formatValue } from 'utils/formatValue';
 
 import * as Styled from './styles';
 import { ContractsServices } from './services/contracts-services';
-import { Contract } from './models/contract';
+import { ContractFormatted } from './models/contract';
+import { ContractCard } from './components/ContractCard';
 
 const Contracts: React.FC = () => {
   const history = useHistory();
-  const [tableData, setTableData] = useState<Contract[]>([]);
+  const [bottomOfPage, setBottomOfPage] = useState(false);
+  const [tableData, setTableData] = useState<ContractFormatted[]>([]);
   const [fetchingContracts, setFetchingContracts] = useState(true);
   const { width } = useWindowDimensions();
   const columns = useMemo<GridColumns>(
@@ -40,6 +43,7 @@ const Contracts: React.FC = () => {
         disableReorder: true,
         disableColumnMenu: true,
         headerAlign: 'center',
+        width: 120,
       },
       {
         field: 'installments',
@@ -115,11 +119,30 @@ const Contracts: React.FC = () => {
     <NoDataTable>Você ainda não possui contratos</NoDataTable>
   );
 
+  const handleScroll = () => {
+    const bottom =
+      Math.ceil(window.innerHeight + window.scrollY) >=
+      document.documentElement.scrollHeight - 160;
+
+    if (bottom) setBottomOfPage(true);
+    else setBottomOfPage(false);
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll, {
+      passive: true,
+    });
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   return (
     <RouteAccess typesOfAccess="auth">
       <Layout
         containerStyles={{
-          maxWidth: '1286px',
+          maxWidth: '1320px',
         }}
       >
         <Styled.Container>
@@ -131,14 +154,17 @@ const Contracts: React.FC = () => {
                 <Styled.BreadcrumbPage>Contrato</Styled.BreadcrumbPage>
               </Styled.Breadcrumb>
 
-              <Styled.ButtonContainer className="button-container">
+              <Styled.ButtonContainer
+                bottomOfPage={bottomOfPage}
+                className="button-container"
+              >
                 <Button type="button" variant="outlined" onClick={goToHome}>
                   Simular novo empréstimo
                 </Button>
               </Styled.ButtonContainer>
             </Styled.Header>
 
-            {width && width > 920 ? (
+            {width && width > 720 ? (
               <Table
                 loading={fetchingContracts}
                 columns={columns}
@@ -147,7 +173,17 @@ const Contracts: React.FC = () => {
                 rowHeight={88}
               />
             ) : (
-              <div>responsive</div>
+              <Styled.ResponsiveContainer noData={tableData.length === 0}>
+                {tableData.map(item => (
+                  <ContractCard key={item.id} data={item} />
+                ))}
+
+                {fetchingContracts && <CircularProgress className="loading" />}
+
+                {tableData.length === 0 && !fetchingContracts && (
+                  <Styled.NoData>Nenhum parcela disponível</Styled.NoData>
+                )}
+              </Styled.ResponsiveContainer>
             )}
           </Styled.Box>
         </Styled.Container>

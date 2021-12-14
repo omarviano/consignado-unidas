@@ -1,5 +1,5 @@
-import { Contract } from '../../models/contract';
+import { ContractFormatted } from '../../models/contract';
 
 export interface ContractCardProps {
-  data: Contract;
+  data: ContractFormatted;
 }

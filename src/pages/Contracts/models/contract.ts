@@ -6,3 +6,13 @@ export interface Contract {
   installments: number;
   installmentValue: number;
 }
+
+export interface ContractFormatted {
+  id: number;
+  number: string;
+  date: string;
+  value: string;
+  installmentValue: string;
+  installments: string;
+  status: string;
+}
