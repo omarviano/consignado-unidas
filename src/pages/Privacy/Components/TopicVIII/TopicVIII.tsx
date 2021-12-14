@@ -9,23 +9,41 @@ const TopicVIII: FC = () => (
     </Styled.SubTitle>
 
     <Styled.InformativeTexts>
-      Nós da Unidas e da Embracon, enquanto Controladores de dados pessoais,
+      Nós da Unidas, da Consignet e da Mova, enquanto Co Controladores de dados,
       estamos disponíveis para sanar quaisquer outras dúvidas, sugestão ou
       solicitação que envolva este documento ou a proteção de seus Dados
-      Pessoais. Teremos satisfação em atendê-lo! Para esses casos, solicitamos
-      que acione o nosso Encarregado, o que pode ser feito pelo seguinte canal:{' '}
+      Pessoais. Teremos satisfação em atendê-lo!
+    </Styled.InformativeTexts>
+
+    <Styled.InformativeTexts>
+      Para esses casos, solicitamos que acione os nossos Encarregados, o que
+      pode ser feito pelos seguintes canais:{' '}
       <Styled.Email href="mailto:dpo@unidas.com.br">
         dpo@unidas.com.br
       </Styled.Email>
-      . Adicionalmente, informamos que estamos localizados nos seguintes
-      endereços: Unidas: Alameda Santos, nº 438, Cerqueira César, São Paulo/SP,
-      CEP 01418-000 Embracon: Alameda Europa, nº 150, Tamboré, Santana de
-      Parnaíba/SP, CEP 06543-325 IX. ATUALIZAÇÃO DESTE AVISO DE PRIVACIDADE
-      Nosso serviço pode mudar de tempos em tempos. Por isso, poderemos
-      modificar unilateralmente esse Aviso de Privacidade a qualquer tempo e
-      comunicar por meio de notificação em nosso Site. Este Aviso de Privacidade
-      foi alterado pela última vez e publicado em nossa plataforma em{' '}
-      <strong>25 de maio de 2021</strong>.
+      ,{' '}
+      <Styled.Email href="mailto:privacy@db1group.com">
+        privacy@db1group.com
+      </Styled.Email>{' '}
+      e/ou <Styled.Email href="mailto:lgpd@mova.vc">lgpd@mova.vc</Styled.Email>
+    </Styled.InformativeTexts>
+
+    <Styled.InformativeTexts>
+      Adicionalmente, informamos que estamos localizados nos seguintes
+      endereços:
+      <br />
+      Unidas: Alameda Santos, nº 438, Cerqueira César, São Paulo/SP, CEP
+      01418-000, www.unidas.com.br; Consignet: Av. Carneiro Leão, nº 563, Sala
+      209, Maringá/PR. CEP 87014-010,{' '}
+      <Styled.Link href="www.consignet.com.br" target="_blank">
+        www.consignet.com.br
+      </Styled.Link>
+      ;, Mova: Alameda Vicente Pinzon, nº 173, 2º andar, Vila Olímpia, São
+      Paulo/SP, CEP 04547-130,{' '}
+      <Styled.Link href="www.mova.vc" target="_blank">
+        www.mova.vc
+      </Styled.Link>
+      .
     </Styled.InformativeTexts>
   </Fragment>
 );
