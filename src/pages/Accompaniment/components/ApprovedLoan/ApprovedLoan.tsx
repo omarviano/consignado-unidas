@@ -38,14 +38,38 @@ const ApprovedLoan: FC = () => {
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string>();
   const [formValues, setFormValues] = useState<any>();
+  const [userData, setUserData] = useState<FormProps>();
 
   const refFormik = useRef<FormikProps<FormProps> | null>();
 
   useEffect(() => {
+    AccompanimentServices.fetchUserData().then(({ data }) => {
+      const response = data.data as UserDataProps;
+
+      setUserData({
+        nationality: response?.nationality,
+        professional: response?.professional,
+        number: response?.number,
+        complement: response?.complement,
+        bankCode: String(response?.bankCode),
+        agency: Number(response?.agency),
+        digit: response?.digit,
+        accountNumber: Number(response?.accountNumber),
+        cep: response?.zipCode,
+        logradouro: response?.publicPlace,
+        bairro: response?.district,
+        localidade: response?.city,
+        uf: response?.state,
+      });
+    });
+  }, []);
+
+  useEffect(() => {
     setFormValues({
-      nationality: 'Brasileira',
+      // nationality: 'Brasileira',
       ...refFormik?.current?.values,
       ...address,
+      ...userData,
     });
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -104,7 +128,7 @@ const ApprovedLoan: FC = () => {
 
       const dataSubmit: UserDataProps = {
         nationality: data?.nationality,
-        profession: data?.profession,
+        professional: data?.professional,
         number: data?.number,
         complement: data?.complement,
         bankCode: data?.bankCode,
@@ -242,7 +266,7 @@ const ApprovedLoan: FC = () => {
               </Grid>
               <Grid item xs={4}>
                 <Input
-                  name="profession"
+                  name="professional"
                   label="Profissão"
                   placeholder="Informe sua profissão"
                   variant="outlined"
