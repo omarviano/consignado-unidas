@@ -15,7 +15,7 @@ const ApprovedLoan: FC = () => {
 
   useEffect(() => {
     AccompanimentServices.checkCreditUnderReview().then(({ data }) => {
-      const response = data.data?.lastQuotation as LoanDataProps;
+      const response = data.data as LoanDataProps;
 
       setLoanData(response);
     });
@@ -25,17 +25,17 @@ const ApprovedLoan: FC = () => {
     const data = [
       {
         id: Math.random(),
-        valueFormatted: loanData?.value
-          ? formatValue(Number(loanData?.value))
+        valueFormatted: loanData?.installmentValue
+          ? formatValue(Number(loanData?.installmentValue))
           : '-',
-        effectiveCostPerYearFormatted: loanData?.effectiveCostPerYear
-          ? formatValue(Number(loanData?.effectiveCostPerYear))
+        effectiveCostPerYearFormatted: loanData?.installmentEffectiveCostPerYear
+          ? formatValue(Number(loanData?.installmentEffectiveCostPerYear))
           : '-',
-        feesPerMonthFormatted: loanData?.feesPerMonth
-          ? `${loanData?.feesPerMonth?.toFixed(2)}%`
+        feesPerMonthFormatted: loanData?.installmentFeesPerMonth
+          ? `${loanData?.installmentFeesPerMonth?.toFixed(2)}%`
           : '-',
-        quantityFormatted: loanData?.quantity
-          ? loanData?.quantity?.toString().padStart(2, '0')
+        quantityFormatted: loanData?.installmentQuantity
+          ? loanData?.installmentQuantity?.toString().padStart(2, '0')
           : '-',
       },
     ];
@@ -87,7 +87,7 @@ const ApprovedLoan: FC = () => {
         Olá {getToken()?.user.name}! Tudo bem? Temos uma ótima notícia! <br /> A
         sua propósta de empréstimo foi{' '}
         <Styled.Approved>
-          {(loanData?.status && 'APROVADA') || '-'}
+          {loanData?.quotationStatus?.description || '-'}
         </Styled.Approved>
         !
       </Styled.LoanInformation>
@@ -95,9 +95,7 @@ const ApprovedLoan: FC = () => {
       <Styled.TotalAmountOfLoanRequested variant="h2">
         Valor total do empréstimo solicitado:{' '}
         <Styled.TextBlack>
-          {loanData?.requestedAmount
-            ? formatValue(Number(loanData?.requestedAmount))
-            : 'R$ -'}
+          {loanData?.value ? formatValue(Number(loanData?.value)) : 'R$ -'}
         </Styled.TextBlack>
       </Styled.TotalAmountOfLoanRequested>
 
