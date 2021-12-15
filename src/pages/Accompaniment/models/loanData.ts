@@ -1,9 +1,14 @@
+interface QuotationStatusProps {
+  id: number;
+  description: string;
+}
+
 export interface LoanDataProps {
-  status: string;
-  requestedAmount: number;
-  dueDate: any;
-  quantity: number;
+  quotationStatus: QuotationStatusProps;
   value: number;
-  effectiveCostPerYear: number;
-  feesPerMonth: number;
+  dueDate: any;
+  installmentQuantity: number;
+  installmentValue: number;
+  installmentEffectiveCostPerYear: number;
+  installmentFeesPerMonth: number;
 }
