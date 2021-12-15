@@ -37,7 +37,6 @@ const ApprovedLoan: FC = () => {
   const [cep, setCep] = useState<string>();
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string>();
-  const [formValues, setFormValues] = useState<any>();
   const [userData, setUserData] = useState<FormProps>();
 
   const refFormik = useRef<FormikProps<FormProps> | null>();
@@ -65,15 +64,11 @@ const ApprovedLoan: FC = () => {
   }, []);
 
   useEffect(() => {
-    setFormValues({
-      // nationality: 'Brasileira',
-      ...refFormik?.current?.values,
-      ...address,
-      ...userData,
-    });
-
+    if (userData?.cep) {
+      fetchCEP(userData.cep);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [address]);
+  }, [userData?.cep]);
 
   const handleInput = () => {
     const cepInput = document.getElementById('cep') as HTMLInputElement;
@@ -236,7 +231,11 @@ const ApprovedLoan: FC = () => {
 
       <Modal open={modalConfirmationOpen} onClose={toggleModalConfirmation}>
         <Formik
-          initialValues={formValues}
+          initialValues={{
+            ...userData,
+            ...refFormik.current?.values,
+            ...address,
+          }}
           onSubmit={handleSubmit}
           validationSchema={schema}
           enableReinitialize
