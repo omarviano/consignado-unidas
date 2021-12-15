@@ -1,10 +1,13 @@
 import React from 'react';
 import { MailOutline } from '@mui/icons-material';
-import { getToken } from 'hooks/auth/storage';
 
+import { getToken } from 'hooks/auth/storage';
+import { formatValue } from 'utils/formatValue';
+
+import { ReleasedCreditProps } from './props';
 import * as Styled from './styles';
 
-const ReleasedCredit: React.FC = () => (
+const ReleasedCredit: React.FC<ReleasedCreditProps> = ({ data }) => (
   <Styled.DataCard>
     <MailOutline color="secondary" />
 
@@ -12,7 +15,8 @@ const ReleasedCredit: React.FC = () => (
 
     <Styled.ReleasedCredit>
       Temos uma ótima notícia!
-      <br />O seu crédito no valor de <strong>R$30.000,00</strong> foi{' '}
+      <br />O seu crédito no valor de{' '}
+      <strong>{data?.value ? formatValue(data.value) : '-'}</strong> foi{' '}
       <strong className="released">LIBERADO</strong>!
     </Styled.ReleasedCredit>
 
@@ -21,11 +25,16 @@ const ReleasedCredit: React.FC = () => (
     </Styled.ReleasedCredit>
 
     <Styled.BankData>
-      Banco : Santander
+      Banco: {data?.bankingReferences?.bankDescription || '-'}
       <br />
-      Agência : xxxx
+      Agência: {data?.bankingReferences?.agency || '-'}
       <br />
-      C/C: xxxxxx-x
+      C/C:{' '}
+      {data?.bankingReferences?.accountNumber && data?.bankingReferences?.digit
+        ? `${
+            data?.bankingReferences?.accountNumber
+          }-${data?.bankingReferences?.accountNumber.padStart(2, '0')}`
+        : '-'}
     </Styled.BankData>
   </Styled.DataCard>
 );

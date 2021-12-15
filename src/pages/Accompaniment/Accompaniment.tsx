@@ -17,6 +17,8 @@ import { DocumentationSent } from './components/DocumentationSent';
 import { ReleasedCredit } from './components/ReleasedCredit';
 import { AccompanimentServices } from './services/accompaniment.services';
 
+import { Quote } from './models/quote';
+
 import * as Styled from './styles';
 import * as MUIStyled from './muiStyles';
 
@@ -48,6 +50,7 @@ const Accompaniment: React.FC = () => {
   const [step, setStep] = useState(0);
   const [checking, setChecking] = useState(true);
   const history = useHistory();
+  const [quote, setQuote] = useState<Quote>();
 
   const STEP_NUMBER = useMemo(
     () => ({
@@ -73,10 +76,10 @@ const Accompaniment: React.FC = () => {
       4: null,
       5: null,
       6: null,
-      7: <ReleasedCredit />,
+      7: <ReleasedCredit data={quote} />,
       8: null,
     }),
-    [],
+    [quote],
   );
 
   const STEPS_ICON = useMemo(
@@ -89,6 +92,7 @@ const Accompaniment: React.FC = () => {
       5: <WatchLater color="warning" />,
       6: <Cancel color="error" />,
       7: <CheckCircle color="success" />,
+      8: <Cancel color="error" />,
       default: <CropSquare className="tranparent-icon" />,
     }),
     [],
@@ -103,17 +107,16 @@ const Accompaniment: React.FC = () => {
   useEffect(() => {
     AccompanimentServices.checkCreditUnderReview()
       .then(({ data }) => {
-        if (data?.data?.quotationStatusId >= 0) {
-          /* setActiveStep(STEP_NUMBER[data?.data?.quotationStatusId]); */
-          /* setStep(data?.data?.quotationStatusId); */
-          setActiveStep(5);
-          setStep(7);
+        setQuote(data?.data);
 
-          setChecking(false);
+        if (data?.data?.quotationStatusId >= 0) {
+          setActiveStep(STEP_NUMBER[data?.data?.quotationStatusId]);
+          setStep(data?.data?.quotationStatusId);
         } else {
           history.push(RoutingPath.LOGGEDAREA);
         }
       })
+      .finally(() => setChecking(false))
       .catch(() => history.push(RoutingPath.LOGGEDAREA));
   }, [history, STEP_NUMBER]);
 
