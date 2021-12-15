@@ -8,4 +8,5 @@ export const AccompanimentServices = {
   fetchBanks: (): Promise<AxiosResponse> => api.get(`banks`),
   approveLoan: (data: UserDataProps): Promise<AxiosResponse> =>
     api.post('/xxx', data),
+  fetchUserData: (): Promise<AxiosResponse> => api.get('/api/user-account'),
 };

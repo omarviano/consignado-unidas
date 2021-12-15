@@ -3,8 +3,8 @@ export interface UserDataProps {
   bankCode: number;
   agency: string;
   accountNumber: string;
-  digit: string;
-  profession: string;
+  digit: number;
+  professional: string;
   nationality: string;
   zipCode: string;
   publicPlace: string;
@@ -13,14 +13,16 @@ export interface UserDataProps {
   complement: string;
   city: string;
   state: string;
+  isBankAccountSet?: boolean;
+  isAddressSet?: boolean;
 }
 
 export interface FormProps {
-  name: string;
+  name?: string;
   nationality: string;
-  profession: string;
+  professional: string;
   bankCode: string;
-  number: string;
+  number: number;
   agency: number;
   accountNumber: number;
   digit: number;

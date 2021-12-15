@@ -37,19 +37,38 @@ const ApprovedLoan: FC = () => {
   const [cep, setCep] = useState<string>();
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string>();
-  const [formValues, setFormValues] = useState<any>();
+  const [userData, setUserData] = useState<FormProps>();
 
   const refFormik = useRef<FormikProps<FormProps> | null>();
 
   useEffect(() => {
-    setFormValues({
-      nationality: 'Brasileira',
-      ...refFormik?.current?.values,
-      ...address,
-    });
+    AccompanimentServices.fetchUserData().then(({ data }) => {
+      const response = data.data as UserDataProps;
 
+      setUserData({
+        nationality: response?.nationality,
+        professional: response?.professional,
+        number: response?.number,
+        complement: response?.complement,
+        bankCode: String(response?.bankCode),
+        agency: Number(response?.agency),
+        digit: response?.digit,
+        accountNumber: Number(response?.accountNumber),
+        cep: response?.zipCode,
+        logradouro: response?.publicPlace,
+        bairro: response?.district,
+        localidade: response?.city,
+        uf: response?.state,
+      });
+    });
+  }, []);
+
+  useEffect(() => {
+    if (userData?.cep) {
+      fetchCEP(userData.cep);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [address]);
+  }, [userData?.cep]);
 
   const handleInput = () => {
     const cepInput = document.getElementById('cep') as HTMLInputElement;
@@ -58,7 +77,7 @@ const ApprovedLoan: FC = () => {
 
   useEffect(() => {
     AccompanimentServices.checkCreditUnderReview().then(({ data }) => {
-      const response = data.data?.lastQuotation as LoanDataProps;
+      const response = data.data as LoanDataProps;
 
       setLoanData(response);
     });
@@ -68,12 +87,18 @@ const ApprovedLoan: FC = () => {
     const data = [
       {
         id: Math.random(),
-        valueFormatted: formatValue(Number(loanData?.value)),
-        effectiveCostPerYearFormatted: formatValue(
-          Number(loanData?.effectiveCostPerYear),
-        ),
-        feesPerMonthFormatted: `${loanData?.feesPerMonth.toFixed(2)}%`,
-        quantityFormatted: loanData?.quantity.toString().padStart(2, '0'),
+        valueFormatted: loanData?.installmentValue
+          ? formatValue(Number(loanData?.installmentValue))
+          : '-',
+        effectiveCostPerYearFormatted: loanData?.installmentEffectiveCostPerYear
+          ? formatValue(Number(loanData?.installmentEffectiveCostPerYear))
+          : '-',
+        feesPerMonthFormatted: loanData?.installmentFeesPerMonth
+          ? `${loanData?.installmentFeesPerMonth?.toFixed(2)}%`
+          : '-',
+        quantityFormatted: loanData?.installmentQuantity
+          ? loanData?.installmentQuantity?.toString().padStart(2, '0')
+          : '-',
       },
     ];
 
@@ -104,7 +129,7 @@ const ApprovedLoan: FC = () => {
 
       const dataSubmit: UserDataProps = {
         nationality: data?.nationality,
-        profession: data?.profession,
+        professional: data?.professional,
         number: data?.number,
         complement: data?.complement,
         bankCode: data?.bankCode,
@@ -174,19 +199,24 @@ const ApprovedLoan: FC = () => {
       <Styled.LoanInformation variant="h2">
         Olá {getToken()?.user.name}! Tudo bem? Temos uma ótima notícia! <br /> A
         sua propósta de empréstimo foi{' '}
-        <Styled.Approved>{loanData?.status && 'APROVADA'}</Styled.Approved>!
+        <Styled.Approved>
+          {loanData?.quotationStatus?.description || '-'}
+        </Styled.Approved>
+        !
       </Styled.LoanInformation>
 
       <Styled.TotalAmountOfLoanRequested variant="h2">
         Valor total do empréstimo solicitado:{' '}
         <Styled.TextBlack>
-          {formatValue(Number(loanData?.requestedAmount))}
+          {loanData?.value ? formatValue(Number(loanData?.value)) : 'R$ -'}
         </Styled.TextBlack>
       </Styled.TotalAmountOfLoanRequested>
 
       <Styled.InstallmentDueDate variant="h2">
         Data de Vencimento da 1ª parcela:{' '}
-        <Styled.TextBlack>{formatDate(loanData?.dueDate)}</Styled.TextBlack>
+        <Styled.TextBlack>
+          {loanData?.dueDate ? formatDate(loanData?.dueDate) : '-'}
+        </Styled.TextBlack>
       </Styled.InstallmentDueDate>
 
       <Styled.ProposalInformation variant="h6">
@@ -212,7 +242,11 @@ const ApprovedLoan: FC = () => {
 
       <Modal open={modalConfirmationOpen} onClose={toggleModalConfirmation}>
         <Formik
-          initialValues={formValues}
+          initialValues={{
+            ...userData,
+            ...refFormik.current?.values,
+            ...address,
+          }}
           onSubmit={handleSubmit}
           validationSchema={schema}
           enableReinitialize
@@ -242,7 +276,7 @@ const ApprovedLoan: FC = () => {
               </Grid>
               <Grid item xs={4}>
                 <Input
-                  name="profession"
+                  name="professional"
                   label="Profissão"
                   placeholder="Informe sua profissão"
                   variant="outlined"
