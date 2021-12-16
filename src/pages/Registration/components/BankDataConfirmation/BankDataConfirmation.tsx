@@ -43,7 +43,7 @@ const BankDataConfirmation: React.FC<BankDataConfirmationProps> = ({
         </Styled.BankDetailsConfirmationTitle>
         <Styled.BankDetailsConfirmationText>
           Caso você não queira preeencher os dados, não se preocupe, poderá
-          cadsatrar em um outro momento ok? Lembrando que para esta operação, só
+          cadastrar em um outro momento ok? Lembrando que para esta operação, só
           é possível utilizar conta corrente.
         </Styled.BankDetailsConfirmationText>
 

@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { ArrowRightAlt } from '@mui/icons-material';
 import { Grid } from '@mui/material';
+import { FormikProps } from 'formik';
 
 import useViaCEP from 'hooks/viaCEP';
 
@@ -12,6 +13,7 @@ import { RegistrationServices } from 'pages/Registration/services/registration.s
 import { Bank } from 'pages/Registration/models/bank';
 
 import ufs from 'constants/ufs';
+import { Document } from 'utils/document';
 import { schema } from './schema';
 
 import * as Styled from './styles';
@@ -26,10 +28,26 @@ const BankDataForm: React.FC<BankDataFormProps> = ({
   const [banks, setBanks] = useState<{ name: string; value: string }[]>([]);
   const [cep, setCep] = useState<string>();
   const { fetchCEP, notFound, address } = useViaCEP();
+  const formRef = useRef<FormikProps<any>>(null);
+  const [formValues, setFormValues] = useState({});
 
   const handleInput = () => {
-    const cepInput = document.getElementById('cep') as HTMLInputElement;
+    const cepInput = document.getElementById('zipCode') as HTMLInputElement;
+
     setCep(cepInput?.value);
+  };
+
+  const handleSubmit = data => {
+    const { zipCode, logradouro, bairro, localidade, uf } = data;
+
+    onSubmit({
+      ...data,
+      zipCode: Document.removeMask(zipCode),
+      publicPlace: logradouro,
+      district: bairro,
+      city: localidade,
+      state: uf,
+    });
   };
 
   useEffect(() => {
@@ -50,12 +68,20 @@ const BankDataForm: React.FC<BankDataFormProps> = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cep]);
 
+  useEffect(() => {
+    setFormValues({
+      nationality: 'Brasileira',
+      ...formRef.current?.values,
+    });
+  }, [address]);
+
   return (
     <Formik
-      initialValues={{ nationality: 'Brasileira', ...address }}
+      initialValues={{ ...formValues, ...address }}
       validationSchema={schema}
-      onSubmit={onSubmit}
+      onSubmit={handleSubmit}
       enableReinitialize
+      innerRef={formRef}
     >
       <Styled.BankDataContainer>
         <Styled.Hello>Olá {username}!</Styled.Hello>
@@ -67,7 +93,7 @@ const BankDataForm: React.FC<BankDataFormProps> = ({
 
         <Styled.DataContainer>
           <Input
-            name="profession"
+            name="professional"
             label="Profissão (Opcional)"
             placeholder="Informe sua profissão"
             variant="outlined"
@@ -81,10 +107,10 @@ const BankDataForm: React.FC<BankDataFormProps> = ({
           />
 
           <Input
-            id="cep"
-            name="cep"
+            id="zipCode"
+            name="zipCode"
             label="CEP (Opcional)"
-            placeholder="_____--___"
+            placeholder="_____-___"
             mask="99999-999"
             variant="outlined"
             onKeyUp={handleInput}
@@ -126,7 +152,7 @@ const BankDataForm: React.FC<BankDataFormProps> = ({
 
           <Input
             name="complement"
-            label="Complemento"
+            label="Complemento (Opcional)"
             placeholder="Informe o complemento"
             variant="outlined"
           />
@@ -156,7 +182,7 @@ const BankDataForm: React.FC<BankDataFormProps> = ({
         </Styled.Title>
         <Styled.BankDetailsConfirmationText>
           Caso você não queira preeencher os dados, não se preocupe, poderá
-          cadsatrar em um outro momento ok? Lembrando que para esta operação,{' '}
+          cadastrar em um outro momento ok? Lembrando que para esta operação,{' '}
           <b>só é possível utilizar conta corrente e de sua titularidade.</b>.
         </Styled.BankDetailsConfirmationText>
 

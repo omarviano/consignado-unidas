@@ -10,6 +10,7 @@ import { getToken } from 'hooks/auth/storage';
 import useModal from 'hooks/modal';
 import { SimulateLoanProvider, useSimulateLoan } from 'hooks/simulate';
 
+import { QuotationStatus } from 'enums/quote';
 import { DataSimulateProps } from 'interface/simulate';
 
 import { withContext } from 'utils/withContext';
@@ -137,12 +138,20 @@ const SimulateLoan: FC = withContext(
           data: { data },
         } = await SimulateLoanServices.checkCreditUnderReview();
 
-        if (data === null) toggleModalConfirm();
-        else toggleModalError();
+        if (
+          data?.quotationStatusId === QuotationStatus.RecusadoPeloUsuario ||
+          data?.quotationStatusId === QuotationStatus.CreditoLiberado ||
+          data?.quotationStatusId ===
+            QuotationStatus.EmprestimoReprovadoPeloBanco
+        ) {
+          toggleModalConfirm();
+        } else {
+          toggleModalError();
+        }
       } catch (error) {
         const { response } = error as AxiosError;
 
-        if (response && response.status < 500) toggleModalError();
+        if (response && response.status === 404) toggleModalError();
       }
     };
 
