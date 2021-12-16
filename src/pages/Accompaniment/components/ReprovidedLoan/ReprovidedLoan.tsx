@@ -12,7 +12,7 @@ const ReprovidedLoan: FC = () => {
     <Styled.Container>
       <Styled.ReprovidedLoan variant="h2">
         Olá {getToken()?.user.name}! Tudo bem? Temos uma triste notícia. <br />{' '}
-        A sua propósta de empréstimo foi{' '}
+        A sua proposta de empréstimo foi{' '}
         <Styled.Reprovided>REPROVADA</Styled.Reprovided>!
       </Styled.ReprovidedLoan>
 
