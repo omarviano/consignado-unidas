@@ -90,7 +90,7 @@ const Accompaniment: React.FC = () => {
         <AwaitingSubmissionOfDocumentation />
       ),
       [QuotationStatus.Documentacao]: <DocumentationSent />,
-      [QuotationStatus.AssinaturaContratoPendente]: null,
+      [QuotationStatus.AssinaturaContratoPendente]: <ContractSigning />,
       [QuotationStatus.AssinaturaContrato]: null,
       [QuotationStatus.CreditoLiberado]: <ReleasedCredit data={quote} />,
       [QuotationStatus.EmprestimoReprovadoPeloBanco]: <ReprovidedLoan />,
