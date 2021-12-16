@@ -3,8 +3,8 @@ import { Card as MUICard } from '@mui/material';
 import TypographyStyles from '@mui/material/Typography';
 import { Button } from 'components/Buttons/Button';
 import BoxStyles from '@mui/material/Box';
-import CheckCircleStyles from '@mui/icons-material/CheckCircle';
 import GridStyles from '@mui/material/Grid';
+import { SubmitButton } from 'components/Buttons/SubmitButton';
 
 export const Card = styled(MUICard)`
   padding: 36px 25px 0 33px;
@@ -96,7 +96,7 @@ export const DivSelect = styled.div`
   margin-top: 4px;
 `;
 
-export const ButtonToSend = styled(Button)`
+export const ButtonToSend = styled(SubmitButton)`
   text-transform: capitalize;
   width: 205px;
   background-color: #005b9e;

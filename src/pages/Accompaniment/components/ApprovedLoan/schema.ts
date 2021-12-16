@@ -2,7 +2,7 @@ import * as Yup from 'yup';
 
 const schema = Yup.object().shape({
   nationality: Yup.string().required('Informe a nacionalidade'),
-  profession: Yup.string().required('Informe a profissão'),
+  professional: Yup.string().required('Informe a profissão'),
   cep: Yup.string().required('Informe o cep'),
   logradouro: Yup.string().required('Informe o endereço'),
   number: Yup.number().required('Informe o número'),
