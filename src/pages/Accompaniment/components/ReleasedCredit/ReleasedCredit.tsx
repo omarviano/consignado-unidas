@@ -33,7 +33,7 @@ const ReleasedCredit: React.FC<ReleasedCreditProps> = ({ data }) => (
       {data?.bankingReferences?.accountNumber && data?.bankingReferences?.digit
         ? `${
             data?.bankingReferences?.accountNumber
-          }-${data?.bankingReferences?.accountNumber.padStart(2, '0')}`
+          }-${data?.bankingReferences?.digit.padStart(2, '0')}`
         : '-'}
     </Styled.BankData>
   </Styled.DataCard>
