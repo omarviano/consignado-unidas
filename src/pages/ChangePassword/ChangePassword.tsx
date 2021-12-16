@@ -78,7 +78,7 @@ const ChangePassword: React.FC = () => {
           <Styled.Box>
             <Styled.Title>Alterar minha senha</Styled.Title>
             <Styled.Text>
-              Olá João! O seu email cadastrado é o{' '}
+              Olá {getToken()?.user.name}! O seu email cadastrado é o{' '}
               <b>{getToken()?.user.email}</b>
             </Styled.Text>
             <Formik
