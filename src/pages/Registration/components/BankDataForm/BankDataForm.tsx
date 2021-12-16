@@ -152,7 +152,7 @@ const BankDataForm: React.FC<BankDataFormProps> = ({
 
           <Input
             name="complement"
-            label="Complemento"
+            label="Complemento (Opcional)"
             placeholder="Informe o complemento"
             variant="outlined"
           />
@@ -182,7 +182,7 @@ const BankDataForm: React.FC<BankDataFormProps> = ({
         </Styled.Title>
         <Styled.BankDetailsConfirmationText>
           Caso você não queira preeencher os dados, não se preocupe, poderá
-          cadsatrar em um outro momento ok? Lembrando que para esta operação,{' '}
+          cadastrar em um outro momento ok? Lembrando que para esta operação,{' '}
           <b>só é possível utilizar conta corrente e de sua titularidade.</b>.
         </Styled.BankDetailsConfirmationText>
 
