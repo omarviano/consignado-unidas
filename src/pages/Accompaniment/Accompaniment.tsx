@@ -85,7 +85,7 @@ const Accompaniment: React.FC = () => {
     () => ({
       [QuotationStatus.Analise]: <RequestUnderAnalysis />,
       [QuotationStatus.Aprovado]: <ApprovedLoan />,
-      [QuotationStatus.RecusadoPeloUsuario]: <ReprovidedLoan />,
+      [QuotationStatus.RecusadoPeloUsuario]: null,
       [QuotationStatus.DocumentacaoPendente]: (
         <AwaitingSubmissionOfDocumentation />
       ),
@@ -120,6 +120,20 @@ const Accompaniment: React.FC = () => {
     if (activeStep === index) return STEPS_ICON[step];
 
     return STEPS_ICON.default;
+  };
+
+  const getLabel = (label: string, index: number) => {
+    if (index === 3) {
+      const labels = {
+        [QuotationStatus.Aprovado]: 'Empréstimo Aprovado',
+        [QuotationStatus.EmprestimoReprovadoPeloBanco]: 'Empréstimo Reprovado',
+        default: label,
+      };
+
+      return labels[quote?.quotationStatusId || 'default'];
+    }
+
+    return label;
   };
 
   useEffect(() => {
@@ -165,7 +179,7 @@ const Accompaniment: React.FC = () => {
                       <Styled.StepLabel StepIconComponent={qontoStepIcon}>
                         <Styled.StepLabelContent active={activeStep === index}>
                           {getIcon(index)}
-                          {label}
+                          {getLabel(label, index)}
                         </Styled.StepLabelContent>
                       </Styled.StepLabel>
                     </Step>
