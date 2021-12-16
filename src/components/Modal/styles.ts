@@ -16,6 +16,7 @@ export const Modal = styled(MaterialModal)`
 export const ModalContent = styled(Box)`
   position: relative;
   background: #fff;
+  border-radius: 4px;
 `;
 
 export const CloseButton = styled.button`
