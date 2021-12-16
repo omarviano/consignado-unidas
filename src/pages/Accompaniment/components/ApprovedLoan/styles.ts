@@ -5,6 +5,7 @@ import { Button } from 'components/Buttons/Button';
 import BoxStyles from '@mui/material/Box';
 import GridStyles from '@mui/material/Grid';
 import { SubmitButton } from 'components/Buttons/SubmitButton';
+import CheckCircleStyles from '@mui/icons-material/CheckCircle';
 
 export const Card = styled(MUICard)`
   padding: 36px 25px 0 33px;
