@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useField } from 'formik';
 import MUIAutocomplete, {
   createFilterOptions,
@@ -15,6 +15,8 @@ const Autocomplete: React.FC<AutocompleteProps> = React.memo(
       name,
       value,
     });
+
+    const [valueInput, setValueInput] = useState<OptionType>();
 
     const filterOptions = createFilterOptions({
       matchFrom: 'any',
@@ -35,6 +37,11 @@ const Autocomplete: React.FC<AutocompleteProps> = React.memo(
       [helpers],
     );
 
+    useEffect(() => {
+      const valueResult = options.find(option => option.value === field.value);
+      setValueInput(valueResult);
+    }, [field.value, options]);
+
     return (
       <>
         <Styled.Label isError={!!meta.error && meta.touched}>
@@ -46,6 +53,12 @@ const Autocomplete: React.FC<AutocompleteProps> = React.memo(
           getOptionLabel={(option: OptionType) => option.name}
           renderOption={renderOption}
           onChange={handleChange}
+          value={
+            valueInput || {
+              name: '',
+              value: '',
+            }
+          }
           renderInput={params => (
             <Styled.TextField
               {...params}
