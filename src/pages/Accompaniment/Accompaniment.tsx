@@ -1,13 +1,23 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { Layout } from 'components/Layout';
 import { RouteAccess } from 'components/RouteAccess';
 import { Step, StepIconProps, Stepper, Box, Skeleton } from '@mui/material';
-import { CheckCircle, CropSquare } from '@mui/icons-material';
+import {
+  CheckCircle,
+  CropSquare,
+  WatchLater,
+  Cancel,
+} from '@mui/icons-material';
 import { useHistory } from 'react-router-dom';
 
 import { RoutingPath } from 'utils/routing';
+import { QuotationStatus } from 'enums/quote';
 import { RequestUnderAnalysis } from './components/RequestUnderAnalysis';
+import { AwaitingSubmissionOfDocumentation } from './components/AwaitingSubmissionOfDocumentation';
+import { DocumentationSent } from './components/DocumentationSent';
 import { AccompanimentServices } from './services/accompaniment.services';
+import { ApprovedLoan } from './components/ApprovedLoan';
+import { ReprovidedLoan } from './components/ReprovidedLoan';
 
 import * as Styled from './styles';
 import * as MUIStyled from './muiStyles';
@@ -21,7 +31,16 @@ const steps = [
   'Crédito Liberado',
 ];
 
-function QontoStepIcon(props: StepIconProps) {
+enum StepsEnum {
+  'Simulacao' = 0,
+  'AnaliseCredito' = 1,
+  'Documentacao' = 2,
+  'Emprestimo' = 3,
+  'AssinaturaContrato' = 4,
+  'CerditoLiberado' = 5,
+}
+
+const qontoStepIcon = (props: StepIconProps) => {
   const { active, className, completed } = props;
 
   return (
@@ -33,29 +52,85 @@ function QontoStepIcon(props: StepIconProps) {
       )}
     </MUIStyled.QontoStepIconRoot>
   );
-}
+};
 
 const Accompaniment: React.FC = () => {
-  const [activeStep] = useState(1);
+  const [activeStep, setActiveStep] = useState(0);
+  const [step, setStep] = useState(0);
   const [checking, setChecking] = useState(true);
   const history = useHistory();
 
-  const getIcon = (index: number) => {
-    if (index === 1) return <CheckCircle color="success" />;
+  const STEP_NUMBER = useMemo(
+    () => ({
+      [QuotationStatus.Analise]: StepsEnum.AnaliseCredito,
+      [QuotationStatus.Documentacao]: StepsEnum.Documentacao,
+      [QuotationStatus.DocumentacaoPendente]: StepsEnum.Documentacao,
+      [QuotationStatus.Aprovado]: StepsEnum.Emprestimo,
+      [QuotationStatus.RecusadoPeloUsuario]: StepsEnum.Emprestimo,
+      [QuotationStatus.AssinaturaContrato]: StepsEnum.AssinaturaContrato,
+      [QuotationStatus.AssinaturaContratoPendente]:
+        StepsEnum.AssinaturaContrato,
+      [QuotationStatus.CreditoLiberado]: StepsEnum.CerditoLiberado,
+      [QuotationStatus.EmprestimoReprovadoPeloBanco]: StepsEnum.Emprestimo,
+    }),
+    [],
+  );
 
-    return <CropSquare className="tranparent-icon" />;
+  const STEPS_COMPONENTS = useMemo(
+    () => ({
+      [QuotationStatus.Analise]: <RequestUnderAnalysis />,
+      [QuotationStatus.Aprovado]: <ApprovedLoan />,
+      [QuotationStatus.RecusadoPeloUsuario]: <ReprovidedLoan />,
+      [QuotationStatus.DocumentacaoPendente]: (
+        <AwaitingSubmissionOfDocumentation />
+      ),
+      [QuotationStatus.Documentacao]: <DocumentationSent />,
+      [QuotationStatus.AssinaturaContratoPendente]: null,
+      [QuotationStatus.AssinaturaContrato]: null,
+      [QuotationStatus.CreditoLiberado]: null,
+      [QuotationStatus.EmprestimoReprovadoPeloBanco]: <ReprovidedLoan />,
+      default: null,
+    }),
+    [],
+  );
+  const STEPS_ICON = useMemo(
+    () => ({
+      [QuotationStatus.Analise]: <CheckCircle color="success" />,
+      [QuotationStatus.Aprovado]: <CheckCircle color="success" />,
+      [QuotationStatus.RecusadoPeloUsuario]: <Cancel color="error" />,
+      [QuotationStatus.DocumentacaoPendente]: <WatchLater color="warning" />,
+      [QuotationStatus.Documentacao]: <CheckCircle color="success" />,
+      [QuotationStatus.AssinaturaContratoPendente]: (
+        <WatchLater color="warning" />
+      ),
+      [QuotationStatus.AssinaturaContrato]: <CheckCircle color="success" />,
+      [QuotationStatus.CreditoLiberado]: <CheckCircle color="success" />,
+      [QuotationStatus.EmprestimoReprovadoPeloBanco]: <Cancel color="error" />,
+      default: <CropSquare className="tranparent-icon" />,
+    }),
+    [],
+  );
+
+  const getIcon = (index: number) => {
+    if (activeStep === index) return STEPS_ICON[step];
+
+    return STEPS_ICON.default;
   };
 
   useEffect(() => {
     AccompanimentServices.checkCreditUnderReview()
       .then(({ data }) => {
-        if (data?.data?.quotationStatusId !== 0)
-          history.push(RoutingPath.LOGGEDAREA);
+        if (data?.data?.quotationStatusId >= 0) {
+          setActiveStep(STEP_NUMBER[data?.data?.quotationStatusId]);
+          setStep(data?.data?.quotationStatusId);
 
-        setChecking(false);
+          setChecking(false);
+        } else {
+          history.push(RoutingPath.LOGGEDAREA);
+        }
       })
       .catch(() => history.push(RoutingPath.LOGGEDAREA));
-  }, [history]);
+  }, [history, STEP_NUMBER]);
 
   return (
     <RouteAccess typesOfAccess="auth">
@@ -79,7 +154,7 @@ const Accompaniment: React.FC = () => {
                 >
                   {steps.map((label, index) => (
                     <Step key={label}>
-                      <Styled.StepLabel StepIconComponent={QontoStepIcon}>
+                      <Styled.StepLabel StepIconComponent={qontoStepIcon}>
                         <Styled.StepLabelContent active={activeStep === index}>
                           {getIcon(index)}
                           {label}
@@ -89,7 +164,8 @@ const Accompaniment: React.FC = () => {
                   ))}
                 </Stepper>
               </Styled.StepperCard>
-              {activeStep === 1 && <RequestUnderAnalysis />}
+
+              {STEPS_COMPONENTS[step]}
             </>
           )}
         </Styled.Container>
