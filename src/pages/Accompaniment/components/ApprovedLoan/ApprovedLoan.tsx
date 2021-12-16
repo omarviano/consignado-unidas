@@ -46,6 +46,7 @@ const ApprovedLoan: FC = () => {
       const response = data.data as UserDataProps;
 
       setUserData({
+        name: response?.name,
         nationality: response?.nationality,
         professional: response?.professional,
         number: Number(response?.number),

@@ -11,5 +11,5 @@ export const AccompanimentServices = {
     quotationId: number,
   ): Promise<AxiosResponse> =>
     api.patch(`/financial/quotations/${quotationId}/accept`, data),
-  fetchUserData: (): Promise<AxiosResponse> => api.get('/api/user-account'),
+  fetchUserData: (): Promise<AxiosResponse> => api.get('/user-account'),
 };
