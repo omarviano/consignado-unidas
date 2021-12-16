@@ -15,10 +15,13 @@ import { QuotationStatus } from 'enums/quote';
 import { RequestUnderAnalysis } from './components/RequestUnderAnalysis';
 import { AwaitingSubmissionOfDocumentation } from './components/AwaitingSubmissionOfDocumentation';
 import { DocumentationSent } from './components/DocumentationSent';
+import { ReleasedCredit } from './components/ReleasedCredit';
 import { AccompanimentServices } from './services/accompaniment.services';
 import { ApprovedLoan } from './components/ApprovedLoan';
 import { ReprovidedLoan } from './components/ReprovidedLoan';
 import { ContractSigning } from './components/ContractSigning';
+
+import { Quote } from './models/quote';
 
 import * as Styled from './styles';
 import * as MUIStyled from './muiStyles';
@@ -60,6 +63,7 @@ const Accompaniment: React.FC = () => {
   const [step, setStep] = useState(0);
   const [checking, setChecking] = useState(true);
   const history = useHistory();
+  const [quote, setQuote] = useState<Quote>();
 
   const STEP_NUMBER = useMemo(
     () => ({
@@ -88,11 +92,11 @@ const Accompaniment: React.FC = () => {
       [QuotationStatus.Documentacao]: <DocumentationSent />,
       [QuotationStatus.AssinaturaContratoPendente]: null,
       [QuotationStatus.AssinaturaContrato]: null,
-      [QuotationStatus.CreditoLiberado]: null,
+      [QuotationStatus.CreditoLiberado]: <ReleasedCredit data={quote} />,
       [QuotationStatus.EmprestimoReprovadoPeloBanco]: <ReprovidedLoan />,
       default: null,
     }),
-    [],
+    [quote],
   );
   const STEPS_ICON = useMemo(
     () => ({
@@ -121,6 +125,8 @@ const Accompaniment: React.FC = () => {
   useEffect(() => {
     AccompanimentServices.checkCreditUnderReview()
       .then(({ data }) => {
+        setQuote(data?.data);
+
         if (data?.data?.quotationStatusId >= 0) {
           setActiveStep(STEP_NUMBER[data?.data?.quotationStatusId]);
           setStep(data?.data?.quotationStatusId);
@@ -130,6 +136,7 @@ const Accompaniment: React.FC = () => {
           history.push(RoutingPath.LOGGEDAREA);
         }
       })
+      .finally(() => setChecking(false))
       .catch(() => history.push(RoutingPath.LOGGEDAREA));
   }, [history, STEP_NUMBER]);
 
