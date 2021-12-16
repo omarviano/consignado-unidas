@@ -161,8 +161,6 @@ const SimulateLoan: FC = withContext(
       try {
         setRequestingLoan(true);
 
-        await SimulateLoanServices.checkCreditUnderReview();
-
         await SimulateLoanServices.simulate({
           value: dataSimulateLoan.value,
           simulationId: dataSimulateLoan.id,
