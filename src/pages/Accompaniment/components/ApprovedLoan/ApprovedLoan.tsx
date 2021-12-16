@@ -230,7 +230,7 @@ const ApprovedLoan: FC = () => {
     <Styled.Card>
       <Styled.LoanInformation variant="h2">
         Olá {getToken()?.user.name}! Tudo bem? Temos uma ótima notícia! <br /> A
-        sua propósta de empréstimo foi{' '}
+        sua proposta de empréstimo foi{' '}
         <Styled.Approved>
           {loanData?.quotationStatus?.description || '-'}
         </Styled.Approved>
