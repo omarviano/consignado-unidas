@@ -71,10 +71,11 @@ const CreditUnderAnalysis: React.FC = () => {
     });
   }, []);
 
-  return quote && quote.quotationStatusId >= 0 && !quote.disapprovedCheck ? (
-    <Styled.Container
-      onClick={() => goToAccompaniment(quote.quotationStatusId)}
-    >
+  return quote &&
+    quote.quotationStatusId >= 0 &&
+    !quote.disapprovedCheck &&
+    quote.quotationStatusId !== QuotationStatus.RecusadoPeloUsuario ? (
+    <Styled.Container onClick={() => goToAccompaniment(quote.id)}>
       <Styled.PreTitle>Status do seu contrato atual</Styled.PreTitle>
       {STATUS[quote.quotationStatusId ?? 'default']}
       <Styled.Text>Sua situação está sendo analisada</Styled.Text>

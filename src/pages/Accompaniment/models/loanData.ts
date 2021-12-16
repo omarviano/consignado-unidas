@@ -4,6 +4,7 @@ interface QuotationStatusProps {
 }
 
 export interface LoanDataProps {
+  id: number;
   quotationStatus: QuotationStatusProps;
   value: number;
   dueDate: any;

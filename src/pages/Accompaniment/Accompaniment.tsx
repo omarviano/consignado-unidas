@@ -18,6 +18,7 @@ import { DocumentationSent } from './components/DocumentationSent';
 import { AccompanimentServices } from './services/accompaniment.services';
 import { ApprovedLoan } from './components/ApprovedLoan';
 import { ReprovidedLoan } from './components/ReprovidedLoan';
+import { ContractSigning } from './components/ContractSigning';
 
 import * as Styled from './styles';
 import * as MUIStyled from './muiStyles';
