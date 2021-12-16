@@ -1,18 +1,18 @@
 import styled from 'styled-components';
 import TypographyStyles from '@mui/material/Typography';
-import { Link } from 'react-router-dom';
 
 interface TitleProps {
   releasedCredit?: boolean;
 }
 
-export const Container = styled(Link)`
+export const Container = styled.div`
   max-width: 329px;
   margin: 107px 0 0 31px;
   padding: 24px 30px;
   background: #fff;
   box-shadow: 0px 2px 6px rgba(46, 43, 80, 0.25);
   border-radius: 4px;
+  cursor: pointer;
 
   &:hover,
   &:focus {
