@@ -11,11 +11,14 @@ import {
 import { useHistory } from 'react-router-dom';
 
 import { RoutingPath } from 'utils/routing';
+import { QuotationStatus } from 'enums/quote';
 import { RequestUnderAnalysis } from './components/RequestUnderAnalysis';
 import { AwaitingSubmissionOfDocumentation } from './components/AwaitingSubmissionOfDocumentation';
 import { DocumentationSent } from './components/DocumentationSent';
 import { ReleasedCredit } from './components/ReleasedCredit';
 import { AccompanimentServices } from './services/accompaniment.services';
+import { ApprovedLoan } from './components/ApprovedLoan';
+import { ReprovidedLoan } from './components/ReprovidedLoan';
 
 import { Quote } from './models/quote';
 
@@ -30,6 +33,15 @@ const steps = [
   'Assinatura de Contrato',
   'Crédito Liberado',
 ];
+
+enum StepsEnum {
+  'Simulacao' = 0,
+  'AnaliseCredito' = 1,
+  'Documentacao' = 2,
+  'Emprestimo' = 3,
+  'AssinaturaContrato' = 4,
+  'CerditoLiberado' = 5,
+}
 
 const qontoStepIcon = (props: StepIconProps) => {
   const { active, className, completed } = props;
@@ -54,45 +66,50 @@ const Accompaniment: React.FC = () => {
 
   const STEP_NUMBER = useMemo(
     () => ({
-      0: 1,
-      1: 2,
-      2: 2,
-      3: 3,
-      4: 3,
-      5: 4,
-      6: 4,
-      7: 5,
-      8: 4,
+      [QuotationStatus.Analise]: StepsEnum.AnaliseCredito,
+      [QuotationStatus.Documentacao]: StepsEnum.Documentacao,
+      [QuotationStatus.DocumentacaoPendente]: StepsEnum.Documentacao,
+      [QuotationStatus.Aprovado]: StepsEnum.Emprestimo,
+      [QuotationStatus.RecusadoPeloUsuario]: StepsEnum.Emprestimo,
+      [QuotationStatus.AssinaturaContrato]: StepsEnum.AssinaturaContrato,
+      [QuotationStatus.AssinaturaContratoPendente]:
+        StepsEnum.AssinaturaContrato,
+      [QuotationStatus.CreditoLiberado]: StepsEnum.CerditoLiberado,
+      [QuotationStatus.EmprestimoReprovadoPeloBanco]: StepsEnum.Emprestimo,
     }),
     [],
   );
 
   const STEPS_COMPONENTS = useMemo(
     () => ({
-      0: <RequestUnderAnalysis />,
-      1: <AwaitingSubmissionOfDocumentation />,
-      2: <DocumentationSent />,
-      3: null,
-      4: null,
-      5: null,
-      6: null,
-      7: <ReleasedCredit data={quote} />,
-      8: null,
+      [QuotationStatus.Analise]: <RequestUnderAnalysis />,
+      [QuotationStatus.Aprovado]: <ApprovedLoan />,
+      [QuotationStatus.RecusadoPeloUsuario]: <ReprovidedLoan />,
+      [QuotationStatus.DocumentacaoPendente]: (
+        <AwaitingSubmissionOfDocumentation />
+      ),
+      [QuotationStatus.Documentacao]: <DocumentationSent />,
+      [QuotationStatus.AssinaturaContratoPendente]: null,
+      [QuotationStatus.AssinaturaContrato]: null,
+      [QuotationStatus.CreditoLiberado]: <ReleasedCredit data={quote} />,
+      [QuotationStatus.EmprestimoReprovadoPeloBanco]: <ReprovidedLoan />,
+      default: null,
     }),
     [quote],
   );
-
   const STEPS_ICON = useMemo(
     () => ({
-      0: <CheckCircle color="success" />,
-      1: <WatchLater color="warning" />,
-      2: <CheckCircle color="success" />,
-      3: <CheckCircle color="success" />,
-      4: <Cancel color="error" />,
-      5: <WatchLater color="warning" />,
-      6: <Cancel color="error" />,
-      7: <CheckCircle color="success" />,
-      8: <Cancel color="error" />,
+      [QuotationStatus.Analise]: <CheckCircle color="success" />,
+      [QuotationStatus.Aprovado]: <CheckCircle color="success" />,
+      [QuotationStatus.RecusadoPeloUsuario]: <Cancel color="error" />,
+      [QuotationStatus.DocumentacaoPendente]: <WatchLater color="warning" />,
+      [QuotationStatus.Documentacao]: <CheckCircle color="success" />,
+      [QuotationStatus.AssinaturaContratoPendente]: (
+        <WatchLater color="warning" />
+      ),
+      [QuotationStatus.AssinaturaContrato]: <CheckCircle color="success" />,
+      [QuotationStatus.CreditoLiberado]: <CheckCircle color="success" />,
+      [QuotationStatus.EmprestimoReprovadoPeloBanco]: <Cancel color="error" />,
       default: <CropSquare className="tranparent-icon" />,
     }),
     [],
@@ -112,6 +129,8 @@ const Accompaniment: React.FC = () => {
         if (data?.data?.quotationStatusId >= 0) {
           setActiveStep(STEP_NUMBER[data?.data?.quotationStatusId]);
           setStep(data?.data?.quotationStatusId);
+
+          setChecking(false);
         } else {
           history.push(RoutingPath.LOGGEDAREA);
         }
