@@ -3,12 +3,13 @@ export interface UserDataProps {
   bankCode: number;
   agency: string;
   accountNumber: string;
-  digit: number;
+  accountType?: string;
+  digit: string;
   professional: string;
   nationality: string;
   zipCode: string;
   publicPlace: string;
-  number: number;
+  number: string;
   district: string;
   complement: string;
   city: string;

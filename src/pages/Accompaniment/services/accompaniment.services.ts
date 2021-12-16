@@ -6,7 +6,10 @@ export const AccompanimentServices = {
   checkCreditUnderReview: (): Promise<AxiosResponse> =>
     api.get(`/financial/quote`),
   fetchBanks: (): Promise<AxiosResponse> => api.get(`banks`),
-  approveLoan: (data: UserDataProps): Promise<AxiosResponse> =>
-    api.post('/xxx', data),
+  approveLoan: (
+    data: UserDataProps,
+    quotationId: number,
+  ): Promise<AxiosResponse> =>
+    api.patch(`/financial/quotations/${quotationId}/accept`, data),
   fetchUserData: (): Promise<AxiosResponse> => api.get('/api/user-account'),
 };

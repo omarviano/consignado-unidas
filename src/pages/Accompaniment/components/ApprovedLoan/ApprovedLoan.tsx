@@ -48,11 +48,11 @@ const ApprovedLoan: FC = () => {
       setUserData({
         nationality: response?.nationality,
         professional: response?.professional,
-        number: response?.number,
+        number: Number(response?.number),
         complement: response?.complement,
         bankCode: String(response?.bankCode),
         agency: Number(response?.agency),
-        digit: response?.digit,
+        digit: Number(response?.digit),
         accountNumber: Number(response?.accountNumber),
         cep: response?.zipCode,
         logradouro: response?.publicPlace,
@@ -136,6 +136,7 @@ const ApprovedLoan: FC = () => {
         agency: data?.agency,
         digit: data?.digit,
         accountNumber: data?.accountNumber,
+        accountType: 'Conta corrente',
         zipCode: `${Document.removeMask(data?.cep)}`,
         publicPlace: data?.logradouro,
         district: data?.bairro,
@@ -143,11 +144,12 @@ const ApprovedLoan: FC = () => {
         state: data?.uf,
       };
 
-      await AccompanimentServices.approveLoan(dataSubmit);
+      await AccompanimentServices.approveLoan(dataSubmit, Number(loanData?.id));
 
       toggleModalSuccess();
     } catch (error) {
       setLoading(true);
+
       const { response } = error as AxiosError;
       setErrorMessage(response?.data?.message || 'ERRO');
       toggleModalError();
@@ -418,8 +420,12 @@ const ApprovedLoan: FC = () => {
                 />
               </Grid>
             </Styled.GridContainer>
-            <Styled.ButtonToSend type="submit" variant="contained">
-              Enviar
+            <Styled.ButtonToSend
+              type="submit"
+              variant="contained"
+              disabled={loading}
+            >
+              {loading ? 'Enviando...' : 'Enviar'}
             </Styled.ButtonToSend>
           </Styled.ContainerModal>
         </Formik>
