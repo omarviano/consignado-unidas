@@ -5,7 +5,5 @@ export const LoggedAreaServices = {
   checkCreditUnderReview: (): Promise<AxiosResponse> =>
     api.get(`/financial/quote`),
   disapprovedcheck: (quotationId: number): Promise<AxiosResponse> =>
-    api.put(`/financial/quote/disapprovedcheck`, null, {
-      params: { quotationId },
-    }),
+    api.put(`/financial/quotations/${quotationId}/disapproved-check`),
 };
