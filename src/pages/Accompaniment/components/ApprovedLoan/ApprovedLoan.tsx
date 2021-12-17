@@ -98,7 +98,7 @@ const ApprovedLoan: FC = () => {
           ? formatValue(Number(loanData?.installmentValue))
           : '-',
         effectiveCostPerYearFormatted: loanData?.installmentEffectiveCostPerYear
-          ? formatValue(Number(loanData?.installmentEffectiveCostPerYear))
+          ? `${loanData?.installmentEffectiveCostPerYear}%`
           : '-',
         feesPerMonthFormatted: loanData?.installmentFeesPerMonth
           ? `${loanData?.installmentFeesPerMonth?.toFixed(2)}%`
