@@ -5,6 +5,11 @@ import styled from 'styled-components';
 export const BankDataContainer = styled.div`
   margin: 0 auto 32px;
   max-width: 450px;
+
+  .MuiFormControl-root + .MuiFormControl-root,
+  div + .MuiFormControl-root {
+    margin-top: 15px;
+  }
 `;
 
 export const BankDataInputs = styled.div`
@@ -19,11 +24,13 @@ export const Div = styled.div`
   margin-top: 24px;
 `;
 
+export const DataContainer = styled.div``;
+
 export const Hello = styled.div`
   font-size: 16px;
   line-height: 26px;
   letter-spacing: 0.2px;
-  color: #646464;
+  color: ${({ theme }) => theme.palette.grey[400]};
 `;
 
 export const Email = styled.div`
@@ -33,11 +40,11 @@ export const Email = styled.div`
   color: ${({ theme }) => theme.palette.grey[100]};
 `;
 
-export const BankDetailsConfirmationTitle = styled.div`
+export const Title = styled.div`
   font-size: 18px;
   line-height: 26px;
   letter-spacing: 0.2px;
-  color: #646464;
+  color: ${({ theme }) => theme.palette.grey[400]};
   margin: 32px 0;
   max-width: 450px;
 `;
