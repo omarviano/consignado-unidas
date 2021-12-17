@@ -127,10 +127,22 @@ const Accompaniment: React.FC = () => {
       const labels = {
         [QuotationStatus.Aprovado]: 'Empréstimo Aprovado',
         [QuotationStatus.EmprestimoReprovadoPeloBanco]: 'Empréstimo Reprovado',
-        default: label,
       };
 
-      return labels[quote?.quotationStatusId || 'default'];
+      if (
+        step === QuotationStatus.RecusadoPeloUsuario ||
+        step === QuotationStatus.EmprestimoReprovadoPeloBanco
+      )
+        return labels[QuotationStatus.EmprestimoReprovadoPeloBanco];
+
+      if (
+        step === QuotationStatus.Aprovado ||
+        step === QuotationStatus.AssinaturaContratoPendente ||
+        step === QuotationStatus.AssinaturaContrato
+      )
+        return labels[QuotationStatus.Aprovado];
+
+      return labels[step] || label;
     }
 
     return label;
@@ -141,7 +153,10 @@ const Accompaniment: React.FC = () => {
       .then(({ data }) => {
         setQuote(data?.data);
 
-        if (data?.data?.quotationStatusId >= 0) {
+        if (
+          data?.data?.quotationStatusId >= 0 &&
+          data?.data?.quotationStatusId !== QuotationStatus.RecusadoPeloUsuario
+        ) {
           setActiveStep(STEP_NUMBER[data?.data?.quotationStatusId]);
           setStep(data?.data?.quotationStatusId);
 
