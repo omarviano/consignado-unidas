@@ -56,8 +56,8 @@ const CardSimulateLoan: FC = () => {
           onChange={handleSliderChange}
           onChangeCommitted={handleSubmit}
           step={100}
-          min={5000}
-          max={50000}
+          min={1000}
+          max={dataMargin[0]?.creditLimit}
           valueLabelDisplay="auto"
         />
       </Styled.ContentSlider>
