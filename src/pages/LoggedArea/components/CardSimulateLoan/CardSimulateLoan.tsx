@@ -10,7 +10,7 @@ import { formatValue } from 'utils/formatValue';
 import { useSimulateLoanRealTime } from 'hooks/simulateRealtime';
 import * as Styled from './styles';
 
-const MIN_VALUE = 500;
+const MIN_VALUE = 1000;
 
 const CardSimulateLoan: FC = memo(() => {
   const { simulateLoan, resetModalActive, requestStatus } = useSimulateLoan();
