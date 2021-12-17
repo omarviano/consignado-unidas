@@ -4,6 +4,8 @@ export interface DataProps {
   availableValue: number;
   admissionDate: Date;
   situation: string;
+  employeeSalary: number;
+  creditLimit: number;
 }
 
 export interface MarginProps {
