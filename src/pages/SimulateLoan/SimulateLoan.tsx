@@ -57,7 +57,7 @@ const SimulateLoan: FC = withContext(
         ...item,
         id: Math.random(),
         valueFormatted: formatValue(item.value),
-        effectiveCostPerYearFormatted: formatValue(item.effectiveCostPerYear),
+        effectiveCostPerYearFormatted: `${item.effectiveCostPerYear}%`,
         feesPerMonthFormatted: `${item.feesPerMonth.toFixed(2)}%`,
         quantityFormatted: item.quantity.toString().padStart(2, '0'),
       }));
