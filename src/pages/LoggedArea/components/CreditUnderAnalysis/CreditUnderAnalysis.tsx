@@ -78,7 +78,7 @@ const CreditUnderAnalysis: React.FC = () => {
     <Styled.Container onClick={() => goToAccompaniment(quote.id)}>
       <Styled.PreTitle>Status do seu contrato atual</Styled.PreTitle>
       {STATUS[quote.quotationStatusId ?? 'default']}
-      <Styled.Text>Sua situação está sendo analisada</Styled.Text>
+      <Styled.Text>Acompanhe sua solicitação</Styled.Text>
     </Styled.Container>
   ) : null;
 };
