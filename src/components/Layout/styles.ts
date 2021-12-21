@@ -217,6 +217,10 @@ export const Container = styled.div`
   padding: 80px 0;
   min-height: calc(100vh - 83px);
   margin: auto;
+
+  @media (max-width: 920px) {
+    padding-top: 16px;
+  }
 `;
 
 export const Footer = styled.footer`
