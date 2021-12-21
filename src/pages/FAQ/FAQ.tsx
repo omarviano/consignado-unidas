@@ -3,7 +3,6 @@ import { Layout } from 'components/Layout';
 import { RouteAccess } from 'components/RouteAccess';
 
 import AccordionDetails from '@mui/material/AccordionDetails';
-import AccordionSummary from '@mui/material/AccordionSummary';
 import { Add, Remove } from '@mui/icons-material';
 
 import { DataQuestions } from './dataQuestions';
@@ -41,7 +40,7 @@ const FAQ: FC = () => {
                 expanded={expanded === item.id}
                 onChange={handleChange(item.id)}
               >
-                <AccordionSummary
+                <Styled.AccordionSummary
                   expandIcon={
                     expanded === item.id ? <Remove color="primary" /> : <Add />
                   }
@@ -51,7 +50,7 @@ const FAQ: FC = () => {
                   <Styled.TitleQuestion changeColor={expanded === item.id}>
                     {item.title}
                   </Styled.TitleQuestion>
-                </AccordionSummary>
+                </Styled.AccordionSummary>
                 <AccordionDetails>
                   <Styled.QuestionAnswered>
                     {item.questionAnswered}
