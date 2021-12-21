@@ -2,14 +2,21 @@ import styled, { css } from 'styled-components';
 import { Card as MUICard } from '@mui/material';
 import TypographyStyles from '@mui/material/Typography';
 import AccordionStyles from '@mui/material/Accordion';
+import MUIAccordionSummary from '@mui/material/AccordionSummary';
 
 interface TitleQuestionProps {
   changeColor: boolean;
 }
 
 export const Container = styled(MUICard)`
-  margin: 22px 0 16px;
+  margin: 22px 40px 16px;
   box-shadow: 0px 2px 6px rgba(46, 43, 80, 0.25);
+
+  @media (max-width: 768px) {
+    box-shadow: none;
+    margin: 0 16px;
+    background: none;
+  }
 `;
 
 export const Header = styled(TypographyStyles)`
@@ -23,6 +30,14 @@ export const Content = styled.div`
   align-items: center;
   flex-direction: column;
   padding: 0 118px 0 118px;
+
+  @media (max-width: 900px) {
+    padding: 0 24px;
+  }
+
+  @media (max-width: 768px) {
+    padding: 0;
+  }
 `;
 
 export const FAQ = styled(TypographyStyles)`
@@ -30,6 +45,10 @@ export const FAQ = styled(TypographyStyles)`
   font-weight: 400;
   text-transform: uppercase;
   color: ${({ theme }) => theme.palette.grey[500]};
+
+  @media (max-width: 900px) {
+    display: none;
+  }
 `;
 
 export const CommonQuestions = styled(TypographyStyles)`
@@ -38,6 +57,10 @@ export const CommonQuestions = styled(TypographyStyles)`
   font-weight: 400;
   color: ${({ theme }) => theme.palette.grey[400]};
   text-align: center;
+
+  @media (max-width: 768px) {
+    margin: 16px 0 73px;
+  }
 `;
 
 export const HaveQuestions = styled(TypographyStyles)`
@@ -47,6 +70,12 @@ export const HaveQuestions = styled(TypographyStyles)`
   font-weight: 400;
   color: ${({ theme }) => theme.palette.grey[500]};
   line-height: 32.69px;
+
+  @media (max-width: 768px) {
+    margin: 36px 0;
+    font-size: 14px;
+    line-height: 1.5;
+  }
 `;
 
 export const Email = styled.strong`
@@ -59,6 +88,19 @@ export const Accordion = styled(AccordionStyles)`
   background: transparent;
   box-shadow: none;
   border-radius: 4px;
+`;
+
+export const AccordionSummary = styled(MUIAccordionSummary)`
+  .MuiAccordionSummary-content {
+    max-width: 90%;
+  }
+
+  .MuiAccordionSummary-content p {
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 `;
 
 export const TitleQuestion = styled(TypographyStyles)<TitleQuestionProps>`
