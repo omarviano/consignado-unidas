@@ -151,7 +151,7 @@ const SimulateLoan: FC = withContext(
       } catch (error) {
         const { response } = error as AxiosError;
 
-        if (response && response.status === 404) toggleModalError();
+        if (response && response.status === 404) toggleModalConfirm();
       }
     };
 
