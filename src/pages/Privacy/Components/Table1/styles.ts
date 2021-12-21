@@ -25,6 +25,12 @@ export const Th1 = styled.th`
   color: #f9f9f9;
   font-size: 20px;
   font-weight: 500;
+
+  @media (max-width: 635px) {
+    width: auto !important;
+    padding: 12px 8px;
+    text-align: center;
+  }
 `;
 
 export const Th2 = styled.th`
@@ -34,6 +40,11 @@ export const Th2 = styled.th`
   color: #005b9e;
   font-size: 20px;
   font-weight: 500;
+
+  @media (max-width: 635px) {
+    padding: 12px 16px;
+    text-align: left;
+  }
 `;
 
 export const Td1 = styled.td`
@@ -43,14 +54,25 @@ export const Td1 = styled.td`
   color: #005b9e;
   font-size: 20px;
   font-weight: 500;
+
+  @media (max-width: 635px) {
+    font-weight: bold;
+    padding: 24px 16px;
+    text-align: center;
+  }
 `;
 
 export const Td2 = styled.td`
   border: 1px solid #4d8cbb;
   border-collapse: collapse;
-  padding: 20px 0 20px 57px;
+  padding: 20px 8px 20px 57px;
   color: ${({ theme }) => theme.palette.grey[200]};
   font-size: 18px;
   font-weight: 400;
   line-height: 25.2px;
+  line-break: anywhere;
+
+  @media (max-width: 635px) {
+    padding: 24px 16px;
+  }
 `;

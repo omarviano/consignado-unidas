@@ -18,7 +18,7 @@ const Privacy: FC = () => (
   <RouteAccess typesOfAccess="none">
     <Layout
       containerStyles={{
-        maxWidth: '1120px',
+        maxWidth: '1152px',
       }}
     >
       <Styled.Container>
