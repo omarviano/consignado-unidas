@@ -5,6 +5,10 @@ export const SubTitle = styled(TypographyStyles)`
   color: #000000;
   margin-top: 24px;
   font-weight: 700;
+
+  @media (max-width: 920px) {
+    margin: 64px 0 48px;
+  }
 `;
 
 export const InformativeTexts = styled.p`
