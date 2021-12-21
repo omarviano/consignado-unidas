@@ -1,7 +1,6 @@
 import { Formik } from 'components/Formik';
 import { useSimulateLoan } from 'hooks/simulate';
 import { SimulateLoanProps } from 'interface/simulate';
-import { Slider } from 'components/Slider';
 
 import { FC, memo, useCallback, useMemo, useState, useEffect } from 'react';
 
@@ -75,7 +74,7 @@ const CardSimulateLoan: FC = memo(() => {
         <Styled.TextValueSlider disabled={disableSliderAndButton}>
           {formatValue(value)}
         </Styled.TextValueSlider>
-        <Slider
+        <Styled.Slider
           value={value}
           size="medium"
           onChange={handleSliderChange}
