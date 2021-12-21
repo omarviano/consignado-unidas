@@ -36,7 +36,7 @@ const CardMarginAvailable: FC = memo(() => {
               <img src={ImageInformation} alt="Imagem" />
             </a>
             <ReactTooltip
-              backgroundColor="#FFFF"
+              backgroundColor="transparent"
               id="text-tooltip"
               place="right"
               type="dark"
