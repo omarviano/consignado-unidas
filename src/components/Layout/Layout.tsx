@@ -13,6 +13,8 @@ import { getToken } from 'hooks/auth/storage';
 import useModal from 'hooks/modal';
 import { RoutingPath } from 'utils/routing';
 import { clearStorage } from 'utils/storage';
+import { useHeaderMobile } from 'hooks/headerMobile';
+import { LeftMenu } from './LeftMenu';
 
 import { LayoutProps } from './props';
 import * as Styled from './styles';
@@ -20,6 +22,8 @@ import * as Styled from './styles';
 const Layout: React.FC<LayoutProps> = ({ children, containerStyles }) => {
   const history = useHistory();
   const [menuOpen, setMenuOpen] = useState(false);
+  const { open: menuLeftOpen, toggle: toggleMenuLeftOpen } = useHeaderMobile();
+
   const { open, toggle } = useModal();
   const { isAuthenticated, signOut } = useAuth();
 
@@ -80,10 +84,18 @@ const Layout: React.FC<LayoutProps> = ({ children, containerStyles }) => {
             <Link to={RoutingPath.LOGIN}>Entrar</Link>
           ) : (
             <Styled.MenuButton>
-              <MenuIcon />
+              <MenuIcon onClick={toggleMenuLeftOpen} />
             </Styled.MenuButton>
           )}
         </Styled.Header>
+
+        <LeftMenu
+          open={menuLeftOpen}
+          toggleModal={toggle}
+          toggleMenuLeft={toggleMenuLeftOpen}
+        />
+
+        <Styled.DivOpacity open={menuLeftOpen} onClick={toggleMenuLeftOpen} />
 
         <Styled.Container style={containerStyles}>{children}</Styled.Container>
 
