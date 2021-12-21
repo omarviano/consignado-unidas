@@ -195,7 +195,7 @@ const Registration: React.FC = () => {
           }
           text={
             <span>
-              Olá <b>{formsData?.name}</b>? Favor acessar o seu e-mail e
+              Olá <b>{formsData?.name}</b>! Favor acessar o seu e-mail e
               confirmar a conta.
             </span>
           }

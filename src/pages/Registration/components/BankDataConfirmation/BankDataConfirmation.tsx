@@ -38,7 +38,8 @@ const BankDataConfirmation: React.FC<BankDataConfirmationProps> = ({
         <Styled.Email>{email}</Styled.Email>
 
         <Styled.BankDetailsConfirmationTitle>
-          Você deseja informar os dados bancários para futuros empréstimos?
+          Você deseja informar os dados complementares e os dados bancários para
+          futuros empréstimos?
         </Styled.BankDetailsConfirmationTitle>
         <Styled.BankDetailsConfirmationText>
           Caso você não queira preeencher os dados, não se preocupe, poderá

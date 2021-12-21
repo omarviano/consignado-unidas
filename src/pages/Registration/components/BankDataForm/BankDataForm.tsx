@@ -1,13 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { ArrowRightAlt } from '@mui/icons-material';
 import { Grid } from '@mui/material';
+import { FormikProps } from 'formik';
+
+import useViaCEP from 'hooks/viaCEP';
 
 import { Formik } from 'components/Formik';
 import { Input } from 'components/Inputs/Input';
 import { Select } from 'components/Select/Select';
+import { Autocomplete } from 'components/Autocomplete';
 import { RegistrationServices } from 'pages/Registration/services/registration.services';
 import { Bank } from 'pages/Registration/models/bank';
 
+import ufs from 'constants/ufs';
+import { Document } from 'utils/document';
 import { schema } from './schema';
 
 import * as Styled from './styles';
@@ -20,6 +26,29 @@ const BankDataForm: React.FC<BankDataFormProps> = ({
   email,
 }) => {
   const [banks, setBanks] = useState<{ name: string; value: string }[]>([]);
+  const [cep, setCep] = useState<string>();
+  const { fetchCEP, notFound, address } = useViaCEP();
+  const formRef = useRef<FormikProps<any>>(null);
+  const [formValues, setFormValues] = useState({});
+
+  const handleInput = () => {
+    const cepInput = document.getElementById('zipCode') as HTMLInputElement;
+
+    setCep(cepInput?.value);
+  };
+
+  const handleSubmit = data => {
+    const { zipCode, logradouro, bairro, localidade, uf } = data;
+
+    onSubmit({
+      ...data,
+      zipCode: Document.removeMask(zipCode),
+      publicPlace: logradouro,
+      district: bairro,
+      city: localidade,
+      state: uf,
+    });
+  };
 
   useEffect(() => {
     RegistrationServices.fetchBanks().then(({ data }) => {
@@ -34,19 +63,127 @@ const BankDataForm: React.FC<BankDataFormProps> = ({
     });
   }, []);
 
+  useEffect(() => {
+    fetchCEP(cep);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [cep]);
+
+  useEffect(() => {
+    setFormValues({
+      nationality: 'Brasileira',
+      ...formRef.current?.values,
+    });
+  }, [address]);
+
   return (
-    <Formik initialValues={{}} validationSchema={schema} onSubmit={onSubmit}>
+    <Formik
+      initialValues={{ ...formValues, ...address }}
+      validationSchema={schema}
+      onSubmit={handleSubmit}
+      enableReinitialize
+      innerRef={formRef}
+    >
       <Styled.BankDataContainer>
         <Styled.Hello>Olá {username}!</Styled.Hello>
         <Styled.Email>{email}</Styled.Email>
 
-        <Styled.BankDetailsConfirmationTitle>
+        <Styled.Title>
+          Você deseja informar algumas informações sobre você?
+        </Styled.Title>
+
+        <Styled.DataContainer>
+          <Input
+            name="professional"
+            label="Profissão (Opcional)"
+            placeholder="Informe sua profissão"
+            variant="outlined"
+          />
+
+          <Input
+            name="nationality"
+            label="Nacionalidade (Opcional)"
+            placeholder="Informe sua nacionalidade"
+            variant="outlined"
+          />
+
+          <Input
+            id="zipCode"
+            name="zipCode"
+            label="CEP (Opcional)"
+            placeholder="_____-___"
+            mask="99999-999"
+            variant="outlined"
+            onKeyUp={handleInput}
+            error={notFound}
+            helperText={notFound ? 'CEP não encontrado' : undefined}
+          />
+
+          <Input
+            name="logradouro"
+            label="Endereço (Opcional)"
+            placeholder="Informe seu endereço"
+            variant="outlined"
+            disabled={cep?.length !== 9 || notFound || !!address?.logradouro}
+          />
+
+          <Styled.Div>
+            <Grid container spacing={1}>
+              <Grid item xs={6}>
+                <Input
+                  name="number"
+                  type="number"
+                  label="Número (Opcional)"
+                  placeholder="xxxx"
+                  variant="outlined"
+                />
+              </Grid>
+
+              <Grid item xs={6}>
+                <Input
+                  name="bairro"
+                  label="Bairro (Opcional)"
+                  placeholder="Informe seu bairro"
+                  variant="outlined"
+                  disabled={cep?.length !== 9 || notFound || !!address?.bairro}
+                />
+              </Grid>
+            </Grid>
+          </Styled.Div>
+
+          <Input
+            name="complement"
+            label="Complemento (Opcional)"
+            placeholder="Informe o complemento"
+            variant="outlined"
+          />
+
+          <Input
+            name="localidade"
+            label="Cidade (Opcional)"
+            placeholder="Informe a cidade que você mora"
+            variant="outlined"
+            disabled
+          />
+
+          <Styled.Div>
+            <Select
+              name="uf"
+              options={ufs}
+              label="Estado (Opcional)"
+              placeholder="Selecione seu estado"
+              variant="outlined"
+              disabled
+            />
+          </Styled.Div>
+        </Styled.DataContainer>
+
+        <Styled.Title>
           Você deseja informar os dados bancários para futuros empréstimos?
-        </Styled.BankDetailsConfirmationTitle>
+        </Styled.Title>
         <Styled.BankDetailsConfirmationText>
           Caso você não queira preeencher os dados, não se preocupe, poderá
-          cadsatrar em um outro momento ok? Lembrando que para esta operação,{' '}
-          <b>só é possível utilizar conta corrente</b>.
+          cadastrar em um outro momento ok? Lembrando que para esta operação,{' '}
+          <b>só é possível utilizar conta corrente e de sua titularidade.</b>.
         </Styled.BankDetailsConfirmationText>
 
         <Styled.BankDataInputs>
@@ -60,7 +197,7 @@ const BankDataForm: React.FC<BankDataFormProps> = ({
           />
 
           <Styled.Div>
-            <Select
+            <Autocomplete
               name="bankCode"
               options={banks}
               label="Banco"

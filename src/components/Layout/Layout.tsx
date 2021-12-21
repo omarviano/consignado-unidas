@@ -97,7 +97,7 @@ const Layout: React.FC<LayoutProps> = ({ children, containerStyles }) => {
           <Styled.About>
             <Styled.AboutText>
               O site consignado.unidas.com.br pertence e é operado pela Unidas,
-              inscrita no CNPJ 10.215.988/0001-60, com sede à Avenida Raja
+              inscrita no CNPJ 10.215.988/0001-60, com sede na Avenida Raja
               Gabaglia, nº 1.781, 12º andar, Luxemburgo, Belo Horizonte/MG. A
             </Styled.AboutText>
 

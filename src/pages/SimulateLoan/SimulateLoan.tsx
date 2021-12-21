@@ -10,6 +10,7 @@ import { getToken } from 'hooks/auth/storage';
 import useModal from 'hooks/modal';
 import { SimulateLoanProvider, useSimulateLoan } from 'hooks/simulate';
 
+import { QuotationStatus } from 'enums/quote';
 import { DataSimulateProps } from 'interface/simulate';
 
 import { withContext } from 'utils/withContext';
@@ -56,7 +57,7 @@ const SimulateLoan: FC = withContext(
         ...item,
         id: Math.random(),
         valueFormatted: formatValue(item.value),
-        effectiveCostPerYearFormatted: formatValue(item.effectiveCostPerYear),
+        effectiveCostPerYearFormatted: `${item.effectiveCostPerYear}%`,
         feesPerMonthFormatted: `${item.feesPerMonth.toFixed(2)}%`,
         quantityFormatted: item.quantity.toString().padStart(2, '0'),
       }));
@@ -137,12 +138,20 @@ const SimulateLoan: FC = withContext(
           data: { data },
         } = await SimulateLoanServices.checkCreditUnderReview();
 
-        if (data === null) toggleModalConfirm();
-        else toggleModalError();
+        if (
+          data?.quotationStatusId === QuotationStatus.RecusadoPeloUsuario ||
+          data?.quotationStatusId === QuotationStatus.CreditoLiberado ||
+          data?.quotationStatusId ===
+            QuotationStatus.EmprestimoReprovadoPeloBanco
+        ) {
+          toggleModalConfirm();
+        } else {
+          toggleModalError();
+        }
       } catch (error) {
         const { response } = error as AxiosError;
 
-        if (response && response.status < 500) toggleModalError();
+        if (response && response.status === 404) toggleModalConfirm();
       }
     };
 
@@ -151,8 +160,6 @@ const SimulateLoan: FC = withContext(
 
       try {
         setRequestingLoan(true);
-
-        await SimulateLoanServices.checkCreditUnderReview();
 
         await SimulateLoanServices.simulate({
           value: dataSimulateLoan.value,

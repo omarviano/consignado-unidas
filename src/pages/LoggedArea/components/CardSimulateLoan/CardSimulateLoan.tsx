@@ -3,19 +3,21 @@ import { useSimulateLoan } from 'hooks/simulate';
 import { SimulateLoanProps } from 'interface/simulate';
 import { Slider } from 'components/Slider';
 
-import { FC, memo, useCallback, useMemo, useState } from 'react';
+import { FC, memo, useCallback, useMemo, useState, useEffect } from 'react';
 
 import { formatValue } from 'utils/formatValue';
 
 import { useSimulateLoanRealTime } from 'hooks/simulateRealtime';
 import * as Styled from './styles';
 
+const MIN_VALUE = 1000;
+
 const CardSimulateLoan: FC = memo(() => {
   const { simulateLoan, resetModalActive, requestStatus } = useSimulateLoan();
   const { addValueSliderSimulate, dataMargin } = useSimulateLoanRealTime();
 
   const [value, setValue] = useState(
-    dataMargin[0]?.availableValue <= 0 ? 0 : 5000,
+    dataMargin[0]?.availableValue <= 0 ? 0 : MIN_VALUE,
   );
 
   const handleSliderChange = useCallback(
@@ -46,14 +48,18 @@ const CardSimulateLoan: FC = memo(() => {
   );
 
   const valueMin = useMemo(
-    () => (dataMargin[0]?.availableValue <= 0 ? 0 : 5000),
+    () => (dataMargin[0]?.availableValue <= 0 ? 0 : MIN_VALUE),
     [dataMargin],
   );
 
   const valueMax = useMemo(
-    () => (dataMargin[0]?.availableValue <= 0 ? 0 : 50000),
+    () => (dataMargin[0]?.availableValue <= 0 ? 0 : dataMargin[0]?.creditLimit),
     [dataMargin],
   );
+
+  useEffect(() => {
+    setValue(dataMargin[0]?.availableValue <= 0 ? 0 : MIN_VALUE);
+  }, [dataMargin]);
 
   return (
     <Formik initialValues={{}} onSubmit={handleSubmit}>
