@@ -3,13 +3,14 @@ import { getToken } from 'hooks/auth/storage';
 import { RequestStatus } from 'interface/common';
 import { DataSimulateProps } from 'interface/simulate';
 import { api } from 'services/api';
-import { DataProps, MarginProps } from 'interface/margin';
+import { Margin } from 'interface/margin';
 import { useAuth } from 'hooks/auth';
 import {
   DATA_MARGIN_KEY,
   DATA_SIMULATE_LOAN_KEY,
   VALUE_SLIDER_KEY,
 } from 'utils/storage';
+import { ResponseData } from 'interface/responseData';
 import { SimulateLoanRealTimeContextData } from './props';
 
 const initialValue = {} as SimulateLoanRealTimeContextData;
@@ -23,7 +24,7 @@ export const SimulateLoanRealTimeProvider: FC = props => {
     ? `Bearer ${getToken()?.token}`
     : undefined;
 
-  const [requestStatus, setRequestStatus] = useState<RequestStatus>({
+  const [requestStatus] = useState<RequestStatus>({
     error: false,
     loading: false,
     success: false,
@@ -44,7 +45,7 @@ export const SimulateLoanRealTimeProvider: FC = props => {
 
     return 0;
   });
-  const [dataMargin, setDataMargin] = useState<DataProps[]>(() => {
+  const [dataMargin, setDataMargin] = useState<Margin[]>(() => {
     const storageData = localStorage.getItem(DATA_MARGIN_KEY);
 
     if (storageData) return JSON.parse(storageData);
@@ -55,9 +56,9 @@ export const SimulateLoanRealTimeProvider: FC = props => {
   const getMargin = useCallback(async () => {
     try {
       if (!isAuthenticated) return;
-      const response = await api.get<MarginProps>('/margins');
-
-      const { data } = response.data;
+      const {
+        data: { data },
+      } = await api.get<ResponseData<Margin[]>>('/margins');
 
       setDataMargin(data);
       localStorage.setItem(DATA_MARGIN_KEY, JSON.stringify(data));

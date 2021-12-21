@@ -1,4 +1,4 @@
-import { Quote } from 'pages/Accompaniment/models/quote';
+import { Quote } from 'interface/quote';
 
 export interface ReleasedCreditProps {
   data?: Quote;

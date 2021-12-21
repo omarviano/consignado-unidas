@@ -10,7 +10,6 @@ import { Input } from 'components/Inputs/Input';
 import { Select } from 'components/Select/Select';
 import { Autocomplete } from 'components/Autocomplete';
 import { RegistrationServices } from 'pages/Registration/services/registration.services';
-import { Bank } from 'pages/Registration/models/bank';
 
 import ufs from 'constants/ufs';
 import { Document } from 'utils/document';
@@ -51,11 +50,9 @@ const BankDataForm: React.FC<BankDataFormProps> = ({
   };
 
   useEffect(() => {
-    RegistrationServices.fetchBanks().then(({ data }) => {
-      const response = data.data as Bank[];
-
+    RegistrationServices.fetchBanks().then(({ data: { data = [] } }) => {
       setBanks(
-        response.map(item => ({
+        data.map(item => ({
           value: item.id.toString(),
           name: item.description,
         })),
