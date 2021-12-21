@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { ArrowRightAlt } from '@mui/icons-material';
 import { Grid } from '@mui/material';
+import { FormikProps } from 'formik';
 
 import useViaCEP from 'hooks/viaCEP';
 
@@ -27,6 +28,8 @@ const BankDataForm: React.FC<BankDataFormProps> = ({
   const [banks, setBanks] = useState<{ name: string; value: string }[]>([]);
   const [cep, setCep] = useState<string>();
   const { fetchCEP, notFound, address } = useViaCEP();
+  const formRef = useRef<FormikProps<any>>(null);
+  const [formValues, setFormValues] = useState({});
 
   const handleInput = () => {
     const cepInput = document.getElementById('zipCode') as HTMLInputElement;
@@ -65,12 +68,20 @@ const BankDataForm: React.FC<BankDataFormProps> = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cep]);
 
+  useEffect(() => {
+    setFormValues({
+      nationality: 'Brasileira',
+      ...formRef.current?.values,
+    });
+  }, [address]);
+
   return (
     <Formik
-      initialValues={{ nationality: 'Brasileira', ...address }}
+      initialValues={{ ...formValues, ...address }}
       validationSchema={schema}
       onSubmit={handleSubmit}
       enableReinitialize
+      innerRef={formRef}
     >
       <Styled.BankDataContainer>
         <Styled.Hello>Olá {username}!</Styled.Hello>
@@ -141,7 +152,7 @@ const BankDataForm: React.FC<BankDataFormProps> = ({
 
           <Input
             name="complement"
-            label="Complemento"
+            label="Complemento (Opcional)"
             placeholder="Informe o complemento"
             variant="outlined"
           />
@@ -171,7 +182,7 @@ const BankDataForm: React.FC<BankDataFormProps> = ({
         </Styled.Title>
         <Styled.BankDetailsConfirmationText>
           Caso você não queira preeencher os dados, não se preocupe, poderá
-          cadsatrar em um outro momento ok? Lembrando que para esta operação,{' '}
+          cadastrar em um outro momento ok? Lembrando que para esta operação,{' '}
           <b>só é possível utilizar conta corrente e de sua titularidade.</b>.
         </Styled.BankDetailsConfirmationText>
 

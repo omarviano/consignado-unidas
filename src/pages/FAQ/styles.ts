@@ -83,4 +83,5 @@ export const QuestionAnswered = styled(TypographyStyles)`
   font-size: 21px;
   line-height: 33px;
   color: ${({ theme }) => theme.palette.grey[400]};
+  white-space: pre-wrap;
 `;

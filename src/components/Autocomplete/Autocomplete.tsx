@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useField } from 'formik';
 import MUIAutocomplete, {
   createFilterOptions,
@@ -15,6 +15,8 @@ const Autocomplete: React.FC<AutocompleteProps> = React.memo(
       name,
       value,
     });
+
+    const [valueInput, setValueInput] = useState<OptionType | undefined>();
 
     const filterOptions = createFilterOptions({
       matchFrom: 'any',
@@ -35,6 +37,13 @@ const Autocomplete: React.FC<AutocompleteProps> = React.memo(
       [helpers],
     );
 
+    useEffect(() => {
+      const valueResult = options.find(option => option.value === field.value);
+
+      if (valueResult) setValueInput(valueResult);
+      else setValueInput(undefined);
+    }, [field.value, options]);
+
     return (
       <>
         <Styled.Label isError={!!meta.error && meta.touched}>
@@ -46,6 +55,8 @@ const Autocomplete: React.FC<AutocompleteProps> = React.memo(
           getOptionLabel={(option: OptionType) => option.name}
           renderOption={renderOption}
           onChange={handleChange}
+          value={valueInput || { name: '' }}
+          clearOnBlur
           renderInput={params => (
             <Styled.TextField
               {...params}
@@ -53,6 +64,7 @@ const Autocomplete: React.FC<AutocompleteProps> = React.memo(
               {...field}
               error={!!meta.error && meta.touched}
               helperText={meta.touched ? meta.error : undefined}
+              onChange={e => e}
               inputProps={{
                 ...params.inputProps,
                 autoComplete: 'new-password', // disable autocomplete and autofill

@@ -2,7 +2,7 @@ import { TextFieldProps } from '@mui/material/TextField';
 
 export interface OptionType {
   name: string;
-  value: string;
+  value?: string;
 }
 
 export type AutocompleteProps = TextFieldProps & {
