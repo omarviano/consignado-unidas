@@ -18,4 +18,8 @@ const schema = Yup.object().shape({
     .max(99, 'Apenas dois dígitos'),
 });
 
-export { schema };
+const reasonsSchema = Yup.object().shape({
+  reasonRefuseId: Yup.string().required('Selecione um motivo'),
+});
+
+export { schema, reasonsSchema };

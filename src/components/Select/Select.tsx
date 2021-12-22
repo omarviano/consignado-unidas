@@ -6,7 +6,7 @@ import { SelectProps, OptionSelectType } from './props';
 import * as Styled from './styles';
 
 const Select: FC<SelectProps> = React.memo(
-  ({ name, label, options, value, ...rest }) => {
+  ({ name, label, options, value, onChange, ...rest }) => {
     const inputRef = useRef(null);
     const [field, meta, helpers] = useField<string>({ name, value });
 
@@ -21,11 +21,13 @@ const Select: FC<SelectProps> = React.memo(
     );
 
     const handleChange = useCallback(
-      (event: React.ChangeEvent<{ value: string }>) => {
+      event => {
         helpers.setValue(event.target.value);
         field.onChange(event);
+
+        if (onChange) onChange(event);
       },
-      [field, helpers],
+      [field, helpers, onChange],
     );
 
     return (

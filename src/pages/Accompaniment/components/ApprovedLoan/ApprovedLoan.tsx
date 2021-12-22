@@ -22,8 +22,9 @@ import useViaCEP from 'hooks/viaCEP';
 import { AxiosError } from 'axios';
 import { Document } from 'utils/document';
 import { FormikProps } from 'formik';
+import { Button } from 'components/Buttons/Button';
 import { UserDataProps, FormProps } from '../../models/userData';
-import { schema } from './schema';
+import { schema, reasonsSchema } from './schema';
 import * as Styled from './styles';
 
 const ApprovedLoan: FC = () => {
@@ -35,6 +36,7 @@ const ApprovedLoan: FC = () => {
   const { open: modalRefuseOpen, toggle: toggleModalRefuse } = useModal();
   const { open: modalRefuseAcceptOpen, toggle: toggleModalRefuseAccept } =
     useModal();
+  const { open: reasonRefusesOpen, toggle: toggleReasonRefuses } = useModal();
   const [banks, setBanks] = useState<{ name: string; value: string }[]>([]);
   const [loanData, setLoanData] = useState<LoanDataProps>();
   const [tableData, setTableData] = useState<any>([]);
@@ -43,6 +45,12 @@ const ApprovedLoan: FC = () => {
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string>();
   const [userData, setUserData] = useState<FormProps>();
+  const [totalCharacters, setTotalCharacters] = useState(0);
+  const [reasons, setReasons] = useState<
+    { name: string; value: string; required: boolean }[]
+  >([]);
+  const [reasonDescriptionRequired, setReasonDescriptionRequired] =
+    useState(false);
 
   const refFormik = useRef<FormikProps<FormProps> | null>();
 
@@ -81,11 +89,40 @@ const ApprovedLoan: FC = () => {
     setCep(cepInput?.value);
   };
 
+  const handleInputTextArea = () => {
+    const textarea = document.getElementById(
+      'reasonDescription',
+    ) as HTMLInputElement;
+
+    setTotalCharacters(textarea?.value?.length);
+  };
+
+  const handleSelectReason = (
+    e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>,
+  ) => {
+    const {
+      target: { value },
+    } = e;
+
+    const reasonSelected = reasons.find(reason => reason.value === value);
+    setReasonDescriptionRequired(reasonSelected?.required || false);
+  };
+
   useEffect(() => {
     AccompanimentServices.checkCreditUnderReview().then(
       ({ data: { data } }) => {
         setLoanData(data);
       },
+    );
+
+    AccompanimentServices.fetchReasons().then(({ data: { data } }) =>
+      setReasons(
+        data.map(reason => ({
+          name: reason.description,
+          value: reason.id.toString(),
+          required: reason.required,
+        })),
+      ),
     );
   }, []);
 
@@ -162,11 +199,25 @@ const ApprovedLoan: FC = () => {
     }
   };
 
-  const handleRefuseLoan = async (): Promise<void> => {
+  const handleRefuseLoan = () => {
+    toggleModalRefuse();
+    toggleReasonRefuses();
+  };
+
+  const handleReasonSubmit = data => {
+    if (reasonDescriptionRequired && totalCharacters === 0) return;
+
+    refuseLoan(data);
+  };
+
+  const refuseLoan = async (data): Promise<void> => {
     try {
       setLoading(true);
 
-      await AccompanimentServices.refuseLoan(Number(loanData?.id));
+      await AccompanimentServices.refuseLoan({
+        quotationId: loanData?.id,
+        ...data,
+      });
 
       toggleModalRefuse();
       toggleModalRefuseAccept();
@@ -518,6 +569,59 @@ const ApprovedLoan: FC = () => {
             Ir para tela inicial
           </Styled.ButtonGoToHomeScreen>
         </Styled.ContainerModalRefuseProposalAccept>
+      </Modal>
+
+      <Modal open={reasonRefusesOpen} onClose={toggleReasonRefuses}>
+        <Styled.ReasonRefusesModal>
+          <Styled.ReasonRefusesModalTitle>
+            Deseja nos informar o motivo pelo qual você recusou a proposta?{' '}
+          </Styled.ReasonRefusesModalTitle>
+
+          <Formik
+            initialValues={{}}
+            validationSchema={reasonsSchema}
+            onSubmit={handleReasonSubmit}
+          >
+            <Select
+              name="reasonRefuseId"
+              label="Selecione um motivo"
+              options={reasons}
+              variant="outlined"
+              onChange={handleSelectReason}
+            />
+
+            <Input
+              id="reasonDescription"
+              name="reasonDescription"
+              label=""
+              placeholder={
+                reasonDescriptionRequired
+                  ? 'Por favor, descreva porque você está recusando'
+                  : 'Caso queira, descrever mais sobre o motivo... '
+              }
+              variant="outlined"
+              multiline
+              rows={8}
+              inputProps={{
+                maxLength: 100,
+              }}
+              onInput={handleInputTextArea}
+              error={reasonDescriptionRequired && totalCharacters === 0}
+              helperText={
+                reasonDescriptionRequired && totalCharacters === 0
+                  ? 'Descreva o motivo'
+                  : undefined
+              }
+            />
+            <Styled.TotalCharacters>
+              Máximo de carateres {totalCharacters}/100
+            </Styled.TotalCharacters>
+
+            <Button type="submit" variant="contained" disabled={loading}>
+              {loading ? 'Enviando...' : 'Enviar'}
+            </Button>
+          </Formik>
+        </Styled.ReasonRefusesModal>
       </Modal>
     </Styled.Card>
   );

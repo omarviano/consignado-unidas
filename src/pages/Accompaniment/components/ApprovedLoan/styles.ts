@@ -163,3 +163,54 @@ export const CheckCircle = styled(CheckCircleStyles)`
   width: 48px;
   height: 48px;
 `;
+
+export const ReasonRefusesModal = styled.div`
+  padding: 80px 124px;
+
+  form {
+    width: 450px;
+    margin-top: 12px;
+
+    .MuiInputBase-multiline {
+      margin-top: 4px;
+    }
+
+    button[type='submit'] {
+      width: 205px;
+      text-transform: none;
+      margin-top: 12px;
+
+      @media (max-width: 768px) {
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 768px) {
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 768px) {
+    padding: 40px 24px;
+  }
+`;
+
+export const ReasonRefusesModalTitle = styled(TypographyStyles)`
+  font-size: 18px;
+  line-height: 34px;
+  color: ${({ theme }) => theme.palette.grey[200]};
+  width: 450px;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    line-height: 21px;
+    text-align: center;
+  }
+`;
+
+export const TotalCharacters = styled.div`
+  font-size: 12px;
+  line-height: 34px;
+  color: ${({ theme }) => theme.palette.grey[200]};
+  text-align: right;
+`;
