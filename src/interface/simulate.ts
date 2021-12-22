@@ -18,11 +18,3 @@ export interface DataSimulateProps {
   value: number;
   installments: Installment[];
 }
-
-export interface SimulateLoanResponse {
-  success: boolean;
-  errors?: any;
-  message: string;
-  statusCode: number;
-  data: DataSimulateProps;
-}

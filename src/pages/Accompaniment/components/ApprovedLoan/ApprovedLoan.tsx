@@ -13,7 +13,6 @@ import ufs from 'constants/ufs';
 import { Input } from 'components/Inputs/Input';
 import { ModalMessage } from 'components/ModalMessage';
 import { CheckCircle, Warning } from '@mui/icons-material';
-import { Bank } from 'pages/Accompaniment/models/bank';
 import { AccompanimentServices } from 'pages/Accompaniment/services/accompaniment.services';
 import { useHistory } from 'react-router-dom';
 import { RoutingPath } from 'utils/routing';
@@ -48,26 +47,26 @@ const ApprovedLoan: FC = () => {
   const refFormik = useRef<FormikProps<FormProps> | null>();
 
   useEffect(() => {
-    AccompanimentServices.fetchUserData().then(({ data }) => {
-      const response = data.data as UserDataProps;
-
-      setUserData({
-        name: response?.name,
-        nationality: response?.nationality,
-        professional: response?.professional,
-        number: Number(response?.number),
-        complement: response?.complement,
-        bankCode: String(response?.bankCode),
-        agency: Number(response?.agency),
-        digit: Number(response?.digit),
-        accountNumber: Number(response?.accountNumber),
-        cep: response?.zipCode,
-        logradouro: response?.publicPlace,
-        bairro: response?.district,
-        localidade: response?.city,
-        uf: response?.state,
-      });
-    });
+    AccompanimentServices.fetchUserData().then(
+      ({ data: { data: response } }) => {
+        setUserData({
+          name: response?.name,
+          nationality: response?.nationality,
+          professional: response?.professional,
+          number: Number(response?.number),
+          complement: response?.complement,
+          bankCode: String(response?.bankCode),
+          agency: Number(response?.agency),
+          digit: Number(response?.digit),
+          accountNumber: Number(response?.accountNumber),
+          cep: response?.zipCode,
+          logradouro: response?.publicPlace,
+          bairro: response?.district,
+          localidade: response?.city,
+          uf: response?.state,
+        });
+      },
+    );
   }, []);
 
   useEffect(() => {
@@ -83,11 +82,11 @@ const ApprovedLoan: FC = () => {
   };
 
   useEffect(() => {
-    AccompanimentServices.checkCreditUnderReview().then(({ data }) => {
-      const response = data.data as LoanDataProps;
-
-      setLoanData(response);
-    });
+    AccompanimentServices.checkCreditUnderReview().then(
+      ({ data: { data } }) => {
+        setLoanData(data);
+      },
+    );
   }, []);
 
   useEffect(() => {
@@ -113,11 +112,9 @@ const ApprovedLoan: FC = () => {
   }, [loanData]);
 
   useEffect(() => {
-    AccompanimentServices.fetchBanks().then(({ data }) => {
-      const response = data.data as Bank[];
-
+    AccompanimentServices.fetchBanks().then(({ data: { data } }) => {
       setBanks(
-        response.map(item => ({
+        data.map(item => ({
           value: item.id.toString(),
           name: item.description,
         })),
