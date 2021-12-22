@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Badge, Card } from '@mui/material';
-import { MailOutlined, Check, Cancel } from '@mui/icons-material';
+import { MailOutlined, Check, Cancel, ArrowBack } from '@mui/icons-material';
+import { useHistory } from 'react-router-dom';
 import { AxiosError } from 'axios';
 
 import Logo from 'assets/images/logo.png';
@@ -29,6 +30,7 @@ const ForgotPassword: React.FC = () => {
   const [sendingEmail, setSendingEmail] = useState(false);
   const { open: emailModalOpen, toggle: toggleEmailModal } = useModal();
   const { open: modalErrorOpen, toggle: toggleModalError } = useModal();
+  const history = useHistory();
 
   const sendEmail = async (emailToSend: string, toggleModal = true) => {
     try {
@@ -56,11 +58,19 @@ const ForgotPassword: React.FC = () => {
     sendEmail(email);
   };
 
+  const handleGoBack = () => {
+    history.push('/');
+  };
+
   return (
     <Styled.Container>
       <Styled.Logo src={Logo} alt="Unidas" />
 
       <Card className="card">
+        <Styled.ButtonGoBack onClick={() => handleGoBack()}>
+          <ArrowBack />
+        </Styled.ButtonGoBack>
+
         <Styled.Title>Esqueceu sua senha? </Styled.Title>
 
         <Styled.SubTitle>Informe o email para recuperação</Styled.SubTitle>
@@ -90,11 +100,7 @@ const ForgotPassword: React.FC = () => {
         </Formik>
       </Card>
 
-      <Modal
-        open={emailModalOpen}
-        onClose={toggleEmailModal}
-        showCloseIcon={false}
-      >
+      <Modal open={emailModalOpen} onClose={toggleEmailModal}>
         <Styled.ModalContent>
           <Badge badgeContent={<Check />} color="primary" className="badge">
             <MailOutlined color="action" fontSize="inherit" />
