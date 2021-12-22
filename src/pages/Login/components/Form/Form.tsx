@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { FC, memo, useCallback, useEffect, useMemo, useState } from 'react';
-
+import { FC, memo, useCallback, useMemo, useState } from 'react';
+import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 import { Formik } from 'components/Formik';
 import { ReactComponent as EyeHide } from 'assets/icons/eye-hide.svg';
 import { ReactComponent as Eye } from 'assets/icons/eye.svg';
@@ -13,6 +13,8 @@ import { useModalLogin } from '../ModalLogin/context';
 import * as Styled from './styles';
 
 const Form: FC = memo(() => {
+  const { executeRecaptcha } = useGoogleReCaptcha();
+
   const {
     signIn,
     modalActive,
@@ -43,17 +45,16 @@ const Form: FC = memo(() => {
     [showPassword],
   );
 
-  const handleSubmit = useCallback((values: LoginCredentials) => {
+  const handleSubmit = useCallback(async (values: LoginCredentials) => {
+    if (!executeRecaptcha) return;
+
+    const token = await executeRecaptcha('login');
+
+    console.log('token', token);
+
     signIn(values);
     resetModalActive();
   }, []);
-
-  useEffect(() => {
-    if (modalActive && statusCode !== 500) return toggleModal();
-    return () => {
-      <> </>;
-    };
-  }, [modalActive]);
 
   return (
     <Formik
