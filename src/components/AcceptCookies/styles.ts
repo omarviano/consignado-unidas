@@ -8,8 +8,8 @@ export const Container = styled.div`
   justify-content: center;
   bottom: 0;
   width: 100%;
-  height: 138px;
-  padding: 48px;
+  height: 50px;
+  padding: 36px;
   background: #f9f9f9;
   box-shadow: 0px 4px 20px rgba(46, 43, 80, 0.25);
   border-radius: 8px;
