@@ -1,3 +1,4 @@
+import { ResponseData } from 'interface/responseData';
 import {
   createContext,
   useCallback,
@@ -17,6 +18,7 @@ import {
   LoginCredentials,
   AuthActions,
   AuthContextProviderProps,
+  TokenProps,
 } from './props';
 import authReducer, { initialState } from './reducer';
 import { persistToken, clearPersistedToken } from './storage';
@@ -50,7 +52,10 @@ export const AuthProvider: FC<AuthContextProviderProps> = props => {
 
       credentials.cpf = Document.removeMask(credentials.cpf);
 
-      const response = await api.post('/auth', credentials);
+      const response = await api.post<ResponseData<TokenProps>>(
+        '/auth',
+        credentials,
+      );
       const { data } = response.data;
       api.defaults.headers.authorization = `Bearer ${response.data.data.token}`;
       persistToken(data);

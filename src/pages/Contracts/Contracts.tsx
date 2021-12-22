@@ -98,14 +98,12 @@ const Contracts: React.FC = () => {
 
   useEffect(() => {
     ContractsServices.fetchContracts()
-      .then(({ data }) => {
-        const contracts = data.data || [];
-
+      .then(({ data: { data: contracts = [] } }) => {
         setTableData(
           contracts.map(contract => ({
             ...contract,
             id: contract.number,
-            date: formatDate(contract.date),
+            date: formatDate(contract.date) || '',
             value: formatValue(contract.value),
             installmentValue: formatValue(contract.installmentValue),
             installments: contract.installments?.toString().padStart(2, '0'),
