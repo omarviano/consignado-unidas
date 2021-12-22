@@ -29,7 +29,7 @@ export const Header = styled.div`
   filter: drop-shadow(0px 2px 6px rgba(46, 43, 80, 0.25));
   z-index: 999;
 
-  > a {
+  .sign-in {
     display: flex;
     align-items: center;
     justify-content: center;

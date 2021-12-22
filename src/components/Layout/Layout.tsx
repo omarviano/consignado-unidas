@@ -42,7 +42,9 @@ const Layout: React.FC<LayoutProps> = ({ children, containerStyles }) => {
     <>
       <Styled.Page>
         <Styled.Header>
-          <Styled.Logo src={Logo} alt="Unidas" />
+          <Link to="/">
+            <Styled.Logo src={Logo} alt="Unidas" />
+          </Link>
 
           {isAuthenticated && (
             <>
@@ -77,7 +79,9 @@ const Layout: React.FC<LayoutProps> = ({ children, containerStyles }) => {
           )}
 
           {!isAuthenticated ? (
-            <Link to={RoutingPath.LOGIN}>Entrar</Link>
+            <Link to={RoutingPath.LOGIN} className="sign-in">
+              Entrar
+            </Link>
           ) : (
             <Styled.MenuButton>
               <MenuIcon />
