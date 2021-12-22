@@ -22,6 +22,7 @@ const Input = memo(
       onChange,
       icon: Icon,
       disabled,
+      multiline,
       ...rest
     } = props;
 
@@ -68,37 +69,58 @@ const Input = memo(
     return (
       <Styled.FormControl fullWidth>
         <Styled.Label isError={errors.error}>{label}</Styled.Label>
-        <InputMask
-          mask={mask}
-          maskChar={null}
-          name={field.name}
-          value={field.value}
-          onChange={field.onChange}
-          onBlur={handleBlur}
-          onFocus={onFocus}
-          defaultValue={defaultValue}
-          disabled={disabled}
-        >
-          {() => (
-            <Styled.Input
-              ref={ref}
-              defaultValue={defaultValue}
-              id={name}
-              inputRef={ref}
-              type={type}
-              onFocus={onFocus}
-              disabled={disabled}
-              fullWidth
-              {...errors}
-              {...rest}
-              {...field}
-              onBlur={handleBlur}
-              InputLabelProps={{
-                shrink: true,
-              }}
-            />
-          )}
-        </InputMask>
+        {multiline ? (
+          <Styled.Input
+            ref={ref}
+            defaultValue={defaultValue}
+            id={name}
+            inputRef={ref}
+            type={type}
+            onFocus={onFocus}
+            disabled={disabled}
+            fullWidth
+            {...errors}
+            {...rest}
+            {...field}
+            onBlur={handleBlur}
+            InputLabelProps={{
+              shrink: true,
+            }}
+            multiline
+          />
+        ) : (
+          <InputMask
+            mask={mask}
+            maskChar={null}
+            name={field.name}
+            value={field.value}
+            onChange={field.onChange}
+            onBlur={handleBlur}
+            onFocus={onFocus}
+            defaultValue={defaultValue}
+            disabled={disabled}
+          >
+            {() => (
+              <Styled.Input
+                ref={ref}
+                defaultValue={defaultValue}
+                id={name}
+                inputRef={ref}
+                type={type}
+                onFocus={onFocus}
+                disabled={disabled}
+                fullWidth
+                {...errors}
+                {...rest}
+                {...field}
+                onBlur={handleBlur}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+              />
+            )}
+          </InputMask>
+        )}
       </Styled.FormControl>
     );
   }),

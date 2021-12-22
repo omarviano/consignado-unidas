@@ -13,6 +13,11 @@ export const Input = styled(TextFieldStyles)`
     height: 38px;
   }
 
+  .MuiInputBase-multiline {
+    min-height: 38px;
+    height: auto;
+  }
+
   p {
     margin: 3px 0 0;
   }
