@@ -22,7 +22,7 @@ const authReducer: Reducer<AuthState, AuthReducerActionMap> = (
       return state;
 
     case AuthActions.RequestUserSuccess:
-      state.data = action.payload.data.token;
+      state.data = action.payload.data.data;
       state.isAuthenticating = false;
       return state;
 

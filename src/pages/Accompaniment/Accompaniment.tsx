@@ -12,6 +12,7 @@ import { useHistory } from 'react-router-dom';
 
 import { RoutingPath } from 'utils/routing';
 import { QuotationStatus } from 'enums/quote';
+import { Quote } from 'interface/quote';
 import { RequestUnderAnalysis } from './components/RequestUnderAnalysis';
 import { AwaitingSubmissionOfDocumentation } from './components/AwaitingSubmissionOfDocumentation';
 import { DocumentationSent } from './components/DocumentationSent';
@@ -20,8 +21,6 @@ import { AccompanimentServices } from './services/accompaniment.services';
 import { ApprovedLoan } from './components/ApprovedLoan';
 import { ReprovidedLoan } from './components/ReprovidedLoan';
 import { ContractSigning } from './components/ContractSigning';
-
-import { Quote } from './models/quote';
 
 import * as Styled from './styles';
 import * as MUIStyled from './muiStyles';
@@ -150,15 +149,15 @@ const Accompaniment: React.FC = () => {
 
   useEffect(() => {
     AccompanimentServices.checkCreditUnderReview()
-      .then(({ data }) => {
-        setQuote(data?.data);
+      .then(({ data: { data } }) => {
+        setQuote(data);
 
         if (
-          data?.data?.quotationStatusId >= 0 &&
-          data?.data?.quotationStatusId !== QuotationStatus.RecusadoPeloUsuario
+          data.quotationStatusId >= 0 &&
+          data.quotationStatusId !== QuotationStatus.RecusadoPeloUsuario
         ) {
-          setActiveStep(STEP_NUMBER[data?.data?.quotationStatusId]);
-          setStep(data?.data?.quotationStatusId);
+          setActiveStep(STEP_NUMBER[data.quotationStatusId]);
+          setStep(data.quotationStatusId);
 
           setChecking(false);
         } else {

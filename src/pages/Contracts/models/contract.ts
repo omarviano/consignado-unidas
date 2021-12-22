@@ -8,7 +8,7 @@ export interface Contract {
 }
 
 export interface ContractFormatted {
-  id: number;
+  id: string;
   number: string;
   date: string;
   value: string;

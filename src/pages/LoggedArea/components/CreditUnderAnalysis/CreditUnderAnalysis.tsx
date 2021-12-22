@@ -3,15 +3,10 @@ import { LoggedAreaServices } from 'pages/LoggedArea/services/logged-area.servic
 import { RoutingPath } from 'utils/routing';
 import { useHistory } from 'react-router-dom';
 
+import { Quote } from 'interface/quote';
 import { QuotationStatus } from 'enums/quote';
 
 import * as Styled from './styles';
-
-interface Quote {
-  id: number;
-  quotationStatusId: number;
-  disapprovedCheck: boolean;
-}
 
 const CreditUnderAnalysis: React.FC = () => {
   const [quote, setQuote] = useState<Quote>();
@@ -64,10 +59,8 @@ const CreditUnderAnalysis: React.FC = () => {
   };
 
   useEffect(() => {
-    LoggedAreaServices.checkCreditUnderReview().then(({ data }) => {
-      const quote = data?.data as Quote;
-
-      setQuote(quote);
+    LoggedAreaServices.checkCreditUnderReview().then(({ data: { data } }) => {
+      setQuote(data);
     });
   }, []);
 
