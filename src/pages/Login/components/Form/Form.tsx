@@ -46,6 +46,8 @@ const Form: FC = memo(() => {
   );
 
   const handleSubmit = useCallback(async (values: LoginCredentials) => {
+    console.log('executeRecaptcha', executeRecaptcha);
+
     if (!executeRecaptcha) return;
 
     const token = await executeRecaptcha('login');

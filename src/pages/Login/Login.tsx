@@ -14,10 +14,10 @@ import * as Styled from './styles';
 const Login: FC = memo(
   withContext(
     () => (
-      <GoogleReCaptchaProvider
-        reCaptchaKey={process.env.REACT_APP_RECAPTCHA_KEY}
-      >
-        <RouteAccess typesOfAccess="guest">
+      <RouteAccess typesOfAccess="guest">
+        <GoogleReCaptchaProvider
+          reCaptchaKey={process.env.REACT_APP_RECAPTCHA_KEY}
+        >
           <Styled.Container>
             <Styled.Logo src={Logo} alt="Unidas" />
 
@@ -38,8 +38,8 @@ const Login: FC = memo(
             </Card>
             <ModalLogin />
           </Styled.Container>
-        </RouteAccess>
-      </GoogleReCaptchaProvider>
+        </GoogleReCaptchaProvider>
+      </RouteAccess>
     ),
     ModalLoginProvider,
   ),
