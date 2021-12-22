@@ -82,6 +82,7 @@ export const ModalContent = styled(Box)`
   background: #fff;
   padding: 64px 96px;
   text-align: center;
+  border-radius: 8px;
 
   .resend {
     margin-top: 32px;
@@ -142,4 +143,11 @@ export const ModalText = styled(TypographyStyles)`
     font-size: 16px;
     line-height: 24px;
   }
+`;
+
+export const ButtonGoBack = styled.button`
+  color: ${({ theme }) => theme.palette.grey[100]};
+  background: none;
+  border: none;
+  margin-bottom: 16px;
 `;
