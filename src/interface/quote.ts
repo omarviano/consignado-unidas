@@ -20,4 +20,5 @@ export interface Quote {
     accountNumber: string;
     digit: string;
   };
+  disapprovedCheck: true;
 }

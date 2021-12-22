@@ -1,5 +1,6 @@
 import { AxiosResponse } from 'axios';
 import { ActionMapData } from 'hooks/props';
+import { ResponseData } from 'interface/responseData';
 
 export interface LoginCredentials {
   cpf: string;
@@ -36,7 +37,7 @@ export enum AuthActions {
 
 export type AuthPayload = {
   [AuthActions.RequestUser]: undefined;
-  [AuthActions.RequestUserSuccess]: AxiosResponse<AuthResponse>;
+  [AuthActions.RequestUserSuccess]: AxiosResponse<ResponseData<TokenProps>>;
   [AuthActions.RequestUserError]: undefined;
   [AuthActions.Reset]: undefined;
   [AuthActions.SignOut]: undefined;

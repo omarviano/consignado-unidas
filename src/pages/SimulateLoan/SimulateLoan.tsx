@@ -11,7 +11,6 @@ import useModal from 'hooks/modal';
 import { SimulateLoanProvider, useSimulateLoan } from 'hooks/simulate';
 
 import { QuotationStatus } from 'enums/quote';
-import { DataSimulateProps } from 'interface/simulate';
 
 import { withContext } from 'utils/withContext';
 import { Table } from 'components/Table';
@@ -151,7 +150,7 @@ const SimulateLoan: FC = withContext(
       } catch (error) {
         const { response } = error as AxiosError;
 
-        if (response && response.status === 404) toggleModalError();
+        if (response && response.status === 404) toggleModalConfirm();
       }
     };
 

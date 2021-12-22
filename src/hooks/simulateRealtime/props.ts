@@ -1,11 +1,11 @@
 import { RequestStatus } from 'interface/common';
-import { DataProps } from 'interface/margin';
+import { Margin } from 'interface/margin';
 import { DataSimulateProps } from 'interface/simulate';
 
 export interface SimulateLoanRealTimeContextData {
   getMargin(): Promise<void>;
 
-  dataMargin: DataProps[];
+  dataMargin: Margin[];
 
   requestStatus: RequestStatus;
 

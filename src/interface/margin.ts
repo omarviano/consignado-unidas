@@ -1,4 +1,4 @@
-export interface DataProps {
+export interface Margin {
   relationship: string;
   totalValue: number;
   availableValue: number;
@@ -6,12 +6,4 @@ export interface DataProps {
   situation: string;
   employeeSalary: number;
   creditLimit: number;
-}
-
-export interface MarginProps {
-  success: boolean;
-  errors: string[];
-  message: string;
-  statusCode: number;
-  data: DataProps[];
 }

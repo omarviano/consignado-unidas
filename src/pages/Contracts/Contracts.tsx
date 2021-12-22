@@ -18,7 +18,7 @@ import { ContractsServices } from './services/contracts-services';
 
 const Contracts: React.FC = () => {
   const history = useHistory();
-  const [tableData, setTableData] = useState([]);
+  const [tableData, setTableData] = useState<any[]>([]);
   const [fetchingContracts, setFetchingContracts] = useState(true);
   const columns = useMemo<GridColumns>(
     () => [
@@ -91,9 +91,7 @@ const Contracts: React.FC = () => {
 
   useEffect(() => {
     ContractsServices.fetchContracts()
-      .then(({ data }) => {
-        const contracts = data.data || [];
-
+      .then(({ data: { data: contracts = [] } }) => {
         setTableData(
           contracts.map(contract => ({
             ...contract,
