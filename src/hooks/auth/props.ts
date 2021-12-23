@@ -51,7 +51,7 @@ export type AuthContextProviderProps = {
 
 export type AuthContextData = AuthState & {
   isAuthenticated: boolean;
-  signIn(credentials: LoginCredentials): Promise<void>;
+  signIn(credentials: LoginCredentials, recaptchaToken: string): Promise<void>;
   signOut(): void;
   refreshToken(token: string): void;
   clearSessionData(): void;
