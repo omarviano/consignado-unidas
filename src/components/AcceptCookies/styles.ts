@@ -32,6 +32,14 @@ export const Container = styled.div`
       margin-left: 10px;
     }
   }
+
+  & + div div {
+    bottom: 88px !important;
+
+    @media (max-width: 768px) {
+      bottom: 120px !important;
+    }
+  }
 `;
 
 export const Text = styled(TypographyStyles)`

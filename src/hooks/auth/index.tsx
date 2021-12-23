@@ -46,30 +46,33 @@ export const AuthProvider: FC<AuthContextProviderProps> = props => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const signIn = useCallback(async (credentials: LoginCredentials) => {
-    try {
-      dispatch({ type: AuthActions.RequestUser });
+  const signIn = useCallback(
+    async (credentials: LoginCredentials, recaptchaToken: string) => {
+      try {
+        dispatch({ type: AuthActions.RequestUser });
 
-      credentials.cpf = Document.removeMask(credentials.cpf);
+        credentials.cpf = Document.removeMask(credentials.cpf);
 
-      const response = await api.post<ResponseData<TokenProps>>(
-        '/auth',
-        credentials,
-      );
-      const { data } = response.data;
-      api.defaults.headers.authorization = `Bearer ${response.data.data.token}`;
-      persistToken(data);
+        const response = await api.post<ResponseData<TokenProps>>(
+          `/auth/${recaptchaToken}`,
+          credentials,
+        );
+        const { data } = response.data;
+        api.defaults.headers.authorization = `Bearer ${response.data.data.token}`;
+        persistToken(data);
 
-      dispatch({ type: AuthActions.RequestUserSuccess, payload: response });
-    } catch (error: any) {
-      const { response } = error;
-      const { ...errorObject } = response;
-      setStatusCode(response.status);
-      setMessageError(errorObject.data.message);
-      setModalActive(true);
-      dispatch({ type: AuthActions.RequestUserError });
-    }
-  }, []);
+        dispatch({ type: AuthActions.RequestUserSuccess, payload: response });
+      } catch (error: any) {
+        const { response } = error;
+        const { ...errorObject } = response;
+        setStatusCode(response.status);
+        setMessageError(errorObject.data.message);
+        setModalActive(true);
+        dispatch({ type: AuthActions.RequestUserError });
+      }
+    },
+    [],
+  );
 
   const signOut = useCallback(() => {
     api.defaults.headers.authorization = undefined;
