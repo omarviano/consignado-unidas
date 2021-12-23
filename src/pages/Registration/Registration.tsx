@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { ArrowBack, MailOutlined, Warning } from '@mui/icons-material';
 import { Badge } from '@mui/material';
 import { AxiosError } from 'axios';
+import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 
 import useModal from 'hooks/modal';
 import { Document } from 'utils/document';
@@ -108,6 +109,24 @@ const Registration: React.FC = () => {
     setCurrentStep(0);
     toggleValidationModal();
   };
+
+  const { executeRecaptcha } = useGoogleReCaptcha();
+
+  // Create an event handler so you can call the verification on button click event or form submit
+  const handleReCaptchaVerify = useCallback(async () => {
+    if (!executeRecaptcha) {
+      console.log('Execute recaptcha not yet available');
+      return;
+    }
+
+    const token = await executeRecaptcha('yourAction');
+    // Do whatever you want with the token
+  }, []);
+
+  // You can use useEffect to trigger the verification as soon as the component being loaded
+  useEffect(() => {
+    handleReCaptchaVerify();
+  }, [handleReCaptchaVerify]);
 
   return (
     <RouteAccess typesOfAccess="guest">
