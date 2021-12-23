@@ -1,6 +1,5 @@
 import { FC, memo } from 'react';
 import { Link } from 'react-router-dom';
-import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
 import Logo from 'assets/images/logo.png';
 
 import { Card } from 'components/Card';
@@ -15,30 +14,26 @@ const Login: FC = memo(
   withContext(
     () => (
       <RouteAccess typesOfAccess="guest">
-        <GoogleReCaptchaProvider
-          reCaptchaKey={process.env.REACT_APP_RECAPTCHA_KEY}
-        >
-          <Styled.Container>
-            <Styled.Logo src={Logo} alt="Unidas" />
+        <Styled.Container>
+          <Styled.Logo src={Logo} alt="Unidas" />
 
-            <Card>
-              <Styled.TextAccessAccount>
-                Acesse sua conta
-              </Styled.TextAccessAccount>
-              <Form />
-              <Styled.ContentTexts>
-                <Styled.LinkContainer color="primary" variant="h3">
-                  <Link to="/cadastro">Cadastre-se</Link>
-                </Styled.LinkContainer>
+          <Card>
+            <Styled.TextAccessAccount>
+              Acesse sua conta
+            </Styled.TextAccessAccount>
+            <Form />
+            <Styled.ContentTexts>
+              <Styled.LinkContainer color="primary" variant="h3">
+                <Link to="/cadastro">Cadastre-se</Link>
+              </Styled.LinkContainer>
 
-                <Styled.LinkContainer color="primary" variant="h3">
-                  <Link to="/recuperacao-senha">Esqueci minha senha</Link>
-                </Styled.LinkContainer>
-              </Styled.ContentTexts>
-            </Card>
-            <ModalLogin />
-          </Styled.Container>
-        </GoogleReCaptchaProvider>
+              <Styled.LinkContainer color="primary" variant="h3">
+                <Link to="/recuperacao-senha">Esqueci minha senha</Link>
+              </Styled.LinkContainer>
+            </Styled.ContentTexts>
+          </Card>
+          <ModalLogin />
+        </Styled.Container>
       </RouteAccess>
     ),
     ModalLoginProvider,
