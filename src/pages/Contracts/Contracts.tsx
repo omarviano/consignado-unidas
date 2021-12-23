@@ -179,7 +179,7 @@ const Contracts: React.FC = () => {
                 {fetchingContracts && <CircularProgress className="loading" />}
 
                 {tableData.length === 0 && !fetchingContracts && (
-                  <Styled.NoData>Nenhum parcela disponível</Styled.NoData>
+                  <Styled.NoData>Você ainda não possui contratos</Styled.NoData>
                 )}
               </Styled.ResponsiveContainer>
             )}
