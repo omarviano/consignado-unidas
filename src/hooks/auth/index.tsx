@@ -53,10 +53,10 @@ export const AuthProvider: FC<AuthContextProviderProps> = props => {
 
         credentials.cpf = Document.removeMask(credentials.cpf);
 
-        const response = await api.post<ResponseData<TokenProps>>(
-          `/auth/${recaptchaToken}`,
-          credentials,
-        );
+        const response = await api.post<ResponseData<TokenProps>>(`/auth`, {
+          ...credentials,
+          recaptchaToken,
+        });
         const { data } = response.data;
         api.defaults.headers.authorization = `Bearer ${response.data.data.token}`;
         persistToken(data);
