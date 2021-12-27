@@ -11,6 +11,10 @@ export const Card = styled(MUICard)`
   padding: 36px 25px 0 33px;
   box-shadow: 0px 2px 6px rgba(46, 43, 80, 0.25);
   margin-bottom: 32px;
+
+  @media (max-width: 920px) {
+    padding: 24px 16px;
+  }
 `;
 
 export const LoanInformation = styled(TypographyStyles)`
@@ -55,6 +59,10 @@ export const DivButtons = styled.div`
   justify-content: center;
   align-items: center;
   margin: 50px 0;
+
+  @media (max-width: 920px) {
+    flex-direction: row;
+  }
 `;
 
 export const ButtonAcceptProposal = styled(Button)`
