@@ -112,6 +112,10 @@ export const ButtonRefuseProposal = styled(Button)`
 export const ContainerModalRefuseProposal = styled(BoxStyles)`
   max-width: 685px;
   padding: 155px 125px;
+
+  @media (max-width: 768px) {
+    padding: 48px 36px;
+  }
 `;
 
 export const RefuseProposal = styled(TypographyStyles)`
@@ -131,12 +135,20 @@ export const ButtonYes = styled(Button)`
   text-transform: capitalize;
   width: 188px;
   background-color: #005b9e;
+
+  @media (max-width: 768px) {
+    width: 108px;
+  }
 `;
 
 export const ButtonNo = styled(Button)`
   text-transform: capitalize;
   width: 188px;
   margin-left: 30px;
+
+  @media (max-width: 768px) {
+    width: 108px;
+  }
 `;
 
 export const ContainerModalRefuseProposalAccept = styled(BoxStyles)`

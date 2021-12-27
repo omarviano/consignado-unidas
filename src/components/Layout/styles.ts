@@ -332,8 +332,12 @@ export const Content = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  width: 500px;
+  max-width: 500px;
   padding: 40px 0;
+
+  @media (max-width: 768px) {
+    padding: 48px 36px;
+  }
 `;
 
 export const Title = styled(TypographyStyles)`
