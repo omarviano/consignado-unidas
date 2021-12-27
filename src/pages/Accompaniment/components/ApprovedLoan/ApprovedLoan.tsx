@@ -609,7 +609,7 @@ const ApprovedLoan: FC = () => {
               error={reasonDescriptionRequired && totalCharacters === 0}
               helperText={
                 reasonDescriptionRequired && totalCharacters === 0
-                  ? 'Descreva o motivo'
+                  ? 'Campo Obrigatório'
                   : undefined
               }
             />
