@@ -14,8 +14,17 @@ import { CardMobileProps } from './props';
 
 const NUMBER_STEPS = 6;
 
+const steps = [
+  'Simulação',
+  'Análise de Crédito',
+  'Documentação',
+  'Empréstimo',
+  'Assinatura de Contrato',
+  'Crédito Liberado',
+];
+
 const CardMobile: FC<CardMobileProps> = props => {
-  const { step } = props;
+  const { step, activeStep } = props;
   const [expanded, setExpanded] = useState(false);
   const [accodionHeight, setAccodionHeight] = useState(0);
   const ref = useRef<any>(null);
@@ -63,9 +72,64 @@ const CardMobile: FC<CardMobileProps> = props => {
       [QuotationStatus.AssinaturaContrato]: <CheckCircle />,
       [QuotationStatus.CreditoLiberado]: <CheckCircle />,
       [QuotationStatus.EmprestimoReprovadoPeloBanco]: <Cancel />,
+      default: <></>,
     }),
     [],
   );
+
+  const STEP_BACKGROUND_COLOR = useMemo(
+    () => ({
+      [QuotationStatus.Analise]: 'yellow',
+      [QuotationStatus.Aprovado]: 'green',
+      [QuotationStatus.RecusadoPeloUsuario]: 'red',
+      [QuotationStatus.DocumentacaoPendente]: 'yellow',
+      [QuotationStatus.Documentacao]: 'green',
+      [QuotationStatus.AssinaturaContratoPendente]: 'yellow',
+      [QuotationStatus.AssinaturaContrato]: 'green',
+      [QuotationStatus.CreditoLiberado]: 'green',
+      [QuotationStatus.EmprestimoReprovadoPeloBanco]: 'red',
+      default: 'blue',
+    }),
+    [],
+  );
+
+  const getLabel = (label: string, index: number) => {
+    if (index === 3) {
+      const labels = {
+        [QuotationStatus.Aprovado]: 'Empréstimo Aprovado',
+        [QuotationStatus.EmprestimoReprovadoPeloBanco]: 'Empréstimo Reprovado',
+      };
+
+      if (
+        step === QuotationStatus.RecusadoPeloUsuario ||
+        step === QuotationStatus.EmprestimoReprovadoPeloBanco
+      )
+        return labels[QuotationStatus.EmprestimoReprovadoPeloBanco];
+
+      if (
+        step === QuotationStatus.Aprovado ||
+        step === QuotationStatus.AssinaturaContratoPendente ||
+        step === QuotationStatus.AssinaturaContrato
+      )
+        return labels[QuotationStatus.Aprovado];
+
+      return labels[step] || label;
+    }
+
+    return label;
+  };
+
+  const getIcon = (index: number) => {
+    if (activeStep === index) return STEP_ICON[step];
+
+    return STEP_ICON.default;
+  };
+
+  const getBackgroundColor = (index: number) => {
+    if (activeStep === index) return STEP_BACKGROUND_COLOR[step];
+
+    return STEP_BACKGROUND_COLOR.default;
+  };
 
   useEffect(() => {
     const getHeight = ref.current.scrollHeight;
@@ -88,57 +152,33 @@ const CardMobile: FC<CardMobileProps> = props => {
         setHeight={accodionHeight}
         ref={ref}
       >
-        <div className="accodion" ref={ref}>
+        <div ref={ref}>
           <Styled.Timeline>
-            <Styled.TimelineItem>
-              <Styled.TimelineSeparator>
-                <Styled.TimelineDot colorBackGround="blue" />
-                <Styled.TimelineConnector />
-              </Styled.TimelineSeparator>
-              <Styled.TimelineContent>Simulação</Styled.TimelineContent>
-            </Styled.TimelineItem>
-            <Styled.TimelineItem>
-              <Styled.TimelineSeparator>
-                <Styled.TimelineDot colorBackGround="blue">
-                  <WatchLater />
-                </Styled.TimelineDot>
-                <Styled.TimelineConnector />
-              </Styled.TimelineSeparator>
-              <Styled.TimelineContent>
-                Análise de Crédito
-              </Styled.TimelineContent>
-            </Styled.TimelineItem>
-            <Styled.TimelineItem>
-              <Styled.TimelineSeparator>
-                <Styled.TimelineDot colorBackGround="blue" />
-                <Styled.TimelineConnector />
-              </Styled.TimelineSeparator>
-              <Styled.TimelineContent>Documentação</Styled.TimelineContent>
-            </Styled.TimelineItem>
-            <Styled.TimelineItem>
-              <Styled.TimelineSeparator>
-                <Styled.TimelineDot colorBackGround="blue" />
-                <Styled.TimelineConnector />
-              </Styled.TimelineSeparator>
-              <Styled.TimelineContent>
-                Empréstimo Aprovado
-              </Styled.TimelineContent>
-            </Styled.TimelineItem>
-            <Styled.TimelineItem>
-              <Styled.TimelineSeparator>
-                <Styled.TimelineDot colorBackGround="blue" />
-                <Styled.TimelineConnector />
-              </Styled.TimelineSeparator>
-              <Styled.TimelineContent>
-                Assinatura de Contrato
-              </Styled.TimelineContent>
-            </Styled.TimelineItem>
-            <Styled.TimelineItem>
-              <Styled.TimelineSeparator>
-                <Styled.TimelineDot colorBackGround="blue" />
-              </Styled.TimelineSeparator>
-              <Styled.TimelineContent>Crédito Liberado</Styled.TimelineContent>
-            </Styled.TimelineItem>
+            {steps.map((label, index) => (
+              <>
+                <Styled.TimelineItem>
+                  {index === 5 ? (
+                    <Styled.TimelineDot
+                      colorBackground={getBackgroundColor(index)}
+                    >
+                      {getIcon(index)}
+                    </Styled.TimelineDot>
+                  ) : (
+                    <Styled.TimelineSeparator active={activeStep === index}>
+                      <Styled.TimelineDot
+                        colorBackground={getBackgroundColor(index)}
+                      >
+                        {getIcon(index)}
+                      </Styled.TimelineDot>
+                      <Styled.TimelineConnector />
+                    </Styled.TimelineSeparator>
+                  )}
+                  <Styled.TimelineContent active={activeStep === index}>
+                    {getLabel(label, index)}
+                  </Styled.TimelineContent>
+                </Styled.TimelineItem>
+              </>
+            ))}
           </Styled.Timeline>
         </div>
       </Styled.Content>

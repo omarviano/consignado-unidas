@@ -10,12 +10,14 @@ import {
   TimelineContent as TimelineContentStyles,
 } from '@mui/lab';
 
+import { ColorBackgroundProps } from './props';
+
 interface ContentProps {
   setHeight: number;
 }
 
-interface TimelineDotProps {
-  colorBackGround: 'red' | 'green' | 'yellow' | 'blue';
+interface TimelineSeparatorProps {
+  active: boolean;
 }
 
 export const Card = styled.div`
@@ -70,12 +72,18 @@ export const Content = styled.div<ContentProps>`
   height: 0;
   display: flex;
   align-items: flex-start;
+  justify-content: flex-start;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
   overflow: hidden;
 
   &.show {
     height: ${({ setHeight }) => setHeight}px;
+  }
+
+  @media only screen and (min-width: 400px) and (max-width: 920px) {
+    align-items: center;
+    justify-content: center;
   }
 `;
 
@@ -91,47 +99,55 @@ export const Timeline = styled(TimelineStyles)`
   }
 `;
 
-export const TimelineDot = styled(TimelineDotStyles)<TimelineDotProps>`
+const colorBackground = (color?: ColorBackgroundProps['colorBackground']) => {
+  const colors = {
+    red: '#d81616',
+    green: '#08803a',
+    yellow: '#febc59',
+    blue: '#0b9bd0',
+  };
+
+  return colors[color || 'blue'];
+};
+
+export const TimelineDot = styled(TimelineDotStyles)<ColorBackgroundProps>`
   padding: 0;
   box-shadow: none;
 
-  ${({ colorBackGround }) =>
-    colorBackGround === 'blue' &&
-    css`
-      background-color: #0b9bd0;
-    `}
-
-  ${({ colorBackGround }) =>
-    colorBackGround === 'yellow' &&
-    css`
-      background-color: #febc59;
-    `}
-
-  ${({ colorBackGround }) =>
-    colorBackGround === 'green' &&
-    css`
-      background-color: #08803a;
-    `}
-
-    ${({ colorBackGround }) =>
-    colorBackGround === 'red' &&
-    css`
-      background-color: #d81616;
-    `}
+  background-color: ${props => colorBackground(props.colorBackground)};
 `;
 
 export const TimelineConnector = styled(TimelineConnectorStyles)`
   background-color: #0b9bd0;
 `;
 
-export const TimelineSeparator = styled(TimelineSeparatorStyles)`
-  margin-left: -6px;
-  height: 100px;
+export const TimelineSeparator = styled(
+  TimelineSeparatorStyles,
+)<TimelineSeparatorProps>`
+  ${({ active }) =>
+    active &&
+    css`
+      margin-left: -11px;
+    `}
 `;
 
 export const TimelineItem = styled(TimelineItemStyles)``;
 
-export const TimelineContent = styled(TimelineContentStyles)``;
+export const TimelineContent = styled(
+  TimelineContentStyles,
+)<TimelineSeparatorProps>`
+  font-weight: 400;
+  font-size: 14px;
+  color: ${({ theme }) => theme.palette.grey[50]};
+
+  ${({ active }) =>
+    active &&
+    css`
+      font-weight: 700;
+      font-size: 14px;
+      color: ${({ theme }) => theme.palette.grey[200]};
+    `}
+`;
 
 export const IconContainer = styled(IconButton)`
   width: 100%;

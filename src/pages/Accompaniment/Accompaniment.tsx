@@ -207,7 +207,7 @@ const Accompaniment: React.FC = () => {
                   </Stepper>
                 </Styled.StepperCard>
               ) : (
-                <CardMobile step={step} />
+                <CardMobile step={step} activeStep={activeStep} />
               )}
 
               {STEPS_COMPONENTS[step]}
