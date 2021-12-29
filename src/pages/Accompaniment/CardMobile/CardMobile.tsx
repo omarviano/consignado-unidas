@@ -18,7 +18,7 @@ const steps = [
   'Simulação',
   'Análise de Crédito',
   'Documentação',
-  'Empréstimo',
+  'Empréstimo Aprovado',
   'Assinatura de Contrato',
   'Crédito Liberado',
 ];
@@ -160,6 +160,7 @@ const CardMobile: FC<CardMobileProps> = props => {
                   {index === 5 ? (
                     <Styled.TimelineDot
                       colorBackground={getBackgroundColor(index)}
+                      numberActive={activeStep}
                     >
                       {getIcon(index)}
                     </Styled.TimelineDot>

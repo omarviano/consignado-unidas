@@ -7,4 +7,5 @@ type ColorBackground = 'red' | 'green' | 'yellow' | 'blue';
 
 export interface ColorBackgroundProps {
   colorBackground: ColorBackground;
+  numberActive?: number;
 }

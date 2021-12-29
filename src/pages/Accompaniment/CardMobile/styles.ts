@@ -78,7 +78,7 @@ export const Content = styled.div<ContentProps>`
   overflow: hidden;
 
   &.show {
-    height: ${({ setHeight }) => setHeight}px;
+    height: 450px;
   }
 
   @media only screen and (min-width: 400px) and (max-width: 920px) {
@@ -111,10 +111,16 @@ const colorBackground = (color?: ColorBackgroundProps['colorBackground']) => {
 };
 
 export const TimelineDot = styled(TimelineDotStyles)<ColorBackgroundProps>`
-  padding: 0;
+  padding: 1px;
   box-shadow: none;
 
   background-color: ${props => colorBackground(props.colorBackground)};
+
+  ${({ numberActive }) =>
+    numberActive === 5 &&
+    css`
+      margin-left: -11px !important;
+    `}
 `;
 
 export const TimelineConnector = styled(TimelineConnectorStyles)`
@@ -127,7 +133,11 @@ export const TimelineSeparator = styled(
   ${({ active }) =>
     active &&
     css`
-      margin-left: -11px;
+      margin-left: -12px;
+
+      @media only screen and (min-width: 400px) and (max-width: 920px) {
+        margin-left: -11px;
+      }
     `}
 `;
 
