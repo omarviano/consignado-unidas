@@ -43,4 +43,8 @@ export const ButtonNewSimulateLoan = styled(Button)`
   text-transform: none;
   margin-top: 65px;
   width: 254px;
+
+  @media (max-width: 920px) {
+    height: 43px;
+  }
 `;

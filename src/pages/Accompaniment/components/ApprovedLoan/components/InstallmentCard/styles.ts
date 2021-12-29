@@ -10,16 +10,6 @@ export const Container = styled.div`
   background: #fff;
   border-radius: 4px;
   box-shadow: 0px 2px 6px rgba(46, 43, 80, 0.25);
-
-  & + div {
-    margin-top: 8px;
-  }
-
-  button {
-    margin-top: 16px;
-    height: 43px;
-    text-transform: initial;
-  }
 `;
 
 export const NumberInstallments = styled(TypographyStyles)`

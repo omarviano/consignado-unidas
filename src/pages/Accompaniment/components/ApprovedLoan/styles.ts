@@ -28,6 +28,11 @@ export const TotalAmountOfLoanRequested = styled(TypographyStyles)`
   line-height: 34px;
   letter-spacing: 0.2px;
   color: ${({ theme }) => theme.palette.grey[500]};
+
+  @media (max-width: 920px) {
+    margin-top: 12px;
+    line-height: 20px;
+  }
 `;
 
 export const Approved = styled.strong`
@@ -41,12 +46,21 @@ export const InstallmentDueDate = styled(TypographyStyles)`
   letter-spacing: 0.2px;
   margin-top: 78px;
   color: ${({ theme }) => theme.palette.grey[500]};
+
+  @media (max-width: 920px) {
+    margin-top: 12px;
+    line-height: 20px;
+  }
 `;
 
 export const ProposalInformation = styled(TypographyStyles)`
-  line-height: 11px;
+  line-height: 16.41px;
   color: ${({ theme }) => theme.palette.grey[500]};
   margin-bottom: 44px;
+
+  @media (max-width: 920px) {
+    margin: 16px 0 8px 0;
+  }
 `;
 
 export const TextBlack = styled.span`
@@ -61,7 +75,11 @@ export const DivButtons = styled.div`
   margin: 50px 0;
 
   @media (max-width: 920px) {
-    flex-direction: row;
+    flex-direction: column;
+    border-radius: 0 0 4px 4px;
+
+    padding: 16px;
+    margin: 0;
   }
 `;
 
@@ -69,6 +87,11 @@ export const ButtonAcceptProposal = styled(Button)`
   text-transform: capitalize;
   width: 186px;
   background-color: #005b9e;
+
+  @media (max-width: 920px) {
+    width: 100%;
+    height: 43px;
+  }
 `;
 
 export const ButtonGoLoggedArea = styled(Button)`
@@ -115,6 +138,12 @@ export const ButtonRefuseProposal = styled(Button)`
   text-transform: capitalize;
   width: 186px;
   margin-left: 60px;
+
+  @media (max-width: 920px) {
+    width: 100%;
+    margin: 10px 0;
+    height: 43px;
+  }
 `;
 
 export const ContainerModalRefuseProposal = styled(BoxStyles)`

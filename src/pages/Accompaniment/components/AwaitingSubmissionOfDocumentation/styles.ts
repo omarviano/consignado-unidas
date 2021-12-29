@@ -31,4 +31,15 @@ export const RequestUnderAnalysis = styled(TypographyStyles)`
   line-height: 40px;
   letter-spacing: 0.2px;
   color: ${({ theme }) => theme.palette.grey[200]};
+
+  div {
+    display: none;
+  }
+
+  @media (max-width: 920px) {
+    div {
+      display: block;
+      margin-top: 20px;
+    }
+  }
 `;
