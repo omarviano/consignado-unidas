@@ -11,6 +11,10 @@ export const DataCard = styled(MUICard)`
     width: 20px;
     margin-bottom: 16px;
   }
+
+  @media (max-width: 920px) {
+    padding: 24px 16px;
+  }
 `;
 
 export const HelloUserName = styled(TypographyStyles)`
