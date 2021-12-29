@@ -1,0 +1,1 @@
+export { CardMobile } from './CardMobile';

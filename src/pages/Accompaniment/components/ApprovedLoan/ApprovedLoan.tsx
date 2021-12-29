@@ -23,9 +23,12 @@ import { AxiosError } from 'axios';
 import { Document } from 'utils/document';
 import { FormikProps } from 'formik';
 import { Button } from 'components/Buttons/Button';
+import useWindowDimensions from 'hooks/windowDimensions';
 import { UserDataProps, FormProps } from '../../models/userData';
 import { schema, reasonsSchema } from './schema';
+import { InstallmentCard } from './components/InstallmentCard';
 import * as Styled from './styles';
+import { InstallmentTableDataProps } from './components/InstallmentCard/props';
 
 const ApprovedLoan: FC = () => {
   const history = useHistory();
@@ -39,7 +42,7 @@ const ApprovedLoan: FC = () => {
   const { open: reasonRefusesOpen, toggle: toggleReasonRefuses } = useModal();
   const [banks, setBanks] = useState<{ name: string; value: string }[]>([]);
   const [loanData, setLoanData] = useState<LoanDataProps>();
-  const [tableData, setTableData] = useState<any>([]);
+  const [tableData, setTableData] = useState<InstallmentTableDataProps[]>([]);
   const { fetchCEP, notFound, address } = useViaCEP();
   const [cep, setCep] = useState<string>();
   const [loading, setLoading] = useState(false);
@@ -51,6 +54,7 @@ const ApprovedLoan: FC = () => {
   >([]);
   const [reasonDescriptionRequired, setReasonDescriptionRequired] =
     useState(false);
+  const { width } = useWindowDimensions();
 
   const refFormik = useRef<FormikProps<FormProps> | null>();
 
@@ -304,13 +308,16 @@ const ApprovedLoan: FC = () => {
         acordo com a data do aceite.
       </Styled.ProposalInformation>
 
-      <Table
-        disableBoxShadow
-        checkboxSelection={false}
-        columns={columns}
-        rows={tableData}
-      />
-
+      {width && width > 920 ? (
+        <Table
+          disableBoxShadow
+          checkboxSelection={false}
+          columns={columns}
+          rows={tableData}
+        />
+      ) : (
+        <InstallmentCard data={tableData} />
+      )}
       <Styled.DivButtons>
         <Styled.ButtonAcceptProposal
           variant="contained"

@@ -14,7 +14,8 @@ const AwaitingSubmissionOfDocumentation: React.FC = () => (
       Nesse momento você receberá um SMS do nosso parceiro bancário MOVA, para
       enviar os documentos necessários.
       <br />
-      Caso não envie os documentos,
+      <div />
+      Caso não envie os documentos,{' '}
       <b>
         o empréstimo será cancelado e deverá realizar um novo empréstimo, ok?
       </b>

@@ -13,6 +13,7 @@ import { useHistory } from 'react-router-dom';
 import { RoutingPath } from 'utils/routing';
 import { QuotationStatus } from 'enums/quote';
 import { Quote } from 'interface/quote';
+import useWindowDimensions from 'hooks/windowDimensions';
 import { RequestUnderAnalysis } from './components/RequestUnderAnalysis';
 import { AwaitingSubmissionOfDocumentation } from './components/AwaitingSubmissionOfDocumentation';
 import { DocumentationSent } from './components/DocumentationSent';
@@ -21,6 +22,7 @@ import { AccompanimentServices } from './services/accompaniment.services';
 import { ApprovedLoan } from './components/ApprovedLoan';
 import { ReprovidedLoan } from './components/ReprovidedLoan';
 import { ContractSigning } from './components/ContractSigning';
+import { CardMobile } from './CardMobile';
 
 import * as Styled from './styles';
 import * as MUIStyled from './muiStyles';
@@ -63,6 +65,7 @@ const Accompaniment: React.FC = () => {
   const [checking, setChecking] = useState(true);
   const history = useHistory();
   const [quote, setQuote] = useState<Quote>();
+  const { width } = useWindowDimensions();
 
   const STEP_NUMBER = useMemo(
     () => ({
@@ -182,24 +185,30 @@ const Accompaniment: React.FC = () => {
             </Box>
           ) : (
             <>
-              <Styled.StepperCard>
-                <Stepper
-                  alternativeLabel
-                  activeStep={activeStep}
-                  connector={<MUIStyled.QontoConnector />}
-                >
-                  {steps.map((label, index) => (
-                    <Step key={label}>
-                      <Styled.StepLabel StepIconComponent={qontoStepIcon}>
-                        <Styled.StepLabelContent active={activeStep === index}>
-                          {getIcon(index)}
-                          {getLabel(label, index)}
-                        </Styled.StepLabelContent>
-                      </Styled.StepLabel>
-                    </Step>
-                  ))}
-                </Stepper>
-              </Styled.StepperCard>
+              {width && width > 920 ? (
+                <Styled.StepperCard>
+                  <Stepper
+                    alternativeLabel
+                    activeStep={activeStep}
+                    connector={<MUIStyled.QontoConnector />}
+                  >
+                    {steps.map((label, index) => (
+                      <Step key={label}>
+                        <Styled.StepLabel StepIconComponent={qontoStepIcon}>
+                          <Styled.StepLabelContent
+                            active={activeStep === index}
+                          >
+                            {getIcon(index)}
+                            {getLabel(label, index)}
+                          </Styled.StepLabelContent>
+                        </Styled.StepLabel>
+                      </Step>
+                    ))}
+                  </Stepper>
+                </Styled.StepperCard>
+              ) : (
+                <CardMobile step={step} activeStep={activeStep} />
+              )}
 
               {STEPS_COMPONENTS[step]}
             </>
