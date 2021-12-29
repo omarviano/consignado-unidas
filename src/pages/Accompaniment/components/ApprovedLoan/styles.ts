@@ -116,6 +116,11 @@ export const ContainerModal = styled(BoxStyles)`
   @media (min-width: 1000px) {
     max-height: 100vh;
   }
+
+  @media (max-width: 1000px) {
+    height: 100vh;
+    padding: 20px 8px;
+  }
 `;
 
 export const GridContainer = styled(GridStyles)`
@@ -176,6 +181,11 @@ export const ButtonYes = styled(Button)`
   @media (max-width: 768px) {
     width: 108px;
   }
+
+  @media (max-width: 768px) {
+    width: 108px;
+    height: 35px;
+  }
 `;
 
 export const ButtonNo = styled(Button)`
@@ -185,6 +195,11 @@ export const ButtonNo = styled(Button)`
 
   @media (max-width: 768px) {
     width: 108px;
+  }
+
+  @media (max-width: 768px) {
+    width: 108px;
+    height: 35px;
   }
 `;
 

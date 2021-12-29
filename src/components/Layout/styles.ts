@@ -356,9 +356,21 @@ export const DivButtons = styled.div`
 export const ButtonYes = styled(Button)`
   width: 188px;
   margin-left: 40px;
+
+  @media (max-width: 768px) {
+    width: 108px;
+    height: 35px;
+    margin-left: 0;
+  }
 `;
 
 export const ButtonNo = styled(Button)`
   width: 188px;
-  margin-right: 40px;
+  margin: 0 40px;
+
+  @media (max-width: 768px) {
+    width: 108px;
+    height: 35px;
+    margin-right: 0;
+  }
 `;

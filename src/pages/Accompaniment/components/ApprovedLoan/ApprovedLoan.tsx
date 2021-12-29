@@ -351,7 +351,7 @@ const ApprovedLoan: FC = () => {
               Dados complementares
             </Styled.AdditionalData>
             <Styled.GridContainer container spacing={1}>
-              <Grid item xs={4}>
+              <Grid item xs={12} sm={4}>
                 <Input
                   name="name"
                   label="Nome"
@@ -360,7 +360,7 @@ const ApprovedLoan: FC = () => {
                   disabled
                 />
               </Grid>
-              <Grid item xs={4}>
+              <Grid item xs={12} sm={4}>
                 <Input
                   name="nationality"
                   label="Nacionalidade"
@@ -368,7 +368,7 @@ const ApprovedLoan: FC = () => {
                   variant="outlined"
                 />
               </Grid>
-              <Grid item xs={4}>
+              <Grid item xs={12} sm={4}>
                 <Input
                   name="professional"
                   label="Profissão"
@@ -379,7 +379,7 @@ const ApprovedLoan: FC = () => {
             </Styled.GridContainer>
 
             <Styled.GridContainer container spacing={1}>
-              <Grid item xs={2}>
+              <Grid item xs={12} sm={3}>
                 <Input
                   id="cep"
                   name="cep"
@@ -392,7 +392,7 @@ const ApprovedLoan: FC = () => {
                   helperText={notFound ? 'CEP não encontrado' : undefined}
                 />
               </Grid>
-              <Grid item xs={4}>
+              <Grid item xs={12} sm={3}>
                 <Input
                   name="logradouro"
                   label="Endereço"
@@ -403,7 +403,7 @@ const ApprovedLoan: FC = () => {
                   }
                 />
               </Grid>
-              <Grid item xs={2}>
+              <Grid item xs={12} sm={3}>
                 <Input
                   name="number"
                   type="number"
@@ -412,7 +412,7 @@ const ApprovedLoan: FC = () => {
                   variant="outlined"
                 />
               </Grid>
-              <Grid item xs={4}>
+              <Grid item xs={12} sm={3}>
                 <Input
                   name="bairro"
                   label="Bairro"
@@ -424,7 +424,7 @@ const ApprovedLoan: FC = () => {
             </Styled.GridContainer>
 
             <Styled.GridContainer container spacing={1}>
-              <Grid item xs={4}>
+              <Grid item xs={12} sm={4}>
                 <Input
                   name="complement"
                   label="Complemento"
@@ -432,7 +432,7 @@ const ApprovedLoan: FC = () => {
                   variant="outlined"
                 />
               </Grid>
-              <Grid item xs={4}>
+              <Grid item xs={12} sm={4}>
                 <Input
                   name="localidade"
                   label="Cidade"
@@ -443,7 +443,7 @@ const ApprovedLoan: FC = () => {
                   }
                 />
               </Grid>
-              <Grid item xs={4}>
+              <Grid item xs={12} sm={4}>
                 <Styled.DivSelect>
                   <Select
                     name="uf"
@@ -460,7 +460,7 @@ const ApprovedLoan: FC = () => {
             <Styled.BankData variant="h2">Dados bancários</Styled.BankData>
 
             <Styled.GridContainer container spacing={1}>
-              <Grid item xs={3}>
+              <Grid item xs={12} sm={6}>
                 <Input
                   name="accountType"
                   type="number"
@@ -470,7 +470,7 @@ const ApprovedLoan: FC = () => {
                   disabled
                 />
               </Grid>
-              <Grid item xs={4}>
+              <Grid item xs={12} sm={6}>
                 <Styled.DivSelect>
                   <Autocomplete
                     name="bankCode"
@@ -484,7 +484,7 @@ const ApprovedLoan: FC = () => {
             </Styled.GridContainer>
 
             <Styled.GridContainer container spacing={1}>
-              <Grid item xs={3}>
+              <Grid item xs={6} sm={4}>
                 <Input
                   name="agency"
                   type="number"
@@ -493,7 +493,7 @@ const ApprovedLoan: FC = () => {
                   variant="outlined"
                 />
               </Grid>
-              <Grid item xs={2}>
+              <Grid item xs={6} sm={4}>
                 <Input
                   name="digit"
                   type="number"
@@ -502,7 +502,7 @@ const ApprovedLoan: FC = () => {
                   variant="outlined"
                 />
               </Grid>
-              <Grid item xs={4}>
+              <Grid item xs={12} sm={4}>
                 <Input
                   name="accountNumber"
                   type="number"
