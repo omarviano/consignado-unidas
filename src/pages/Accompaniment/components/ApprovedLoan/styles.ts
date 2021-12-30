@@ -214,6 +214,7 @@ export const ContainerModalRefuseProposalAccept = styled(BoxStyles)`
 
 export const RefuseProposalAccept = styled(RefuseProposal)`
   margin-top: 12px;
+  line-height: 34.5px;
 `;
 
 export const ButtonGoToHomeScreen = styled(Button)`
