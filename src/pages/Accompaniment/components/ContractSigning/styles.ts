@@ -31,4 +31,9 @@ export const TextInformative = styled(TypographyStyles)`
   color: ${({ theme }) => theme.palette.grey[200]};
   line-height: 20px;
   letter-spacing: 0.2px;
+
+  a {
+    text-decoration: none;
+    color: ${({ theme }) => theme.palette.grey[200]};
+  }
 `;
