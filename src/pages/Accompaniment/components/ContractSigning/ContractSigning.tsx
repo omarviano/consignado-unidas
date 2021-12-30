@@ -11,7 +11,10 @@ const ContractSigning: React.FC = () => (
     <Styled.HelloUserName>Olá {getToken()?.user.name}!</Styled.HelloUserName>
 
     <Styled.TextInformative>
-      Nesse momento você receberá um email da <strong>mova@mova.com.br</strong>{' '}
+      Nesse momento você receberá um email da{' '}
+      <strong>
+        <a href="mailto:contato@mova.vc">contato@mova.vc</a>
+      </strong>{' '}
       no seu email {getToken()?.user.email} com as informação para você enviar
       os documentos necessários.
       <br />
