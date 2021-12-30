@@ -566,7 +566,9 @@ const ApprovedLoan: FC = () => {
           <Styled.CheckCircle color="success" />
 
           <Styled.RefuseProposalAccept variant="h2">
-            Proposta recusada
+            Proposta recusada <br /> Agradecemos por ter respondido o
+            questionário. <br /> As respostas contribuiram para nossas futuras
+            melhorias.
           </Styled.RefuseProposalAccept>
 
           <Styled.ButtonGoToHomeScreen
