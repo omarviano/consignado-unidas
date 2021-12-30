@@ -149,6 +149,7 @@ export const TimelineContent = styled(
   font-weight: 400;
   font-size: 14px;
   color: ${({ theme }) => theme.palette.grey[50]};
+  white-space: nowrap;
 
   ${({ active }) =>
     active &&
