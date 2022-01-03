@@ -21,5 +21,5 @@ export const AccompanimentServices = {
   fetchUserData: (): Promise<AxiosResponse<ResponseData<UserDataProps>>> =>
     api.get('/user-account'),
   fetchReasons: (): Promise<AxiosResponse<ResponseData<Reasons[]>>> =>
-    api.get('/ReasonRefuse'),
+    api.get('/reason-refuse'),
 };
