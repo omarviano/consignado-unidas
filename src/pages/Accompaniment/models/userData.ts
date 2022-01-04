@@ -23,7 +23,7 @@ export interface FormProps {
   nationality: string;
   professional: string;
   bankCode: string;
-  number: number;
+  number: number | string;
   agency: number;
   accountNumber: number;
   digit: number;

@@ -128,7 +128,6 @@ const BankDataForm: React.FC<BankDataFormProps> = ({
               <Grid item xs={6}>
                 <Input
                   name="number"
-                  type="number"
                   label="Número (Opcional)"
                   placeholder="xxxx"
                   variant="outlined"

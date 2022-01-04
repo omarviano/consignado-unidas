@@ -5,7 +5,7 @@ const schema = Yup.object().shape({
   professional: Yup.string().required('Informe a profissão'),
   cep: Yup.string().required('Informe o cep'),
   logradouro: Yup.string().required('Informe o endereço'),
-  number: Yup.number().required('Informe o número'),
+  number: Yup.string().required('Informe o número'),
   bairro: Yup.string().required('Informe o bairro'),
   complement: Yup.string().required('Informe o complemento'),
   localidade: Yup.string().required('Informe a cidade'),
