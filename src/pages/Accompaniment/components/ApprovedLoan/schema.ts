@@ -11,11 +11,16 @@ const schema = Yup.object().shape({
   localidade: Yup.string().required('Informe a cidade'),
   uf: Yup.string().required('Informe a estado'),
   bankCode: Yup.string().required('Informe o banco'),
-  agency: Yup.number().required('Informe a agência'),
-  accountNumber: Yup.number().required('Informe sua conta corrente'),
-  digit: Yup.number()
+  agency: Yup.string()
+    .required('Informe a agência')
+    .matches(/^\d+$/, 'Agência inválida'),
+  accountNumber: Yup.string()
+    .required('Informe sua conta corrente')
+    .matches(/^\d+$/, 'Conta corrente inválida'),
+  digit: Yup.string()
     .required('Informe o dígito')
-    .max(99, 'Apenas dois dígitos'),
+    .max(99, 'Apenas dois dígitos')
+    .matches(/^\d+$/, 'Dígito inválido'),
 });
 
 const reasonsSchema = Yup.object().shape({
