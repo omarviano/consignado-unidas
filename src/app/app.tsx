@@ -15,6 +15,8 @@ import {
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import { Interceptors } from 'components/Interceptors';
 import { AcceptCookies } from 'components/AcceptCookies';
+import { AppInsightsContext } from '@microsoft/applicationinsights-react-js';
+import { reactPlugin } from 'hooks/appInsights';
 import { Routes } from './routes';
 
 const App: FC = () => (
@@ -22,18 +24,20 @@ const App: FC = () => (
     <LocalizationProvider dateAdapter={AdapterDateFns} locale={ptBR}>
       <StyledEngineProvider injectFirst>
         <ThemeProviderStyledComponents theme={materialUiTheme}>
-          <GlobalStyles />
-          <CssBaseline />
-          <AppProvider>
-            <Interceptors />
+          <AppInsightsContext.Provider value={reactPlugin}>
+            <GlobalStyles />
+            <CssBaseline />
+            <AppProvider>
+              <Interceptors />
 
-            <BrowserRouter>
-              <Switch>
-                <Routes />
-              </Switch>
-              <AcceptCookies />
-            </BrowserRouter>
-          </AppProvider>
+              <BrowserRouter>
+                <Switch>
+                  <Routes />
+                </Switch>
+                <AcceptCookies />
+              </BrowserRouter>
+            </AppProvider>
+          </AppInsightsContext.Provider>
         </ThemeProviderStyledComponents>
       </StyledEngineProvider>
     </LocalizationProvider>
