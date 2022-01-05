@@ -79,6 +79,12 @@ export const ModalText = styled(TypographyStyles)`
   color: ${({ theme }) => theme.palette.grey[200]};
   margin-bottom: 26px;
 
+  span {
+    color: ${({ theme }) => theme.palette.primary.main};
+    font-weight: 500;
+    word-wrap: break-word;
+  }
+
   @media (max-width: 768px) {
     font-size: 14px;
     line-height: 1.5;
