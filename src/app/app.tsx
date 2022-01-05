@@ -24,20 +24,20 @@ const App: FC = () => (
     <LocalizationProvider dateAdapter={AdapterDateFns} locale={ptBR}>
       <StyledEngineProvider injectFirst>
         <ThemeProviderStyledComponents theme={materialUiTheme}>
-          <AppInsightsContext.Provider value={reactPlugin}>
-            <GlobalStyles />
-            <CssBaseline />
-            <AppProvider>
-              <Interceptors />
+          <GlobalStyles />
+          <CssBaseline />
+          <AppProvider>
+            <Interceptors />
 
-              <BrowserRouter>
+            <BrowserRouter>
+              <AppInsightsContext.Provider value={reactPlugin}>
                 <Switch>
                   <Routes />
                 </Switch>
                 <AcceptCookies />
-              </BrowserRouter>
-            </AppProvider>
-          </AppInsightsContext.Provider>
+              </AppInsightsContext.Provider>
+            </BrowserRouter>
+          </AppProvider>
         </ThemeProviderStyledComponents>
       </StyledEngineProvider>
     </LocalizationProvider>
