@@ -22,6 +22,8 @@ import { TableSimulateProps } from 'interface/tableSimulate';
 import { Button } from 'components/Buttons/Button';
 import { Modal } from 'components/Modal';
 import { RoutingPath } from 'utils/routing';
+import { withAITracking } from '@microsoft/applicationinsights-react-js';
+import { reactPlugin } from 'hooks/appInsights';
 import {
   useModalSimulateLoan,
   ModalSimulateLoanProvider,
@@ -307,4 +309,4 @@ const SimulateLoan: FC = withContext(
   ModalSimulateLoanProvider,
 );
 
-export { SimulateLoan };
+export default withAITracking(reactPlugin, SimulateLoan);

@@ -11,6 +11,8 @@ import { Layout } from 'components/Layout';
 import { RouteAccess } from 'components/RouteAccess';
 import { Button } from 'components/Buttons/Button';
 import { ModalMessage } from 'components/ModalMessage';
+import { withAITracking } from '@microsoft/applicationinsights-react-js';
+import { reactPlugin } from 'hooks/appInsights';
 import { Modal } from 'components/Modal';
 import { CPFForm } from './components/CPFForm';
 import { CompleteNameForm } from './components/CompleteNameForm';
@@ -233,4 +235,4 @@ const Registration: React.FC = () => {
   );
 };
 
-export { Registration };
+export default withAITracking(reactPlugin, Registration);

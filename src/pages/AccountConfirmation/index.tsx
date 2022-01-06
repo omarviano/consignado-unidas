@@ -12,6 +12,8 @@ import { Button } from 'components/Buttons/Button';
 import { Modal } from 'components/Modal';
 import { ModalMessage } from 'components/ModalMessage';
 import { Layout } from 'components/Layout';
+import { withAITracking } from '@microsoft/applicationinsights-react-js';
+import { reactPlugin } from 'hooks/appInsights';
 
 import * as Styled from './styles';
 import { AccountConfirmationServices } from './services/account-confirmation.services';
@@ -101,4 +103,4 @@ const AccountConfirmation: React.FC = () => {
   );
 };
 
-export { AccountConfirmation };
+export default withAITracking(reactPlugin, AccountConfirmation);
