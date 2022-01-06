@@ -65,7 +65,7 @@ const ApprovedLoan: FC = () => {
           name: response?.name,
           nationality: response?.nationality,
           professional: response?.professional,
-          number: Number(response?.number),
+          number: response?.number || '',
           complement: response?.complement,
           bankCode: String(response?.bankCode),
           agency: Number(response?.agency),
@@ -406,7 +406,6 @@ const ApprovedLoan: FC = () => {
               <Grid item xs={12} sm={3}>
                 <Input
                   name="number"
-                  type="number"
                   label="Número"
                   placeholder="xxxx"
                   variant="outlined"
@@ -487,7 +486,6 @@ const ApprovedLoan: FC = () => {
               <Grid item xs={6} sm={4}>
                 <Input
                   name="agency"
-                  type="number"
                   label="Agência"
                   placeholder="N° da sua agência"
                   variant="outlined"
@@ -496,7 +494,6 @@ const ApprovedLoan: FC = () => {
               <Grid item xs={6} sm={4}>
                 <Input
                   name="digit"
-                  type="number"
                   label="Dígito"
                   placeholder="XX"
                   variant="outlined"
@@ -505,7 +502,6 @@ const ApprovedLoan: FC = () => {
               <Grid item xs={12} sm={4}>
                 <Input
                   name="accountNumber"
-                  type="number"
                   label="N° da Conta Corrente"
                   placeholder="XXXXXX"
                   variant="outlined"
