@@ -13,7 +13,7 @@ import { useModalLogin } from '../ModalLogin/context';
 import * as Styled from './styles';
 
 const Form: FC = memo(() => {
-  // const { executeRecaptcha } = useGoogleReCaptcha();
+  const { executeRecaptcha } = useGoogleReCaptcha();
   const {
     signIn,
     modalActive,
@@ -44,24 +44,26 @@ const Form: FC = memo(() => {
     [showPassword],
   );
 
-  /* const handleReCaptchaVerify = useCallback(async () => {
+  const handleReCaptchaVerify = useCallback(async () => {
     if (!executeRecaptcha) return undefined;
 
     const token = await executeRecaptcha('login');
 
     return token;
-  }, [executeRecaptcha]); */
+  }, [executeRecaptcha]);
 
   const handleSubmit = useCallback(
     async (values: LoginCredentials) => {
-      /* const recaptchaToken = await handleReCaptchaVerify();
+      const recaptchaToken = await handleReCaptchaVerify();
 
-      if (!recaptchaToken) return; */
+      if (!recaptchaToken) return;
 
-      signIn(values, 'recaptchaToken');
+      console.log('recaptchaToken', recaptchaToken);
+
+      signIn(values, recaptchaToken);
       resetModalActive();
     },
-    [/* handleReCaptchaVerify,  */ resetModalActive, signIn],
+    [handleReCaptchaVerify, resetModalActive, signIn],
   );
 
   useEffect(() => {
