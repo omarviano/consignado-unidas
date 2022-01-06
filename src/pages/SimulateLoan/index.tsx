@@ -309,4 +309,4 @@ const SimulateLoan: FC = withContext(
   ModalSimulateLoanProvider,
 );
 
-export default withAITracking(reactPlugin, SimulateLoan);
+export default withAITracking(reactPlugin, SimulateLoan, 'SimulateLoan');

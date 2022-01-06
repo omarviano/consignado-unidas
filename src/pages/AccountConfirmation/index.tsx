@@ -103,4 +103,8 @@ const AccountConfirmation: React.FC = () => {
   );
 };
 
-export default withAITracking(reactPlugin, AccountConfirmation);
+export default withAITracking(
+  reactPlugin,
+  AccountConfirmation,
+  'AccountConfirmation',
+);

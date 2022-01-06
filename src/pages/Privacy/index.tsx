@@ -74,4 +74,4 @@ const Privacy: FC = () => (
   </RouteAccess>
 );
 
-export default withAITracking(reactPlugin, Privacy);
+export default withAITracking(reactPlugin, Privacy, 'Privacy');

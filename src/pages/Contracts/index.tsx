@@ -192,4 +192,4 @@ const Contracts: React.FC = () => {
   );
 };
 
-export default withAITracking(reactPlugin, Contracts);
+export default withAITracking(reactPlugin, Contracts, 'Contracts');

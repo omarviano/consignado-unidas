@@ -221,4 +221,4 @@ const Accompaniment: React.FC = () => {
   );
 };
 
-export default withAITracking(reactPlugin, Accompaniment);
+export default withAITracking(reactPlugin, Accompaniment, 'Accompaniment');

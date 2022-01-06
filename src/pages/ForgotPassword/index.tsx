@@ -139,4 +139,4 @@ const ForgotPassword: React.FC = () => {
   );
 };
 
-export default withAITracking(reactPlugin, ForgotPassword);
+export default withAITracking(reactPlugin, ForgotPassword, 'ForgotPassword');
