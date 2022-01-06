@@ -41,7 +41,7 @@ const BankDataForm: React.FC<BankDataFormProps> = ({
 
     onSubmit({
       ...data,
-      zipCode: Document.removeMask(zipCode),
+      zipCode: zipCode ? Document.removeMask(zipCode) : undefined,
       publicPlace: logradouro,
       district: bairro,
       city: localidade,
