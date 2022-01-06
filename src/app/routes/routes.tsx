@@ -2,7 +2,7 @@ import { FC, memo } from 'react';
 import { Route } from 'react-router-dom';
 
 import { LoggedArea } from 'pages/LoggedArea';
-import { Login } from 'pages/Login';
+import Login from 'pages/Login';
 import { Registration } from 'pages/Registration';
 import { ForgotPassword } from 'pages/ForgotPassword';
 import { ResetPassword } from 'pages/ResetPassword';
