@@ -30,12 +30,12 @@ const App: FC = () => (
             <Interceptors />
 
             <BrowserRouter>
-              <AppInsightsContext.Provider value={reactPlugin}>
-                <Switch>
-                  <Routes />
-                </Switch>
-                <AcceptCookies />
-              </AppInsightsContext.Provider>
+              {/* <AppInsightsContext.Provider value={reactPlugin}> */}
+              <Switch>
+                <Routes />
+              </Switch>
+              <AcceptCookies />
+              {/* </AppInsightsContext.Provider> */}
             </BrowserRouter>
           </AppProvider>
         </ThemeProviderStyledComponents>
