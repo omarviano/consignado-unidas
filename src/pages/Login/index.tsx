@@ -48,4 +48,4 @@ const Login: FC = memo(
   ),
 );
 
-export default withAITracking(reactPlugin, Login);
+export default withAITracking(reactPlugin, Login, 'Login');

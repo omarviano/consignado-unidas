@@ -126,4 +126,4 @@ const ResetPassword: React.FC = () => {
   );
 };
 
-export default withAITracking(reactPlugin, ResetPassword);
+export default withAITracking(reactPlugin, ResetPassword, 'ResetPassword');

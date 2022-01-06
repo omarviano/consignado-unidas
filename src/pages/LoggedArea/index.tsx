@@ -54,4 +54,4 @@ const LoggedArea: FC = withContext(
   ModalSimulateLoanProvider,
 );
 
-export default withAITracking(reactPlugin, LoggedArea);
+export default withAITracking(reactPlugin, LoggedArea, 'LoggedArea');

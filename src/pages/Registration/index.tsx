@@ -235,4 +235,4 @@ const Registration: React.FC = () => {
   );
 };
 
-export default withAITracking(reactPlugin, Registration);
+export default withAITracking(reactPlugin, Registration, 'Registration');

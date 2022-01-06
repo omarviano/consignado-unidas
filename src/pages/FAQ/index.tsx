@@ -72,4 +72,4 @@ const FAQ: FC = () => {
   );
 };
 
-export default withAITracking(reactPlugin, FAQ);
+export default withAITracking(reactPlugin, FAQ, 'FAQ');

@@ -157,4 +157,4 @@ const ChangePassword: React.FC = () => {
   );
 };
 
-export default withAITracking(reactPlugin, ChangePassword);
+export default withAITracking(reactPlugin, ChangePassword, 'ChangePassword');
