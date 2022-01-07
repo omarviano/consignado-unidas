@@ -48,6 +48,7 @@ const SimulateLoan: FC = withContext(
     const { open: modalErrorOpen, toggle: toggleModalError } = useModal();
     const { open: modalConfirmOpen, toggle: toggleModalConfirm } = useModal();
     const [requestingLoan, setRequestingLoan] = useState(false);
+    const [errorMessage, setErrorMessage] = useState<string>();
 
     useEffect(() => {
       if (valueSliderSimulate <= 0) history.push(RoutingPath.LOGGEDAREA);
@@ -137,27 +138,8 @@ const SimulateLoan: FC = withContext(
       }
     };
 
-    const applyForLoan = async () => {
-      try {
-        const {
-          data: { data },
-        } = await SimulateLoanServices.checkCreditUnderReview();
-
-        if (
-          data?.quotationStatusId === QuotationStatus.RecusadoPeloUsuario ||
-          data?.quotationStatusId === QuotationStatus.CreditoLiberado ||
-          data?.quotationStatusId ===
-            QuotationStatus.EmprestimoReprovadoPeloBanco
-        ) {
-          toggleModalConfirm();
-        } else {
-          toggleModalError();
-        }
-      } catch (error) {
-        const { response } = error as AxiosError;
-
-        if (response && response.status === 404) toggleModalConfirm();
-      }
+    const applyForLoan = () => {
+      toggleModalConfirm();
     };
 
     const confirmLoanRequest = async () => {
@@ -175,6 +157,7 @@ const SimulateLoan: FC = withContext(
         toggleModalSucces();
       } catch (error) {
         const { response } = error as AxiosError;
+        setErrorMessage(response?.data?.message || 'ERRO');
 
         if (response && response.status < 500) toggleModalError();
       } finally {
@@ -273,12 +256,13 @@ const SimulateLoan: FC = withContext(
               <Styled.ModalErrorContent>
                 <Cancel className="cancel-icon" />
 
-                <Styled.ModalText>Solicitação negada</Styled.ModalText>
-
                 <Styled.ModalText>
-                  A solicitação do seu empréstimo infelizmente não poderá ser
-                  realizada. Por favor, entre em contato com o RH.
+                  Ops, solicitação não realizada
                 </Styled.ModalText>
+
+                <Styled.ModalText
+                  dangerouslySetInnerHTML={{ __html: errorMessage || '' }}
+                />
               </Styled.ModalErrorContent>
             </Modal>
 
