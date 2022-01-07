@@ -1,18 +1,18 @@
 import { FC, memo } from 'react';
 import { Route } from 'react-router-dom';
 
-import { LoggedArea } from 'pages/LoggedArea';
-import { Login } from 'pages/Login';
-import { Registration } from 'pages/Registration';
-import { ForgotPassword } from 'pages/ForgotPassword';
-import { ResetPassword } from 'pages/ResetPassword';
-import { AccountConfirmation } from 'pages/AccountConfirmation';
-import { Accompaniment } from 'pages/Accompaniment';
-import { ChangePassword } from 'pages/ChangePassword';
-import { Contracts } from 'pages/Contracts';
-import { SimulateLoan } from 'pages/SimulateLoan';
-import { FAQ } from 'pages/FAQ';
-import { Privacy } from 'pages/Privacy';
+import LoggedArea from 'pages/LoggedArea';
+import Login from 'pages/Login';
+import Registration from 'pages/Registration';
+import ForgotPassword from 'pages/ForgotPassword';
+import ResetPassword from 'pages/ResetPassword';
+import AccountConfirmation from 'pages/AccountConfirmation';
+import Accompaniment from 'pages/Accompaniment';
+import ChangePassword from 'pages/ChangePassword';
+import Contracts from 'pages/Contracts';
+import SimulateLoan from 'pages/SimulateLoan';
+import FAQ from 'pages/FAQ';
+import Privacy from 'pages/Privacy';
 
 import { RoutingPath } from 'utils/routing';
 
