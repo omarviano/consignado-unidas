@@ -5,7 +5,7 @@ import { RouteAccess } from 'components/RouteAccess';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import { Add, Remove } from '@mui/icons-material';
 import { withAITracking } from '@microsoft/applicationinsights-react-js';
-import { reactPlugin } from 'hooks/appInsights';
+import { reactPlugin, appInsights } from 'hooks/appInsights';
 
 import { DataQuestions } from './dataQuestions';
 
