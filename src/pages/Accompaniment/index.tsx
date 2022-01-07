@@ -14,6 +14,8 @@ import { RoutingPath } from 'utils/routing';
 import { QuotationStatus } from 'enums/quote';
 import { Quote } from 'interface/quote';
 import useWindowDimensions from 'hooks/windowDimensions';
+import { withAITracking } from '@microsoft/applicationinsights-react-js';
+import { reactPlugin, appInsights } from 'hooks/appInsights';
 import { RequestUnderAnalysis } from './components/RequestUnderAnalysis';
 import { AwaitingSubmissionOfDocumentation } from './components/AwaitingSubmissionOfDocumentation';
 import { DocumentationSent } from './components/DocumentationSent';
@@ -219,4 +221,4 @@ const Accompaniment: React.FC = () => {
   );
 };
 
-export { Accompaniment };
+export default withAITracking(reactPlugin, Accompaniment, 'Accompaniment');
