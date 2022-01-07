@@ -30,7 +30,9 @@ import { InstallmentCard } from './components/InstallmentCard';
 import * as Styled from './styles';
 import { InstallmentTableDataProps } from './components/InstallmentCard/props';
 
-const ApprovedLoan: FC = () => {
+import { ApprovedLoanProps } from './props';
+
+const ApprovedLoan: FC<ApprovedLoanProps> = ({ onApproved }) => {
   const history = useHistory();
   const { open: modalConfirmationOpen, toggle: toggleModalConfirmation } =
     useModal();
@@ -238,6 +240,11 @@ const ApprovedLoan: FC = () => {
   const goToLoggedArea = () => {
     toggleModalRefuseAccept();
     history.push(RoutingPath.LOGGEDAREA);
+  };
+
+  const handleCloseApprovedModal = () => {
+    onApproved();
+    toggleModalSuccess();
   };
 
   const columns = useMemo<GridColumns>(
@@ -522,7 +529,7 @@ const ApprovedLoan: FC = () => {
         width="685px"
         height="226px"
         open={modalSuccessOpen}
-        onClose={toggleModalSuccess}
+        onClose={handleCloseApprovedModal}
         icon={<CheckCircle color="success" />}
         text="Aceite enviado com sucesso!"
       />
