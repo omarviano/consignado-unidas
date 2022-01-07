@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { Layout } from 'components/Layout';
 import { RouteAccess } from 'components/RouteAccess';
 import { Step, StepIconProps, Stepper, Box, Skeleton } from '@mui/material';
@@ -83,10 +83,33 @@ const Accompaniment: React.FC = () => {
     [],
   );
 
+  const checkCreditUnderReview = useCallback(() => {
+    AccompanimentServices.checkCreditUnderReview()
+      .then(({ data: { data } }) => {
+        setQuote(data);
+
+        if (
+          data.quotationStatusId >= 0 &&
+          data.quotationStatusId !== QuotationStatus.RecusadoPeloUsuario
+        ) {
+          setActiveStep(STEP_NUMBER[data.quotationStatusId]);
+          setStep(data.quotationStatusId);
+
+          setChecking(false);
+        } else {
+          history.push(RoutingPath.LOGGEDAREA);
+        }
+      })
+      .finally(() => setChecking(false))
+      .catch(() => history.push(RoutingPath.LOGGEDAREA));
+  }, [history, STEP_NUMBER]);
+
   const STEPS_COMPONENTS = useMemo(
     () => ({
       [QuotationStatus.Analise]: <RequestUnderAnalysis />,
-      [QuotationStatus.Aprovado]: <ApprovedLoan />,
+      [QuotationStatus.Aprovado]: (
+        <ApprovedLoan onApproved={checkCreditUnderReview} />
+      ),
       [QuotationStatus.RecusadoPeloUsuario]: null,
       [QuotationStatus.DocumentacaoPendente]: (
         <AwaitingSubmissionOfDocumentation />
@@ -151,25 +174,8 @@ const Accompaniment: React.FC = () => {
   };
 
   useEffect(() => {
-    AccompanimentServices.checkCreditUnderReview()
-      .then(({ data: { data } }) => {
-        setQuote(data);
-
-        if (
-          data.quotationStatusId >= 0 &&
-          data.quotationStatusId !== QuotationStatus.RecusadoPeloUsuario
-        ) {
-          setActiveStep(STEP_NUMBER[data.quotationStatusId]);
-          setStep(data.quotationStatusId);
-
-          setChecking(false);
-        } else {
-          history.push(RoutingPath.LOGGEDAREA);
-        }
-      })
-      .finally(() => setChecking(false))
-      .catch(() => history.push(RoutingPath.LOGGEDAREA));
-  }, [history, STEP_NUMBER]);
+    checkCreditUnderReview();
+  }, [checkCreditUnderReview]);
 
   return (
     <RouteAccess typesOfAccess="auth">
