@@ -65,11 +65,7 @@ const ApprovedLoan: FC = () => {
           name: response?.name,
           nationality: response?.nationality,
           professional: response?.professional,
-<<<<<<< HEAD
-          number: response?.number,
-=======
           number: response?.number || '',
->>>>>>> a737dbfa97f042c76c0ae4b3147448c235446f2d
           complement: response?.complement,
           bankCode: String(response?.bankCode),
           agency: response?.agency,
