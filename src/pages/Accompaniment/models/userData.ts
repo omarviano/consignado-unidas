@@ -24,9 +24,9 @@ export interface FormProps {
   professional: string;
   bankCode: string;
   number: number | string;
-  agency: number;
-  accountNumber: number;
-  digit: number;
+  agency: number | string;
+  accountNumber: number | string;
+  digit: number | string;
   complement: string;
   cep: string;
   logradouro: string;

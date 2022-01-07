@@ -65,12 +65,16 @@ const ApprovedLoan: FC = () => {
           name: response?.name,
           nationality: response?.nationality,
           professional: response?.professional,
+<<<<<<< HEAD
+          number: response?.number,
+=======
           number: response?.number || '',
+>>>>>>> a737dbfa97f042c76c0ae4b3147448c235446f2d
           complement: response?.complement,
           bankCode: String(response?.bankCode),
-          agency: Number(response?.agency),
-          digit: Number(response?.digit),
-          accountNumber: Number(response?.accountNumber),
+          agency: response?.agency,
+          digit: response?.digit,
+          accountNumber: response?.accountNumber,
           cep: response?.zipCode,
           logradouro: response?.publicPlace,
           bairro: response?.district,
@@ -462,7 +466,6 @@ const ApprovedLoan: FC = () => {
               <Grid item xs={12} sm={6}>
                 <Input
                   name="accountType"
-                  type="number"
                   label="Tipo de conta"
                   placeholder="Conta corrente"
                   variant="outlined"
@@ -491,19 +494,19 @@ const ApprovedLoan: FC = () => {
                   variant="outlined"
                 />
               </Grid>
-              <Grid item xs={6} sm={4}>
-                <Input
-                  name="digit"
-                  label="Dígito"
-                  placeholder="XX"
-                  variant="outlined"
-                />
-              </Grid>
               <Grid item xs={12} sm={4}>
                 <Input
                   name="accountNumber"
                   label="N° da Conta Corrente"
                   placeholder="XXXXXX"
+                  variant="outlined"
+                />
+              </Grid>
+              <Grid item xs={6} sm={4}>
+                <Input
+                  name="digit"
+                  label="Dígito"
+                  placeholder="XX"
                   variant="outlined"
                 />
               </Grid>
