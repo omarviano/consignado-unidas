@@ -65,12 +65,12 @@ const ApprovedLoan: FC = () => {
           name: response?.name,
           nationality: response?.nationality,
           professional: response?.professional,
-          number: Number(response?.number),
+          number: response?.number,
           complement: response?.complement,
           bankCode: String(response?.bankCode),
-          agency: Number(response?.agency),
-          digit: Number(response?.digit),
-          accountNumber: Number(response?.accountNumber),
+          agency: response?.agency,
+          digit: response?.digit,
+          accountNumber: response?.accountNumber,
           cep: response?.zipCode,
           logradouro: response?.publicPlace,
           bairro: response?.district,
@@ -406,7 +406,6 @@ const ApprovedLoan: FC = () => {
               <Grid item xs={12} sm={3}>
                 <Input
                   name="number"
-                  type="number"
                   label="Número"
                   placeholder="xxxx"
                   variant="outlined"
@@ -463,7 +462,6 @@ const ApprovedLoan: FC = () => {
               <Grid item xs={12} sm={6}>
                 <Input
                   name="accountType"
-                  type="number"
                   label="Tipo de conta"
                   placeholder="Conta corrente"
                   variant="outlined"
@@ -487,27 +485,24 @@ const ApprovedLoan: FC = () => {
               <Grid item xs={6} sm={4}>
                 <Input
                   name="agency"
-                  type="number"
                   label="Agência"
                   placeholder="N° da sua agência"
-                  variant="outlined"
-                />
-              </Grid>
-              <Grid item xs={6} sm={4}>
-                <Input
-                  name="digit"
-                  type="number"
-                  label="Dígito"
-                  placeholder="XX"
                   variant="outlined"
                 />
               </Grid>
               <Grid item xs={12} sm={4}>
                 <Input
                   name="accountNumber"
-                  type="number"
                   label="N° da Conta Corrente"
                   placeholder="XXXXXX"
+                  variant="outlined"
+                />
+              </Grid>
+              <Grid item xs={6} sm={4}>
+                <Input
+                  name="digit"
+                  label="Dígito"
+                  placeholder="XX"
                   variant="outlined"
                 />
               </Grid>

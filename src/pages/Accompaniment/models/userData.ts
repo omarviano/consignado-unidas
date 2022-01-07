@@ -23,10 +23,10 @@ export interface FormProps {
   nationality: string;
   professional: string;
   bankCode: string;
-  number: number;
-  agency: number;
-  accountNumber: number;
-  digit: number;
+  number: number | string;
+  agency: number | string;
+  accountNumber: number | string;
+  digit: number | string;
   complement: string;
   cep: string;
   logradouro: string;
