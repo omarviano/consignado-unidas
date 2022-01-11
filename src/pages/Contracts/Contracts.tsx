@@ -1,6 +1,7 @@
 import React, { useMemo, useState, useEffect } from 'react';
 import { GridColumns } from '@mui/x-data-grid';
 import { useHistory } from 'react-router-dom';
+import CircularProgress from '@mui/material/CircularProgress';
 
 import { RoutingPath } from 'utils/routing';
 
@@ -10,16 +11,21 @@ import { Button } from 'components/Buttons/Button';
 import { Table } from 'components/Table';
 import { NoDataTable } from 'components/NoDataTable';
 
+import useWindowDimensions from 'hooks/windowDimensions';
 import { formatDate } from 'utils/formatDate';
 import { formatValue } from 'utils/formatValue';
 
 import * as Styled from './styles';
 import { ContractsServices } from './services/contracts-services';
+import { ContractFormatted } from './models/contract';
+import { ContractCard } from './components/ContractCard';
 
 const Contracts: React.FC = () => {
   const history = useHistory();
-  const [tableData, setTableData] = useState([]);
+  const [bottomOfPage, setBottomOfPage] = useState(false);
+  const [tableData, setTableData] = useState<ContractFormatted[]>([]);
   const [fetchingContracts, setFetchingContracts] = useState(true);
+  const { width } = useWindowDimensions();
   const columns = useMemo<GridColumns>(
     () => [
       {
@@ -37,6 +43,7 @@ const Contracts: React.FC = () => {
         disableReorder: true,
         disableColumnMenu: true,
         headerAlign: 'center',
+        width: 120,
       },
       {
         field: 'installments',
@@ -60,7 +67,7 @@ const Contracts: React.FC = () => {
         hideSortIcons: true,
         disableColumnMenu: true,
         headerAlign: 'center',
-        flex: 1,
+        width: 148,
       },
       {
         field: 'status',
@@ -68,7 +75,7 @@ const Contracts: React.FC = () => {
         hideSortIcons: true,
         disableColumnMenu: true,
         headerAlign: 'center',
-        flex: 1,
+        width: 127,
       },
       {
         field: 'details',
@@ -76,7 +83,7 @@ const Contracts: React.FC = () => {
         hideSortIcons: true,
         disableColumnMenu: true,
         headerAlign: 'center',
-        flex: 1,
+        width: 168,
         renderCell: () => (
           <Styled.TableButton variant="contained">Acessar</Styled.TableButton>
         ),
@@ -91,14 +98,12 @@ const Contracts: React.FC = () => {
 
   useEffect(() => {
     ContractsServices.fetchContracts()
-      .then(({ data }) => {
-        const contracts = data.data || [];
-
+      .then(({ data: { data: contracts = [] } }) => {
         setTableData(
           contracts.map(contract => ({
             ...contract,
             id: contract.number,
-            date: formatDate(contract.date),
+            date: formatDate(contract.date) || '',
             value: formatValue(contract.value),
             installmentValue: formatValue(contract.installmentValue),
             installments: contract.installments?.toString().padStart(2, '0'),
@@ -112,11 +117,30 @@ const Contracts: React.FC = () => {
     <NoDataTable>Você ainda não possui contratos</NoDataTable>
   );
 
+  const handleScroll = () => {
+    const bottom =
+      Math.ceil(window.innerHeight + window.scrollY) >=
+      document.documentElement.scrollHeight - 160;
+
+    if (bottom) setBottomOfPage(true);
+    else setBottomOfPage(false);
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll, {
+      passive: true,
+    });
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   return (
     <RouteAccess typesOfAccess="auth">
       <Layout
         containerStyles={{
-          maxWidth: '1286px',
+          maxWidth: '1320px',
         }}
       >
         <Styled.Container>
@@ -124,22 +148,41 @@ const Contracts: React.FC = () => {
             <Styled.Header>
               <Styled.Breadcrumb>
                 <Styled.BreadcrumbRoot>Meus contratos</Styled.BreadcrumbRoot>
-                {'>'}
+                <span>{'>'}</span>
                 <Styled.BreadcrumbPage>Contrato</Styled.BreadcrumbPage>
               </Styled.Breadcrumb>
 
-              <Button type="button" variant="outlined" onClick={goToHome}>
-                Simular novo empréstimo
-              </Button>
+              <Styled.ButtonContainer
+                bottomOfPage={bottomOfPage}
+                className="button-container"
+              >
+                <Button type="button" variant="outlined" onClick={goToHome}>
+                  Simular novo empréstimo
+                </Button>
+              </Styled.ButtonContainer>
             </Styled.Header>
 
-            <Table
-              loading={fetchingContracts}
-              columns={columns}
-              rows={tableData}
-              noData={NoContracts}
-              rowHeight={88}
-            />
+            {width && width > 720 ? (
+              <Table
+                loading={fetchingContracts}
+                columns={columns}
+                rows={tableData}
+                noData={NoContracts}
+                rowHeight={88}
+              />
+            ) : (
+              <Styled.ResponsiveContainer noData={tableData.length === 0}>
+                {tableData.map(item => (
+                  <ContractCard key={item.id} data={item} />
+                ))}
+
+                {fetchingContracts && <CircularProgress className="loading" />}
+
+                {tableData.length === 0 && !fetchingContracts && (
+                  <Styled.NoData>Você ainda não possui contratos</Styled.NoData>
+                )}
+              </Styled.ResponsiveContainer>
+            )}
           </Styled.Box>
         </Styled.Container>
       </Layout>

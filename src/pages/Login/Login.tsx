@@ -1,5 +1,6 @@
 import { FC, memo } from 'react';
 import { Link } from 'react-router-dom';
+import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
 
 import Logo from 'assets/images/logo.png';
 

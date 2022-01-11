@@ -9,6 +9,13 @@ export const Container = styled.div`
   box-shadow: 0px 2px 6px rgba(46, 43, 80, 0.25);
   border-radius: 4px;
   padding: 64px 8px;
+
+  @media (max-width: 650px) {
+    margin: 8px 16px 40px;
+    padding: 0;
+    box-shadow: none;
+    background: none;
+  }
 `;
 
 export const Box = styled.div`
@@ -18,17 +25,30 @@ export const Box = styled.div`
   form {
     .MuiFormControl-root + .MuiFormControl-root {
       margin-top: 32px;
+
+      @media (max-width: 650px) {
+        margin-top: 24px;
+      }
     }
 
     > button {
       margin-top: 40px;
       max-width: 302px;
+
+      @media (max-width: 650px) {
+        max-width: 100%;
+        margin-top: 36px;
+      }
     }
 
     input::-ms-reveal,
     input::-ms-clear {
       display: none;
     }
+  }
+
+  @media (max-width: 650px) {
+    max-width: 100%;
   }
 `;
 
@@ -52,4 +72,8 @@ export const Text = styled(TypographyStyles)`
   letter-spacing: 0.2px;
   margin-bottom: 40px;
   color: ${({ theme }) => theme.palette.grey[200]};
+
+  @media (max-width: 650px) {
+    margin-bottom: 32px;
+  }
 `;

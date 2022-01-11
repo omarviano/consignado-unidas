@@ -11,6 +11,10 @@ export const Card = styled(MUICard)`
   padding: 36px 25px 0 33px;
   box-shadow: 0px 2px 6px rgba(46, 43, 80, 0.25);
   margin-bottom: 32px;
+
+  @media (max-width: 920px) {
+    padding: 24px 16px;
+  }
 `;
 
 export const LoanInformation = styled(TypographyStyles)`
@@ -24,6 +28,11 @@ export const TotalAmountOfLoanRequested = styled(TypographyStyles)`
   line-height: 34px;
   letter-spacing: 0.2px;
   color: ${({ theme }) => theme.palette.grey[500]};
+
+  @media (max-width: 920px) {
+    margin-top: 12px;
+    line-height: 20px;
+  }
 `;
 
 export const Approved = styled.strong`
@@ -37,12 +46,21 @@ export const InstallmentDueDate = styled(TypographyStyles)`
   letter-spacing: 0.2px;
   margin-top: 78px;
   color: ${({ theme }) => theme.palette.grey[500]};
+
+  @media (max-width: 920px) {
+    margin-top: 12px;
+    line-height: 20px;
+  }
 `;
 
 export const ProposalInformation = styled(TypographyStyles)`
-  line-height: 11px;
+  line-height: 16.41px;
   color: ${({ theme }) => theme.palette.grey[500]};
   margin-bottom: 44px;
+
+  @media (max-width: 920px) {
+    margin: 16px 0 8px 0;
+  }
 `;
 
 export const TextBlack = styled.span`
@@ -55,12 +73,25 @@ export const DivButtons = styled.div`
   justify-content: center;
   align-items: center;
   margin: 50px 0;
+
+  @media (max-width: 920px) {
+    flex-direction: column;
+    border-radius: 0 0 4px 4px;
+
+    padding: 16px;
+    margin: 0;
+  }
 `;
 
 export const ButtonAcceptProposal = styled(Button)`
   text-transform: capitalize;
   width: 186px;
   background-color: #005b9e;
+
+  @media (max-width: 920px) {
+    width: 100%;
+    height: 43px;
+  }
 `;
 
 export const ButtonGoLoggedArea = styled(Button)`
@@ -85,6 +116,11 @@ export const ContainerModal = styled(BoxStyles)`
   @media (min-width: 1000px) {
     max-height: 100vh;
   }
+
+  @media (max-width: 1000px) {
+    height: 100vh;
+    padding: 20px 8px;
+  }
 `;
 
 export const GridContainer = styled(GridStyles)`
@@ -107,11 +143,21 @@ export const ButtonRefuseProposal = styled(Button)`
   text-transform: capitalize;
   width: 186px;
   margin-left: 60px;
+
+  @media (max-width: 920px) {
+    width: 100%;
+    margin: 10px 0;
+    height: 43px;
+  }
 `;
 
 export const ContainerModalRefuseProposal = styled(BoxStyles)`
   max-width: 685px;
   padding: 155px 125px;
+
+  @media (max-width: 768px) {
+    padding: 48px 36px;
+  }
 `;
 
 export const RefuseProposal = styled(TypographyStyles)`
@@ -131,12 +177,30 @@ export const ButtonYes = styled(Button)`
   text-transform: capitalize;
   width: 188px;
   background-color: #005b9e;
+
+  @media (max-width: 768px) {
+    width: 108px;
+  }
+
+  @media (max-width: 768px) {
+    width: 108px;
+    height: 35px;
+  }
 `;
 
 export const ButtonNo = styled(Button)`
   text-transform: capitalize;
   width: 188px;
   margin-left: 30px;
+
+  @media (max-width: 768px) {
+    width: 108px;
+  }
+
+  @media (max-width: 768px) {
+    width: 108px;
+    height: 35px;
+  }
 `;
 
 export const ContainerModalRefuseProposalAccept = styled(BoxStyles)`
@@ -150,6 +214,7 @@ export const ContainerModalRefuseProposalAccept = styled(BoxStyles)`
 
 export const RefuseProposalAccept = styled(RefuseProposal)`
   margin-top: 12px;
+  line-height: 34.5px;
 `;
 
 export const ButtonGoToHomeScreen = styled(Button)`
@@ -162,4 +227,55 @@ export const ButtonGoToHomeScreen = styled(Button)`
 export const CheckCircle = styled(CheckCircleStyles)`
   width: 48px;
   height: 48px;
+`;
+
+export const ReasonRefusesModal = styled.div`
+  padding: 80px 124px;
+
+  form {
+    width: 450px;
+    margin-top: 12px;
+
+    .MuiInputBase-multiline {
+      margin-top: 4px;
+    }
+
+    button[type='submit'] {
+      width: 205px;
+      text-transform: none;
+      margin-top: 12px;
+
+      @media (max-width: 768px) {
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 768px) {
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 768px) {
+    padding: 40px 24px;
+  }
+`;
+
+export const ReasonRefusesModalTitle = styled(TypographyStyles)`
+  font-size: 18px;
+  line-height: 34px;
+  color: ${({ theme }) => theme.palette.grey[200]};
+  width: 450px;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    line-height: 21px;
+    text-align: center;
+  }
+`;
+
+export const TotalCharacters = styled.div`
+  font-size: 12px;
+  line-height: 34px;
+  color: ${({ theme }) => theme.palette.grey[200]};
+  text-align: right;
 `;

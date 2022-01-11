@@ -1,10 +1,11 @@
 import { FC, useCallback, useContext, useState, createContext } from 'react';
 import { RequestStatus } from 'interface/common';
-import { SimulateLoanProps, SimulateLoanResponse } from 'interface/simulate';
+import { DataSimulateProps, SimulateLoanProps } from 'interface/simulate';
 import { useHistory } from 'react-router-dom';
 import { api } from 'services/api';
 import { RoutingPath } from 'utils/routing';
 import { useSimulateLoanRealTime } from 'hooks/simulateRealtime';
+import { ResponseData } from 'interface/responseData';
 import { SimulateLoanContextData } from './props';
 
 const initialValue = {} as SimulateLoanContextData;
@@ -33,12 +34,14 @@ export const SimulateLoanProvider: FC = props => {
         success: false,
       });
 
-      const response = await api.post<SimulateLoanResponse>(
+      const {
+        data: { data },
+      } = await api.post<ResponseData<DataSimulateProps>>(
         '/financial/simulate',
         dataProps,
       );
 
-      addDataSimulateLoan(response.data.data);
+      addDataSimulateLoan(data);
 
       setRequestStatus({
         error: false,

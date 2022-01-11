@@ -13,6 +13,8 @@ import { getToken } from 'hooks/auth/storage';
 import useModal from 'hooks/modal';
 import { RoutingPath } from 'utils/routing';
 import { clearStorage } from 'utils/storage';
+import { useHeaderMobile } from 'hooks/headerMobile';
+import { LeftMenu } from './LeftMenu';
 
 import { LayoutProps } from './props';
 import * as Styled from './styles';
@@ -20,6 +22,8 @@ import * as Styled from './styles';
 const Layout: React.FC<LayoutProps> = ({ children, containerStyles }) => {
   const history = useHistory();
   const [menuOpen, setMenuOpen] = useState(false);
+  const { open: menuLeftOpen, toggle: toggleMenuLeftOpen } = useHeaderMobile();
+
   const { open, toggle } = useModal();
   const { isAuthenticated, signOut } = useAuth();
 
@@ -42,7 +46,9 @@ const Layout: React.FC<LayoutProps> = ({ children, containerStyles }) => {
     <>
       <Styled.Page>
         <Styled.Header>
-          <Styled.Logo src={Logo} alt="Unidas" />
+          <Link to="/">
+            <Styled.Logo src={Logo} alt="Unidas" />
+          </Link>
 
           {isAuthenticated && (
             <>
@@ -77,13 +83,23 @@ const Layout: React.FC<LayoutProps> = ({ children, containerStyles }) => {
           )}
 
           {!isAuthenticated ? (
-            <Link to={RoutingPath.LOGIN}>Entrar</Link>
+            <Link to={RoutingPath.LOGIN} className="sign-in">
+              Entrar
+            </Link>
           ) : (
             <Styled.MenuButton>
-              <MenuIcon />
+              <MenuIcon onClick={toggleMenuLeftOpen} />
             </Styled.MenuButton>
           )}
         </Styled.Header>
+
+        <LeftMenu
+          open={menuLeftOpen}
+          toggleModal={toggle}
+          toggleMenuLeft={toggleMenuLeftOpen}
+        />
+
+        <Styled.DivOpacity open={menuLeftOpen} onClick={toggleMenuLeftOpen} />
 
         <Styled.Container style={containerStyles}>{children}</Styled.Container>
 
@@ -116,7 +132,7 @@ const Layout: React.FC<LayoutProps> = ({ children, containerStyles }) => {
               Somos correspondentes bancários da Mova
             </Styled.FooterText>
             <Styled.FooterText className="copyright">
-              &copy; 2021 UNIDAS - Todos os direitos reservados.
+              &copy; 2022 UNIDAS - Todos os direitos reservados.
             </Styled.FooterText>
           </Styled.FooterBox>
         </Styled.Footer>

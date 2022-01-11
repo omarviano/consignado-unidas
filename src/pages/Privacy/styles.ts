@@ -2,7 +2,11 @@ import styled from 'styled-components';
 import TypographyStyles from '@mui/material/Typography';
 
 export const Container = styled.div`
-  margin-top: 64px;
+  margin: 64px 16px;
+
+  @media (max-width: 920px) {
+    margin: 40px 16px 64px;
+  }
 `;
 
 export const TitlePage = styled(TypographyStyles)`

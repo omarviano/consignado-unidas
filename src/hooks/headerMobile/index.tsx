@@ -12,7 +12,7 @@ const HeaderMobileContext = createContext(initialValue);
 export const HeaderMobileProvider: FC = props => {
   const { children } = props;
 
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
 
   const toggle = useCallback(() => {
     setOpen(prev => !prev);

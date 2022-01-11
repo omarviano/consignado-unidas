@@ -1,0 +1,1 @@
+export { InstallmentCard } from './InstallmentCard';

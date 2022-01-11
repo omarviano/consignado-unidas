@@ -13,7 +13,6 @@ import ufs from 'constants/ufs';
 import { Input } from 'components/Inputs/Input';
 import { ModalMessage } from 'components/ModalMessage';
 import { CheckCircle, Warning } from '@mui/icons-material';
-import { Bank } from 'pages/Accompaniment/models/bank';
 import { AccompanimentServices } from 'pages/Accompaniment/services/accompaniment.services';
 import { useHistory } from 'react-router-dom';
 import { RoutingPath } from 'utils/routing';
@@ -23,9 +22,13 @@ import useViaCEP from 'hooks/viaCEP';
 import { AxiosError } from 'axios';
 import { Document } from 'utils/document';
 import { FormikProps } from 'formik';
+import { Button } from 'components/Buttons/Button';
+import useWindowDimensions from 'hooks/windowDimensions';
 import { UserDataProps, FormProps } from '../../models/userData';
-import { schema } from './schema';
+import { schema, reasonsSchema } from './schema';
+import { InstallmentCard } from './components/InstallmentCard';
 import * as Styled from './styles';
+import { InstallmentTableDataProps } from './components/InstallmentCard/props';
 
 const ApprovedLoan: FC = () => {
   const history = useHistory();
@@ -36,38 +39,46 @@ const ApprovedLoan: FC = () => {
   const { open: modalRefuseOpen, toggle: toggleModalRefuse } = useModal();
   const { open: modalRefuseAcceptOpen, toggle: toggleModalRefuseAccept } =
     useModal();
+  const { open: reasonRefusesOpen, toggle: toggleReasonRefuses } = useModal();
   const [banks, setBanks] = useState<{ name: string; value: string }[]>([]);
   const [loanData, setLoanData] = useState<LoanDataProps>();
-  const [tableData, setTableData] = useState<any>([]);
+  const [tableData, setTableData] = useState<InstallmentTableDataProps[]>([]);
   const { fetchCEP, notFound, address } = useViaCEP();
   const [cep, setCep] = useState<string>();
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string>();
   const [userData, setUserData] = useState<FormProps>();
+  const [totalCharacters, setTotalCharacters] = useState(0);
+  const [reasons, setReasons] = useState<
+    { name: string; value: string; required: boolean }[]
+  >([]);
+  const [reasonDescriptionRequired, setReasonDescriptionRequired] =
+    useState(false);
+  const { width } = useWindowDimensions();
 
   const refFormik = useRef<FormikProps<FormProps> | null>();
 
   useEffect(() => {
-    AccompanimentServices.fetchUserData().then(({ data }) => {
-      const response = data.data as UserDataProps;
-
-      setUserData({
-        name: response?.name,
-        nationality: response?.nationality,
-        professional: response?.professional,
-        number: Number(response?.number),
-        complement: response?.complement,
-        bankCode: String(response?.bankCode),
-        agency: Number(response?.agency),
-        digit: Number(response?.digit),
-        accountNumber: Number(response?.accountNumber),
-        cep: response?.zipCode,
-        logradouro: response?.publicPlace,
-        bairro: response?.district,
-        localidade: response?.city,
-        uf: response?.state,
-      });
-    });
+    AccompanimentServices.fetchUserData().then(
+      ({ data: { data: response } }) => {
+        setUserData({
+          name: response?.name,
+          nationality: response?.nationality,
+          professional: response?.professional,
+          number: Number(response?.number),
+          complement: response?.complement,
+          bankCode: String(response?.bankCode),
+          agency: Number(response?.agency),
+          digit: Number(response?.digit),
+          accountNumber: Number(response?.accountNumber),
+          cep: response?.zipCode,
+          logradouro: response?.publicPlace,
+          bairro: response?.district,
+          localidade: response?.city,
+          uf: response?.state,
+        });
+      },
+    );
   }, []);
 
   useEffect(() => {
@@ -82,12 +93,41 @@ const ApprovedLoan: FC = () => {
     setCep(cepInput?.value);
   };
 
-  useEffect(() => {
-    AccompanimentServices.checkCreditUnderReview().then(({ data }) => {
-      const response = data.data as LoanDataProps;
+  const handleInputTextArea = () => {
+    const textarea = document.getElementById(
+      'reasonDescription',
+    ) as HTMLInputElement;
 
-      setLoanData(response);
-    });
+    setTotalCharacters(textarea?.value?.length);
+  };
+
+  const handleSelectReason = (
+    e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>,
+  ) => {
+    const {
+      target: { value },
+    } = e;
+
+    const reasonSelected = reasons.find(reason => reason.value === value);
+    setReasonDescriptionRequired(reasonSelected?.required || false);
+  };
+
+  useEffect(() => {
+    AccompanimentServices.checkCreditUnderReview().then(
+      ({ data: { data } }) => {
+        setLoanData(data);
+      },
+    );
+
+    AccompanimentServices.fetchReasons().then(({ data: { data } }) =>
+      setReasons(
+        data.map(reason => ({
+          name: reason.description,
+          value: reason.id.toString(),
+          required: reason.required,
+        })),
+      ),
+    );
   }, []);
 
   useEffect(() => {
@@ -113,11 +153,9 @@ const ApprovedLoan: FC = () => {
   }, [loanData]);
 
   useEffect(() => {
-    AccompanimentServices.fetchBanks().then(({ data }) => {
-      const response = data.data as Bank[];
-
+    AccompanimentServices.fetchBanks().then(({ data: { data } }) => {
       setBanks(
-        response.map(item => ({
+        data.map(item => ({
           value: item.id.toString(),
           name: item.description,
         })),
@@ -165,11 +203,25 @@ const ApprovedLoan: FC = () => {
     }
   };
 
-  const handleRefuseLoan = async (): Promise<void> => {
+  const handleRefuseLoan = () => {
+    toggleModalRefuse();
+    toggleReasonRefuses();
+  };
+
+  const handleReasonSubmit = data => {
+    if (reasonDescriptionRequired && totalCharacters === 0) return;
+
+    refuseLoan(data);
+  };
+
+  const refuseLoan = async (data): Promise<void> => {
     try {
       setLoading(true);
 
-      await AccompanimentServices.refuseLoan(Number(loanData?.id));
+      await AccompanimentServices.refuseLoan({
+        quotationId: loanData?.id,
+        ...data,
+      });
 
       toggleModalRefuse();
       toggleModalRefuseAccept();
@@ -256,13 +308,16 @@ const ApprovedLoan: FC = () => {
         acordo com a data do aceite.
       </Styled.ProposalInformation>
 
-      <Table
-        disableBoxShadow
-        checkboxSelection={false}
-        columns={columns}
-        rows={tableData}
-      />
-
+      {width && width > 920 ? (
+        <Table
+          disableBoxShadow
+          checkboxSelection={false}
+          columns={columns}
+          rows={tableData}
+        />
+      ) : (
+        <InstallmentCard data={tableData} />
+      )}
       <Styled.DivButtons>
         <Styled.ButtonAcceptProposal
           variant="contained"
@@ -296,7 +351,7 @@ const ApprovedLoan: FC = () => {
               Dados complementares
             </Styled.AdditionalData>
             <Styled.GridContainer container spacing={1}>
-              <Grid item xs={4}>
+              <Grid item xs={12} sm={4}>
                 <Input
                   name="name"
                   label="Nome"
@@ -305,7 +360,7 @@ const ApprovedLoan: FC = () => {
                   disabled
                 />
               </Grid>
-              <Grid item xs={4}>
+              <Grid item xs={12} sm={4}>
                 <Input
                   name="nationality"
                   label="Nacionalidade"
@@ -313,7 +368,7 @@ const ApprovedLoan: FC = () => {
                   variant="outlined"
                 />
               </Grid>
-              <Grid item xs={4}>
+              <Grid item xs={12} sm={4}>
                 <Input
                   name="professional"
                   label="Profissão"
@@ -324,7 +379,7 @@ const ApprovedLoan: FC = () => {
             </Styled.GridContainer>
 
             <Styled.GridContainer container spacing={1}>
-              <Grid item xs={2}>
+              <Grid item xs={12} sm={3}>
                 <Input
                   id="cep"
                   name="cep"
@@ -337,7 +392,7 @@ const ApprovedLoan: FC = () => {
                   helperText={notFound ? 'CEP não encontrado' : undefined}
                 />
               </Grid>
-              <Grid item xs={4}>
+              <Grid item xs={12} sm={3}>
                 <Input
                   name="logradouro"
                   label="Endereço"
@@ -348,7 +403,7 @@ const ApprovedLoan: FC = () => {
                   }
                 />
               </Grid>
-              <Grid item xs={2}>
+              <Grid item xs={12} sm={3}>
                 <Input
                   name="number"
                   type="number"
@@ -357,7 +412,7 @@ const ApprovedLoan: FC = () => {
                   variant="outlined"
                 />
               </Grid>
-              <Grid item xs={4}>
+              <Grid item xs={12} sm={3}>
                 <Input
                   name="bairro"
                   label="Bairro"
@@ -369,7 +424,7 @@ const ApprovedLoan: FC = () => {
             </Styled.GridContainer>
 
             <Styled.GridContainer container spacing={1}>
-              <Grid item xs={4}>
+              <Grid item xs={12} sm={4}>
                 <Input
                   name="complement"
                   label="Complemento"
@@ -377,7 +432,7 @@ const ApprovedLoan: FC = () => {
                   variant="outlined"
                 />
               </Grid>
-              <Grid item xs={4}>
+              <Grid item xs={12} sm={4}>
                 <Input
                   name="localidade"
                   label="Cidade"
@@ -388,7 +443,7 @@ const ApprovedLoan: FC = () => {
                   }
                 />
               </Grid>
-              <Grid item xs={4}>
+              <Grid item xs={12} sm={4}>
                 <Styled.DivSelect>
                   <Select
                     name="uf"
@@ -405,7 +460,7 @@ const ApprovedLoan: FC = () => {
             <Styled.BankData variant="h2">Dados bancários</Styled.BankData>
 
             <Styled.GridContainer container spacing={1}>
-              <Grid item xs={3}>
+              <Grid item xs={12} sm={6}>
                 <Input
                   name="accountType"
                   type="number"
@@ -415,7 +470,7 @@ const ApprovedLoan: FC = () => {
                   disabled
                 />
               </Grid>
-              <Grid item xs={4}>
+              <Grid item xs={12} sm={6}>
                 <Styled.DivSelect>
                   <Autocomplete
                     name="bankCode"
@@ -429,7 +484,7 @@ const ApprovedLoan: FC = () => {
             </Styled.GridContainer>
 
             <Styled.GridContainer container spacing={1}>
-              <Grid item xs={3}>
+              <Grid item xs={6} sm={4}>
                 <Input
                   name="agency"
                   type="number"
@@ -438,7 +493,7 @@ const ApprovedLoan: FC = () => {
                   variant="outlined"
                 />
               </Grid>
-              <Grid item xs={2}>
+              <Grid item xs={6} sm={4}>
                 <Input
                   name="digit"
                   type="number"
@@ -447,7 +502,7 @@ const ApprovedLoan: FC = () => {
                   variant="outlined"
                 />
               </Grid>
-              <Grid item xs={4}>
+              <Grid item xs={12} sm={4}>
                 <Input
                   name="accountNumber"
                   type="number"
@@ -511,7 +566,9 @@ const ApprovedLoan: FC = () => {
           <Styled.CheckCircle color="success" />
 
           <Styled.RefuseProposalAccept variant="h2">
-            Proposta recusada
+            Proposta recusada <br /> Agradecemos por ter respondido o
+            questionário. <br /> As respostas contribuiram para nossas futuras
+            melhorias.
           </Styled.RefuseProposalAccept>
 
           <Styled.ButtonGoToHomeScreen
@@ -521,6 +578,59 @@ const ApprovedLoan: FC = () => {
             Ir para tela inicial
           </Styled.ButtonGoToHomeScreen>
         </Styled.ContainerModalRefuseProposalAccept>
+      </Modal>
+
+      <Modal open={reasonRefusesOpen} onClose={toggleReasonRefuses}>
+        <Styled.ReasonRefusesModal>
+          <Styled.ReasonRefusesModalTitle>
+            Deseja nos informar o motivo pelo qual você recusou a proposta?{' '}
+          </Styled.ReasonRefusesModalTitle>
+
+          <Formik
+            initialValues={{}}
+            validationSchema={reasonsSchema}
+            onSubmit={handleReasonSubmit}
+          >
+            <Select
+              name="reasonRefuseId"
+              label="Selecione um motivo"
+              options={reasons}
+              variant="outlined"
+              onChange={handleSelectReason}
+            />
+
+            <Input
+              id="reasonDescription"
+              name="reasonDescription"
+              label=""
+              placeholder={
+                reasonDescriptionRequired
+                  ? 'Por favor, descreva porque você está recusando'
+                  : 'Caso queira, descrever mais sobre o motivo... '
+              }
+              variant="outlined"
+              multiline
+              rows={8}
+              inputProps={{
+                maxLength: 100,
+              }}
+              onInput={handleInputTextArea}
+              error={reasonDescriptionRequired && totalCharacters === 0}
+              helperText={
+                reasonDescriptionRequired && totalCharacters === 0
+                  ? 'Campo Obrigatório'
+                  : undefined
+              }
+            />
+            <Styled.TotalCharacters>
+              Máximo de carateres {totalCharacters}/100
+            </Styled.TotalCharacters>
+
+            <Button type="submit" variant="contained" disabled={loading}>
+              {loading ? 'Enviando...' : 'Enviar'}
+            </Button>
+          </Formik>
+        </Styled.ReasonRefusesModal>
       </Modal>
     </Styled.Card>
   );

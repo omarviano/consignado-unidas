@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useHistory } from 'react-router-dom';
 import { AxiosError } from 'axios';
-import { CheckCircle, Error } from '@mui/icons-material';
+import { Error } from '@mui/icons-material';
 
 import { ReactComponent as ConfirmIcon } from 'assets/icons/confirm.svg';
 

@@ -10,3 +10,11 @@ export interface SimulateLoanData {
   value: number;
   installment: InstallmentProps;
 }
+
+export interface InstallmentTableData extends InstallmentProps {
+  id: number;
+  valueFormatted: string;
+  effectiveCostPerYearFormatted: string;
+  feesPerMonthFormatted: string;
+  quantityFormatted: string;
+}

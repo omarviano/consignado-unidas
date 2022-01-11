@@ -11,6 +11,10 @@ export const Container = styled(MUICard)`
   box-shadow: 0px 2px 6px rgba(46, 43, 80, 0.25);
   margin-bottom: 32px;
   padding: 100px 0 100px 0;
+
+  @media (max-width: 920px) {
+    padding: 24px 16px;
+  }
 `;
 
 export const ReprovidedLoan = styled(TypographyStyles)`
@@ -39,4 +43,8 @@ export const ButtonNewSimulateLoan = styled(Button)`
   text-transform: none;
   margin-top: 65px;
   width: 254px;
+
+  @media (max-width: 920px) {
+    height: 43px;
+  }
 `;

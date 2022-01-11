@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import TypographyStyles from '@mui/material/Typography';
 
 import { Button } from 'components/Buttons/Button';
@@ -6,6 +6,23 @@ import { Button } from 'components/Buttons/Button';
 interface OptionsProps {
   menuOpen: boolean;
 }
+
+interface DivOpacityProps {
+  open: boolean;
+}
+
+export const DivOpacity = styled.div<DivOpacityProps>`
+  ${({ open }) =>
+    open &&
+    css`
+      background-color: rgba(0, 0, 0, 0.5);
+      position: fixed;
+      width: 100%;
+      height: 100vh;
+      z-index: 999;
+      }
+    `}
+`;
 
 export const Page = styled.div`
   max-width: 2000px;
@@ -29,7 +46,7 @@ export const Header = styled.div`
   filter: drop-shadow(0px 2px 6px rgba(46, 43, 80, 0.25));
   z-index: 999;
 
-  > a {
+  .sign-in {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -217,6 +234,10 @@ export const Container = styled.div`
   padding: 80px 0;
   min-height: calc(100vh - 83px);
   margin: auto;
+
+  @media (max-width: 920px) {
+    padding-top: 64px;
+  }
 `;
 
 export const Footer = styled.footer`
@@ -311,8 +332,12 @@ export const Content = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  width: 500px;
+  max-width: 500px;
   padding: 40px 0;
+
+  @media (max-width: 768px) {
+    padding: 48px 36px;
+  }
 `;
 
 export const Title = styled(TypographyStyles)`
@@ -331,9 +356,21 @@ export const DivButtons = styled.div`
 export const ButtonYes = styled(Button)`
   width: 188px;
   margin-left: 40px;
+
+  @media (max-width: 768px) {
+    width: 108px;
+    height: 35px;
+    margin-left: 0;
+  }
 `;
 
 export const ButtonNo = styled(Button)`
   width: 188px;
-  margin-right: 40px;
+  margin: 0 40px;
+
+  @media (max-width: 768px) {
+    width: 108px;
+    height: 35px;
+    margin-right: 0;
+  }
 `;

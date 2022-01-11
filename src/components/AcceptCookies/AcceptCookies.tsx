@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import ReactDOM from 'react-dom';
+
 import { Link } from 'react-router-dom';
 
 import { ACCEPTED_COOKIES } from 'utils/storage';
@@ -20,20 +22,23 @@ const AcceptCookies: React.FC = () => {
     setAcceptedCookies(true);
   };
 
-  return acceptedCookies ? null : (
-    <Styled.Container>
-      <Styled.Text>
-        A Unidas veicula cookies com o objetivo de analisar o tráfego para este
-        site. As informações sobre seu uso do nosso site são compartilhadas com
-        a Unidas por esse motivo. Saiba mais em nossa{' '}
-        <Link to={RoutingPath.PRIVACY}>Política de privacidade</Link>
-      </Styled.Text>
+  return acceptedCookies
+    ? null
+    : ReactDOM.createPortal(
+        <Styled.Container>
+          <Styled.Text>
+            A Unidas veicula cookies com o objetivo de analisar o tráfego para
+            este site. As informações sobre seu uso do nosso site são
+            compartilhadas com a Unidas por esse motivo. Saiba mais em nossa{' '}
+            <Link to={RoutingPath.PRIVACY}>Política de privacidade</Link>
+          </Styled.Text>
 
-      <Button type="button" variant="contained" onClick={handleClickAgree}>
-        Concordar
-      </Button>
-    </Styled.Container>
-  );
+          <Button type="button" variant="contained" onClick={handleClickAgree}>
+            Concordar
+          </Button>
+        </Styled.Container>,
+        document.body,
+      );
 };
 
 export { AcceptCookies };
