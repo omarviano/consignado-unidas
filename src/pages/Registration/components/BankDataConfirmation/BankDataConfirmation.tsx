@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 import { Checkbox } from '@mui/material';
 import { Warning } from '@mui/icons-material';
 
+import { RoutingPath } from 'utils/routing';
 import useModal from 'hooks/modal';
 
 import { ModalMessage } from 'components/ModalMessage';
 import { Formik } from 'components/Formik';
 import { Button } from 'components/Buttons/Button';
 
+import { Link } from 'react-router-dom';
 import * as Styled from './styles';
 
 import { BankDataConfirmationProps } from './props';
@@ -55,14 +57,8 @@ const BankDataConfirmation: React.FC<BankDataConfirmationProps> = ({
 
           <Styled.TermsText>
             Estou de acordo com os{' '}
-            <Styled.TermsLink type="button">
-              termos e condições
-            </Styled.TermsLink>{' '}
-            da{' '}
-            <Styled.TermsLink type="button">
-              política de privacidade
-            </Styled.TermsLink>
-            .
+            <Link to={RoutingPath.PRIVACY}>termos e condições</Link> da{' '}
+            <Link to={RoutingPath.PRIVACY}>política de privacidade</Link>.
           </Styled.TermsText>
         </Styled.IAgreeTermsContainer>
 

@@ -45,16 +45,15 @@ export const IAgreeTermsContainer = styled.div`
   letter-spacing: 0.2px;
   color: ${({ theme }) => theme.palette.grey[100]};
   margin-top: 32px;
+
+  a {
+    color: ${({ theme }) => theme.palette.primary.main};
+    text-decoration: underline;
+    font-weight: 400;
+  }
 `;
 
 export const TermsText = styled.div``;
-
-export const TermsLink = styled.button`
-  border: 0;
-  background: none;
-  color: ${({ theme }) => theme.palette.primary.main};
-  text-decoration: underline;
-`;
 
 export const IAgreeTermsContainerButtons = styled.div`
   display: flex;
