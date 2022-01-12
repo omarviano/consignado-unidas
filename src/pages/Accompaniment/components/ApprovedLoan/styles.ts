@@ -204,12 +204,16 @@ export const ButtonNo = styled(Button)`
 `;
 
 export const ContainerModalRefuseProposalAccept = styled(BoxStyles)`
-  max-width: 405px;
+  max-width: 685px;
+  padding: 60px 105px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  padding: 60px;
+
+  @media (max-width: 768px) {
+    padding: 48px 36px;
+  }
 `;
 
 export const RefuseProposalAccept = styled(RefuseProposal)`
