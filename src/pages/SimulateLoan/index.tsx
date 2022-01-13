@@ -23,7 +23,7 @@ import { Button } from 'components/Buttons/Button';
 import { Modal } from 'components/Modal';
 import { RoutingPath } from 'utils/routing';
 import { withAITracking } from '@microsoft/applicationinsights-react-js';
-import { reactPlugin, appInsights } from 'hooks/appInsights';
+import { reactPlugin } from 'hooks/appInsights';
 import {
   useModalSimulateLoan,
   ModalSimulateLoanProvider,

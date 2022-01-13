@@ -3,7 +3,7 @@ import { FC } from 'react';
 import { Layout } from 'components/Layout';
 import { RouteAccess } from 'components/RouteAccess';
 import { withAITracking } from '@microsoft/applicationinsights-react-js';
-import { reactPlugin, appInsights } from 'hooks/appInsights';
+import { reactPlugin } from 'hooks/appInsights';
 import { TopicI } from './Components/TopicI';
 import { TopicII } from './Components/TopicII/TopicII';
 import { TopicIII } from './Components/TopicIII';

@@ -8,7 +8,7 @@ import { Card } from 'components/Card';
 import { RouteAccess } from 'components/RouteAccess';
 import { withContext } from 'utils/withContext';
 import { withAITracking } from '@microsoft/applicationinsights-react-js';
-import { reactPlugin, appInsights } from 'hooks/appInsights';
+import { reactPlugin } from 'hooks/appInsights';
 import { ModalLogin } from './components/ModalLogin';
 import { ModalLoginProvider } from './components/ModalLogin/context';
 import { Form } from './components/Form';

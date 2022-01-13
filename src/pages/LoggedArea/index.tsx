@@ -3,7 +3,7 @@ import { RouteAccess } from 'components/RouteAccess';
 import { Layout } from 'components/Layout';
 import { withContext } from 'utils/withContext';
 import { withAITracking } from '@microsoft/applicationinsights-react-js';
-import { reactPlugin, appInsights } from 'hooks/appInsights';
+import { reactPlugin } from 'hooks/appInsights';
 import { SimulateLoanProvider, useSimulateLoan } from 'hooks/simulate';
 import { useSimulateLoanRealTime } from 'hooks/simulateRealtime';
 import { CardMarginAvailable } from './components/CardMarginAvailable';

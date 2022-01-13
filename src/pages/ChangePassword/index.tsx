@@ -13,7 +13,7 @@ import { RoutingPath } from 'utils/routing';
 import { RouteAccess } from 'components/RouteAccess';
 import { Layout } from 'components/Layout';
 import { withAITracking } from '@microsoft/applicationinsights-react-js';
-import { reactPlugin, appInsights } from 'hooks/appInsights';
+import { reactPlugin } from 'hooks/appInsights';
 import { Formik } from 'components/Formik';
 import { Input } from 'components/Inputs/Input';
 import { SubmitButton } from 'components/Buttons/SubmitButton';

@@ -13,7 +13,7 @@ import { Modal } from 'components/Modal';
 import { ModalMessage } from 'components/ModalMessage';
 import { Layout } from 'components/Layout';
 import { withAITracking } from '@microsoft/applicationinsights-react-js';
-import { reactPlugin, appInsights } from 'hooks/appInsights';
+import { reactPlugin } from 'hooks/appInsights';
 
 import * as Styled from './styles';
 import { AccountConfirmationServices } from './services/account-confirmation.services';
