@@ -1,1 +1,0 @@
-export { AccountConfirmation } from './AccountConfirmation';
