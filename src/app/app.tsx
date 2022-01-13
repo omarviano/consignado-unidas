@@ -15,8 +15,6 @@ import {
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import { Interceptors } from 'components/Interceptors';
 import { AcceptCookies } from 'components/AcceptCookies';
-import { AppInsightsContext } from '@microsoft/applicationinsights-react-js';
-import { reactPlugin } from 'hooks/appInsights';
 import { Routes } from './routes';
 
 const App: FC = () => (
@@ -30,12 +28,10 @@ const App: FC = () => (
             <Interceptors />
 
             <BrowserRouter>
-              {/* <AppInsightsContext.Provider value={reactPlugin}> */}
               <Switch>
                 <Routes />
               </Switch>
               <AcceptCookies />
-              {/* </AppInsightsContext.Provider> */}
             </BrowserRouter>
           </AppProvider>
         </ThemeProviderStyledComponents>

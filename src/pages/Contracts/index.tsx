@@ -15,7 +15,7 @@ import useWindowDimensions from 'hooks/windowDimensions';
 import { formatDate } from 'utils/formatDate';
 import { formatValue } from 'utils/formatValue';
 import { withAITracking } from '@microsoft/applicationinsights-react-js';
-import { reactPlugin, appInsights } from 'hooks/appInsights';
+import { reactPlugin } from 'hooks/appInsights';
 
 import * as Styled from './styles';
 import { ContractsServices } from './services/contracts-services';

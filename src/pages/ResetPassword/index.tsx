@@ -10,7 +10,7 @@ import Logo from 'assets/images/logo.png';
 import useModal from 'hooks/modal';
 
 import { withAITracking } from '@microsoft/applicationinsights-react-js';
-import { reactPlugin, appInsights } from 'hooks/appInsights';
+import { reactPlugin } from 'hooks/appInsights';
 import { Formik } from 'components/Formik';
 import { Button } from 'components/Buttons/Button';
 import { Input } from 'components/Inputs/Input';

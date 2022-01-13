@@ -6,7 +6,7 @@ const browserHistory = createBrowserHistory({ basename: '' });
 const reactPlugin = new ReactPlugin();
 const appInsights = new ApplicationInsights({
   config: {
-    instrumentationKey: 'ef7e586a-acad-414f-9bf2-a6ef9e20a18d',
+    instrumentationKey: process.env.REACT_APP_APPLICATION_INSIGHTS_KEY,
     extensions: [reactPlugin],
     extensionConfig: {
       [reactPlugin.identifier]: { history: browserHistory },

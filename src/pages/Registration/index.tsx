@@ -12,7 +12,7 @@ import { RouteAccess } from 'components/RouteAccess';
 import { Button } from 'components/Buttons/Button';
 import { ModalMessage } from 'components/ModalMessage';
 import { withAITracking } from '@microsoft/applicationinsights-react-js';
-import { reactPlugin, appInsights } from 'hooks/appInsights';
+import { reactPlugin } from 'hooks/appInsights';
 import { Modal } from 'components/Modal';
 import { CPFForm } from './components/CPFForm';
 import { CompleteNameForm } from './components/CompleteNameForm';
