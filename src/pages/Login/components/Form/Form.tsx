@@ -58,8 +58,6 @@ const Form: FC = memo(() => {
 
       if (!recaptchaToken) return;
 
-      console.log('recaptchaToken', recaptchaToken);
-
       signIn(values, recaptchaToken);
       resetModalActive();
     },
@@ -74,49 +72,51 @@ const Form: FC = memo(() => {
   }, [modalActive, toggleModal, statusCode]);
 
   return (
-    <Formik
-      initialValues={initialValues}
-      onSubmit={handleSubmit}
-      validationSchema={schema}
-    >
-      <Styled.InputEmail
-        type="text"
-        variant="outlined"
-        name="cpf"
-        label="Cpf"
-        placeholder="Seu Cpf"
-        mask="999.999.999-99"
-      />
-
-      <Styled.InputPassword
-        variant="outlined"
-        name="password"
-        label="Sua Senha"
-        placeholder="Senha"
-        type={inputPasswordType}
-        InputProps={{
-          endAdornment: (
-            <Styled.InputAdornment position="end">
-              <Styled.IconButton
-                aria-label="toggle password visibility"
-                onClick={handleClickShowPassword}
-              >
-                {eyeIconVisibilityOrVisibilityOff}
-              </Styled.IconButton>
-            </Styled.InputAdornment>
-          ),
-        }}
-      />
-
-      <Styled.ButtonEnter
-        variant="contained"
-        color="primary"
-        type="submit"
-        disabled={isAuthenticating}
+    <div data-testid="form-login">
+      <Formik
+        initialValues={initialValues}
+        onSubmit={handleSubmit}
+        validationSchema={schema}
       >
-        Entrar
-      </Styled.ButtonEnter>
-    </Formik>
+        <Styled.InputEmail
+          type="text"
+          variant="outlined"
+          name="cpf"
+          label="Cpf"
+          placeholder="Seu Cpf"
+          mask="999.999.999-99"
+        />
+
+        <Styled.InputPassword
+          variant="outlined"
+          name="password"
+          label="Sua Senha"
+          placeholder="Senha"
+          type={inputPasswordType}
+          InputProps={{
+            endAdornment: (
+              <Styled.InputAdornment position="end">
+                <Styled.IconButton
+                  aria-label="toggle password visibility"
+                  onClick={handleClickShowPassword}
+                >
+                  {eyeIconVisibilityOrVisibilityOff}
+                </Styled.IconButton>
+              </Styled.InputAdornment>
+            ),
+          }}
+        />
+
+        <Styled.ButtonEnter
+          variant="contained"
+          color="primary"
+          type="submit"
+          disabled={isAuthenticating}
+        >
+          Entrar
+        </Styled.ButtonEnter>
+      </Formik>
+    </div>
   );
 });
 
