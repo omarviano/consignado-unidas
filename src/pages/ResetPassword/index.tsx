@@ -15,6 +15,7 @@ import { Formik } from 'components/Formik';
 import { Button } from 'components/Buttons/Button';
 import { Input } from 'components/Inputs/Input';
 import { Modal } from 'components/Modal';
+import { PasswordRules } from 'components/PasswordRules';
 import { ModalMessage } from 'components/ModalMessage';
 
 import { ResetPasswordServices } from './services/reset-password.services';
@@ -86,6 +87,8 @@ const ResetPassword: React.FC = () => {
             placeholder="Confirmação nova senha"
             variant="outlined"
           />
+
+          <PasswordRules containerStyles={{ marginTop: 14 }} />
 
           <Button
             type="submit"

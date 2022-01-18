@@ -10,7 +10,11 @@ import * as Styled from './styles';
 import { PhoneNumberFormProps } from './props';
 
 const PhoneNumberForm: React.FC<PhoneNumberFormProps> = ({ onSubmit }) => (
-  <Formik initialValues={{}} validationSchema={schema} onSubmit={onSubmit}>
+  <Formik
+    initialValues={{ phoneNumber: '' }}
+    validationSchema={schema}
+    onSubmit={onSubmit}
+  >
     <StepSmallTitle>Qual o seu celular?</StepSmallTitle>
 
     <Styled.PhonenumberInput

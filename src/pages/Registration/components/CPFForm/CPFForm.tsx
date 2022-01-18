@@ -11,7 +11,7 @@ import { CPFFormProps } from './props';
 
 const CPFForm: React.FC<CPFFormProps> = ({ onSubmit }) => (
   <Formik
-    initialValues={{}}
+    initialValues={{ cpf: '' }}
     onSubmit={onSubmit}
     validationSchema={schema}
     validateOnBlur={false}

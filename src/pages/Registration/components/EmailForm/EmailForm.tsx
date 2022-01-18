@@ -11,7 +11,7 @@ import { EmailFormProps } from './props';
 
 const EmailForm: React.FC<EmailFormProps> = ({ onSubmit }) => (
   <Formik
-    initialValues={{}}
+    initialValues={{ email: '' }}
     validationSchema={schema}
     onSubmit={onSubmit}
     validateOnBlur={false}
