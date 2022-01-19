@@ -18,6 +18,7 @@ import { Formik } from 'components/Formik';
 import { Input } from 'components/Inputs/Input';
 import { SubmitButton } from 'components/Buttons/SubmitButton';
 import { ModalMessage } from 'components/ModalMessage';
+import { PasswordRules } from 'components/PasswordRules';
 
 import { ChangePasswordServices } from './services/change-password.services';
 
@@ -106,6 +107,11 @@ const ChangePassword: React.FC = () => {
                     </Styled.InputAdornment>
                   ),
                 }}
+                // eslint-disable-next-line react/jsx-no-duplicate-props
+                inputProps={{ 'data-testid': 'password' }}
+                FormHelperTextProps={{
+                  id: 'password-error',
+                }}
               />
 
               <Input
@@ -126,7 +132,14 @@ const ChangePassword: React.FC = () => {
                     </Styled.InputAdornment>
                   ),
                 }}
+                // eslint-disable-next-line react/jsx-no-duplicate-props
+                inputProps={{ 'data-testid': 'passwordConfirmation' }}
+                FormHelperTextProps={{
+                  id: 'passwordConfirmation-error',
+                }}
               />
+
+              <PasswordRules containerStyles={{ marginTop: 32 }} />
 
               <SubmitButton
                 type="submit"

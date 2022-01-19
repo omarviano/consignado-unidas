@@ -9,7 +9,8 @@ import { StepSmallTitle } from '../StepSmallTitle';
 import { ContinueButton } from '../ContinueButton';
 
 const LinkForm: React.FC = () => (
-  <Formik initialValues={{}} onSubmit={values => console.log('values', values)}>
+  <>
+    {/* <Formik initialValues={{}} onSubmit={values => console.log('values', values)}>
     <StepSmallTitle>Qual o seu vínculo trabalhista?</StepSmallTitle>
 
     <FormControl fullWidth>
@@ -34,7 +35,9 @@ const LinkForm: React.FC = () => (
       variant="contained"
       color="primary"
     />
-  </Formik>
+  </Formik> */}
+    <div />
+  </>
 );
 
 export { LinkForm };

@@ -31,7 +31,7 @@ import * as Styled from './styles';
 const NUMBER_OF_STEPS = 8;
 
 const Registration: React.FC = () => {
-  const [currentStep, setCurrentStep] = useState(0);
+  const [currentStep, setCurrentStep] = useState(5);
   const [formsData, setFormsData] = useState<Register>();
   const [responseErros, setResponseErros] = useState<string>();
   const [registering, setRegistering] = useState(false);
