@@ -8,4 +8,6 @@ export const ResetPasswordServices = {
     token: string,
   ): Promise<AxiosResponse<ResponseData>> =>
     api.post(`/auth/password-reset-token`, { password, token }),
+  validatePassword: (password: string): Promise<AxiosResponse<ResponseData>> =>
+    api.post(`/auth/validate-password`, password),
 };

@@ -5,7 +5,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --watchAll=false",
     "eject": "react-scripts eject",
     "build:dev": "env-cmd -f .env.development react-scripts build",
     "build:staging": "env-cmd -f .env.staging react-scripts build",
@@ -14,7 +14,8 @@
     "commit": "cz",
     "prepare": "husky install",
     "lint": "eslint src --ext .ts --fix",
-    "format": "prettier --write src/**/*.ts"
+    "format": "prettier --write src/**/*.ts",
+    "test:coverage": "react-scripts test --coverage --watchAll false"
   },
   "dependencies": {
     "@emotion/react": "^11.5.0",
@@ -27,6 +28,7 @@
     "@mui/styles": "^5.0.2",
     "@mui/x-data-grid": "^5.0.0-beta.6",
     "axios": "^0.21.1",
+    "axios-mock-adapter": "^1.20.0",
     "date-fns": "^2.25.0",
     "env-cmd": "^10.1.0",
     "formik": "2.2.9",
@@ -53,6 +55,7 @@
     "@commitlint/config-conventional": "^13.2.0",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
+    "@testing-library/react-hooks": "^7.0.2",
     "@testing-library/user-event": "^12.1.10",
     "@types/jest": "^26.0.15",
     "@types/node": "^12.0.0",
@@ -91,6 +94,15 @@
       "last 1 chrome version",
       "last 1 firefox version",
       "last 1 safari version"
+    ]
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/pages/**/*.tsx",
+      "src/components/**/*.tsx",
+      "src/hooks/*.tsx",
+      "src/utils/*.ts",
+      "!src/hooks/index.tsx"
     ]
   }
 }

@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { Formik } from 'components/Formik';
+import { PasswordRules } from 'components/PasswordRules';
 import { ContinueButton } from '../ContinueButton';
 import { StepSmallTitle } from '../StepSmallTitle';
 
@@ -9,7 +10,11 @@ import * as Styled from './styles';
 import { PasswordFormProps } from './props';
 
 const PasswordForm: React.FC<PasswordFormProps> = ({ onSubmit }) => (
-  <Formik initialValues={{}} validationSchema={schema} onSubmit={onSubmit}>
+  <Formik
+    initialValues={{ password: '', passwordConfirmation: '' }}
+    validationSchema={schema}
+    onSubmit={onSubmit}
+  >
     <StepSmallTitle>Criar senha</StepSmallTitle>
 
     <Styled.PasswordInput
@@ -18,6 +23,10 @@ const PasswordForm: React.FC<PasswordFormProps> = ({ onSubmit }) => (
       label="Cadastre uma senha"
       placeholder="Cadastre um senha"
       variant="outlined"
+      inputProps={{ 'data-testid': 'password' }}
+      FormHelperTextProps={{
+        id: 'password-error',
+      }}
     />
 
     <Styled.PasswordInput
@@ -26,7 +35,13 @@ const PasswordForm: React.FC<PasswordFormProps> = ({ onSubmit }) => (
       label="Confirme sua senha"
       placeholder="Confirme sua senha"
       variant="outlined"
+      inputProps={{ 'data-testid': 'passwordConfirmation' }}
+      FormHelperTextProps={{
+        id: 'passwordConfirmation-error',
+      }}
     />
+
+    <PasswordRules containerStyles={{ marginTop: 32 }} />
 
     <ContinueButton
       type="submit"

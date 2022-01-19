@@ -28,7 +28,22 @@ const BankDataForm: React.FC<BankDataFormProps> = ({
   const [cep, setCep] = useState<string>();
   const { fetchCEP, notFound, address } = useViaCEP();
   const formRef = useRef<FormikProps<any>>(null);
-  const [formValues, setFormValues] = useState({});
+  const [formValues, setFormValues] = useState({
+    professional: '',
+    nationality: '',
+    zipCode: '',
+    logradouro: '',
+    number: '',
+    bairro: '',
+    complement: '',
+    localidade: '',
+    uf: '',
+    accountType: '',
+    bankCode: '',
+    agency: '',
+    accountNumber: '',
+    digit: '',
+  });
 
   const handleInput = () => {
     const cepInput = document.getElementById('zipCode') as HTMLInputElement;
@@ -81,8 +96,8 @@ const BankDataForm: React.FC<BankDataFormProps> = ({
       innerRef={formRef}
     >
       <Styled.BankDataContainer>
-        <Styled.Hello>Olá {username}!</Styled.Hello>
-        <Styled.Email>{email}</Styled.Email>
+        <Styled.Hello id="username">Olá {username}!</Styled.Hello>
+        <Styled.Email id="email">{email}</Styled.Email>
 
         <Styled.Title>
           Você deseja informar algumas informações sobre você?
