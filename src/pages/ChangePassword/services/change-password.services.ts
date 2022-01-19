@@ -5,4 +5,6 @@ import { api } from 'services/api';
 export const ChangePasswordServices = {
   changePassword: (password: string): Promise<AxiosResponse<ResponseData>> =>
     api.post(`/auth/password-reset`, { password }),
+  validatePassword: (password: string): Promise<AxiosResponse<ResponseData>> =>
+    api.post(`/auth/validate-password`, password),
 };

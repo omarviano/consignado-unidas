@@ -10,7 +10,11 @@ import { schema } from './schema';
 import { BirthDateFormProps } from './props';
 
 const BirthDateForm: React.FC<BirthDateFormProps> = ({ onSubmit }) => (
-  <Formik initialValues={{}} validationSchema={schema} onSubmit={onSubmit}>
+  <Formik
+    initialValues={{ birthDate: '' }}
+    validationSchema={schema}
+    onSubmit={onSubmit}
+  >
     <StepSmallTitle>Qual a sua data de nascimento?</StepSmallTitle>
 
     <Styled.InputContainer>
