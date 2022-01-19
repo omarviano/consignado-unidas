@@ -327,6 +327,27 @@ export const AboutText = styled.p`
   }
 `;
 
+export const VersionText = styled.p`
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 34.5px;
+  text-align: center;
+  color: ${({ theme }) => theme.palette.primary.contrastText};
+  display: block;
+
+  &.desktop {
+    @media (max-width: 1023px) {
+      display: none;
+    }
+  }
+
+  &.mobile {
+    @media (min-width: 1023px) {
+      display: none;
+    }
+  }
+`;
+
 export const Content = styled.div`
   display: flex;
   justify-content: center;

@@ -51,3 +51,16 @@ export const LinkContainer = styled(TypographyStyles)`
     text-decoration: underline;
   }
 `;
+
+export const VersionText = styled.p`
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 34.5px;
+  text-align: center;
+  color: ${({ theme }) => theme.palette.primary.contrastText};
+
+  @media (max-width: 768px) {
+    font-size: 16px;
+    margin-top: 50px;
+  }
+`;
