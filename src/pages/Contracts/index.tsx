@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom';
 import CircularProgress from '@mui/material/CircularProgress';
 
 import { RoutingPath } from 'utils/routing';
+import { Tooltip } from 'components/Tooltip';
 
 import { Layout } from 'components/Layout';
 import { RouteAccess } from 'components/RouteAccess';
@@ -78,6 +79,17 @@ const Contracts: React.FC = () => {
         disableColumnMenu: true,
         headerAlign: 'center',
         width: 127,
+        align: 'center',
+        renderCell: tableData => (
+          <Tooltip
+            followCursor
+            placement="top"
+            arrow
+            title={tableData.row.status}
+          >
+            {tableData.row.status}
+          </Tooltip>
+        ),
       },
       {
         field: 'details',
