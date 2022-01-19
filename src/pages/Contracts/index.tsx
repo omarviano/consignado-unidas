@@ -81,12 +81,7 @@ const Contracts: React.FC = () => {
         width: 127,
         align: 'center',
         renderCell: tableData => (
-          <Tooltip
-            followCursor
-            placement="top"
-            arrow
-            title={tableData.row.status}
-          >
+          <Tooltip placement="top" arrow title={tableData.row.status}>
             {tableData.row.status}
           </Tooltip>
         ),

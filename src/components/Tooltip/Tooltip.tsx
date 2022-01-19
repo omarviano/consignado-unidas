@@ -17,6 +17,7 @@ const Tooltip: FC<TooltipProps> = props => {
       classes={{
         tooltip: classes.customTooltip,
         arrow: classes.customArrow,
+        tooltipPlacementTop: classes.tooltipPlacementTop,
       }}
     >
       <Styled.TooltipText>{title}</Styled.TooltipText>

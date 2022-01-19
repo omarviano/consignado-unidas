@@ -12,4 +12,7 @@ export const useStyles = makeStyles({
   customArrow: {
     color: '#363636',
   },
+  tooltipPlacementTop: {
+    top: '35px',
+  },
 });
