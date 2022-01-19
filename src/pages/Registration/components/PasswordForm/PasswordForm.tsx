@@ -23,6 +23,10 @@ const PasswordForm: React.FC<PasswordFormProps> = ({ onSubmit }) => (
       label="Cadastre uma senha"
       placeholder="Cadastre um senha"
       variant="outlined"
+      inputProps={{ 'data-testid': 'password' }}
+      FormHelperTextProps={{
+        id: 'password-error',
+      }}
     />
 
     <Styled.PasswordInput
@@ -31,6 +35,10 @@ const PasswordForm: React.FC<PasswordFormProps> = ({ onSubmit }) => (
       label="Confirme sua senha"
       placeholder="Confirme sua senha"
       variant="outlined"
+      inputProps={{ 'data-testid': 'passwordConfirmation' }}
+      FormHelperTextProps={{
+        id: 'passwordConfirmation-error',
+      }}
     />
 
     <PasswordRules containerStyles={{ marginTop: 32 }} />

@@ -25,6 +25,9 @@ const EmailForm: React.FC<EmailFormProps> = ({ onSubmit }) => (
       label="Seu melhor e-mail"
       placeholder="Seu melhor e-mail"
       variant="outlined"
+      FormHelperTextProps={{
+        id: 'error',
+      }}
     />
 
     <ContinueButton

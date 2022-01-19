@@ -24,6 +24,9 @@ const PhoneNumberForm: React.FC<PhoneNumberFormProps> = ({ onSubmit }) => (
       placeholder="(XX)XXXXX-XXXX"
       variant="outlined"
       mask="(99)99999-9999"
+      FormHelperTextProps={{
+        id: 'error',
+      }}
     />
 
     <ContinueButton

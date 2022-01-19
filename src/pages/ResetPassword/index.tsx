@@ -37,9 +37,13 @@ const ResetPassword: React.FC = () => {
   const [errorMessage, setErrorMessage] = useState<string>();
   const { open: modalSuccessOpen, toggle: toggleModalSuccess } = useModal();
   const { open: modalErrorOpen, toggle: toggleModalError } = useModal();
+  const { open: modalTokenOpen, toggle: toggleModalToken } = useModal();
 
   const handleSubmit = async ({ password }: FormData) => {
-    if (!password || !token) return;
+    if (!token) {
+      toggleModalToken();
+      return;
+    }
 
     try {
       setResettingPassword(true);
@@ -48,7 +52,7 @@ const ResetPassword: React.FC = () => {
       toggleModalSuccess();
     } catch (error) {
       const { response } = error as AxiosError;
-      setErrorMessage(response?.data?.message);
+      setErrorMessage(response?.data?.message || 'Erro ao resetar senha');
       toggleModalError();
     } finally {
       setResettingPassword(false);
@@ -68,7 +72,7 @@ const ResetPassword: React.FC = () => {
         <Styled.Title>Confirmar nova senha</Styled.Title>
 
         <Formik
-          initialValues={{ password: '' }}
+          initialValues={{ password: '', passwordConfirmation: '' }}
           validationSchema={schema}
           onSubmit={handleSubmit}
         >
@@ -78,6 +82,10 @@ const ResetPassword: React.FC = () => {
             label="Nova senha"
             placeholder="Nova senha"
             variant="outlined"
+            inputProps={{ 'data-testid': 'password' }}
+            FormHelperTextProps={{
+              id: 'password-error',
+            }}
           />
 
           <Input
@@ -86,6 +94,10 @@ const ResetPassword: React.FC = () => {
             label="Confirmação nova senha"
             placeholder="Confirmação nova senha"
             variant="outlined"
+            inputProps={{ 'data-testid': 'passwordConfirmation' }}
+            FormHelperTextProps={{
+              id: 'passwordConfirmation-error',
+            }}
           />
 
           <PasswordRules containerStyles={{ marginTop: 14 }} />
@@ -103,7 +115,7 @@ const ResetPassword: React.FC = () => {
       </Card>
 
       <Modal open={modalSuccessOpen} onClose={redirectToLogin}>
-        <Styled.ModalContent>
+        <Styled.ModalContent data-testid="password-redefined">
           <ConfirmIcon />
 
           <Styled.ModalTitle>Senha redefinida com sucesso</Styled.ModalTitle>
@@ -124,6 +136,13 @@ const ResetPassword: React.FC = () => {
         onClose={toggleModalError}
         icon={<Cancel color="error" fontSize="inherit" />}
         text={errorMessage}
+      />
+
+      <ModalMessage
+        open={modalTokenOpen}
+        onClose={toggleModalToken}
+        icon={<Cancel color="error" fontSize="inherit" />}
+        text="Não encontramos seu token. Click no link que você recebeu no e-mail e tente novamente"
       />
     </Styled.Container>
   );

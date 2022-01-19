@@ -23,6 +23,9 @@ const CompleteNameForm: React.FC<CompleteNameFormProps> = ({ onSubmit }) => (
       label="Digite seu nome completo"
       placeholder="Digite seu nome completo"
       variant="outlined"
+      FormHelperTextProps={{
+        id: 'error',
+      }}
     />
 
     <ContinueButton

@@ -107,6 +107,11 @@ const ChangePassword: React.FC = () => {
                     </Styled.InputAdornment>
                   ),
                 }}
+                // eslint-disable-next-line react/jsx-no-duplicate-props
+                inputProps={{ 'data-testid': 'password' }}
+                FormHelperTextProps={{
+                  id: 'password-error',
+                }}
               />
 
               <Input
@@ -126,6 +131,11 @@ const ChangePassword: React.FC = () => {
                       </Styled.IconButton>
                     </Styled.InputAdornment>
                   ),
+                }}
+                // eslint-disable-next-line react/jsx-no-duplicate-props
+                inputProps={{ 'data-testid': 'passwordConfirmation' }}
+                FormHelperTextProps={{
+                  id: 'passwordConfirmation-error',
                 }}
               />
 

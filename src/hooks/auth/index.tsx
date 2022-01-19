@@ -24,7 +24,7 @@ import authReducer, { initialState } from './reducer';
 import { persistToken, clearPersistedToken } from './storage';
 
 const initialValues = {} as AuthContextData;
-const AuthContext = createContext(initialValues);
+export const AuthContext = createContext(initialValues);
 
 export const AuthProvider: FC<AuthContextProviderProps> = props => {
   const { children, initialProps } = props;

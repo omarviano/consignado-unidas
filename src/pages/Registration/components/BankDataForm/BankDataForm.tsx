@@ -96,8 +96,8 @@ const BankDataForm: React.FC<BankDataFormProps> = ({
       innerRef={formRef}
     >
       <Styled.BankDataContainer>
-        <Styled.Hello>Olá {username}!</Styled.Hello>
-        <Styled.Email>{email}</Styled.Email>
+        <Styled.Hello id="username">Olá {username}!</Styled.Hello>
+        <Styled.Email id="email">{email}</Styled.Email>
 
         <Styled.Title>
           Você deseja informar algumas informações sobre você?
