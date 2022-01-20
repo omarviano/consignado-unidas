@@ -614,7 +614,7 @@ const ApprovedLoan: FC<ApprovedLoanProps> = ({ onApproved }) => {
               multiline
               rows={8}
               inputProps={{
-                maxLength: 100,
+                maxLength: 300,
               }}
               onInput={handleInputTextArea}
               error={reasonDescriptionRequired && totalCharacters === 0}
@@ -625,7 +625,7 @@ const ApprovedLoan: FC<ApprovedLoanProps> = ({ onApproved }) => {
               }
             />
             <Styled.TotalCharacters>
-              Máximo de carateres {totalCharacters}/100
+              Máximo de carateres {totalCharacters}/300
             </Styled.TotalCharacters>
 
             <Button type="submit" variant="contained" disabled={loading}>
