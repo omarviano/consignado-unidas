@@ -123,6 +123,7 @@ const Accompaniment: React.FC = () => {
       [QuotationStatus.EmprestimoReprovadoPeloBanco]: <ReprovidedLoan />,
       default: null,
     }),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [quote],
   );
   const STEPS_ICON = useMemo(
