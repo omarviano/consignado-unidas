@@ -14,6 +14,8 @@ import { NoDataTable } from 'components/NoDataTable';
 import useWindowDimensions from 'hooks/windowDimensions';
 import { formatDate } from 'utils/formatDate';
 import { formatValue } from 'utils/formatValue';
+import { withAITracking } from '@microsoft/applicationinsights-react-js';
+import { reactPlugin } from 'hooks/appInsights';
 
 import * as Styled from './styles';
 import { ContractsServices } from './services/contracts-services';
@@ -190,4 +192,4 @@ const Contracts: React.FC = () => {
   );
 };
 
-export { Contracts };
+export default withAITracking(reactPlugin, Contracts, 'Contracts');

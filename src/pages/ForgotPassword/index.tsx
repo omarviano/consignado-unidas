@@ -13,6 +13,8 @@ import { Button } from 'components/Buttons/Button';
 import { Input } from 'components/Inputs/Input';
 import { Modal } from 'components/Modal';
 import { ModalMessage } from 'components/ModalMessage';
+import { withAITracking } from '@microsoft/applicationinsights-react-js';
+import { reactPlugin } from 'hooks/appInsights';
 
 import { ForgotPasswordServices } from './services/forgot-password.services';
 
@@ -137,4 +139,4 @@ const ForgotPassword: React.FC = () => {
   );
 };
 
-export { ForgotPassword };
+export default withAITracking(reactPlugin, ForgotPassword, 'ForgotPassword');

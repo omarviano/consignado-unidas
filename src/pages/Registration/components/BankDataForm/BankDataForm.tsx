@@ -41,7 +41,7 @@ const BankDataForm: React.FC<BankDataFormProps> = ({
 
     onSubmit({
       ...data,
-      zipCode: Document.removeMask(zipCode),
+      zipCode: zipCode ? Document.removeMask(zipCode) : undefined,
       publicPlace: logradouro,
       district: bairro,
       city: localidade,
@@ -128,7 +128,6 @@ const BankDataForm: React.FC<BankDataFormProps> = ({
               <Grid item xs={6}>
                 <Input
                   name="number"
-                  type="number"
                   label="Número (Opcional)"
                   placeholder="xxxx"
                   variant="outlined"
@@ -205,7 +204,6 @@ const BankDataForm: React.FC<BankDataFormProps> = ({
           <Styled.Div>
             <Styled.AgencyInput
               name="agency"
-              type="number"
               label="Agência"
               placeholder="N° da sua agência"
               variant="outlined"
@@ -216,7 +214,6 @@ const BankDataForm: React.FC<BankDataFormProps> = ({
             <Grid item xs={6}>
               <Styled.AccountInput
                 name="accountNumber"
-                type="number"
                 label="N° da Conta Corrente"
                 placeholder="XXXXXX"
                 variant="outlined"
@@ -226,7 +223,6 @@ const BankDataForm: React.FC<BankDataFormProps> = ({
             <Grid item xs={4}>
               <Styled.DigitInput
                 name="digit"
-                type="number"
                 label="Dígito"
                 placeholder="XX"
                 variant="outlined"
