@@ -12,8 +12,6 @@ import { getToken } from 'hooks/auth/storage';
 import useModal from 'hooks/modal';
 import { SimulateLoanProvider, useSimulateLoan } from 'hooks/simulate';
 
-import { QuotationStatus } from 'enums/quote';
-
 import { withContext } from 'utils/withContext';
 import { Table } from 'components/Table';
 import { useSimulateLoanRealTime } from 'hooks/simulateRealtime';
