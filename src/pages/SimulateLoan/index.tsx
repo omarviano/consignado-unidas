@@ -12,8 +12,6 @@ import { getToken } from 'hooks/auth/storage';
 import useModal from 'hooks/modal';
 import { SimulateLoanProvider, useSimulateLoan } from 'hooks/simulate';
 
-import { QuotationStatus } from 'enums/quote';
-
 import { withContext } from 'utils/withContext';
 import { Table } from 'components/Table';
 import { useSimulateLoanRealTime } from 'hooks/simulateRealtime';
@@ -29,6 +27,7 @@ import {
   ModalSimulateLoanProvider,
 } from 'pages/LoggedArea/components/ModalSimulateLoan/context';
 import { ModalSimulateLoan } from 'pages/LoggedArea/components/ModalSimulateLoan';
+import { generateRandom } from 'utils/generateRandom';
 import { CardSimulateLoan } from './components/CardSimulateLoan';
 import { LoanDetails } from './components/LoanDetails';
 
@@ -63,7 +62,7 @@ const SimulateLoan: FC = withContext(
 
       const data = dataSimulateLoan.installments.map(item => ({
         ...item,
-        id: Math.random(),
+        id: generateRandom(),
         valueFormatted: formatValue(item.value),
         effectiveCostPerYearFormatted: `${item.effectiveCostPerYear}%`,
         feesPerMonthFormatted: `${item.feesPerMonth.toFixed(2)}%`,

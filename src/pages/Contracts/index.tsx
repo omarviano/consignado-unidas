@@ -1,12 +1,11 @@
 import React, { useMemo, useState, useEffect, useCallback } from 'react';
-import { styled } from '@mui/material/styles';
-import Tooltip, { TooltipProps, tooltipClasses } from '@mui/material/Tooltip';
 import { GridColumns } from '@mui/x-data-grid';
 import { useHistory } from 'react-router-dom';
 import CircularProgress from '@mui/material/CircularProgress';
 
 import { RoutingPath } from 'utils/routing';
 
+import { Tooltip } from 'components/Tooltip';
 import { Layout } from 'components/Layout';
 import { RouteAccess } from 'components/RouteAccess';
 import { Button } from 'components/Buttons/Button';
@@ -23,18 +22,6 @@ import * as Styled from './styles';
 import { ContractsServices } from './services/contracts-services';
 import { ContractFormatted } from './models/contract';
 import { ContractCard } from './components/ContractCard';
-
-const BootstrapTooltip = styled(({ className, ...props }: TooltipProps) => (
-  <Tooltip {...props} arrow classes={{ popper: className }} />
-))(() => ({
-  [`& .${tooltipClasses.arrow}`]: {
-    color: '#363636',
-  },
-  [`& .${tooltipClasses.tooltip}`]: {
-    backgroundColor: '#363636',
-    padding: '6px 16px',
-  },
-}));
 
 const Contracts: React.FC = () => {
   const history = useHistory();
@@ -100,10 +87,11 @@ const Contracts: React.FC = () => {
         disableColumnMenu: true,
         headerAlign: 'center',
         width: 127,
-        renderCell: ({ value }) => (
-          <BootstrapTooltip title={value} placement="top">
-            <Styled.StatusText>{value}</Styled.StatusText>
-          </BootstrapTooltip>
+        align: 'center',
+        renderCell: tableData => (
+          <Tooltip placement="top" arrow title={tableData.row.status}>
+            {tableData.row.status}
+          </Tooltip>
         ),
       },
       {

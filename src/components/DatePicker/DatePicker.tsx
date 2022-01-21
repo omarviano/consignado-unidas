@@ -1,4 +1,4 @@
-import { forwardRef, useEffect } from 'react';
+import { forwardRef, useEffect, useMemo } from 'react';
 import { useField } from 'formik';
 import DesktopDatePicker from '@mui/lab/DesktopDatePicker';
 import TextField from '@mui/material/TextField';
@@ -8,11 +8,28 @@ import * as Styled from './styles';
 
 const DatePicker = forwardRef<typeof DesktopDatePicker, DatePickerProps>(
   ({ value, name = 'name', ...rest }, ref) => {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [field, meta, helpers] = useField<Date | null>({
       name,
       value: value?.toString(),
     });
+
+    const errors = useMemo(() => {
+      if (meta.initialError) {
+        return {
+          error: true,
+          helperText: meta.initialError,
+        };
+      }
+
+      if (meta.error && meta.touched) {
+        return {
+          error: true,
+          helperText: meta.error,
+        };
+      }
+
+      return {};
+    }, [meta.error, meta.initialError, meta.touched]);
 
     useEffect(() => {
       const input = document.getElementById(
@@ -38,7 +55,13 @@ const DatePicker = forwardRef<typeof DesktopDatePicker, DatePickerProps>(
           cancelText="Cancelar"
           {...rest}
           renderInput={params => (
-            <TextField id={`dateInput_${name}`} {...params} />
+            <TextField
+              id={`dateInput_${name}`}
+              data-testid={`date-picker_${name}`}
+              {...field}
+              {...params}
+              {...errors}
+            />
           )}
         />
       </Styled.Container>

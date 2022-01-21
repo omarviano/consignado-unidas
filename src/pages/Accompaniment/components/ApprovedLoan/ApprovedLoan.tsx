@@ -24,6 +24,7 @@ import { Document } from 'utils/document';
 import { FormikProps } from 'formik';
 import { Button } from 'components/Buttons/Button';
 import useWindowDimensions from 'hooks/windowDimensions';
+import { generateRandom } from 'utils/generateRandom';
 import { UserDataProps, FormProps } from '../../models/userData';
 import { schema, reasonsSchema } from './schema';
 import { InstallmentCard } from './components/InstallmentCard';
@@ -135,7 +136,7 @@ const ApprovedLoan: FC<ApprovedLoanProps> = ({ onApproved }) => {
   useEffect(() => {
     const data = [
       {
-        id: Math.random(),
+        id: generateRandom(),
         valueFormatted: loanData?.installmentValue
           ? formatValue(Number(loanData?.installmentValue))
           : '-',
@@ -614,7 +615,7 @@ const ApprovedLoan: FC<ApprovedLoanProps> = ({ onApproved }) => {
               multiline
               rows={8}
               inputProps={{
-                maxLength: 100,
+                maxLength: 300,
               }}
               onInput={handleInputTextArea}
               error={reasonDescriptionRequired && totalCharacters === 0}
@@ -625,7 +626,7 @@ const ApprovedLoan: FC<ApprovedLoanProps> = ({ onApproved }) => {
               }
             />
             <Styled.TotalCharacters>
-              Máximo de carateres {totalCharacters}/100
+              Máximo de carateres {totalCharacters}/300
             </Styled.TotalCharacters>
 
             <Button type="submit" variant="contained" disabled={loading}>

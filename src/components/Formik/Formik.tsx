@@ -22,7 +22,7 @@ export function Formik<Values>(props: FormikConfig<Values>) {
 
   return (
     <FormikBaseProps innerRef={formRef} {...rest}>
-      <FormBaseProps>{children}</FormBaseProps>
+      <FormBaseProps data-testid="form">{children}</FormBaseProps>
     </FormikBaseProps>
   );
 }
