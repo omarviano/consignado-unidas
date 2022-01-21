@@ -54,7 +54,7 @@ const Contracts: React.FC = () => {
         disableReorder: true,
         disableColumnMenu: true,
         headerAlign: 'center',
-        width: 120,
+        width: 160,
       },
       {
         field: 'installments',
@@ -62,7 +62,7 @@ const Contracts: React.FC = () => {
         hideSortIcons: true,
         disableColumnMenu: true,
         headerAlign: 'center',
-        width: 160,
+        width: 140,
       },
       {
         field: 'value',
@@ -70,7 +70,7 @@ const Contracts: React.FC = () => {
         hideSortIcons: true,
         disableColumnMenu: true,
         headerAlign: 'center',
-        width: 240,
+        width: 220,
       },
       {
         field: 'installmentValue',
