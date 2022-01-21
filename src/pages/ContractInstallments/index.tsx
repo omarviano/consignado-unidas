@@ -110,6 +110,14 @@ const ContractInstallments = () => {
     return '-';
   };
 
+  const getContractDate = (date?: Date) => {
+    const formattedDate = formatDate(date || null);
+
+    if (formattedDate == null || formattedDate === '01/01/1') return '-';
+
+    return formattedDate;
+  };
+
   useEffect(() => {
     if (id)
       ContractsInstallmentsServices.fetchContractDetails(id)
@@ -173,10 +181,10 @@ const ContractInstallments = () => {
                 <Styled.Data>
                   <Styled.DataLabel>Data do contrato</Styled.DataLabel>
                   <Styled.DataValue>
-                    {contractDetails?.contractDate ? (
-                      formatDate(contractDetails?.contractDate)
-                    ) : (
+                    {fetchingInstallments ? (
                       <CircularProgress size={20} />
+                    ) : (
+                      getContractDate(contractDetails?.contractDate)
                     )}
                   </Styled.DataValue>
                 </Styled.Data>
