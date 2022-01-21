@@ -19,6 +19,8 @@ class RoutingPath {
 
   static CONTRACTS = '/contratos';
 
+  static CONTRACT_INSTALLMENTS = '/contratos/:id';
+
   static FAQ = '/faq';
 
   static PRIVACY = '/privacidade';

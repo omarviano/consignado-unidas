@@ -5,7 +5,7 @@ import { ReactComponent as ConfirmIcon } from 'assets/icons/confirm.svg';
 import { ContractCardProps } from './props';
 import * as Styled from './styles';
 
-const ContractCard: React.FC<ContractCardProps> = ({ data }) => (
+const ContractCard: React.FC<ContractCardProps> = ({ data, onClickButton }) => (
   <Styled.Container>
     <Styled.Status>
       <Styled.StatusLabel>Status:</Styled.StatusLabel>
@@ -38,7 +38,9 @@ const ContractCard: React.FC<ContractCardProps> = ({ data }) => (
       </Styled.DataContainer>
     </Styled.Flex>
 
-    <Styled.DetailsButton>Mais detalhes {'>'}</Styled.DetailsButton>
+    <Styled.DetailsButton onClick={() => onClickButton(data.id)}>
+      Mais detalhes {'>'}
+    </Styled.DetailsButton>
   </Styled.Container>
 );
 
