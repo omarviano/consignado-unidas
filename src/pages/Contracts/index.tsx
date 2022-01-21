@@ -1,4 +1,6 @@
-import React, { useMemo, useState, useEffect } from 'react';
+import React, { useMemo, useState, useEffect, useCallback } from 'react';
+import { styled } from '@mui/material/styles';
+import Tooltip, { TooltipProps, tooltipClasses } from '@mui/material/Tooltip';
 import { GridColumns } from '@mui/x-data-grid';
 import { useHistory } from 'react-router-dom';
 import CircularProgress from '@mui/material/CircularProgress';
@@ -22,12 +24,32 @@ import { ContractsServices } from './services/contracts-services';
 import { ContractFormatted } from './models/contract';
 import { ContractCard } from './components/ContractCard';
 
+const BootstrapTooltip = styled(({ className, ...props }: TooltipProps) => (
+  <Tooltip {...props} arrow classes={{ popper: className }} />
+))(() => ({
+  [`& .${tooltipClasses.arrow}`]: {
+    color: '#363636',
+  },
+  [`& .${tooltipClasses.tooltip}`]: {
+    backgroundColor: '#363636',
+    padding: '6px 16px',
+  },
+}));
+
 const Contracts: React.FC = () => {
   const history = useHistory();
   const [bottomOfPage, setBottomOfPage] = useState(false);
   const [tableData, setTableData] = useState<ContractFormatted[]>([]);
   const [fetchingContracts, setFetchingContracts] = useState(true);
   const { width } = useWindowDimensions();
+
+  const goToDetails = useCallback(
+    (id: string) => {
+      history.push(`/contratos/${id}`);
+    },
+    [history],
+  );
+
   const columns = useMemo<GridColumns>(
     () => [
       {
@@ -78,6 +100,11 @@ const Contracts: React.FC = () => {
         disableColumnMenu: true,
         headerAlign: 'center',
         width: 127,
+        renderCell: ({ value }) => (
+          <BootstrapTooltip title={value} placement="top">
+            <Styled.StatusText>{value}</Styled.StatusText>
+          </BootstrapTooltip>
+        ),
       },
       {
         field: 'details',
@@ -86,12 +113,17 @@ const Contracts: React.FC = () => {
         disableColumnMenu: true,
         headerAlign: 'center',
         width: 168,
-        renderCell: () => (
-          <Styled.TableButton variant="contained">Acessar</Styled.TableButton>
+        renderCell: ({ row }) => (
+          <Styled.TableButton
+            variant="contained"
+            onClick={() => goToDetails(row.id)}
+          >
+            Acessar
+          </Styled.TableButton>
         ),
       },
     ],
-    [],
+    [goToDetails],
   );
 
   const goToHome = () => {
@@ -142,7 +174,7 @@ const Contracts: React.FC = () => {
     <RouteAccess typesOfAccess="auth">
       <Layout
         containerStyles={{
-          maxWidth: '1320px',
+          maxWidth: '1286px',
         }}
       >
         <Styled.Container>
@@ -175,7 +207,11 @@ const Contracts: React.FC = () => {
             ) : (
               <Styled.ResponsiveContainer noData={tableData.length === 0}>
                 {tableData.map(item => (
-                  <ContractCard key={item.id} data={item} />
+                  <ContractCard
+                    key={item.id}
+                    data={item}
+                    onClickButton={goToDetails}
+                  />
                 ))}
 
                 {fetchingContracts && <CircularProgress className="loading" />}
