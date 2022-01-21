@@ -13,6 +13,7 @@ import Contracts from 'pages/Contracts';
 import SimulateLoan from 'pages/SimulateLoan';
 import FAQ from 'pages/FAQ';
 import Privacy from 'pages/Privacy';
+import ContractInstallments from 'pages/ContractInstallments';
 
 import { RoutingPath } from 'utils/routing';
 
@@ -39,7 +40,12 @@ const Routes: FC = memo(() => (
 
     <Route path={RoutingPath.FAQ} component={FAQ} />
 
-    <Route path={RoutingPath.CONTRACTS} component={Contracts} />
+    <Route path={RoutingPath.CONTRACTS} component={Contracts} exact />
+
+    <Route
+      path={RoutingPath.CONTRACT_INSTALLMENTS}
+      component={ContractInstallments}
+    />
 
     <Route path={RoutingPath.PRIVACY} component={Privacy} />
 
