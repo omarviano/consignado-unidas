@@ -1,4 +1,4 @@
-import { InstallmentDetailsFormatted } from '../models/contractInstallments';
+import { InstallmentDetailsFormatted } from '../../models/contractInstallments';
 
 export interface InstallmentsCardProps {
   data?: InstallmentDetailsFormatted;

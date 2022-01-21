@@ -37,12 +37,6 @@ export const DataBox = styled.div`
 
 export const Data = styled.div`
   flex: 1;
-
-  &:last-child {
-    display: flex;
-    flex-direction: column;
-    min-width: 80px;
-  }
 `;
 
 export const DataLabel = styled(TypographyStyles)`

@@ -15,18 +15,13 @@ const InstallmentsCard: React.FC<InstallmentsCardProps> = ({
 
       <Styled.DataBox>
         <Styled.Data>
-          <Styled.DataLabel>Venc. da folha</Styled.DataLabel>
+          <Styled.DataLabel>Vencimento da folha</Styled.DataLabel>
           <Styled.DataValue>{data?.dateSheet}</Styled.DataValue>
         </Styled.Data>
 
         <Styled.Data>
           <Styled.DataLabel>Valor da parcela</Styled.DataLabel>
           <Styled.DataValue>{data?.installmentsValue}</Styled.DataValue>
-        </Styled.Data>
-
-        <Styled.Data>
-          <Styled.DataLabel>Valor do desconto</Styled.DataLabel>
-          <Styled.DataValue>R$ 0,00</Styled.DataValue>
         </Styled.Data>
       </Styled.DataBox>
     </Styled.DataContainer>

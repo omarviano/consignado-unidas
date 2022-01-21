@@ -21,7 +21,7 @@ import { formatValue } from 'utils/formatValue';
 
 import { format } from 'date-fns';
 import * as Styled from './styles';
-import { InstallmentsCard } from './InstallmentsCard';
+import { InstallmentsCard } from './components/InstallmentsCard';
 import {
   ContractInstallments as ContractInstallmentsType,
   InstallmentDetails,
