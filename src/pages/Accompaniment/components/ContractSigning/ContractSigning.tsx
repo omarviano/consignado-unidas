@@ -15,8 +15,8 @@ const ContractSigning: React.FC = () => (
       <strong>
         <a href="mailto:contato@mova.vc">contato@mova.vc</a>
       </strong>{' '}
-      no seu email {getToken()?.user.email} com as informação para você assinar
-      o contrato.
+      no seu email {getToken()?.user.email} com as informações necessárias para
+      você assinar o contrato.
       <br />
       <br />
       Caso não envie os documentos,
