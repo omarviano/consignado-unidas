@@ -13,6 +13,7 @@ import Contracts from 'pages/Contracts';
 import SimulateLoan from 'pages/SimulateLoan';
 import FAQ from 'pages/FAQ';
 import Privacy from 'pages/Privacy';
+import ContractInstallments from 'pages/ContractInstallments';
 
 import { RoutingPath } from 'utils/routing';
 import { SimulateLoanRealTimeProvider } from 'hooks/simulateRealtime';
@@ -64,6 +65,13 @@ const Routes: FC = memo(() => (
     <Route
       path={RoutingPath.CONTRACTS}
       component={Contracts}
+      typesOfAccess="auth"
+      exact
+    />
+
+    <Route
+      path={RoutingPath.CONTRACT_INSTALLMENTS}
+      component={ContractInstallments}
       typesOfAccess="auth"
     />
 

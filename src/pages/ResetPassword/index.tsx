@@ -13,6 +13,7 @@ import { withAITracking } from '@microsoft/applicationinsights-react-js';
 import { reactPlugin } from 'hooks/appInsights';
 import { Formik } from 'components/Formik';
 import { Button } from 'components/Buttons/Button';
+import version from 'utils/getVersion';
 import { Input } from 'components/Inputs/Input';
 import { Modal } from 'components/Modal';
 import { PasswordRules } from 'components/PasswordRules';
@@ -113,6 +114,8 @@ const ResetPassword: React.FC = () => {
           </Button>
         </Formik>
       </Card>
+
+      <Styled.VersionText>Versão {version}</Styled.VersionText>
 
       <Modal open={modalSuccessOpen} onClose={redirectToLogin}>
         <Styled.ModalContent data-testid="password-redefined">

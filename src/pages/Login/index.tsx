@@ -8,6 +8,7 @@ import { Card } from 'components/Card';
 import { withContext } from 'utils/withContext';
 import { withAITracking } from '@microsoft/applicationinsights-react-js';
 import { reactPlugin } from 'hooks/appInsights';
+import version from 'utils/getVersion';
 import { ModalLogin } from './components/ModalLogin';
 import { ModalLoginProvider } from './components/ModalLogin/context';
 import { Form } from './components/Form';
@@ -37,6 +38,7 @@ const Login: FC = memo(
               </Styled.LinkContainer>
             </Styled.ContentTexts>
           </Card>
+          <Styled.VersionText>Versão {version}</Styled.VersionText>
           <ModalLogin />
         </Styled.Container>
       </GoogleReCaptchaProvider>

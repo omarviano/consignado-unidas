@@ -12,7 +12,7 @@ interface ResponsiveContainerProps {
 
 export const Container = styled.div`
   position: relative;
-  padding: 54px 2% 24px;
+  padding: 54px 8px 24px;
 
   @media (max-width: 720px) {
     padding: 16px 24px 100px;
@@ -23,7 +23,7 @@ export const Box = styled.div`
   background: #ffffff;
   box-shadow: 0px 2px 6px rgba(46, 43, 80, 0.25);
   border-radius: 4px;
-  max-width: 1320px;
+  max-width: 1286px;
   padding: 31px 56px;
 
   @media (max-width: 720px) {
@@ -133,5 +133,15 @@ export const NoData = styled(TypographyStyles)`
   font-size: 14px;
   color: ${({ theme }) => theme.palette.grey[200]};
   padding: 32px;
+  text-align: center;
+`;
+
+export const StatusText = styled(TypographyStyles)`
+  white-space: nowrap;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 18px;
+  font-weight: 400;
   text-align: center;
 `;

@@ -10,8 +10,10 @@ const Slider: FC<SliderComponentProps> = memo(props => {
 
   type SliderComponentProps = React.HTMLAttributes<unknown>;
 
-  function SliderThumbComponent(props: SliderComponentProps) {
-    const { children, ...other } = props;
+  function SliderThumbComponent(
+    propsSliderThumbComponent: SliderComponentProps,
+  ) {
+    const { children, ...other } = propsSliderThumbComponent;
     return (
       <SliderThumb {...other}>
         {children}
