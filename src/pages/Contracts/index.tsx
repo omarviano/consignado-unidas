@@ -6,7 +6,6 @@ import CircularProgress from '@mui/material/CircularProgress';
 import { RoutingPath } from 'utils/routing';
 
 import { Layout } from 'components/Layout';
-import { RouteAccess } from 'components/RouteAccess';
 import { Button } from 'components/Buttons/Button';
 import { Table } from 'components/Table';
 import { NoDataTable } from 'components/NoDataTable';
@@ -139,56 +138,54 @@ const Contracts: React.FC = () => {
   }, []);
 
   return (
-    <RouteAccess typesOfAccess="auth">
-      <Layout
-        containerStyles={{
-          maxWidth: '1320px',
-        }}
-      >
-        <Styled.Container>
-          <Styled.Box>
-            <Styled.Header>
-              <Styled.Breadcrumb>
-                <Styled.BreadcrumbRoot>Meus contratos</Styled.BreadcrumbRoot>
-                <span>{'>'}</span>
-                <Styled.BreadcrumbPage>Contrato</Styled.BreadcrumbPage>
-              </Styled.Breadcrumb>
+    <Layout
+      containerStyles={{
+        maxWidth: '1320px',
+      }}
+    >
+      <Styled.Container>
+        <Styled.Box>
+          <Styled.Header>
+            <Styled.Breadcrumb>
+              <Styled.BreadcrumbRoot>Meus contratos</Styled.BreadcrumbRoot>
+              <span>{'>'}</span>
+              <Styled.BreadcrumbPage>Contrato</Styled.BreadcrumbPage>
+            </Styled.Breadcrumb>
 
-              <Styled.ButtonContainer
-                bottomOfPage={bottomOfPage}
-                className="button-container"
-              >
-                <Button type="button" variant="outlined" onClick={goToHome}>
-                  Simular novo empréstimo
-                </Button>
-              </Styled.ButtonContainer>
-            </Styled.Header>
+            <Styled.ButtonContainer
+              bottomOfPage={bottomOfPage}
+              className="button-container"
+            >
+              <Button type="button" variant="outlined" onClick={goToHome}>
+                Simular novo empréstimo
+              </Button>
+            </Styled.ButtonContainer>
+          </Styled.Header>
 
-            {width && width > 720 ? (
-              <Table
-                loading={fetchingContracts}
-                columns={columns}
-                rows={tableData}
-                noData={NoContracts}
-                rowHeight={88}
-              />
-            ) : (
-              <Styled.ResponsiveContainer noData={tableData.length === 0}>
-                {tableData.map(item => (
-                  <ContractCard key={item.id} data={item} />
-                ))}
+          {width && width > 720 ? (
+            <Table
+              loading={fetchingContracts}
+              columns={columns}
+              rows={tableData}
+              noData={NoContracts}
+              rowHeight={88}
+            />
+          ) : (
+            <Styled.ResponsiveContainer noData={tableData.length === 0}>
+              {tableData.map(item => (
+                <ContractCard key={item.id} data={item} />
+              ))}
 
-                {fetchingContracts && <CircularProgress className="loading" />}
+              {fetchingContracts && <CircularProgress className="loading" />}
 
-                {tableData.length === 0 && !fetchingContracts && (
-                  <Styled.NoData>Você ainda não possui contratos</Styled.NoData>
-                )}
-              </Styled.ResponsiveContainer>
-            )}
-          </Styled.Box>
-        </Styled.Container>
-      </Layout>
-    </RouteAccess>
+              {tableData.length === 0 && !fetchingContracts && (
+                <Styled.NoData>Você ainda não possui contratos</Styled.NoData>
+              )}
+            </Styled.ResponsiveContainer>
+          )}
+        </Styled.Box>
+      </Styled.Container>
+    </Layout>
   );
 };
 

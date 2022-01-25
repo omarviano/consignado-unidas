@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { Layout } from 'components/Layout';
-import { RouteAccess } from 'components/RouteAccess';
 import { Step, StepIconProps, Stepper, Box, Skeleton } from '@mui/material';
 import {
   CheckCircle,
@@ -180,50 +179,46 @@ const Accompaniment: React.FC = () => {
   }, [checkCreditUnderReview]);
 
   return (
-    <RouteAccess typesOfAccess="auth">
-      <Layout
-        containerStyles={{
-          maxWidth: '1276px',
-        }}
-      >
-        <Styled.Container>
-          {checking ? (
-            <Box>
-              <Skeleton animation="wave" height={416} />
-            </Box>
-          ) : (
-            <>
-              {width && width > 920 ? (
-                <Styled.StepperCard>
-                  <Stepper
-                    alternativeLabel
-                    activeStep={activeStep}
-                    connector={<MUIStyled.QontoConnector />}
-                  >
-                    {steps.map((label, index) => (
-                      <Step key={label}>
-                        <Styled.StepLabel StepIconComponent={qontoStepIcon}>
-                          <Styled.StepLabelContent
-                            active={activeStep === index}
-                          >
-                            {getIcon(index)}
-                            {getLabel(label, index)}
-                          </Styled.StepLabelContent>
-                        </Styled.StepLabel>
-                      </Step>
-                    ))}
-                  </Stepper>
-                </Styled.StepperCard>
-              ) : (
-                <CardMobile step={step} activeStep={activeStep} />
-              )}
+    <Layout
+      containerStyles={{
+        maxWidth: '1276px',
+      }}
+    >
+      <Styled.Container>
+        {checking ? (
+          <Box>
+            <Skeleton animation="wave" height={416} />
+          </Box>
+        ) : (
+          <>
+            {width && width > 920 ? (
+              <Styled.StepperCard>
+                <Stepper
+                  alternativeLabel
+                  activeStep={activeStep}
+                  connector={<MUIStyled.QontoConnector />}
+                >
+                  {steps.map((label, index) => (
+                    <Step key={label}>
+                      <Styled.StepLabel StepIconComponent={qontoStepIcon}>
+                        <Styled.StepLabelContent active={activeStep === index}>
+                          {getIcon(index)}
+                          {getLabel(label, index)}
+                        </Styled.StepLabelContent>
+                      </Styled.StepLabel>
+                    </Step>
+                  ))}
+                </Stepper>
+              </Styled.StepperCard>
+            ) : (
+              <CardMobile step={step} activeStep={activeStep} />
+            )}
 
-              {STEPS_COMPONENTS[step]}
-            </>
-          )}
-        </Styled.Container>
-      </Layout>
-    </RouteAccess>
+            {STEPS_COMPONENTS[step]}
+          </>
+        )}
+      </Styled.Container>
+    </Layout>
   );
 };
 

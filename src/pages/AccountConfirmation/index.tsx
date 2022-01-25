@@ -7,7 +7,6 @@ import { ReactComponent as ConfirmIcon } from 'assets/icons/confirm.svg';
 
 import useModal from 'hooks/modal';
 
-import { RouteAccess } from 'components/RouteAccess';
 import { Button } from 'components/Buttons/Button';
 import { Modal } from 'components/Modal';
 import { ModalMessage } from 'components/ModalMessage';
@@ -56,50 +55,48 @@ const AccountConfirmation: React.FC = () => {
   }, [token, history]);
 
   return (
-    <RouteAccess typesOfAccess="none">
-      <Layout>
-        <Styled.Container>
-          <Styled.Title>
-            Agora falta pouco!
-            <br />
-            Clique no botão abaixo para confirmar sua conta.
-          </Styled.Title>
+    <Layout>
+      <Styled.Container>
+        <Styled.Title>
+          Agora falta pouco!
+          <br />
+          Clique no botão abaixo para confirmar sua conta.
+        </Styled.Title>
+
+        <Button
+          type="button"
+          variant="contained"
+          onClick={confirmationAccount}
+          disabled={confirmingAccount}
+        >
+          {confirmingAccount ? 'Confirmando...' : 'Confirmar Conta'}
+        </Button>
+      </Styled.Container>
+
+      <Modal open={modalSuccesOpen}>
+        <Styled.ModalContent>
+          <ConfirmIcon />
+
+          <Styled.ModalTitle>Conta confirmada com sucesso!</Styled.ModalTitle>
 
           <Button
             type="button"
+            color="primary"
             variant="contained"
-            onClick={confirmationAccount}
-            disabled={confirmingAccount}
+            onClick={goToLogin}
           >
-            {confirmingAccount ? 'Confirmando...' : 'Confirmar Conta'}
+            Ir para login
           </Button>
-        </Styled.Container>
+        </Styled.ModalContent>
+      </Modal>
 
-        <Modal open={modalSuccesOpen}>
-          <Styled.ModalContent>
-            <ConfirmIcon />
-
-            <Styled.ModalTitle>Conta confirmada com sucesso!</Styled.ModalTitle>
-
-            <Button
-              type="button"
-              color="primary"
-              variant="contained"
-              onClick={goToLogin}
-            >
-              Ir para login
-            </Button>
-          </Styled.ModalContent>
-        </Modal>
-
-        <ModalMessage
-          open={modalErrorOpen}
-          onClose={toggleModalError}
-          icon={<Error color="error" />}
-          text={errorMessage}
-        />
-      </Layout>
-    </RouteAccess>
+      <ModalMessage
+        open={modalErrorOpen}
+        onClose={toggleModalError}
+        icon={<Error color="error" />}
+        text={errorMessage}
+      />
+    </Layout>
   );
 };
 

@@ -1,5 +1,4 @@
 import { FC, useEffect } from 'react';
-import { RouteAccess } from 'components/RouteAccess';
 import { Layout } from 'components/Layout';
 import { withContext } from 'utils/withContext';
 import { withAITracking } from '@microsoft/applicationinsights-react-js';
@@ -37,17 +36,15 @@ const LoggedArea: FC = withContext(
     }, [modalActive]);
 
     return (
-      <RouteAccess typesOfAccess="auth">
-        <Layout containerStyles={{ maxWidth: 958, paddingBottom: 0 }}>
-          <Styled.CardsContainer>
-            <CardMarginAvailable />
-            <CreditUnderAnalysis />
-          </Styled.CardsContainer>
+      <Layout containerStyles={{ maxWidth: 958, paddingBottom: 0 }}>
+        <Styled.CardsContainer>
+          <CardMarginAvailable />
+          <CreditUnderAnalysis />
+        </Styled.CardsContainer>
 
-          <CardSimulateLoan />
-          <ModalSimulateLoan />
-        </Layout>
-      </RouteAccess>
+        <CardSimulateLoan />
+        <ModalSimulateLoan />
+      </Layout>
     );
   },
   SimulateLoanProvider,
