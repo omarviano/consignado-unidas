@@ -4,7 +4,5 @@ export function formatValue(value = 0): string {
     currency: 'BRL',
   });
 
-  const formated = formatter.format(value);
-
-  return formated;
+  return formatter.format(value);
 }
