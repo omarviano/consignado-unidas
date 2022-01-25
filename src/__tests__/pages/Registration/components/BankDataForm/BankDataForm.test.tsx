@@ -68,7 +68,7 @@ describe('Component: <BankDataForm />', () => {
   test('should be able to show invalid agency', async () => {
     const onSubmit = jest.fn();
 
-    const { container } = render(
+    render(
       <Providers>
         <BankDataForm
           submitting
@@ -86,8 +86,4 @@ describe('Component: <BankDataForm />', () => {
       expect(onSubmit).not.toBeCalled();
     });
   });
-
-  /* test('Conta corrente inválida', async () => {});
-
-  test('Dígito inválido', async () => {}); */
 });
