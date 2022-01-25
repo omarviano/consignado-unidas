@@ -55,23 +55,4 @@ describe('Component: <BirthDateForm />', () => {
       ).toBe('Informe sua data de nascimento');
     });
   });
-
-  /* test('Data de nascimento inválida', async () => {
-    const { container } = render(
-      <Providers>
-        <BirthDateForm onSubmit={() => null} />
-      </Providers>,
-    );
-
-    const input = screen.getByRole('textbox');
-    await userEvent.type(input, '30/02/2020', { delay: 1 });
-    userEvent.tab();
-
-    await waitFor(() => {
-      expect(
-        container.querySelector('#dateInput_birthDate-helper-text')
-          ?.textContent,
-      ).toBe('asdasdasd asdas');
-    });
-  }); */
 });
