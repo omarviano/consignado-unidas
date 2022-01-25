@@ -7,6 +7,7 @@ import { ReactComponent as MenuIcon } from 'assets/icons/menu.svg';
 
 import Logo from 'assets/images/logo.png';
 
+import { SessionModal } from 'components/SessionModal';
 import { Modal } from 'components/Modal';
 import { useAuth } from 'hooks/auth';
 import { getToken } from 'hooks/auth/storage';
@@ -168,6 +169,8 @@ const Layout: React.FC<LayoutProps> = ({ children, containerStyles }) => {
           </Styled.DivButtons>
         </Styled.Content>
       </Modal>
+
+      {isAuthenticated && <SessionModal />}
     </>
   );
 };
