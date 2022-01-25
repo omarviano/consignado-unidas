@@ -39,7 +39,29 @@ describe('Page <ChangePassword />', () => {
     });
   });
 
-  /* test('should be able to show username e e-mail', async () => {
+  test('should be able to show username e e-mail', async () => {
+    Object.defineProperty(window, 'localStorage', {
+      value: {
+        getItem: jest.fn((key: string) => {
+          const data = {
+            '@UserInfo:persist': {
+              token: 'token',
+              user: {
+                name: 'COLABORADOR 10',
+                email: 'frwk.luciane@unidas.com.br',
+                phoneNumber: '11111111111',
+                id: 115,
+              },
+            },
+          };
+
+          return data[key];
+        }),
+        setItem: jest.fn(() => null),
+      },
+      writable: true,
+    });
+
     render(
       <Providers>
         <ChangePassword />
@@ -47,9 +69,10 @@ describe('Page <ChangePassword />', () => {
     );
 
     await waitFor(() => {
-      expect(screen.getByTestId('userInfo').textContent).toBe('asdasd');
+      expect(window.localStorage.getItem).toHaveBeenCalledTimes(1);
+      expect(window.localStorage.getItem).toHaveBeenCalledWith('@SESSION');
     });
-  }); */
+  });
 
   test('should be able to show error messages', async () => {
     const { container, getByTestId } = render(
