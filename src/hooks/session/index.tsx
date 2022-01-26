@@ -28,6 +28,10 @@ const SessionProvider: React.FC = ({ children }) => {
 function useSession(): SessionData {
   const context = useContext(SessionContext);
 
+  if (!context) {
+    throw new Error('useSession must be used within a SessionProvider');
+  }
+
   return context;
 }
 

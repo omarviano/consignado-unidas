@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useHistory } from 'react-router-dom';
 import { KeyboardArrowDown } from '@mui/icons-material';
-import { useHistory } from 'react-router-dom';
 
 import { ReactComponent as MenuIcon } from 'assets/icons/menu.svg';
 
@@ -11,7 +10,7 @@ import { SessionModal } from 'components/SessionModal';
 import { Modal } from 'components/Modal';
 import { useAuth } from 'hooks/auth';
 import { getToken } from 'hooks/auth/storage';
-import useModal from 'hooks/modal';
+import useModal from 'hooks/useModal';
 import { RoutingPath } from 'utils/routing';
 import { clearStorage } from 'utils/storage';
 import { useHeaderMobile } from 'hooks/headerMobile';
