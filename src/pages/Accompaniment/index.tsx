@@ -14,7 +14,7 @@ import { useHistory } from 'react-router-dom';
 import { RoutingPath } from 'utils/routing';
 import { QuotationStatus } from 'enums/quote';
 import { Quote } from 'interface/quote';
-import useWindowDimensions from 'hooks/windowDimensions';
+import useWindowDimensions from 'hooks/useWindowDimensions';
 import { withAITracking } from '@microsoft/applicationinsights-react-js';
 import { reactPlugin } from 'hooks/appInsights';
 import { RequestUnderAnalysis } from './components/RequestUnderAnalysis';

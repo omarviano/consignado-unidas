@@ -6,7 +6,7 @@ import { AxiosError } from 'axios';
 
 import Logo from 'assets/images/logo.png';
 
-import useModal from 'hooks/modal';
+import useModal from 'hooks/useModal';
 
 import { Formik } from 'components/Formik';
 import { Button } from 'components/Buttons/Button';

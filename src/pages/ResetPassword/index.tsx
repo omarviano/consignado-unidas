@@ -7,7 +7,7 @@ import { Cancel } from '@mui/icons-material';
 import { ReactComponent as ConfirmIcon } from 'assets/icons/confirm.svg';
 import Logo from 'assets/images/logo.png';
 
-import useModal from 'hooks/modal';
+import useModal from 'hooks/useModal';
 
 import { withAITracking } from '@microsoft/applicationinsights-react-js';
 import { reactPlugin } from 'hooks/appInsights';

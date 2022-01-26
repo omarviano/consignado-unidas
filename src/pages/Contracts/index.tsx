@@ -11,7 +11,7 @@ import { Button } from 'components/Buttons/Button';
 import { Table } from 'components/Table';
 import { NoDataTable } from 'components/NoDataTable';
 
-import useWindowDimensions from 'hooks/windowDimensions';
+import useWindowDimensions from 'hooks/useWindowDimensions';
 import { formatDate } from 'utils/formatDate';
 import { formatValue } from 'utils/formatValue';
 import { withAITracking } from '@microsoft/applicationinsights-react-js';

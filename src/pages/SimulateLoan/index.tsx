@@ -6,9 +6,9 @@ import { useHistory } from 'react-router-dom';
 import { AxiosError } from 'axios';
 import CircularProgress from '@mui/material/CircularProgress';
 
-import useWindowDimensions from 'hooks/windowDimensions';
+import useWindowDimensions from 'hooks/useWindowDimensions';
 import { getToken } from 'hooks/auth/storage';
-import useModal from 'hooks/modal';
+import useModal from 'hooks/useModal';
 import { SimulateLoanProvider, useSimulateLoan } from 'hooks/simulate';
 
 import { withContext } from 'utils/withContext';
