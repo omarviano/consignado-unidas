@@ -51,7 +51,9 @@ const SimulateLoan: FC = withContext(
     const [errorMessage, setErrorMessage] = useState<string>();
 
     useEffect(() => {
-      if (valueSliderSimulate <= 0) history.push(RoutingPath.LOGGEDAREA);
+      if (valueSliderSimulate <= 0) {
+        history.push(RoutingPath.LOGGEDAREA);
+      }
     }, [history, valueSliderSimulate]);
 
     useEffect(() => {
@@ -159,7 +161,9 @@ const SimulateLoan: FC = withContext(
         const { response } = error as AxiosError;
         setErrorMessage(response?.data?.message || 'ERRO');
 
-        if (response && response.status < 500) toggleModalError();
+        if (response && response.status < 500) {
+          toggleModalError();
+        }
       } finally {
         setRequestingLoan(false);
       }
@@ -168,6 +172,43 @@ const SimulateLoan: FC = withContext(
     const handleApplyForLoan = async (id: number) => {
       setSelectedRow(tableData.find(item => item.id === id));
       applyForLoan();
+    };
+
+    const displayCorrectText = useMemo(() => {
+      if (requestingLoan) {
+        return 'Confirmando...';
+      }
+      return 'Confirmar';
+    }, [requestingLoan]);
+
+    const loaderCircularProgress = () => {
+      if (requestStatus.loading) {
+        return <CircularProgress className="loading" />;
+      }
+
+      return <></>;
+    };
+
+    const showInstallmentCard = () => {
+      if (!requestStatus.loading) {
+        return tableData.map(item => (
+          <InstallmentCard
+            key={item.id}
+            data={item}
+            onSelect={handleApplyForLoan}
+          />
+        ));
+      }
+
+      return <></>;
+    };
+
+    const showTextTable = () => {
+      if (tableData.length === 0 && !requestStatus.loading) {
+        return <Styled.NoData>Nenhum parcela disponível</Styled.NoData>;
+      }
+
+      return <></>;
     };
 
     return (
@@ -209,22 +250,11 @@ const SimulateLoan: FC = withContext(
             <Styled.ResponsiveContainer>
               <LoanDetails />
 
-              {requestStatus.loading && (
-                <CircularProgress className="loading" />
-              )}
+              {loaderCircularProgress()}
 
-              {!requestStatus.loading &&
-                tableData.map(item => (
-                  <InstallmentCard
-                    key={item.id}
-                    data={item}
-                    onSelect={handleApplyForLoan}
-                  />
-                ))}
+              {showInstallmentCard()}
 
-              {tableData.length === 0 && !requestStatus.loading && (
-                <Styled.NoData>Nenhum parcela disponível</Styled.NoData>
-              )}
+              {showTextTable}
             </Styled.ResponsiveContainer>
           )}
 
@@ -291,7 +321,7 @@ const SimulateLoan: FC = withContext(
                 onClick={confirmLoanRequest}
                 disabled={requestingLoan}
               >
-                {requestingLoan ? 'Confirmando...' : 'Confirmar'}
+                {displayCorrectText}
               </Button>
             </Styled.ModalConfirmContent>
           </Modal>
