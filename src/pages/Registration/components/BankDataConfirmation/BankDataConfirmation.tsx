@@ -3,7 +3,7 @@ import { Checkbox } from '@mui/material';
 import { Warning } from '@mui/icons-material';
 
 import { RoutingPath } from 'utils/routing';
-import useModal from 'hooks/modal';
+import useModal from 'hooks/useModal';
 
 import { ModalMessage } from 'components/ModalMessage';
 import { Formik } from 'components/Formik';

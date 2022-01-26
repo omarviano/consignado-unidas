@@ -9,7 +9,7 @@ import ptBR from 'date-fns/locale/pt-BR';
 
 import { ReactComponent as ConfirmIcon } from 'assets/icons/confirm.svg';
 
-import useWindowDimensions from 'hooks/windowDimensions';
+import useWindowDimensions from 'hooks/useWindowDimensions';
 
 import { Layout } from 'components/Layout';
 import { NoDataTable } from 'components/NoDataTable';

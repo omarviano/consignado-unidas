@@ -5,7 +5,7 @@ import { Error } from '@mui/icons-material';
 
 import { ReactComponent as ConfirmIcon } from 'assets/icons/confirm.svg';
 
-import useModal from 'hooks/modal';
+import useModal from 'hooks/useModal';
 
 import { Button } from 'components/Buttons/Button';
 import { Modal } from 'components/Modal';
