@@ -4,7 +4,7 @@ import { ArrowBack, MailOutlined, Warning } from '@mui/icons-material';
 import { Badge } from '@mui/material';
 import { AxiosError } from 'axios';
 
-import useModal from 'hooks/modal';
+import useModal from 'hooks/useModal';
 import { Document } from 'utils/document';
 
 import { Layout } from 'components/Layout';

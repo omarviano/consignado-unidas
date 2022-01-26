@@ -70,7 +70,7 @@ describe('Component: <BankDataForm />', () => {
   test('should be able to show invalid bank data', async () => {
     const onSubmit = jest.fn();
 
-    const { container } = render(
+    render(
       <Providers>
         <BankDataForm
           submitting

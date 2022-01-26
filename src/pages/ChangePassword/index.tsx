@@ -7,7 +7,7 @@ import { AxiosError } from 'axios';
 import { ReactComponent as EyeHide } from 'assets/icons/eye-hide.svg';
 import { ReactComponent as Eye } from 'assets/icons/eye.svg';
 
-import useModal from 'hooks/modal';
+import useModal from 'hooks/useModal';
 import { RoutingPath } from 'utils/routing';
 
 import { Layout } from 'components/Layout';

@@ -1,5 +1,4 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 import { ptBR } from 'date-fns/locale';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
@@ -55,23 +54,4 @@ describe('Component: <BirthDateForm />', () => {
       ).toBe('Informe sua data de nascimento');
     });
   });
-
-  /* test('Data de nascimento inválida', async () => {
-    const { container } = render(
-      <Providers>
-        <BirthDateForm onSubmit={() => null} />
-      </Providers>,
-    );
-
-    const input = screen.getByRole('textbox');
-    await userEvent.type(input, '30/02/2020', { delay: 1 });
-    userEvent.tab();
-
-    await waitFor(() => {
-      expect(
-        container.querySelector('#dateInput_birthDate-helper-text')
-          ?.textContent,
-      ).toBe('asdasdasd asdas');
-    });
-  }); */
 });

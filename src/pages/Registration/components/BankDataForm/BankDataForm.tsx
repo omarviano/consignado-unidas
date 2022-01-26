@@ -3,7 +3,7 @@ import { ArrowRightAlt } from '@mui/icons-material';
 import { Grid } from '@mui/material';
 import { FormikProps } from 'formik';
 
-import useViaCEP from 'hooks/viaCEP';
+import useViaCEP from 'hooks/useViaCEP';
 
 import { Formik } from 'components/Formik';
 import { Input } from 'components/Inputs/Input';
