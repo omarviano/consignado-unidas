@@ -11,7 +11,6 @@ import { ReactComponent as ConfirmIcon } from 'assets/icons/confirm.svg';
 
 import useWindowDimensions from 'hooks/windowDimensions';
 
-import { RouteAccess } from 'components/RouteAccess';
 import { Layout } from 'components/Layout';
 import { NoDataTable } from 'components/NoDataTable';
 import { Table } from 'components/Table';
@@ -140,150 +139,144 @@ const ContractInstallments = () => {
   }, [id]);
 
   return (
-    <RouteAccess typesOfAccess="auth">
-      <Layout
-        containerStyles={{
-          maxWidth: '1286px',
-        }}
-      >
-        <Styled.Container>
-          <Styled.Box>
-            <Styled.ExpandableCard open={cardDataOpen}>
-              <Styled.Header>
-                <Styled.Breadcrumb>
-                  <Styled.BreadcrumbRoot>Meus contratos</Styled.BreadcrumbRoot>
-                  <span>{'>'}</span>
-                  <Styled.BreadcrumbPage>Contrato</Styled.BreadcrumbPage>
+    <Layout
+      containerStyles={{
+        maxWidth: '1286px',
+      }}
+    >
+      <Styled.Container>
+        <Styled.Box>
+          <Styled.ExpandableCard open={cardDataOpen}>
+            <Styled.Header>
+              <Styled.Breadcrumb>
+                <Styled.BreadcrumbRoot>Meus contratos</Styled.BreadcrumbRoot>
+                <span>{'>'}</span>
+                <Styled.BreadcrumbPage>Contrato</Styled.BreadcrumbPage>
 
-                  <Styled.Status>
-                    <Styled.StatusLabel>Status:</Styled.StatusLabel>
-                    {contractDetails?.status ? (
-                      <Styled.StatusText>
-                        <ConfirmIcon /> {contractDetails?.status}
-                      </Styled.StatusText>
-                    ) : (
-                      <CircularProgress size={20} />
-                    )}
-                  </Styled.Status>
-                </Styled.Breadcrumb>
-              </Styled.Header>
+                <Styled.Status>
+                  <Styled.StatusLabel>Status:</Styled.StatusLabel>
+                  {contractDetails?.status ? (
+                    <Styled.StatusText>
+                      <ConfirmIcon /> {contractDetails?.status}
+                    </Styled.StatusText>
+                  ) : (
+                    <CircularProgress size={20} />
+                  )}
+                </Styled.Status>
+              </Styled.Breadcrumb>
+            </Styled.Header>
 
-              <Styled.DataContainer className="data-container">
-                <Styled.Data>
-                  <Styled.DataLabel>Nº do contrato:</Styled.DataLabel>
-                  <Styled.DataValue>
-                    {contractDetails?.contractNumber || (
-                      <CircularProgress size={20} />
-                    )}
-                  </Styled.DataValue>
-                </Styled.Data>
+            <Styled.DataContainer className="data-container">
+              <Styled.Data>
+                <Styled.DataLabel>Nº do contrato:</Styled.DataLabel>
+                <Styled.DataValue>
+                  {contractDetails?.contractNumber || (
+                    <CircularProgress size={20} />
+                  )}
+                </Styled.DataValue>
+              </Styled.Data>
 
-                <Styled.Data>
-                  <Styled.DataLabel>Data do contrato</Styled.DataLabel>
-                  <Styled.DataValue>
-                    {fetchingInstallments ? (
-                      <CircularProgress size={20} />
-                    ) : (
-                      getContractDate(contractDetails?.contractDate)
-                    )}
-                  </Styled.DataValue>
-                </Styled.Data>
+              <Styled.Data>
+                <Styled.DataLabel>Data do contrato</Styled.DataLabel>
+                <Styled.DataValue>
+                  {fetchingInstallments ? (
+                    <CircularProgress size={20} />
+                  ) : (
+                    getContractDate(contractDetails?.contractDate)
+                  )}
+                </Styled.DataValue>
+              </Styled.Data>
 
-                <Styled.Data>
-                  <Styled.DataLabel>Nº de Parcelas</Styled.DataLabel>
-                  <Styled.DataValue>
-                    {contractDetails?.quantityInstallment || (
-                      <CircularProgress size={20} />
-                    )}
-                  </Styled.DataValue>
-                </Styled.Data>
+              <Styled.Data>
+                <Styled.DataLabel>Nº de Parcelas</Styled.DataLabel>
+                <Styled.DataValue>
+                  {contractDetails?.quantityInstallment || (
+                    <CircularProgress size={20} />
+                  )}
+                </Styled.DataValue>
+              </Styled.Data>
 
-                <Styled.Data>
-                  <Styled.DataLabel>Valor da Parcela</Styled.DataLabel>
-                  <Styled.DataValue>
-                    {contractDetails?.installmentsValue ? (
-                      formatValue(contractDetails.installmentsValue)
-                    ) : (
-                      <CircularProgress size={20} />
-                    )}
-                  </Styled.DataValue>
-                </Styled.Data>
+              <Styled.Data>
+                <Styled.DataLabel>Valor da Parcela</Styled.DataLabel>
+                <Styled.DataValue>
+                  {contractDetails?.installmentsValue ? (
+                    formatValue(contractDetails.installmentsValue)
+                  ) : (
+                    <CircularProgress size={20} />
+                  )}
+                </Styled.DataValue>
+              </Styled.Data>
 
-                <Styled.Data>
-                  <Styled.DataLabel>
-                    Primeiro desconto em Folha
-                  </Styled.DataLabel>
-                  <Styled.DataValue>
-                    {contractDetails?.installmentDetails ? (
-                      getDateFirstDiscount(contractDetails.installmentDetails)
-                    ) : (
-                      <CircularProgress size={20} />
-                    )}
-                  </Styled.DataValue>
-                </Styled.Data>
+              <Styled.Data>
+                <Styled.DataLabel>Primeiro desconto em Folha</Styled.DataLabel>
+                <Styled.DataValue>
+                  {contractDetails?.installmentDetails ? (
+                    getDateFirstDiscount(contractDetails.installmentDetails)
+                  ) : (
+                    <CircularProgress size={20} />
+                  )}
+                </Styled.DataValue>
+              </Styled.Data>
 
-                <Styled.Data>
-                  <Styled.DataLabel>Último desconto em Folha</Styled.DataLabel>
-                  <Styled.DataValue>
-                    {contractDetails?.installmentDetails ? (
-                      getDateLastDiscount(contractDetails.installmentDetails)
-                    ) : (
-                      <CircularProgress size={20} />
-                    )}
-                  </Styled.DataValue>
-                </Styled.Data>
+              <Styled.Data>
+                <Styled.DataLabel>Último desconto em Folha</Styled.DataLabel>
+                <Styled.DataValue>
+                  {contractDetails?.installmentDetails ? (
+                    getDateLastDiscount(contractDetails.installmentDetails)
+                  ) : (
+                    <CircularProgress size={20} />
+                  )}
+                </Styled.DataValue>
+              </Styled.Data>
 
-                <Styled.Data>
-                  <Styled.DataLabel>Valor total do contrato</Styled.DataLabel>
-                  <Styled.DataValue>
-                    {contractDetails?.value ? (
-                      formatValue(contractDetails.value)
-                    ) : (
-                      <CircularProgress size={20} />
-                    )}
-                  </Styled.DataValue>
-                </Styled.Data>
-              </Styled.DataContainer>
+              <Styled.Data>
+                <Styled.DataLabel>Valor total do contrato</Styled.DataLabel>
+                <Styled.DataValue>
+                  {contractDetails?.value ? (
+                    formatValue(contractDetails.value)
+                  ) : (
+                    <CircularProgress size={20} />
+                  )}
+                </Styled.DataValue>
+              </Styled.Data>
+            </Styled.DataContainer>
 
-              <IconButton
-                aria-label="Expandir/fechar card"
-                onClick={() => setCardDataOpen(state => !state)}
-              >
-                {cardDataOpen ? <ExpandLess /> : <ExpandMore />}
-              </IconButton>
-            </Styled.ExpandableCard>
+            <IconButton
+              aria-label="Expandir/fechar card"
+              onClick={() => setCardDataOpen(state => !state)}
+            >
+              {cardDataOpen ? <ExpandLess /> : <ExpandMore />}
+            </IconButton>
+          </Styled.ExpandableCard>
 
-            {width && width > 768 ? (
-              <Table
-                loading={fetchingInstallments}
-                columns={columns}
-                rows={tableData}
-                noData={NoContracts}
-                rowHeight={55}
-                disableBoxShadow
-              />
-            ) : (
-              <Styled.InstallmentsContainer>
-                <Styled.InstallmentsTitle>Parcelas</Styled.InstallmentsTitle>
+          {width && width > 768 ? (
+            <Table
+              loading={fetchingInstallments}
+              columns={columns}
+              rows={tableData}
+              noData={NoContracts}
+              rowHeight={55}
+              disableBoxShadow
+            />
+          ) : (
+            <Styled.InstallmentsContainer>
+              <Styled.InstallmentsTitle>Parcelas</Styled.InstallmentsTitle>
 
-                {fetchingInstallments && (
-                  <CircularProgress className="loading" />
-                )}
+              {fetchingInstallments && <CircularProgress className="loading" />}
 
-                <Styled.Installments>
-                  {tableData.map(item => (
-                    <InstallmentsCard
-                      data={item}
-                      totalInstallments={tableData.length}
-                    />
-                  ))}
-                </Styled.Installments>
-              </Styled.InstallmentsContainer>
-            )}
-          </Styled.Box>
-        </Styled.Container>
-      </Layout>
-    </RouteAccess>
+              <Styled.Installments>
+                {tableData.map(item => (
+                  <InstallmentsCard
+                    data={item}
+                    totalInstallments={tableData.length}
+                  />
+                ))}
+              </Styled.Installments>
+            </Styled.InstallmentsContainer>
+          )}
+        </Styled.Box>
+      </Styled.Container>
+    </Layout>
   );
 };
 
