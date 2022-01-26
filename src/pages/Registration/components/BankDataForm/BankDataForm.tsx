@@ -222,6 +222,10 @@ const BankDataForm: React.FC<BankDataFormProps> = ({
               label="Agência"
               placeholder="N° da sua agência"
               variant="outlined"
+              inputProps={{ 'data-testid': 'agency' }}
+              FormHelperTextProps={{
+                id: 'agency-error',
+              }}
             />
           </Styled.Div>
 
@@ -232,6 +236,10 @@ const BankDataForm: React.FC<BankDataFormProps> = ({
                 label="N° da Conta Corrente"
                 placeholder="XXXXXX"
                 variant="outlined"
+                inputProps={{ 'data-testid': 'accountNumber' }}
+                FormHelperTextProps={{
+                  id: 'accountNumber-error',
+                }}
               />
             </Grid>
 
@@ -241,6 +249,10 @@ const BankDataForm: React.FC<BankDataFormProps> = ({
                 label="Dígito"
                 placeholder="XX"
                 variant="outlined"
+                inputProps={{ 'data-testid': 'digit' }}
+                FormHelperTextProps={{
+                  id: 'digit-error',
+                }}
               />
             </Grid>
           </Grid>

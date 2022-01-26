@@ -1,4 +1,5 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import MockAdapter from 'axios-mock-adapter';
 import { ThemeProvider as ThemeProviderStyledComponents } from 'styled-components';
 import {
   ThemeProvider as ThemeProviderMaterialUi,
@@ -7,6 +8,7 @@ import {
 } from '@mui/material';
 import { materialUiTheme } from 'styles/theme/material-ui';
 import { BankDataForm } from 'pages/Registration/components/BankDataForm';
+import { api } from 'services/api';
 
 const Providers = ({ children }) => (
   <ThemeProviderMaterialUi theme={materialUiTheme}>
@@ -65,7 +67,7 @@ describe('Component: <BankDataForm />', () => {
     });
   });
 
-  test('should be able to show invalid agency', async () => {
+  test('should be able to show invalid bank data', async () => {
     const onSubmit = jest.fn();
 
     const { container } = render(
@@ -80,14 +82,28 @@ describe('Component: <BankDataForm />', () => {
     );
 
     const form = screen.getByTestId('form');
+
+    const agencyInput = screen.getByTestId('agency');
+    const accountNumberInput = screen.getByTestId('accountNumber');
+    const digitInput = screen.getByTestId('digit');
+
+    fireEvent.change(agencyInput, { target: { value: 'A.' } });
+    fireEvent.change(accountNumberInput, { target: { value: 'A.' } });
+    fireEvent.change(digitInput, { target: { value: 'A.' } });
+
     fireEvent.submit(form);
 
     await waitFor(async () => {
+      expect(container.querySelector('#agency-error')?.textContent).toBe(
+        'Agência inválida',
+      );
+      expect(container.querySelector('#accountNumber-error')?.textContent).toBe(
+        'Conta corrente inválida',
+      );
+      expect(container.querySelector('#digit-error')?.textContent).toBe(
+        'Dígito inválido',
+      );
       expect(onSubmit).not.toBeCalled();
     });
   });
-
-  /* test('Conta corrente inválida', async () => {});
-
-  test('Dígito inválido', async () => {}); */
 });
