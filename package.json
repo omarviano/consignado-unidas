@@ -5,7 +5,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --watchAll=false",
+    "test": "react-scripts test --env=jsdom --testResultsProcessor ./node_modules/jest-sonar-reporter/index.js --coverage --watchAll=false",
     "eject": "react-scripts eject",
     "build:dev": "env-cmd -f .env.development react-scripts build",
     "build:staging": "env-cmd -f .env.staging react-scripts build",
@@ -76,6 +76,9 @@
     "eslint-plugin-prettier": "3.4.0",
     "eslint-plugin-react": "7.21.5",
     "eslint-plugin-react-hooks": "4",
+    "jest": "26.6.0",
+    "jest-sonar-reporter": "^2.0.0",
+    "jsdom": "^19.0.0",
     "lint-staged": "11.0.0",
     "prettier": "2.3.0"
   },
@@ -104,5 +107,11 @@
       "src/utils/*.ts",
       "!src/hooks/index.tsx"
     ]
+  },
+  "jestSonar": {
+    "sonar56x": true,
+    "reportPath": "testResults",
+    "reportFile": "sonar-report.xml",
+    "indent": 4
   }
 }

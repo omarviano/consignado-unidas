@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<unitTest version="1">
+    <file path="C:\Users\DELL\Documents\projetos\portal-consignado\src\__tests__\utils\formatDate.test.ts">
+        <testCase name="Formatação de datas Formatação data nula" duration="4"/>
+        <testCase name="Formatação de datas Formatação  pt-br" duration="18">
+            <failure message="Error: expect(received).toBe(expected) // Object.is equality"><![CDATA[Error: expect(received).toBe(expected) // Object.is equality
+
+Expected: "01/01/2014"
+Received: "2014-1-1"
+    at Object.<anonymous> (C:\Users\DELL\Documents\projetos\portal-consignado\src\__tests__\utils\formatDate.test.ts:11:30)
+    at Promise.then.completed (C:\Users\DELL\Documents\projetos\portal-consignado\node_modules\jest-circus\build\utils.js:276:28)
+    at new Promise (<anonymous>)
+    at callAsyncCircusFn (C:\Users\DELL\Documents\projetos\portal-consignado\node_modules\jest-circus\build\utils.js:216:10)
+    at _callCircusTest (C:\Users\DELL\Documents\projetos\portal-consignado\node_modules\jest-circus\build\run.js:212:40)
+    at processTicksAndRejections (internal/process/task_queues.js:97:5)
+    at _runTest (C:\Users\DELL\Documents\projetos\portal-consignado\node_modules\jest-circus\build\run.js:149:3)
+    at _runTestsForDescribeBlock (C:\Users\DELL\Documents\projetos\portal-consignado\node_modules\jest-circus\build\run.js:63:9)
+    at _runTestsForDescribeBlock (C:\Users\DELL\Documents\projetos\portal-consignado\node_modules\jest-circus\build\run.js:57:9)
+    at run (C:\Users\DELL\Documents\projetos\portal-consignado\node_modules\jest-circus\build\run.js:25:3)
+    at runAndTransformResultsToJestFormat (C:\Users\DELL\Documents\projetos\portal-consignado\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapterInit.js:176:21)
+    at jestAdapter (C:\Users\DELL\Documents\projetos\portal-consignado\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapter.js:109:19)
+    at runTestInternal (C:\Users\DELL\Documents\projetos\portal-consignado\node_modules\jest-runner\build\runTest.js:380:16)
+    at runTest (C:\Users\DELL\Documents\projetos\portal-consignado\node_modules\jest-runner\build\runTest.js:472:34)
+    at Object.worker (C:\Users\DELL\Documents\projetos\portal-consignado\node_modules\jest-runner\build\testWorker.js:133:12)]]></failure>
+        </testCase>
+    </file>
+    <file path="C:\Users\DELL\Documents\projetos\portal-consignado\src\__tests__\utils\formatValue.test.ts">
+        <testCase name="Formatação de valores monetários pt-br(R$) Formatação sem passar valor" duration="9">
+            <failure message="Error: expect(received).toBe(expected) // Object.is equality"><![CDATA[Error: expect(received).toBe(expected) // Object.is equality
+
+Expected: "R$ 0,00"
+Received: "R$ 0.00"
+    at Object.<anonymous> (C:\Users\DELL\Documents\projetos\portal-consignado\src\__tests__\utils\formatValue.test.ts:5:27)
+    at Promise.then.completed (C:\Users\DELL\Documents\projetos\portal-consignado\node_modules\jest-circus\build\utils.js:276:28)
+    at new Promise (<anonymous>)
+    at callAsyncCircusFn (C:\Users\DELL\Documents\projetos\portal-consignado\node_modules\jest-circus\build\utils.js:216:10)
+    at _callCircusTest (C:\Users\DELL\Documents\projetos\portal-consignado\node_modules\jest-circus\build\run.js:212:40)
+    at processTicksAndRejections (internal/process/task_queues.js:97:5)
+    at _runTest (C:\Users\DELL\Documents\projetos\portal-consignado\node_modules\jest-circus\build\run.js:149:3)
+    at _runTestsForDescribeBlock (C:\Users\DELL\Documents\projetos\portal-consignado\node_modules\jest-circus\build\run.js:63:9)
+    at _runTestsForDescribeBlock (C:\Users\DELL\Documents\projetos\portal-consignado\node_modules\jest-circus\build\run.js:57:9)
+    at run (C:\Users\DELL\Documents\projetos\portal-consignado\node_modules\jest-circus\build\run.js:25:3)
+    at runAndTransformResultsToJestFormat (C:\Users\DELL\Documents\projetos\portal-consignado\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapterInit.js:176:21)
+    at jestAdapter (C:\Users\DELL\Documents\projetos\portal-consignado\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapter.js:109:19)
+    at runTestInternal (C:\Users\DELL\Documents\projetos\portal-consignado\node_modules\jest-runner\build\runTest.js:380:16)
+    at runTest (C:\Users\DELL\Documents\projetos\portal-consignado\node_modules\jest-runner\build\runTest.js:472:34)
+    at Object.worker (C:\Users\DELL\Documents\projetos\portal-consignado\node_modules\jest-runner\build\testWorker.js:133:12)]]></failure>
+        </testCase>
+        <testCase name="Formatação de valores monetários pt-br(R$) Formatação número decimal" duration="3">
+            <failure message="Error: expect(received).toBe(expected) // Object.is equality"><![CDATA[Error: expect(received).toBe(expected) // Object.is equality
+
+Expected: "R$ 11,22"
+Received: "R$ 11.22"
+    at Object.<anonymous> (C:\Users\DELL\Documents\projetos\portal-consignado\src\__tests__\utils\formatValue.test.ts:9:32)
+    at Promise.then.completed (C:\Users\DELL\Documents\projetos\portal-consignado\node_modules\jest-circus\build\utils.js:276:28)
+    at new Promise (<anonymous>)
+    at callAsyncCircusFn (C:\Users\DELL\Documents\projetos\portal-consignado\node_modules\jest-circus\build\utils.js:216:10)
+    at _callCircusTest (C:\Users\DELL\Documents\projetos\portal-consignado\node_modules\jest-circus\build\run.js:212:40)
+    at processTicksAndRejections (internal/process/task_queues.js:97:5)
+    at _runTest (C:\Users\DELL\Documents\projetos\portal-consignado\node_modules\jest-circus\build\run.js:149:3)
+    at _runTestsForDescribeBlock (C:\Users\DELL\Documents\projetos\portal-consignado\node_modules\jest-circus\build\run.js:63:9)
+    at _runTestsForDescribeBlock (C:\Users\DELL\Documents\projetos\portal-consignado\node_modules\jest-circus\build\run.js:57:9)
+    at run (C:\Users\DELL\Documents\projetos\portal-consignado\node_modules\jest-circus\build\run.js:25:3)
+    at runAndTransformResultsToJestFormat (C:\Users\DELL\Documents\projetos\portal-consignado\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapterInit.js:176:21)
+    at jestAdapter (C:\Users\DELL\Documents\projetos\portal-consignado\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapter.js:109:19)
+    at runTestInternal (C:\Users\DELL\Documents\projetos\portal-consignado\node_modules\jest-runner\build\runTest.js:380:16)
+    at runTest (C:\Users\DELL\Documents\projetos\portal-consignado\node_modules\jest-runner\build\runTest.js:472:34)
+    at Object.worker (C:\Users\DELL\Documents\projetos\portal-consignado\node_modules\jest-runner\build\testWorker.js:133:12)]]></failure>
+        </testCase>
+        <testCase name="Formatação de valores monetários pt-br(R$) Formatação número inteiro" duration="2">
+            <failure message="Error: expect(received).toBe(expected) // Object.is equality"><![CDATA[Error: expect(received).toBe(expected) // Object.is equality
+
+Expected: "R$ 11,00"
+Received: "R$ 11.00"
+    at Object.<anonymous> (C:\Users\DELL\Documents\projetos\portal-consignado\src\__tests__\utils\formatValue.test.ts:13:29)
+    at Promise.then.completed (C:\Users\DELL\Documents\projetos\portal-consignado\node_modules\jest-circus\build\utils.js:276:28)
+    at new Promise (<anonymous>)
+    at callAsyncCircusFn (C:\Users\DELL\Documents\projetos\portal-consignado\node_modules\jest-circus\build\utils.js:216:10)
+    at _callCircusTest (C:\Users\DELL\Documents\projetos\portal-consignado\node_modules\jest-circus\build\run.js:212:40)
+    at processTicksAndRejections (internal/process/task_queues.js:97:5)
+    at _runTest (C:\Users\DELL\Documents\projetos\portal-consignado\node_modules\jest-circus\build\run.js:149:3)
+    at _runTestsForDescribeBlock (C:\Users\DELL\Documents\projetos\portal-consignado\node_modules\jest-circus\build\run.js:63:9)
+    at _runTestsForDescribeBlock (C:\Users\DELL\Documents\projetos\portal-consignado\node_modules\jest-circus\build\run.js:57:9)
+    at run (C:\Users\DELL\Documents\projetos\portal-consignado\node_modules\jest-circus\build\run.js:25:3)
+    at runAndTransformResultsToJestFormat (C:\Users\DELL\Documents\projetos\portal-consignado\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapterInit.js:176:21)
+    at jestAdapter (C:\Users\DELL\Documents\projetos\portal-consignado\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapter.js:109:19)
+    at runTestInternal (C:\Users\DELL\Documents\projetos\portal-consignado\node_modules\jest-runner\build\runTest.js:380:16)
+    at runTest (C:\Users\DELL\Documents\projetos\portal-consignado\node_modules\jest-runner\build\runTest.js:472:34)
+    at Object.worker (C:\Users\DELL\Documents\projetos\portal-consignado\node_modules\jest-runner\build\testWorker.js:133:12)]]></failure>
+        </testCase>
+    </file>
+    <file path="C:\Users\DELL\Documents\projetos\portal-consignado\src\__tests__\pages\login.test.tsx">
+        <testCase name="SignIn Page should be able to sign in" duration="791"/>
+    </file>
+    <file path="C:\Users\DELL\Documents\projetos\portal-consignado\src\__tests__\pages\Registration\components\PasswordForm\PasswordForm.test.tsx">
+        <testCase name="Component: &lt;PasswordForm /&gt; should be able to render inputs" duration="499"/>
+        <testCase name="Component: &lt;PasswordForm /&gt; should be able to show error messages" duration="260"/>
+        <testCase name="Component: &lt;PasswordForm /&gt; should be able to show confirm your password" duration="189"/>
+        <testCase name="Component: &lt;PasswordForm /&gt; should be able to show inform your password" duration="237"/>
+        <testCase name="Component: &lt;PasswordForm /&gt; should be able to show password must be the same" duration="501"/>
+        <testCase name="Component: &lt;PasswordForm /&gt; should be able to show password does not meet minimum requirements" duration="440"/>
+        <testCase name="Component: &lt;PasswordForm /&gt; should be able to create password" duration="405"/>
+    </file>
+    <file path="C:\Users\DELL\Documents\projetos\portal-consignado\src\__tests__\pages\ResetPassword.test.tsx">
+        <testCase name="Page: &lt;ResetPassword /&gt; should be able to render inputs" duration="605"/>
+        <testCase name="Page: &lt;ResetPassword /&gt; should be able to show error messages" duration="232"/>
+        <testCase name="Page: &lt;ResetPassword /&gt; should be able to show confirm your password" duration="444"/>
+        <testCase name="Page: &lt;ResetPassword /&gt; should be able to show inform your password" duration="227"/>
+        <testCase name="Page: &lt;ResetPassword /&gt; should be able to show password does not meet minimum requirements" duration="390"/>
+        <testCase name="Page: &lt;ResetPassword /&gt; should be able to show token not found" duration="796"/>
+        <testCase name="Page: &lt;ResetPassword /&gt; should be able to show invalid data" duration="849"/>
+        <testCase name="Page: &lt;ResetPassword /&gt; should be able to change password" duration="745"/>
+    </file>
+    <file path="C:\Users\DELL\Documents\projetos\portal-consignado\src\__tests__\pages\Registration\components\BirthDateForm\BirthDateForm.test.tsx">
+        <testCase name="Component: &lt;BirthDateForm /&gt; should be able to render input" duration="367"/>
+        <testCase name="Component: &lt;BirthDateForm /&gt; should be able to show required field" duration="346"/>
+    </file>
+    <file path="C:\Users\DELL\Documents\projetos\portal-consignado\src\__tests__\pages\Registration\components\BankDataForm\BankDataForm.test.tsx">
+        <testCase name="Component: &lt;BankDataForm /&gt; should be able to show data" duration="1359"/>
+        <testCase name="Component: &lt;BankDataForm /&gt; should be able to not submit form" duration="963"/>
+        <testCase name="Component: &lt;BankDataForm /&gt; should be able to show invalid agency" duration="730"/>
+    </file>
+    <file path="C:\Users\DELL\Documents\projetos\portal-consignado\src\__tests__\pages\ChangePassword.test.tsx">
+        <testCase name="Page &lt;ChangePassword /&gt; should be able to render inputs" duration="1115"/>
+        <testCase name="Page &lt;ChangePassword /&gt; should be able to show username e e-mail" duration="175"/>
+        <testCase name="Page &lt;ChangePassword /&gt; should be able to show error messages" duration="372"/>
+        <testCase name="Page &lt;ChangePassword /&gt; should be able to show confirm your password" duration="483"/>
+        <testCase name="Page &lt;ChangePassword /&gt; should be able to show inform your password" duration="277"/>
+        <testCase name="Page &lt;ChangePassword /&gt; should be able to show password does not meet minimum requirements" duration="504"/>
+        <testCase name="Page &lt;ChangePassword /&gt; should be able to show unchanged password" duration="1371"/>
+        <testCase name="Page &lt;ChangePassword /&gt; should be able to change password" duration="1099"/>
+    </file>
+    <file path="C:\Users\DELL\Documents\projetos\portal-consignado\src\__tests__\pages\Registration\components\EmailForm\EmailForm.test.tsx">
+        <testCase name="Component: &lt;EmailForm /&gt; should be able to render input" duration="498"/>
+        <testCase name="Component: &lt;EmailForm /&gt; should be able to show required field" duration="240"/>
+        <testCase name="Component: &lt;EmailForm /&gt; should be able to not submit form" duration="165"/>
+        <testCase name="Component: &lt;EmailForm /&gt; should be able to show invalid email" duration="414"/>
+        <testCase name="Component: &lt;EmailForm /&gt; should be able to async validation: invalid email" duration="456"/>
+        <testCase name="Component: &lt;EmailForm /&gt; should be able to async validation: valid email" duration="389"/>
+        <testCase name="Component: &lt;EmailForm /&gt; should be able to submit form data" duration="423"/>
+    </file>
+    <file path="C:\Users\DELL\Documents\projetos\portal-consignado\src\__tests__\pages\Registration\components\CPFForm\CPFForm.test.tsx">
+        <testCase name="Component: &lt;CPFForm /&gt; should be able to render input" duration="381"/>
+        <testCase name="Component: &lt;CPFForm /&gt; should be able to show required field" duration="180"/>
+        <testCase name="Component: &lt;CPFForm /&gt; should be able to show incomplete field" duration="284"/>
+        <testCase name="Component: &lt;CPFForm /&gt; should be able to not submit form" duration="145"/>
+        <testCase name="Component: &lt;CPFForm /&gt; should be able to show user not found" duration="501"/>
+        <testCase name="Component: &lt;CPFForm /&gt; should be able to submit form data" duration="459"/>
+    </file>
+    <file path="C:\Users\DELL\Documents\projetos\portal-consignado\src\__tests__\pages\Registration\components\PhoneNumberForm\PhoneNumberForm.test.tsx">
+        <testCase name="Component: &lt;PhoneNumberForm /&gt; should be able to render input" duration="471"/>
+        <testCase name="Component: &lt;PhoneNumberForm /&gt; should be able to show required field" duration="227"/>
+        <testCase name="Component: &lt;PhoneNumberForm /&gt; should be able to not submit form" duration="196"/>
+        <testCase name="Component: &lt;PhoneNumberForm /&gt; should be able to show invalid phone" duration="304"/>
+        <testCase name="Component: &lt;PhoneNumberForm /&gt; should be able to submit form data" duration="278"/>
+    </file>
+    <file path="C:\Users\DELL\Documents\projetos\portal-consignado\src\__tests__\hooks\auth.test.tsx">
+        <testCase name="Auth hook should be able to sign in" duration="20"/>
+        <testCase name="Auth hook should be able not to sign in on password incorrect" duration="11"/>
+        <testCase name="Auth hook should be able not to sign with on user not found" duration="8"/>
+    </file>
+    <file path="C:\Users\DELL\Documents\projetos\portal-consignado\src\__tests__\utils\document.test.ts">
+        <testCase name="Document Testando remoção em string fazias" duration="1"/>
+        <testCase name="Document Testando remoção de máscaras" duration="0"/>
+    </file>
+    <file path="C:\Users\DELL\Documents\projetos\portal-consignado\src\__tests__\pages\Registration\components\CompleteNameForm\CompleteNameForm.test.tsx">
+        <testCase name="Component: &lt;CompleteNomeForm /&gt; should be able to render input" duration="248"/>
+        <testCase name="Component: &lt;CompleteNomeForm /&gt; should be able to show required field" duration="142"/>
+        <testCase name="Component: &lt;CompleteNomeForm /&gt; should be able to not submit form" duration="109"/>
+        <testCase name="Component: &lt;CompleteNomeForm /&gt; should be able to submit form data" duration="199"/>
+    </file>
+    <file path="C:\Users\DELL\Documents\projetos\portal-consignado\src\__tests__\pages\Registration\components\BankDataConfirmation\BankDataConfirmation.test.tsx">
+        <testCase name="Component: &lt;BankDataConfirmation /&gt; should be able to show data" duration="88"/>
+        <testCase name="Component: &lt;BankDataConfirmation /&gt; should be able to show terms not accepted when click &quot;yes&quot;" duration="133"/>
+        <testCase name="Component: &lt;BankDataConfirmation /&gt; should be able to show terms not accepted when click &quot;not now&quot;" duration="26"/>
+        <testCase name="Component: &lt;BankDataConfirmation /&gt; should be able to accept terms" duration="101"/>
+    </file>
+</unitTest>
