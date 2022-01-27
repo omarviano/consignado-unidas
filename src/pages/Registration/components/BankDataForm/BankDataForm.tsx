@@ -213,6 +213,10 @@ const BankDataForm: React.FC<BankDataFormProps> = ({
               options={banks}
               label="Banco"
               variant="outlined"
+              inputProps={{ 'data-testid': 'bankCode', role: 'textbox' }}
+              FormHelperTextProps={{
+                id: 'bankCode-error',
+              }}
             />
           </Styled.Div>
 

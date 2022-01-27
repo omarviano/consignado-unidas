@@ -10,7 +10,15 @@ import * as Styled from './styles';
 import { AutocompleteProps, OptionType } from './props';
 
 const Autocomplete: React.FC<AutocompleteProps> = React.memo(
-  ({ name, label, options, value, ...rest }) => {
+  ({
+    name,
+    label,
+    options,
+    value,
+    inputProps,
+    FormHelperTextProps,
+    ...rest
+  }) => {
     const [field, meta, helpers] = useField<string | undefined>({
       name,
       value,
@@ -65,8 +73,10 @@ const Autocomplete: React.FC<AutocompleteProps> = React.memo(
               error={!!meta.error && meta.touched}
               helperText={meta.touched ? meta.error : undefined}
               onChange={e => e}
+              FormHelperTextProps={FormHelperTextProps}
               inputProps={{
                 ...params.inputProps,
+                ...inputProps,
                 autoComplete: 'new-password', // disable autocomplete and autofill
               }}
             />
