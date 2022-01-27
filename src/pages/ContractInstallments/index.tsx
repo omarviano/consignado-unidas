@@ -28,7 +28,7 @@ import {
 } from './models/contractInstallments';
 import { ContractsInstallmentsServices } from './services/contract-installments-services';
 
-const ContractInstallments = () => {
+const ContractInstallments: React.FC = () => {
   const { id } = useParams<{ id?: string }>();
   const [contractDetails, setContractDetails] =
     useState<ContractInstallmentsType>();
@@ -37,8 +37,11 @@ const ContractInstallments = () => {
   const [cardDataOpen, setCardDataOpen] = useState(false);
   const { width } = useWindowDimensions();
 
-  const formatStringYearMonth = (data: string) =>
-    data.replace(/(\d{4})(\d{2})/, '$2/$1');
+  const formatStringYearMonth = (data: string) => {
+    if (!data) return '';
+
+    return data.replace(/(\d{4})(\d{2})/, '$2/$1');
+  };
 
   const formatMonthYear = (data: string) => {
     const formatted = data.replace(/(\d{4})(\d{2})/, '$1/$2');
@@ -110,12 +113,56 @@ const ContractInstallments = () => {
   };
 
   const getContractDate = (date?: Date) => {
-    const formattedDate = formatDate(date || null);
+    if (!date) return '-';
 
-    if (formattedDate == null || formattedDate === '01/01/1') return '-';
+    const formattedDate = formatDate(date);
+
+    if (formattedDate === '01/01/1') return '-';
 
     return formattedDate;
   };
+
+  const getDataValue = (
+    data: string | number | JSX.Element | null | undefined,
+  ) => {
+    if (fetchingInstallments) return <CircularProgress size={20} />;
+
+    if (!data) return '-';
+
+    return data;
+  };
+
+  const getIconButton = () => (cardDataOpen ? <ExpandLess /> : <ExpandMore />);
+
+  const showLoading = () =>
+    fetchingInstallments && <CircularProgress className="loading" />;
+
+  const getContent = () =>
+    width && width > 768 ? (
+      <Table
+        loading={fetchingInstallments}
+        columns={columns}
+        rows={tableData}
+        noData={NoContracts}
+        rowHeight={55}
+        disableBoxShadow
+      />
+    ) : (
+      <Styled.InstallmentsContainer>
+        <Styled.InstallmentsTitle>Parcelas</Styled.InstallmentsTitle>
+
+        {showLoading()}
+
+        <Styled.Installments>
+          {tableData.map(item => (
+            <InstallmentsCard
+              data={item}
+              totalInstallments={tableData.length}
+            />
+          ))}
+        </Styled.Installments>
+      </Styled.InstallmentsContainer>
+    );
 
   useEffect(() => {
     if (id)
@@ -128,9 +175,7 @@ const ContractInstallments = () => {
               id: item.installment,
               installment: item.installment,
               installmentStatus: item.installmentStatus,
-              dateSheet: item.dateSheet
-                ? formatStringYearMonth(item.dateSheet)
-                : '-',
+              dateSheet: formatStringYearMonth(item.dateSheet),
               installmentsValue: formatValue(item.installmentsValue),
             })),
           );
@@ -155,12 +200,10 @@ const ContractInstallments = () => {
 
                 <Styled.Status>
                   <Styled.StatusLabel>Status:</Styled.StatusLabel>
-                  {contractDetails?.status ? (
+                  {getDataValue(
                     <Styled.StatusText>
                       <ConfirmIcon /> {contractDetails?.status}
-                    </Styled.StatusText>
-                  ) : (
-                    <CircularProgress size={20} />
+                    </Styled.StatusText>,
                   )}
                 </Styled.Status>
               </Styled.Breadcrumb>
@@ -170,39 +213,29 @@ const ContractInstallments = () => {
               <Styled.Data>
                 <Styled.DataLabel>Nº do contrato:</Styled.DataLabel>
                 <Styled.DataValue>
-                  {contractDetails?.contractNumber || (
-                    <CircularProgress size={20} />
-                  )}
+                  {getDataValue(contractDetails?.contractNumber)}
                 </Styled.DataValue>
               </Styled.Data>
 
               <Styled.Data>
                 <Styled.DataLabel>Data do contrato</Styled.DataLabel>
                 <Styled.DataValue>
-                  {fetchingInstallments ? (
-                    <CircularProgress size={20} />
-                  ) : (
-                    getContractDate(contractDetails?.contractDate)
-                  )}
+                  {getDataValue(getContractDate(contractDetails?.contractDate))}
                 </Styled.DataValue>
               </Styled.Data>
 
               <Styled.Data>
                 <Styled.DataLabel>Nº de Parcelas</Styled.DataLabel>
                 <Styled.DataValue>
-                  {contractDetails?.quantityInstallment || (
-                    <CircularProgress size={20} />
-                  )}
+                  {getDataValue(contractDetails?.quantityInstallment)}
                 </Styled.DataValue>
               </Styled.Data>
 
               <Styled.Data>
                 <Styled.DataLabel>Valor da Parcela</Styled.DataLabel>
                 <Styled.DataValue>
-                  {contractDetails?.installmentsValue ? (
-                    formatValue(contractDetails.installmentsValue)
-                  ) : (
-                    <CircularProgress size={20} />
+                  {getDataValue(
+                    formatValue(contractDetails?.installmentsValue),
                   )}
                 </Styled.DataValue>
               </Styled.Data>
@@ -210,10 +243,8 @@ const ContractInstallments = () => {
               <Styled.Data>
                 <Styled.DataLabel>Primeiro desconto em Folha</Styled.DataLabel>
                 <Styled.DataValue>
-                  {contractDetails?.installmentDetails ? (
-                    getDateFirstDiscount(contractDetails.installmentDetails)
-                  ) : (
-                    <CircularProgress size={20} />
+                  {getDataValue(
+                    getDateFirstDiscount(contractDetails?.installmentDetails),
                   )}
                 </Styled.DataValue>
               </Styled.Data>
@@ -221,10 +252,8 @@ const ContractInstallments = () => {
               <Styled.Data>
                 <Styled.DataLabel>Último desconto em Folha</Styled.DataLabel>
                 <Styled.DataValue>
-                  {contractDetails?.installmentDetails ? (
-                    getDateLastDiscount(contractDetails.installmentDetails)
-                  ) : (
-                    <CircularProgress size={20} />
+                  {getDataValue(
+                    getDateLastDiscount(contractDetails?.installmentDetails),
                   )}
                 </Styled.DataValue>
               </Styled.Data>
@@ -232,11 +261,7 @@ const ContractInstallments = () => {
               <Styled.Data>
                 <Styled.DataLabel>Valor total do contrato</Styled.DataLabel>
                 <Styled.DataValue>
-                  {contractDetails?.value ? (
-                    formatValue(contractDetails.value)
-                  ) : (
-                    <CircularProgress size={20} />
-                  )}
+                  {getDataValue(formatValue(contractDetails?.value))}
                 </Styled.DataValue>
               </Styled.Data>
             </Styled.DataContainer>
@@ -245,35 +270,11 @@ const ContractInstallments = () => {
               aria-label="Expandir/fechar card"
               onClick={() => setCardDataOpen(state => !state)}
             >
-              {cardDataOpen ? <ExpandLess /> : <ExpandMore />}
+              {getIconButton()}
             </IconButton>
           </Styled.ExpandableCard>
 
-          {width && width > 768 ? (
-            <Table
-              loading={fetchingInstallments}
-              columns={columns}
-              rows={tableData}
-              noData={NoContracts}
-              rowHeight={55}
-              disableBoxShadow
-            />
-          ) : (
-            <Styled.InstallmentsContainer>
-              <Styled.InstallmentsTitle>Parcelas</Styled.InstallmentsTitle>
-
-              {fetchingInstallments && <CircularProgress className="loading" />}
-
-              <Styled.Installments>
-                {tableData.map(item => (
-                  <InstallmentsCard
-                    data={item}
-                    totalInstallments={tableData.length}
-                  />
-                ))}
-              </Styled.Installments>
-            </Styled.InstallmentsContainer>
-          )}
+          {getContent()}
         </Styled.Box>
       </Styled.Container>
     </Layout>
