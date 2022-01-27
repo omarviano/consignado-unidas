@@ -110,7 +110,7 @@
   },
   "jestSonar": {
     "sonar56x": true,
-    "reportPath": "testResults",
+    "reportPath": ".",
     "reportFile": "sonar-report.xml",
     "indent": 4
   }
