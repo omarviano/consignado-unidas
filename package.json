@@ -15,7 +15,7 @@
     "prepare": "husky install",
     "lint": "eslint src --ext .ts --fix",
     "format": "prettier --write src/**/*.ts",
-    "test:coverage": "react-scripts test --coverage --watchAll false"
+    "test:dev": "react-scripts test --watchAll=false"
   },
   "dependencies": {
     "@emotion/react": "^11.5.0",
