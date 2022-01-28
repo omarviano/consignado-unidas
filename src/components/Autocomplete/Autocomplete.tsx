@@ -65,6 +65,8 @@ const Autocomplete: React.FC<AutocompleteProps> = React.memo(
           onChange={handleChange}
           value={valueInput || { name: '' }}
           clearOnBlur
+          data-testid="autocomplete"
+          disablePortal
           renderInput={params => (
             <Styled.TextField
               {...params}
