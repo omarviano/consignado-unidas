@@ -93,20 +93,20 @@ describe('Component: <BankDataConfirmation />', () => {
 
   test('should be able to accept terms', async () => {
     const onSubmit = jest.fn();
-
+    const onClickNoButton = jest.fn();
     const { getByTestId } = render(
       <Providers>
         <BankDataConfirmation
           submitting
           username="Fulano de tal"
           email="fuuu.lano@gmail.com"
-          onClickNoButton={jest.fn}
+          onClickNoButton={onClickNoButton}
           onSubmit={onSubmit}
         />
       </Providers>,
     );
 
-    const form = screen.getByTestId('form');
+    const form = screen.getByTestId('form-terms');
 
     const check = getByTestId('check').querySelector(
       'input[type="checkbox"]',
@@ -118,6 +118,37 @@ describe('Component: <BankDataConfirmation />', () => {
     await waitFor(() => {
       expect(check).toHaveProperty('checked', true);
       expect(onSubmit).toBeCalled();
+    });
+  });
+
+  test('should be able to accept terms and click not now', async () => {
+    const onSubmit = jest.fn();
+    const onClickNoButton = jest.fn();
+
+    render(
+      <Providers>
+        <BankDataConfirmation
+          submitting={false}
+          username="Fulano de tal"
+          email="fuuu.lano@gmail.com"
+          onSubmit={onSubmit}
+          onClickNoButton={onClickNoButton}
+        />
+      </Providers>,
+    );
+
+    const check = screen
+      .getByTestId('check')
+      .querySelector('input[type="checkbox"]') as Element;
+
+    fireEvent.click(check);
+
+    const noButton = screen.getByTestId('noButton');
+    fireEvent.click(noButton);
+
+    await waitFor(() => {
+      expect(check).toHaveProperty('checked', true);
+      expect(onClickNoButton).toBeCalled();
     });
   });
 });

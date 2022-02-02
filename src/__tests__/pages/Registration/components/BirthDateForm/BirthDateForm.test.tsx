@@ -46,7 +46,7 @@ describe('Component: <BirthDateForm />', () => {
       </Providers>,
     );
 
-    const form = screen.getByTestId('form');
+    const form = screen.getByTestId('birthDate-form');
     fireEvent.submit(form);
 
     await waitFor(() => {
@@ -68,7 +68,7 @@ describe('Component: <BirthDateForm />', () => {
       </Providers>,
     );
 
-    const form = screen.getByTestId('form');
+    const form = screen.getByTestId('birthDate-form');
     fireEvent.submit(form);
 
     await waitFor(async () => {
@@ -85,7 +85,7 @@ describe('Component: <BirthDateForm />', () => {
       </Providers>,
     );
 
-    const form = screen.getByTestId('form');
+    const form = screen.getByTestId('birthDate-form');
 
     const input = screen.getByTestId('date-picker_birthDate');
 
@@ -111,7 +111,7 @@ describe('Component: <BirthDateForm />', () => {
       </Providers>,
     );
 
-    const form = screen.getByTestId('form');
+    const form = screen.getByTestId('birthDate-form');
 
     const input = screen.getByTestId('date-picker_birthDate');
 
@@ -137,7 +137,7 @@ describe('Component: <BirthDateForm />', () => {
       </Providers>,
     );
 
-    const form = screen.getByTestId('form');
+    const form = screen.getByTestId('birthDate-form');
 
     const input = screen.getByTestId('date-picker_birthDate');
 

@@ -14,6 +14,7 @@ const CompleteNameForm: React.FC<CompleteNameFormProps> = ({ onSubmit }) => (
     initialValues={{ name: '' }}
     validationSchema={schema}
     onSubmit={onSubmit}
+    name="completeName-form"
   >
     <StepSmallTitle>Qual o seu nome completo?</StepSmallTitle>
 
@@ -23,6 +24,7 @@ const CompleteNameForm: React.FC<CompleteNameFormProps> = ({ onSubmit }) => (
       label="Digite seu nome completo"
       placeholder="Digite seu nome completo"
       variant="outlined"
+      inputProps={{ 'data-testid': 'name' }}
       FormHelperTextProps={{
         id: 'error',
       }}

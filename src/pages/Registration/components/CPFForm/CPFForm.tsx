@@ -17,6 +17,7 @@ const CPFForm: React.FC<CPFFormProps> = ({ onSubmit }) => (
     validateOnBlur={false}
     validateOnChange
     validateOnMount
+    name="cpf-form"
   >
     <StepTitle>
       Para começar a simulação, precisamos que informe alguns dados ok? É bem
@@ -31,6 +32,10 @@ const CPFForm: React.FC<CPFFormProps> = ({ onSubmit }) => (
         placeholder="Digite seu CPF"
         variant="outlined"
         mask="999.999.999-99"
+        inputProps={{ 'data-testid': 'cpf' }}
+        FormHelperTextProps={{
+          id: 'cpf-error',
+        }}
       />
     </Styled.ContentCPFInput>
 
