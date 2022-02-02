@@ -1,4 +1,4 @@
-import { forwardRef, useEffect, useMemo } from 'react';
+import { forwardRef, useMemo } from 'react';
 import { useField } from 'formik';
 import DesktopDatePicker from '@mui/lab/DesktopDatePicker';
 import TextField from '@mui/material/TextField';
@@ -31,14 +31,6 @@ const DatePicker = forwardRef<typeof DesktopDatePicker, DatePickerProps>(
       return {};
     }, [meta.error, meta.initialError, meta.touched]);
 
-    useEffect(() => {
-      const input = document.getElementById(
-        `dateInput_${name}`,
-      ) as HTMLInputElement;
-
-      if (input) input.placeholder = 'DD/MM/AAAA';
-    }, [name]);
-
     return (
       <Styled.Container>
         <Styled.DatePicker
@@ -57,10 +49,14 @@ const DatePicker = forwardRef<typeof DesktopDatePicker, DatePickerProps>(
           renderInput={params => (
             <TextField
               id={`dateInput_${name}`}
-              data-testid={`date-picker_${name}`}
               {...field}
               {...params}
               {...errors}
+              inputProps={{
+                ...params.inputProps,
+                'data-testid': `date-picker_${name}`,
+                placeholder: 'DD/MM/AAAA',
+              }}
             />
           )}
         />

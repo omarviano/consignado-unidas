@@ -14,6 +14,7 @@ const BirthDateForm: React.FC<BirthDateFormProps> = ({ onSubmit }) => (
     initialValues={{ birthDate: '' }}
     validationSchema={schema}
     onSubmit={onSubmit}
+    name="birthDate-form"
   >
     <StepSmallTitle>Qual a sua data de nascimento?</StepSmallTitle>
 

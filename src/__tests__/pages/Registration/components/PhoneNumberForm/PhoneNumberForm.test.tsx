@@ -54,7 +54,7 @@ describe('Component: <PhoneNumberForm />', () => {
       </Providers>,
     );
 
-    const form = screen.getByTestId('form');
+    const form = screen.getByTestId('phoneNumber-form');
     fireEvent.submit(form);
 
     await waitFor(async () => {
@@ -71,7 +71,7 @@ describe('Component: <PhoneNumberForm />', () => {
       </Providers>,
     );
 
-    const form = screen.getByTestId('form');
+    const form = screen.getByTestId('phoneNumber-form');
 
     const input = screen.getByRole('textbox');
     fireEvent.change(input, { target: { value: '1a' } });
@@ -95,7 +95,7 @@ describe('Component: <PhoneNumberForm />', () => {
       </Providers>,
     );
 
-    const form = screen.getByTestId('form');
+    const form = screen.getByTestId('phoneNumber-form');
 
     const input = screen.getByRole('textbox');
     fireEvent.change(input, { target: { value: '11111111111' } });

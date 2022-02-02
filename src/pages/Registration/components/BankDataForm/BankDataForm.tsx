@@ -30,7 +30,7 @@ const BankDataForm: React.FC<BankDataFormProps> = ({
   const formRef = useRef<FormikProps<any>>(null);
   const [formValues, setFormValues] = useState({
     professional: '',
-    nationality: '',
+    nationality: 'Brasileira',
     zipCode: '',
     logradouro: '',
     number: '',
@@ -109,6 +109,10 @@ const BankDataForm: React.FC<BankDataFormProps> = ({
             label="Profissão (Opcional)"
             placeholder="Informe sua profissão"
             variant="outlined"
+            inputProps={{ 'data-testid': 'professional', role: 'textbox' }}
+            FormHelperTextProps={{
+              id: 'professional-error',
+            }}
           />
 
           <Input
@@ -116,6 +120,10 @@ const BankDataForm: React.FC<BankDataFormProps> = ({
             label="Nacionalidade (Opcional)"
             placeholder="Informe sua nacionalidade"
             variant="outlined"
+            inputProps={{ 'data-testid': 'nationality', role: 'textbox' }}
+            FormHelperTextProps={{
+              id: 'nationality-error',
+            }}
           />
 
           <Input
@@ -128,6 +136,10 @@ const BankDataForm: React.FC<BankDataFormProps> = ({
             onKeyUp={handleInput}
             error={notFound}
             helperText={notFound ? 'CEP não encontrado' : undefined}
+            inputProps={{ 'data-testid': 'zipCode', role: 'textbox' }}
+            FormHelperTextProps={{
+              id: 'zipCode-error',
+            }}
           />
 
           <Input
@@ -136,6 +148,10 @@ const BankDataForm: React.FC<BankDataFormProps> = ({
             placeholder="Informe seu endereço"
             variant="outlined"
             disabled={cep?.length !== 9 || notFound || !!address?.logradouro}
+            inputProps={{ 'data-testid': 'logradouro', role: 'textbox' }}
+            FormHelperTextProps={{
+              id: 'logradouro-error',
+            }}
           />
 
           <Styled.Div>
@@ -146,6 +162,10 @@ const BankDataForm: React.FC<BankDataFormProps> = ({
                   label="Número (Opcional)"
                   placeholder="xxxx"
                   variant="outlined"
+                  inputProps={{ 'data-testid': 'number', role: 'textbox' }}
+                  FormHelperTextProps={{
+                    id: 'number-error',
+                  }}
                 />
               </Grid>
 
@@ -156,6 +176,10 @@ const BankDataForm: React.FC<BankDataFormProps> = ({
                   placeholder="Informe seu bairro"
                   variant="outlined"
                   disabled={cep?.length !== 9 || notFound || !!address?.bairro}
+                  inputProps={{ 'data-testid': 'bairro', role: 'textbox' }}
+                  FormHelperTextProps={{
+                    id: 'bairro-error',
+                  }}
                 />
               </Grid>
             </Grid>
@@ -166,6 +190,10 @@ const BankDataForm: React.FC<BankDataFormProps> = ({
             label="Complemento (Opcional)"
             placeholder="Informe o complemento"
             variant="outlined"
+            inputProps={{ 'data-testid': 'complement', role: 'textbox' }}
+            FormHelperTextProps={{
+              id: 'complement-error',
+            }}
           />
 
           <Input
@@ -174,6 +202,10 @@ const BankDataForm: React.FC<BankDataFormProps> = ({
             placeholder="Informe a cidade que você mora"
             variant="outlined"
             disabled
+            inputProps={{ 'data-testid': 'localidade', role: 'textbox' }}
+            FormHelperTextProps={{
+              id: 'localidade-error',
+            }}
           />
 
           <Styled.Div>
@@ -184,6 +216,10 @@ const BankDataForm: React.FC<BankDataFormProps> = ({
               placeholder="Selecione seu estado"
               variant="outlined"
               disabled
+              inputProps={{ 'data-testid': 'uf', role: 'textbox' }}
+              FormHelperTextProps={{
+                id: 'uf-error',
+              }}
             />
           </Styled.Div>
         </Styled.DataContainer>
@@ -213,6 +249,10 @@ const BankDataForm: React.FC<BankDataFormProps> = ({
               options={banks}
               label="Banco"
               variant="outlined"
+              inputProps={{ 'data-testid': 'bankCode', role: 'textbox' }}
+              FormHelperTextProps={{
+                id: 'bankCode-error',
+              }}
             />
           </Styled.Div>
 
@@ -222,6 +262,10 @@ const BankDataForm: React.FC<BankDataFormProps> = ({
               label="Agência"
               placeholder="N° da sua agência"
               variant="outlined"
+              inputProps={{ 'data-testid': 'agency' }}
+              FormHelperTextProps={{
+                id: 'agency-error',
+              }}
             />
           </Styled.Div>
 
@@ -232,6 +276,10 @@ const BankDataForm: React.FC<BankDataFormProps> = ({
                 label="N° da Conta Corrente"
                 placeholder="XXXXXX"
                 variant="outlined"
+                inputProps={{ 'data-testid': 'accountNumber' }}
+                FormHelperTextProps={{
+                  id: 'accountNumber-error',
+                }}
               />
             </Grid>
 
@@ -241,6 +289,10 @@ const BankDataForm: React.FC<BankDataFormProps> = ({
                 label="Dígito"
                 placeholder="XX"
                 variant="outlined"
+                inputProps={{ 'data-testid': 'digit' }}
+                FormHelperTextProps={{
+                  id: 'digit-error',
+                }}
               />
             </Grid>
           </Grid>

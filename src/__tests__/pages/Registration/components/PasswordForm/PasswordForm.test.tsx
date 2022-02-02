@@ -46,7 +46,7 @@ describe('Component: <PasswordForm />', () => {
       </Providers>,
     );
 
-    const form = screen.getByTestId('form');
+    const form = screen.getByTestId('password-form');
 
     fireEvent.submit(form);
 
@@ -67,7 +67,7 @@ describe('Component: <PasswordForm />', () => {
     const mock = new MockAdapter(api, { delayResponse: 200 });
     mock.onPost('auth/validate-password').reply(200);
 
-    const form = screen.getByTestId('form');
+    const form = screen.getByTestId('password-form');
 
     const password = screen.getByTestId('password');
     fireEvent.change(password, { target: { value: 'AAAAAA11' } });
@@ -88,7 +88,7 @@ describe('Component: <PasswordForm />', () => {
       </Providers>,
     );
 
-    const form = screen.getByTestId('form');
+    const form = screen.getByTestId('password-form');
 
     const passwordConfirmation = screen.getByTestId('passwordConfirmation');
     fireEvent.change(passwordConfirmation, { target: { value: 'AAAAAA11' } });
@@ -112,7 +112,7 @@ describe('Component: <PasswordForm />', () => {
     const mock = new MockAdapter(api, { delayResponse: 200 });
     mock.onPost('auth/validate-password').reply(200);
 
-    const form = screen.getByTestId('form');
+    const form = screen.getByTestId('password-form');
 
     const password = screen.getByTestId('password');
     fireEvent.change(password, { target: { value: 'Aaaaaa11.' } });
@@ -142,7 +142,7 @@ describe('Component: <PasswordForm />', () => {
     const mock = new MockAdapter(api, { delayResponse: 200 });
     mock.onPost('auth/validate-password').reply(400);
 
-    const form = screen.getByTestId('form');
+    const form = screen.getByTestId('password-form');
 
     const password = screen.getByTestId('password');
     fireEvent.change(password, { target: { value: '123456789.' } });
@@ -172,7 +172,7 @@ describe('Component: <PasswordForm />', () => {
     const mock = new MockAdapter(api, { delayResponse: 200 });
     mock.onPost('auth/validate-password').reply(200);
 
-    const form = screen.getByTestId('form');
+    const form = screen.getByTestId('password-form');
 
     const password = screen.getByTestId('password');
     fireEvent.change(password, { target: { value: 'A123456a' } });
