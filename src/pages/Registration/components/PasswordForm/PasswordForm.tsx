@@ -14,6 +14,7 @@ const PasswordForm: React.FC<PasswordFormProps> = ({ onSubmit }) => (
     initialValues={{ password: '', passwordConfirmation: '' }}
     validationSchema={schema}
     onSubmit={onSubmit}
+    name="password-form"
   >
     <StepSmallTitle>Criar senha</StepSmallTitle>
 

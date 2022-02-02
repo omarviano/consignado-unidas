@@ -112,6 +112,10 @@ const Registration: React.FC = () => {
 
   return (
     <Layout>
+      <Styled.CurrentStep data-testid="step">
+        {`${currentStep + 1}/8`}
+      </Styled.CurrentStep>
+
       <Styled.StepsContainer currentStep={currentStep}>
         <Styled.Step step={0} currentStep={currentStep}>
           <CPFForm onSubmit={onSubmit} />
@@ -194,7 +198,7 @@ const Registration: React.FC = () => {
           </Badge>
         }
         text={
-          <span>
+          <span data-testid="success-modal-message">
             Olá <b>{formsData?.name}</b>! Favor acessar o seu e-mail e confirmar
             a conta.
           </span>
@@ -206,7 +210,9 @@ const Registration: React.FC = () => {
         <Styled.ModalContent>
           <Warning fontSize="large" color="warning" />
 
-          <Styled.EmailModalText>{validationDataMessage}</Styled.EmailModalText>
+          <Styled.EmailModalText data-testid="validation-modal-message">
+            {validationDataMessage}
+          </Styled.EmailModalText>
 
           <Button
             type="button"
@@ -214,6 +220,7 @@ const Registration: React.FC = () => {
             variant="contained"
             className="button-modal-validation"
             onClick={handleClickButtonModalValidation}
+            data-testid="enter-data-again"
           >
             Informar dados novamente
           </Button>
@@ -224,7 +231,7 @@ const Registration: React.FC = () => {
         open={errorModalOpen}
         onClose={toggleErrorModal}
         icon={<Warning color="error" />}
-        text={responseErros}
+        text={<span data-testid="error-modal-message">{responseErros}</span>}
       />
     </Layout>
   );

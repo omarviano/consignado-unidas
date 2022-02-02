@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import axios from 'axios';
 
+import { viaCepApi } from 'services/api';
 import { Document } from 'utils/document';
 
 interface Address {
@@ -55,8 +55,8 @@ const useViaCEP = (): ViaCEPApi => {
 
     setFetching(true);
 
-    axios
-      .get(`https://viacep.com.br/ws/${Document.removeMask(cep)}/json/`)
+    viaCepApi
+      .get(`${Document.removeMask(cep)}/json/`)
       .then(({ data }) => {
         if (data.erro) {
           setNotFound(true);

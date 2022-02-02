@@ -33,11 +33,21 @@ const BankDataConfirmation: React.FC<BankDataConfirmationProps> = ({
     onSubmit(data);
   };
 
+  const handleClickNoButton = () => {
+    if (!agree) {
+      toggleModalMessage();
+      return;
+    }
+
+    onClickNoButton();
+  };
+
   return (
     <Styled.BankDetailsConfirmationContainer>
-      <Formik initialValues={{}} onSubmit={handleSubmit}>
+      <Formik initialValues={{}} onSubmit={handleSubmit} name="form-terms">
         <Styled.Hello id="username">Olá {username}!</Styled.Hello>
         <Styled.Email id="email">{email}</Styled.Email>
+        {agree ? 'True' : 'False'}
 
         <Styled.BankDetailsConfirmationTitle>
           Você deseja informar os dados complementares e os dados bancários para
@@ -77,7 +87,7 @@ const BankDataConfirmation: React.FC<BankDataConfirmationProps> = ({
             type="button"
             variant="outlined"
             color="primary"
-            onClick={() => (agree ? onClickNoButton() : toggleModalMessage())}
+            onClick={handleClickNoButton}
             disabled={submitting}
             data-testid="noButton"
           >

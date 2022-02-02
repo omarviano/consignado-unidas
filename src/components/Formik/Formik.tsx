@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+/* eslint-disable react/require-default-props */
 import { useRef, useEffect } from 'react';
 
 import {
@@ -9,8 +10,12 @@ import {
   FormikConfig,
 } from 'formik';
 
-export function Formik<Values>(props: FormikConfig<Values>) {
-  const { children, ...rest } = props;
+type Point<Values> = FormikConfig<Values> & {
+  name?: string;
+};
+
+export function Formik<Values>(props: Point<Values>) {
+  const { name = 'form', children, ...rest } = props;
 
   const formRef = useRef<FormikProps<Values> | null>(null);
 
@@ -22,7 +27,9 @@ export function Formik<Values>(props: FormikConfig<Values>) {
 
   return (
     <FormikBaseProps innerRef={formRef} {...rest}>
-      <FormBaseProps data-testid="form">{children}</FormBaseProps>
+      <FormBaseProps name={name} data-testid={name}>
+        {children}
+      </FormBaseProps>
     </FormikBaseProps>
   );
 }

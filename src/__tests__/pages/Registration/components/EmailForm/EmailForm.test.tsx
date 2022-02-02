@@ -56,7 +56,7 @@ describe('Component: <EmailForm />', () => {
       </Providers>,
     );
 
-    const form = screen.getByTestId('form');
+    const form = screen.getByTestId('email-form');
     fireEvent.submit(form);
 
     await waitFor(async () => {
@@ -73,7 +73,7 @@ describe('Component: <EmailForm />', () => {
       </Providers>,
     );
 
-    const form = screen.getByTestId('form');
+    const form = screen.getByTestId('email-form');
 
     const input = screen.getByRole('textbox');
     fireEvent.change(input, { target: { value: 'Fulano@' } });
@@ -101,7 +101,7 @@ describe('Component: <EmailForm />', () => {
       .onPost('/auth/validate-email', { email: 'email@email.com' })
       .reply(400);
 
-    const form = screen.getByTestId('form');
+    const form = screen.getByTestId('email-form');
 
     const input = screen.getByRole('textbox');
     fireEvent.change(input, { target: { value: 'email@email.com' } });
@@ -130,7 +130,7 @@ describe('Component: <EmailForm />', () => {
       .onPost('/auth/validate-email', { email: 'email@email.com' })
       .reply(200);
 
-    const form = screen.getByTestId('form');
+    const form = screen.getByTestId('email-form');
 
     const input = screen.getByRole('textbox');
     fireEvent.change(input, { target: { value: 'email@email.com' } });
@@ -156,7 +156,7 @@ describe('Component: <EmailForm />', () => {
       .onPost('/auth/validate-email', { email: 'email_valido@email.com' })
       .reply(200);
 
-    const form = screen.getByTestId('form');
+    const form = screen.getByTestId('email-form');
 
     const input = screen.getByRole('textbox');
     fireEvent.change(input, { target: { value: 'email_valido@email.com' } });

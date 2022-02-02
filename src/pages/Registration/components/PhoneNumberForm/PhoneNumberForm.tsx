@@ -14,6 +14,7 @@ const PhoneNumberForm: React.FC<PhoneNumberFormProps> = ({ onSubmit }) => (
     initialValues={{ phoneNumber: '' }}
     validationSchema={schema}
     onSubmit={onSubmit}
+    name="phoneNumber-form"
   >
     <StepSmallTitle>Qual o seu celular?</StepSmallTitle>
 
@@ -24,6 +25,7 @@ const PhoneNumberForm: React.FC<PhoneNumberFormProps> = ({ onSubmit }) => (
       placeholder="(XX)XXXXX-XXXX"
       variant="outlined"
       mask="(99)99999-9999"
+      inputProps={{ 'data-testid': 'phoneNumber' }}
       FormHelperTextProps={{
         id: 'error',
       }}
