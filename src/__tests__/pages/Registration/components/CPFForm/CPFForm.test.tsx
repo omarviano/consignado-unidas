@@ -72,7 +72,7 @@ describe('Component: <CPFForm />', () => {
       </Providers>,
     );
 
-    const form = screen.getByTestId('form');
+    const form = screen.getByTestId('cpf-form');
     fireEvent.submit(form);
 
     await waitFor(async () => {
@@ -98,7 +98,7 @@ describe('Component: <CPFForm />', () => {
       data: null,
     });
 
-    const form = screen.getByTestId('form');
+    const form = screen.getByTestId('cpf-form');
 
     const input = screen.getByRole('textbox');
     fireEvent.change(input, { target: { value: '111.111.111-11' } });
@@ -124,7 +124,7 @@ describe('Component: <CPFForm />', () => {
     const mock = new MockAdapter(api, { delayResponse: 200 });
     mock.onPost('auth/validate-cpf', { cpf: '11111111111' }).reply(200);
 
-    const form = screen.getByTestId('form');
+    const form = screen.getByTestId('cpf-form');
 
     const input = screen.getByRole('textbox');
     fireEvent.change(input, { target: { value: '111.111.111-11' } });

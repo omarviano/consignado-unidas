@@ -54,7 +54,7 @@ describe('Component: <CompleteNomeForm />', () => {
       </Providers>,
     );
 
-    const form = screen.getByTestId('form');
+    const form = screen.getByTestId('completeName-form');
     fireEvent.submit(form);
 
     await waitFor(async () => {
@@ -71,7 +71,7 @@ describe('Component: <CompleteNomeForm />', () => {
       </Providers>,
     );
 
-    const form = screen.getByTestId('form');
+    const form = screen.getByTestId('completeName-form');
 
     const input = screen.getByRole('textbox');
     fireEvent.change(input, { target: { value: 'Fulano de tal' } });
