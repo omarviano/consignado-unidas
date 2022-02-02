@@ -314,6 +314,12 @@ const SimulateLoan: FC = withContext(
                 </span>
               </Styled.ModalConfirmData>
 
+              <Styled.IncorrectData>
+                Caso os seus dados estejam incorretos, por gentileza envie um
+                e-mail para <strong>consignado@unidas.com.br</strong> pedindo a
+                alteração dos seus dados cadastrais
+              </Styled.IncorrectData>
+
               <Button
                 type="button"
                 className="confirm-button"
