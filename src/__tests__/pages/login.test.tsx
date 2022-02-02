@@ -53,7 +53,7 @@ describe('SignIn Page', () => {
     fireEvent.change(cpfField, { target: { value: '47087643088' } });
     fireEvent.change(passwordField, { target: { value: '123456' } });
 
-    fireEvent.submit(getByTestId('form-login'));
+    fireEvent.submit(getByTestId('form'));
 
     await waitFor(() => {
       expect(mockedResetModalActive).toBeTruthy();

@@ -55,7 +55,7 @@ export const SimulateLoanProvider: FC = props => {
 
       const { ...errorObject } = response;
       setStatusCode(response.status);
-      setMessageError(errorObject.data.message);
+      setMessageError(errorObject.data?.message);
       setModalActive(true);
       setRequestStatus({
         error: true,
