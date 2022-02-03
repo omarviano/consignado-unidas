@@ -48,6 +48,7 @@ const SimulateLoan: FC = withContext(
     const { open: modalErrorOpen, toggle: toggleModalError } = useModal();
     const { open: modalConfirmOpen, toggle: toggleModalConfirm } = useModal();
     const [requestingLoan, setRequestingLoan] = useState(false);
+    const [validatingSolicitation, setValidatingSolicitation] = useState(false);
     const [errorMessage, setErrorMessage] = useState<string>();
 
     useEffect(() => {
@@ -140,8 +141,29 @@ const SimulateLoan: FC = withContext(
       }
     };
 
-    const applyForLoan = () => {
-      toggleModalConfirm();
+    const applyForLoan = async () => {
+      if (!selectedRow) return;
+
+      try {
+        setValidatingSolicitation(true);
+
+        await SimulateLoanServices.validateSimulate({
+          value: dataSimulateLoan.value,
+          simulationId: dataSimulateLoan.id,
+          installment: selectedRow,
+        });
+
+        toggleModalConfirm();
+      } catch (error) {
+        const { response } = error as AxiosError;
+        setErrorMessage(response?.data?.message || 'ERRO');
+
+        if (response && response.status < 500) {
+          toggleModalError();
+        }
+      } finally {
+        setValidatingSolicitation(false);
+      }
     };
 
     const confirmLoanRequest = async () => {
@@ -180,6 +202,12 @@ const SimulateLoan: FC = withContext(
       }
       return 'Confirmar';
     }, [requestingLoan]);
+
+    const getTextRequestButton = () => {
+      if (validatingSolicitation) return 'Validando solicitação...';
+
+      return 'Solicitar Empréstimo';
+    };
 
     const loaderCircularProgress = () => {
       if (requestStatus.loading) {
@@ -240,9 +268,9 @@ const SimulateLoan: FC = withContext(
                   type="button"
                   variant="contained"
                   onClick={applyForLoan}
-                  disabled={!selectedRow}
+                  disabled={!selectedRow || validatingSolicitation}
                 >
-                  Solicitar Empréstimo
+                  {getTextRequestButton()}
                 </Styled.RequestButton>
               </Styled.ContainerButton>
             </>
