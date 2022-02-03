@@ -1,4 +1,10 @@
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import {
+  render,
+  screen,
+  fireEvent,
+  waitFor,
+  configure,
+} from '@testing-library/react';
 import MockAdapter from 'axios-mock-adapter';
 import { BrowserRouter } from 'react-router-dom';
 import { ThemeProvider as ThemeProviderStyledComponents } from 'styled-components';
@@ -259,11 +265,11 @@ describe('Page: <Contracts />', () => {
     fireEvent.click(detailsButton[0]);
 
     await waitFor(() => {
-      expect(mockHistoryPush).toHaveBeenCalledWith('/contratos/asdf');
+      expect(mockHistoryPush).toHaveBeenCalledWith('/contratos/2001202201');
     });
   }, 50000);
 
-  /* test('should be able go to installments page - WEB', async () => {
+  test('should be able go to installments page - WEB', async () => {
     const mock = new MockAdapter(api);
     mock.onGet('/contracts').reply(200, {
       data: [
@@ -289,10 +295,10 @@ describe('Page: <Contracts />', () => {
     Object.defineProperty(window, 'innerWidth', {
       writable: true,
       configurable: true,
-      value: 721,
+      value: 1024,
     });
 
-    render(
+    const { container } = render(
       <Providers>
         <Contracts />
       </Providers>,
@@ -300,13 +306,13 @@ describe('Page: <Contracts />', () => {
 
     await new Promise(r => setTimeout(r, 20000));
 
-    const accessButton = screen.getByTestId('table-button');
-    fireEvent.click(accessButton);
+    const grid = screen.getAllByRole('grid');
+
+    const foo = container.querySelector('.cell-button') as HTMLElement;
 
     await waitFor(() => {
-      expect(screen.getByRole('grid')).toBeDefined();
-
+      expect(container.querySelector('.cell-button')).toBe('asdasd');
       expect(mockHistoryPush).toHaveBeenCalledWith('/contratos/asdf');
     });
-  }, 50000); */
+  }, 50000);
 });

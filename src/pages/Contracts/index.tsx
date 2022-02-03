@@ -100,11 +100,13 @@ const Contracts: React.FC = () => {
         disableColumnMenu: true,
         headerAlign: 'center',
         width: 168,
+        cellClassName: 'cell-button',
         renderCell: ({ row }) => (
           <Styled.TableButton
             variant="contained"
             onClick={() => goToDetails(row.id)}
             data-testid="table-button"
+            className="bbb"
           >
             Acessar
           </Styled.TableButton>
