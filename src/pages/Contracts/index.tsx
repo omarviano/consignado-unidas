@@ -104,6 +104,7 @@ const Contracts: React.FC = () => {
           <Styled.TableButton
             variant="contained"
             onClick={() => goToDetails(row.id)}
+            data-testid="table-button"
           >
             Acessar
           </Styled.TableButton>
@@ -176,7 +177,12 @@ const Contracts: React.FC = () => {
               bottomOfPage={bottomOfPage}
               className="button-container"
             >
-              <Button type="button" variant="outlined" onClick={goToHome}>
+              <Button
+                type="button"
+                variant="outlined"
+                onClick={goToHome}
+                data-testid="go-to-home"
+              >
                 Simular novo empréstimo
               </Button>
             </Styled.ButtonContainer>
@@ -191,7 +197,10 @@ const Contracts: React.FC = () => {
               rowHeight={88}
             />
           ) : (
-            <Styled.ResponsiveContainer noData={tableData.length === 0}>
+            <Styled.ResponsiveContainer
+              data-testid="cards-container"
+              noData={tableData.length === 0}
+            >
               {tableData.map(item => (
                 <ContractCard
                   key={item.id}
@@ -203,7 +212,9 @@ const Contracts: React.FC = () => {
               {fetchingContracts && <CircularProgress className="loading" />}
 
               {tableData.length === 0 && !fetchingContracts && (
-                <Styled.NoData>Você ainda não possui contratos</Styled.NoData>
+                <Styled.NoData data-testid="no-data-mobile">
+                  Você ainda não possui contratos
+                </Styled.NoData>
               )}
             </Styled.ResponsiveContainer>
           )}
