@@ -197,6 +197,7 @@ const Contracts: React.FC = () => {
               rows={tableData}
               noData={NoContracts}
               rowHeight={88}
+              disableVirtualization={process.env.NODE_ENV === 'test'}
             />
           ) : (
             <Styled.ResponsiveContainer

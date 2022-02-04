@@ -1,10 +1,4 @@
-import {
-  render,
-  screen,
-  fireEvent,
-  waitFor,
-  configure,
-} from '@testing-library/react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import MockAdapter from 'axios-mock-adapter';
 import { BrowserRouter } from 'react-router-dom';
 import { ThemeProvider as ThemeProviderStyledComponents } from 'styled-components';
@@ -166,6 +160,7 @@ describe('Page: <Contracts />', () => {
 
     await waitFor(() => {
       expect(container.querySelectorAll('.MuiDataGrid-row').length).toBe(2);
+      expect(screen.getAllByRole('row').length).toBe(3);
     });
   });
 
@@ -298,21 +293,19 @@ describe('Page: <Contracts />', () => {
       value: 1024,
     });
 
-    const { container } = render(
+    render(
       <Providers>
         <Contracts />
       </Providers>,
     );
 
-    await new Promise(r => setTimeout(r, 20000));
+    await new Promise(r => setTimeout(r, 1000));
 
-    const grid = screen.getAllByRole('grid');
-
-    const foo = container.querySelector('.cell-button') as HTMLElement;
+    const tableButton = screen.getAllByTestId('table-button');
+    fireEvent.click(tableButton[0]);
 
     await waitFor(() => {
-      expect(container.querySelector('.cell-button')).toBe('asdasd');
-      expect(mockHistoryPush).toHaveBeenCalledWith('/contratos/asdf');
+      expect(mockHistoryPush).toHaveBeenCalledWith('/contratos/2001202201');
     });
   }, 50000);
 });
