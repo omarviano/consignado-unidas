@@ -47,7 +47,6 @@ const BankDataConfirmation: React.FC<BankDataConfirmationProps> = ({
       <Formik initialValues={{}} onSubmit={handleSubmit} name="form-terms">
         <Styled.Hello id="username">Olá {username}!</Styled.Hello>
         <Styled.Email id="email">{email}</Styled.Email>
-        {agree ? 'True' : 'False'}
 
         <Styled.BankDetailsConfirmationTitle>
           Você deseja informar os dados complementares e os dados bancários para
