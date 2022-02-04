@@ -156,7 +156,9 @@ const SimulateLoan: FC = withContext(
         toggleModalConfirm();
       } catch (error) {
         const { response } = error as AxiosError;
-        setErrorMessage(response?.data?.message || 'ERRO');
+        setErrorMessage(
+          'Infelizmente, você não atende os requisitos mínimos para solicitar o empréstimo neste momento. Por favor, verifique a aba Dúvidas Frequentes para conferir os requisitos e envie um e-mail para <span>consignado@unidas.com.br</span> em caso de dúvidas.',
+        );
 
         if (response && response.status < 500) {
           toggleModalError();
