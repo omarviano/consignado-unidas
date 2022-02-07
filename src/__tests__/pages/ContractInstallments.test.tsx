@@ -7,19 +7,16 @@ import {
   StyledEngineProvider,
 } from '@mui/material';
 import { materialUiTheme } from 'styles/theme/material-ui';
+import { Router } from 'react-router-dom';
+import { createMemoryHistory } from 'history';
 
 import { AppProvider } from 'hooks';
 import { api } from 'services/api';
 
 import ContractInstallments from 'pages/ContractInstallments';
 
-const mockHistoryPush = jest.fn();
-
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
-  useHistory: () => ({
-    push: mockHistoryPush,
-  }),
   useParams: () => ({
     id: '123',
   }),
@@ -73,7 +70,7 @@ describe('Page: <ContractInstallments />', () => {
     });
   });
 
-  /* test('should be able to render cards', async () => {
+  test('should be able to render cards', async () => {
     Object.defineProperty(window, 'innerWidth', {
       writable: true,
       configurable: true,
@@ -161,19 +158,24 @@ describe('Page: <ContractInstallments />', () => {
       expect(screen.getAllByTestId('installment-card').length).toBe(1);
     });
   });
- */
-  /* test('should be able redirect to Contracts Page when occurred error', async () => {
+
+  test('should be able redirect to Contracts Page when occurred error', async () => {
+    const history = createMemoryHistory();
+    const pushSpy = jest.spyOn(history, 'push'); //
+
     const mock = new MockAdapter(api);
     mock.onGet('/contracts/details?contratNumber=123').reply(400);
 
     render(
       <Providers>
-        <ContractInstallments />
+        <Router history={history}>
+          <ContractInstallments />
+        </Router>
       </Providers>,
     );
 
     await waitFor(() => {
-      expect(mockHistoryPush).toHaveBeenCalledWith('/contratos');
+      expect(pushSpy).toHaveBeenCalled();
     });
-  }); */
+  });
 });
