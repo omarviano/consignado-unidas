@@ -6,11 +6,12 @@ import { AxiosError } from 'axios';
 
 import Logo from 'assets/images/logo.png';
 
-import useModal from 'hooks/modal';
+import useModal from 'hooks/useModal';
 
 import { Formik } from 'components/Formik';
 import { Button } from 'components/Buttons/Button';
 import { Input } from 'components/Inputs/Input';
+import version from 'utils/getVersion';
 import { Modal } from 'components/Modal';
 import { ModalMessage } from 'components/ModalMessage';
 import { withAITracking } from '@microsoft/applicationinsights-react-js';
@@ -101,6 +102,8 @@ const ForgotPassword: React.FC = () => {
           </Button>
         </Formik>
       </Card>
+
+      <Styled.VersionText>Versão {version}</Styled.VersionText>
 
       <Modal open={emailModalOpen} onClose={toggleEmailModal}>
         <Styled.ModalContent>

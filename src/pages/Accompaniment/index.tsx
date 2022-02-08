@@ -1,6 +1,7 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable consistent-return */
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { Layout } from 'components/Layout';
-import { RouteAccess } from 'components/RouteAccess';
 import { Step, StepIconProps, Stepper, Box, Skeleton } from '@mui/material';
 import {
   CheckCircle,
@@ -13,7 +14,7 @@ import { useHistory } from 'react-router-dom';
 import { RoutingPath } from 'utils/routing';
 import { QuotationStatus } from 'enums/quote';
 import { Quote } from 'interface/quote';
-import useWindowDimensions from 'hooks/windowDimensions';
+import useWindowDimensions from 'hooks/useWindowDimensions';
 import { withAITracking } from '@microsoft/applicationinsights-react-js';
 import { reactPlugin } from 'hooks/appInsights';
 import { RequestUnderAnalysis } from './components/RequestUnderAnalysis';
@@ -123,6 +124,7 @@ const Accompaniment: React.FC = () => {
       [QuotationStatus.EmprestimoReprovadoPeloBanco]: <ReprovidedLoan />,
       default: null,
     }),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [quote],
   );
   const STEPS_ICON = useMemo(
@@ -144,86 +146,97 @@ const Accompaniment: React.FC = () => {
   );
 
   const getIcon = (index: number) => {
-    if (activeStep === index) return STEPS_ICON[step];
+    if (activeStep === index) {
+      return STEPS_ICON[step];
+    }
 
     return STEPS_ICON.default;
   };
 
-  const getLabel = (label: string, index: number) => {
-    if (index === 3) {
-      const labels = {
-        [QuotationStatus.Aprovado]: 'Empréstimo Aprovado',
-        [QuotationStatus.EmprestimoReprovadoPeloBanco]: 'Empréstimo Reprovado',
-      };
+  const verifyLabel = (label: string, index: number) => {
+    const labels = {
+      [QuotationStatus.Aprovado]: 'Empréstimo Aprovado',
+      [QuotationStatus.EmprestimoReprovadoPeloBanco]: 'Empréstimo Reprovado',
+    };
 
-      if (
-        step === QuotationStatus.RecusadoPeloUsuario ||
-        step === QuotationStatus.EmprestimoReprovadoPeloBanco
-      )
+    if (index === 3) {
+      if (step === QuotationStatus.RecusadoPeloUsuario)
         return labels[QuotationStatus.EmprestimoReprovadoPeloBanco];
 
-      if (
-        step === QuotationStatus.Aprovado ||
-        step === QuotationStatus.AssinaturaContratoPendente ||
-        step === QuotationStatus.AssinaturaContrato
-      )
+      if (step === QuotationStatus.EmprestimoReprovadoPeloBanco)
+        return labels[QuotationStatus.EmprestimoReprovadoPeloBanco];
+
+      if (step === QuotationStatus.Aprovado)
+        return labels[QuotationStatus.Aprovado];
+
+      if (step === QuotationStatus.AssinaturaContratoPendente)
+        return labels[QuotationStatus.Aprovado];
+
+      if (step === QuotationStatus.AssinaturaContrato)
         return labels[QuotationStatus.Aprovado];
 
       return labels[step] || label;
     }
+  };
+
+  const getLabel = (label: string, index: number) => {
+    if (verifyLabel(label, index)) {
+      return verifyLabel(label, index);
+    }
 
     return label;
   };
+
+  const showContent = useMemo(() => {
+    if (checking) {
+      return (
+        <Box>
+          <Skeleton animation="wave" height={416} />
+        </Box>
+      );
+    }
+    return (
+      <>
+        {width && width > 920 ? (
+          <Styled.StepperCard>
+            <Stepper
+              alternativeLabel
+              activeStep={activeStep}
+              connector={<MUIStyled.QontoConnector />}
+            >
+              {steps.map((label, index) => (
+                <Step key={label}>
+                  <Styled.StepLabel StepIconComponent={qontoStepIcon}>
+                    <Styled.StepLabelContent active={activeStep === index}>
+                      {getIcon(index)}
+                      {getLabel(label, index)}
+                    </Styled.StepLabelContent>
+                  </Styled.StepLabel>
+                </Step>
+              ))}
+            </Stepper>
+          </Styled.StepperCard>
+        ) : (
+          <CardMobile step={step} activeStep={activeStep} />
+        )}
+
+        {STEPS_COMPONENTS[step]}
+      </>
+    );
+  }, [checking, step]);
 
   useEffect(() => {
     checkCreditUnderReview();
   }, [checkCreditUnderReview]);
 
   return (
-    <RouteAccess typesOfAccess="auth">
-      <Layout
-        containerStyles={{
-          maxWidth: '1276px',
-        }}
-      >
-        <Styled.Container>
-          {checking ? (
-            <Box>
-              <Skeleton animation="wave" height={416} />
-            </Box>
-          ) : (
-            <>
-              {width && width > 920 ? (
-                <Styled.StepperCard>
-                  <Stepper
-                    alternativeLabel
-                    activeStep={activeStep}
-                    connector={<MUIStyled.QontoConnector />}
-                  >
-                    {steps.map((label, index) => (
-                      <Step key={label}>
-                        <Styled.StepLabel StepIconComponent={qontoStepIcon}>
-                          <Styled.StepLabelContent
-                            active={activeStep === index}
-                          >
-                            {getIcon(index)}
-                            {getLabel(label, index)}
-                          </Styled.StepLabelContent>
-                        </Styled.StepLabel>
-                      </Step>
-                    ))}
-                  </Stepper>
-                </Styled.StepperCard>
-              ) : (
-                <CardMobile step={step} activeStep={activeStep} />
-              )}
-
-              {STEPS_COMPONENTS[step]}
-            </>
-          )}
-        </Styled.Container>
-      </Layout>
-    </RouteAccess>
+    <Layout
+      containerStyles={{
+        maxWidth: '1276px',
+      }}
+    >
+      <Styled.Container>{showContent}</Styled.Container>
+    </Layout>
   );
 };
 

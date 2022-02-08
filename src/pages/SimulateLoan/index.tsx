@@ -1,18 +1,15 @@
 import { FC, useEffect, useMemo, useState } from 'react';
 import { Layout } from 'components/Layout';
-import { RouteAccess } from 'components/RouteAccess';
 import { GridColumns, GridRowId, GridSelectionModel } from '@mui/x-data-grid';
 import { CheckCircle, Cancel } from '@mui/icons-material';
 import { useHistory } from 'react-router-dom';
 import { AxiosError } from 'axios';
 import CircularProgress from '@mui/material/CircularProgress';
 
-import useWindowDimensions from 'hooks/windowDimensions';
+import useWindowDimensions from 'hooks/useWindowDimensions';
 import { getToken } from 'hooks/auth/storage';
-import useModal from 'hooks/modal';
+import useModal from 'hooks/useModal';
 import { SimulateLoanProvider, useSimulateLoan } from 'hooks/simulate';
-
-import { QuotationStatus } from 'enums/quote';
 
 import { withContext } from 'utils/withContext';
 import { Table } from 'components/Table';
@@ -54,7 +51,9 @@ const SimulateLoan: FC = withContext(
     const [errorMessage, setErrorMessage] = useState<string>();
 
     useEffect(() => {
-      if (valueSliderSimulate <= 0) history.push(RoutingPath.LOGGEDAREA);
+      if (valueSliderSimulate <= 0) {
+        history.push(RoutingPath.LOGGEDAREA);
+      }
     }, [history, valueSliderSimulate]);
 
     useEffect(() => {
@@ -162,7 +161,9 @@ const SimulateLoan: FC = withContext(
         const { response } = error as AxiosError;
         setErrorMessage(response?.data?.message || 'ERRO');
 
-        if (response && response.status < 500) toggleModalError();
+        if (response && response.status < 500) {
+          toggleModalError();
+        }
       } finally {
         setRequestingLoan(false);
       }
@@ -173,137 +174,161 @@ const SimulateLoan: FC = withContext(
       applyForLoan();
     };
 
+    const displayCorrectText = useMemo(() => {
+      if (requestingLoan) {
+        return 'Confirmando...';
+      }
+      return 'Confirmar';
+    }, [requestingLoan]);
+
+    const loaderCircularProgress = () => {
+      if (requestStatus.loading) {
+        return <CircularProgress className="loading" />;
+      }
+
+      return <></>;
+    };
+
+    const showInstallmentCard = () => {
+      if (!requestStatus.loading) {
+        return tableData.map(item => (
+          <InstallmentCard
+            key={item.id}
+            data={item}
+            onSelect={handleApplyForLoan}
+          />
+        ));
+      }
+
+      return <></>;
+    };
+
+    const showTextTable = () => {
+      if (tableData.length === 0 && !requestStatus.loading) {
+        return <Styled.NoData>Nenhum parcela disponível</Styled.NoData>;
+      }
+
+      return <></>;
+    };
+
     return (
-      <RouteAccess typesOfAccess="auth">
-        <Layout
-          containerStyles={{
-            maxWidth: '1276px',
-          }}
-        >
-          <Styled.Container>
-            <CardSimulateLoan />
+      <Layout
+        containerStyles={{
+          maxWidth: '1276px',
+        }}
+      >
+        <Styled.Container>
+          <CardSimulateLoan />
 
-            {width && width > 1000 ? (
-              <>
-                <Styled.SelectMostSuitableOption>
-                  Selecione a opção mais adequada para sua situação financeira
-                  atual
-                </Styled.SelectMostSuitableOption>
-                <Table
-                  loading={requestStatus.loading}
-                  checkboxSelection
-                  selectionModel={selectionModel}
-                  onSelectionModelChange={handleSelectionModelChange}
-                  columns={columns}
-                  rows={tableData}
-                />
+          {width && width > 1000 ? (
+            <>
+              <Styled.SelectMostSuitableOption>
+                Selecione a opção mais adequada para sua situação financeira
+                atual
+              </Styled.SelectMostSuitableOption>
+              <Table
+                loading={requestStatus.loading}
+                checkboxSelection
+                selectionModel={selectionModel}
+                onSelectionModelChange={handleSelectionModelChange}
+                columns={columns}
+                rows={tableData}
+              />
 
-                <Styled.ContainerButton>
-                  <Styled.RequestButton
-                    type="button"
-                    variant="contained"
-                    onClick={applyForLoan}
-                    disabled={!selectedRow}
-                  >
-                    Solicitar Empréstimo
-                  </Styled.RequestButton>
-                </Styled.ContainerButton>
-              </>
-            ) : (
-              <Styled.ResponsiveContainer>
-                <LoanDetails />
-
-                {requestStatus.loading && (
-                  <CircularProgress className="loading" />
-                )}
-
-                {!requestStatus.loading &&
-                  tableData.map(item => (
-                    <InstallmentCard
-                      key={item.id}
-                      data={item}
-                      onSelect={handleApplyForLoan}
-                    />
-                  ))}
-
-                {tableData.length === 0 && !requestStatus.loading && (
-                  <Styled.NoData>Nenhum parcela disponível</Styled.NoData>
-                )}
-              </Styled.ResponsiveContainer>
-            )}
-
-            <Modal open={modalSuccesOpen} onClose={goToAccompaniment}>
-              <Styled.ModalSuccessContent>
-                <CheckCircle className="success-icon" />
-
-                <Styled.ModalText>Solicitação enviada!</Styled.ModalText>
-
-                <Styled.ModalText>
-                  Sua solicitação será analisada. Assim que tivermos a resposta,
-                  entraremos em contato por email e por aqui. Qualquer dúvida,
-                  entre em contato com RH da empresa.
-                </Styled.ModalText>
-
-                <Button
+              <Styled.ContainerButton>
+                <Styled.RequestButton
                   type="button"
                   variant="contained"
-                  className="redirect-button"
-                  onClick={goToAccompaniment}
+                  onClick={applyForLoan}
+                  disabled={!selectedRow}
                 >
-                  Acompanhar
-                </Button>
-              </Styled.ModalSuccessContent>
-            </Modal>
+                  Solicitar Empréstimo
+                </Styled.RequestButton>
+              </Styled.ContainerButton>
+            </>
+          ) : (
+            <Styled.ResponsiveContainer>
+              <LoanDetails />
 
-            <Modal open={modalErrorOpen} onClose={toggleModalError}>
-              <Styled.ModalErrorContent>
-                <Cancel className="cancel-icon" />
+              {loaderCircularProgress()}
 
-                <Styled.ModalText>
-                  Ops, solicitação não realizada
-                </Styled.ModalText>
+              {showInstallmentCard()}
 
-                <Styled.ModalText
-                  dangerouslySetInnerHTML={{ __html: errorMessage || '' }}
-                />
-              </Styled.ModalErrorContent>
-            </Modal>
+              {showTextTable}
+            </Styled.ResponsiveContainer>
+          )}
 
-            <Modal open={modalConfirmOpen} onClose={toggleModalConfirm}>
-              <Styled.ModalConfirmContent>
-                <Styled.ModalConfirmHello>
-                  Olá, {getToken()?.user.name}! Tudo bem?
-                  <b>Você confirma os seus dados abaixo?</b>
-                </Styled.ModalConfirmHello>
+          <Modal open={modalSuccesOpen} onClose={goToAccompaniment}>
+            <Styled.ModalSuccessContent>
+              <CheckCircle className="success-icon" />
 
-                <Styled.ModalConfirmData>
-                  email: <span>{getToken()?.user.email}</span>
-                  <br />
-                  telefone:{' '}
-                  <span>
-                    {getToken()?.user.phoneNumber?.replace(
-                      /(\d{2})(\d{5})(\d{4})/,
-                      '($1) $2-$3',
-                    )}
-                  </span>
-                </Styled.ModalConfirmData>
+              <Styled.ModalText>Solicitação enviada!</Styled.ModalText>
 
-                <Button
-                  type="button"
-                  className="confirm-button"
-                  variant="contained"
-                  onClick={confirmLoanRequest}
-                  disabled={requestingLoan}
-                >
-                  {requestingLoan ? 'Confirmando...' : 'Confirmar'}
-                </Button>
-              </Styled.ModalConfirmContent>
-            </Modal>
+              <Styled.ModalText>
+                Sua solicitação será analisada. Assim que tivermos a resposta,
+                entraremos em contato por email e por aqui. Qualquer dúvida,
+                entre em contato com RH da empresa.
+              </Styled.ModalText>
 
-            <ModalSimulateLoan />
-          </Styled.Container>
-        </Layout>
-      </RouteAccess>
+              <Button
+                type="button"
+                variant="contained"
+                className="redirect-button"
+                onClick={goToAccompaniment}
+              >
+                Acompanhar
+              </Button>
+            </Styled.ModalSuccessContent>
+          </Modal>
+
+          <Modal open={modalErrorOpen} onClose={toggleModalError}>
+            <Styled.ModalErrorContent>
+              <Cancel className="cancel-icon" />
+
+              <Styled.ModalText>
+                Ops, solicitação não realizada
+              </Styled.ModalText>
+
+              <Styled.ModalText
+                dangerouslySetInnerHTML={{ __html: errorMessage || '' }}
+              />
+            </Styled.ModalErrorContent>
+          </Modal>
+
+          <Modal open={modalConfirmOpen} onClose={toggleModalConfirm}>
+            <Styled.ModalConfirmContent>
+              <Styled.ModalConfirmHello>
+                Olá, {getToken()?.user.name}! Tudo bem?
+                <b>Você confirma os seus dados abaixo?</b>
+              </Styled.ModalConfirmHello>
+
+              <Styled.ModalConfirmData>
+                email: <span>{getToken()?.user.email}</span>
+                <br />
+                telefone:{' '}
+                <span>
+                  {getToken()?.user.phoneNumber?.replace(
+                    /(\d{2})(\d{5})(\d{4})/,
+                    '($1) $2-$3',
+                  )}
+                </span>
+              </Styled.ModalConfirmData>
+
+              <Button
+                type="button"
+                className="confirm-button"
+                variant="contained"
+                onClick={confirmLoanRequest}
+                disabled={requestingLoan}
+              >
+                {displayCorrectText}
+              </Button>
+            </Styled.ModalConfirmContent>
+          </Modal>
+
+          <ModalSimulateLoan />
+        </Styled.Container>
+      </Layout>
     );
   },
   SimulateLoanProvider,

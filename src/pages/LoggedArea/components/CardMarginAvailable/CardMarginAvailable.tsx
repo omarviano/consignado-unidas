@@ -12,6 +12,13 @@ import * as Styled from './styles';
 const CardMarginAvailable: FC = memo(() => {
   const { dataMargin } = useSimulateLoanRealTime();
 
+  const valueAvailable = () => {
+    if (dataMargin[0]?.availableValue) {
+      return formatValue(dataMargin[0]?.availableValue);
+    }
+    return 'R$ -';
+  };
+
   return (
     <Styled.Container>
       <Styled.TextUserLogged variant="h2">
@@ -26,9 +33,7 @@ const CardMarginAvailable: FC = memo(() => {
       ) : (
         <Fragment>
           <Styled.TextValueAvailable variant="h2">
-            {dataMargin[0]?.availableValue
-              ? formatValue(dataMargin[0]?.availableValue)
-              : 'R$ -'}
+            {valueAvailable()}
           </Styled.TextValueAvailable>
           <Styled.TextInformation variant="h4">
             Margem total liberada exclusivamente para você

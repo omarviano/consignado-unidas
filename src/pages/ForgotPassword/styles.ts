@@ -25,8 +25,6 @@ export const Container = styled.div`
   background: url(${ImageBackground}) center no-repeat;
   background-size: cover;
 
-  padding-bottom: 40px;
-
   .card {
     padding: 6%;
     border-radius: 8px;
@@ -150,4 +148,17 @@ export const ButtonGoBack = styled.button`
   background: none;
   border: none;
   margin-bottom: 16px;
+`;
+
+export const VersionText = styled.p`
+  margin-top: 50px;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 34.5px;
+  text-align: center;
+  color: ${({ theme }) => theme.palette.primary.contrastText};
+
+  @media (max-width: 768px) {
+    font-size: 16px;
+  }
 `;

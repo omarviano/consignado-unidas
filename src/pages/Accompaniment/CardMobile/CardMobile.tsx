@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 import { FC, useEffect, useMemo, useRef, useState } from 'react';
 import {
   KeyboardArrowDownOutlined,
@@ -93,40 +94,52 @@ const CardMobile: FC<CardMobileProps> = props => {
     [],
   );
 
-  const getLabel = (label: string, index: number) => {
-    if (index === 3) {
-      const labels = {
-        [QuotationStatus.Aprovado]: 'Empréstimo Aprovado',
-        [QuotationStatus.EmprestimoReprovadoPeloBanco]: 'Empréstimo Reprovado',
-      };
+  const verifyLabel = (label: string, index: number) => {
+    const labels = {
+      [QuotationStatus.Aprovado]: 'Empréstimo Aprovado',
+      [QuotationStatus.EmprestimoReprovadoPeloBanco]: 'Empréstimo Reprovado',
+    };
 
-      if (
-        step === QuotationStatus.RecusadoPeloUsuario ||
-        step === QuotationStatus.EmprestimoReprovadoPeloBanco
-      )
+    if (index === 3) {
+      if (step === QuotationStatus.RecusadoPeloUsuario)
         return labels[QuotationStatus.EmprestimoReprovadoPeloBanco];
 
-      if (
-        step === QuotationStatus.Aprovado ||
-        step === QuotationStatus.AssinaturaContratoPendente ||
-        step === QuotationStatus.AssinaturaContrato
-      )
+      if (step === QuotationStatus.EmprestimoReprovadoPeloBanco)
+        return labels[QuotationStatus.EmprestimoReprovadoPeloBanco];
+
+      if (step === QuotationStatus.Aprovado)
+        return labels[QuotationStatus.Aprovado];
+
+      if (step === QuotationStatus.AssinaturaContratoPendente)
+        return labels[QuotationStatus.Aprovado];
+
+      if (step === QuotationStatus.AssinaturaContrato)
         return labels[QuotationStatus.Aprovado];
 
       return labels[step] || label;
+    }
+  };
+
+  const getLabel = (label: string, index: number) => {
+    if (verifyLabel(label, index)) {
+      return verifyLabel(label, index);
     }
 
     return label;
   };
 
   const getIcon = (index: number) => {
-    if (activeStep === index) return STEP_ICON[step];
+    if (activeStep === index) {
+      return STEP_ICON[step];
+    }
 
     return STEP_ICON.default;
   };
 
   const getBackgroundColor = (index: number) => {
-    if (activeStep === index) return STEP_BACKGROUND_COLOR[step];
+    if (activeStep === index) {
+      return STEP_BACKGROUND_COLOR[step];
+    }
 
     return STEP_BACKGROUND_COLOR.default;
   };
@@ -135,6 +148,41 @@ const CardMobile: FC<CardMobileProps> = props => {
     const getHeight = ref.current.scrollHeight;
     setAccodionHeight(getHeight);
   }, [expanded]);
+
+  const expandedAccodion = () => {
+    if (expanded) {
+      return 'show';
+    }
+    return '';
+  };
+
+  const showIconKeyboardArrow = () => {
+    if (expanded) {
+      return <KeyboardArrowUpOutlined />;
+    }
+    return <KeyboardArrowDownOutlined />;
+  };
+
+  const showTimelineDot = (index: number) => {
+    if (index === 5) {
+      return (
+        <Styled.TimelineDot
+          colorBackground={getBackgroundColor(index)}
+          numberActive={activeStep}
+        >
+          {getIcon(index)}
+        </Styled.TimelineDot>
+      );
+    }
+    return (
+      <Styled.TimelineSeparator active={activeStep === index}>
+        <Styled.TimelineDot colorBackground={getBackgroundColor(index)}>
+          {getIcon(index)}
+        </Styled.TimelineDot>
+        <Styled.TimelineConnector />
+      </Styled.TimelineSeparator>
+    );
+  };
 
   return (
     <Styled.Card onClick={handleOpen}>
@@ -148,7 +196,7 @@ const CardMobile: FC<CardMobileProps> = props => {
         </Styled.StepText>
       </Styled.Header>
       <Styled.Content
-        className={expanded ? 'show' : ''}
+        className={expandedAccodion()}
         setHeight={accodionHeight}
         ref={ref}
       >
@@ -157,23 +205,7 @@ const CardMobile: FC<CardMobileProps> = props => {
             {steps.map((label, index) => (
               <>
                 <Styled.TimelineItem>
-                  {index === 5 ? (
-                    <Styled.TimelineDot
-                      colorBackground={getBackgroundColor(index)}
-                      numberActive={activeStep}
-                    >
-                      {getIcon(index)}
-                    </Styled.TimelineDot>
-                  ) : (
-                    <Styled.TimelineSeparator active={activeStep === index}>
-                      <Styled.TimelineDot
-                        colorBackground={getBackgroundColor(index)}
-                      >
-                        {getIcon(index)}
-                      </Styled.TimelineDot>
-                      <Styled.TimelineConnector />
-                    </Styled.TimelineSeparator>
-                  )}
+                  {showTimelineDot(index)}
                   <Styled.TimelineContent active={activeStep === index}>
                     {getLabel(label, index)}
                   </Styled.TimelineContent>
@@ -183,9 +215,7 @@ const CardMobile: FC<CardMobileProps> = props => {
           </Styled.Timeline>
         </div>
       </Styled.Content>
-      <Styled.IconContainer>
-        {expanded ? <KeyboardArrowUpOutlined /> : <KeyboardArrowDownOutlined />}
-      </Styled.IconContainer>
+      <Styled.IconContainer>{showIconKeyboardArrow()}</Styled.IconContainer>
     </Styled.Card>
   );
 };

@@ -16,4 +16,6 @@ export const RegistrationServices = {
     api.post(`/auth/validate-cpf`, { cpf }),
   validateEmail: (email: string): Promise<AxiosResponse<ResponseData>> =>
     api.post(`/auth/validate-email`, { email }),
+  validatePassword: (password: string): Promise<AxiosResponse<ResponseData>> =>
+    api.post(`/auth/validate-password`, password),
 };

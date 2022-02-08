@@ -1,19 +1,20 @@
 import React, { useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useHistory } from 'react-router-dom';
 import { KeyboardArrowDown } from '@mui/icons-material';
-import { useHistory } from 'react-router-dom';
 
 import { ReactComponent as MenuIcon } from 'assets/icons/menu.svg';
 
 import Logo from 'assets/images/logo.png';
 
+import { SessionModal } from 'components/SessionModal';
 import { Modal } from 'components/Modal';
 import { useAuth } from 'hooks/auth';
 import { getToken } from 'hooks/auth/storage';
-import useModal from 'hooks/modal';
+import useModal from 'hooks/useModal';
 import { RoutingPath } from 'utils/routing';
 import { clearStorage } from 'utils/storage';
 import { useHeaderMobile } from 'hooks/headerMobile';
+import version from 'utils/getVersion';
 import { LeftMenu } from './LeftMenu';
 
 import { LayoutProps } from './props';
@@ -125,6 +126,9 @@ const Layout: React.FC<LayoutProps> = ({ children, containerStyles }) => {
               Brasil, nos termos da Resolução nº. 3.954, de 24 de fevereiro de
               2011.
             </Styled.AboutText>
+            <Styled.VersionText className="desktop">
+              Versão {version}
+            </Styled.VersionText>
           </Styled.About>
 
           <Styled.FooterBox>
@@ -134,6 +138,9 @@ const Layout: React.FC<LayoutProps> = ({ children, containerStyles }) => {
             <Styled.FooterText className="copyright">
               &copy; 2022 UNIDAS - Todos os direitos reservados.
             </Styled.FooterText>
+            <Styled.VersionText className="mobile">
+              Versão {version}
+            </Styled.VersionText>
           </Styled.FooterBox>
         </Styled.Footer>
       </Styled.Page>
@@ -161,6 +168,8 @@ const Layout: React.FC<LayoutProps> = ({ children, containerStyles }) => {
           </Styled.DivButtons>
         </Styled.Content>
       </Modal>
+
+      {isAuthenticated && <SessionModal />}
     </>
   );
 };

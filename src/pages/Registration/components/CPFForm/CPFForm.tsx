@@ -11,11 +11,12 @@ import { CPFFormProps } from './props';
 
 const CPFForm: React.FC<CPFFormProps> = ({ onSubmit }) => (
   <Formik
-    initialValues={{}}
+    initialValues={{ cpf: '' }}
     onSubmit={onSubmit}
     validationSchema={schema}
     validateOnBlur={false}
     validateOnChange
+    validateOnMount
   >
     <StepTitle>
       Para começar a simulação, precisamos que informe alguns dados ok? É bem
@@ -35,6 +36,7 @@ const CPFForm: React.FC<CPFFormProps> = ({ onSubmit }) => (
 
     <ContinueButton
       type="submit"
+      data-testid="submit-button"
       size="small"
       variant="contained"
       color="primary"

@@ -3,7 +3,7 @@ import { Checkbox } from '@mui/material';
 import { Warning } from '@mui/icons-material';
 
 import { RoutingPath } from 'utils/routing';
-import useModal from 'hooks/modal';
+import useModal from 'hooks/useModal';
 
 import { ModalMessage } from 'components/ModalMessage';
 import { Formik } from 'components/Formik';
@@ -36,8 +36,8 @@ const BankDataConfirmation: React.FC<BankDataConfirmationProps> = ({
   return (
     <Styled.BankDetailsConfirmationContainer>
       <Formik initialValues={{}} onSubmit={handleSubmit}>
-        <Styled.Hello>Olá {username}!</Styled.Hello>
-        <Styled.Email>{email}</Styled.Email>
+        <Styled.Hello id="username">Olá {username}!</Styled.Hello>
+        <Styled.Email id="email">{email}</Styled.Email>
 
         <Styled.BankDetailsConfirmationTitle>
           Você deseja informar os dados complementares e os dados bancários para
@@ -53,6 +53,7 @@ const BankDataConfirmation: React.FC<BankDataConfirmationProps> = ({
           <Checkbox
             onChange={e => setAgree(e.target.checked)}
             style={{ marginLeft: -8 }}
+            data-testid="check"
           />
 
           <Styled.TermsText>
@@ -63,7 +64,12 @@ const BankDataConfirmation: React.FC<BankDataConfirmationProps> = ({
         </Styled.IAgreeTermsContainer>
 
         <Styled.IAgreeTermsContainerButtons>
-          <Button type="submit" variant="contained" color="primary">
+          <Button
+            type="submit"
+            variant="contained"
+            color="primary"
+            data-testid="yesButton"
+          >
             Sim
           </Button>
 
@@ -73,6 +79,7 @@ const BankDataConfirmation: React.FC<BankDataConfirmationProps> = ({
             color="primary"
             onClick={() => (agree ? onClickNoButton() : toggleModalMessage())}
             disabled={submitting}
+            data-testid="noButton"
           >
             {submitting ? 'Cadastrando...' : 'Agora não'}
           </Button>

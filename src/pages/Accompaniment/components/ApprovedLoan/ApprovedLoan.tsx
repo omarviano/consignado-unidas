@@ -3,7 +3,7 @@ import { GridColumns } from '@mui/x-data-grid';
 import { formatDate } from 'utils/formatDate';
 import { formatValue } from 'utils/formatValue';
 import { Table } from 'components/Table';
-import useModal from 'hooks/modal';
+import useModal from 'hooks/useModal';
 import { getToken } from 'hooks/auth/storage';
 import { Modal } from 'components/Modal';
 import { Formik } from 'components/Formik';
@@ -18,12 +18,12 @@ import { useHistory } from 'react-router-dom';
 import { RoutingPath } from 'utils/routing';
 import { LoanDataProps } from 'pages/Accompaniment/models/loanData';
 import { Autocomplete } from 'components/Autocomplete';
-import useViaCEP from 'hooks/viaCEP';
+import useViaCEP from 'hooks/useViaCEP';
 import { AxiosError } from 'axios';
 import { Document } from 'utils/document';
 import { FormikProps } from 'formik';
 import { Button } from 'components/Buttons/Button';
-import useWindowDimensions from 'hooks/windowDimensions';
+import useWindowDimensions from 'hooks/useWindowDimensions';
 import { generateRandom } from 'utils/generateRandom';
 import { UserDataProps, FormProps } from '../../models/userData';
 import { schema, reasonsSchema } from './schema';
@@ -49,7 +49,7 @@ const ApprovedLoan: FC<ApprovedLoanProps> = ({ onApproved }) => {
   const { fetchCEP, notFound, address } = useViaCEP();
   const [cep, setCep] = useState<string>();
   const [loading, setLoading] = useState(false);
-  const [errorMessage, setErrorMessage] = useState<string>();
+  const [errorMessage, setErrorMessage] = useState<string>('ERROR');
   const [userData, setUserData] = useState<FormProps>();
   const [totalCharacters, setTotalCharacters] = useState(0);
   const [reasons, setReasons] = useState<
@@ -68,7 +68,7 @@ const ApprovedLoan: FC<ApprovedLoanProps> = ({ onApproved }) => {
           name: response?.name,
           nationality: response?.nationality,
           professional: response?.professional,
-          number: response?.number || '',
+          number: response?.number,
           complement: response?.complement,
           bankCode: String(response?.bankCode),
           agency: response?.agency,
@@ -112,7 +112,21 @@ const ApprovedLoan: FC<ApprovedLoanProps> = ({ onApproved }) => {
     } = e;
 
     const reasonSelected = reasons.find(reason => reason.value === value);
-    setReasonDescriptionRequired(reasonSelected?.required || false);
+    setReasonDescriptionRequired(!!reasonSelected?.required);
+  };
+
+  const displayValue = (data?: string | null) => {
+    if (!data) return '-';
+
+    return data;
+  };
+
+  const formatPercent = (value?: number) =>
+    value ? `${value.toFixed(2)}%` : '-';
+
+  const formatValueTwoDecimalPlaces = (value?: number) => {
+    if (value === undefined) return '-';
+    return value.toString().padStart(2, '0');
   };
 
   useEffect(() => {
@@ -137,18 +151,16 @@ const ApprovedLoan: FC<ApprovedLoanProps> = ({ onApproved }) => {
     const data = [
       {
         id: generateRandom(),
-        valueFormatted: loanData?.installmentValue
-          ? formatValue(Number(loanData?.installmentValue))
-          : '-',
-        effectiveCostPerYearFormatted: loanData?.installmentEffectiveCostPerYear
-          ? `${loanData?.installmentEffectiveCostPerYear}%`
-          : '-',
-        feesPerMonthFormatted: loanData?.installmentFeesPerMonth
-          ? `${loanData?.installmentFeesPerMonth?.toFixed(2)}%`
-          : '-',
-        quantityFormatted: loanData?.installmentQuantity
-          ? loanData?.installmentQuantity?.toString().padStart(2, '0')
-          : '-',
+        valueFormatted: displayValue(
+          formatValue(Number(loanData?.installmentValue)),
+        ),
+        effectiveCostPerYearFormatted: formatPercent(
+          loanData?.installmentEffectiveCostPerYear,
+        ),
+        feesPerMonthFormatted: formatPercent(loanData?.installmentFeesPerMonth),
+        quantityFormatted: formatValueTwoDecimalPlaces(
+          loanData?.installmentQuantity,
+        ),
       },
     ];
 
@@ -199,7 +211,7 @@ const ApprovedLoan: FC<ApprovedLoanProps> = ({ onApproved }) => {
       setLoading(true);
 
       const { response } = error as AxiosError;
-      setErrorMessage(response?.data?.message || 'ERRO');
+      setErrorMessage(response?.data?.message);
       toggleModalError();
     } finally {
       setLoading(false);
@@ -231,7 +243,7 @@ const ApprovedLoan: FC<ApprovedLoanProps> = ({ onApproved }) => {
     } catch (error) {
       setLoading(true);
       const { response } = error as AxiosError;
-      setErrorMessage(response?.data?.message || 'ERRO');
+      setErrorMessage(response?.data?.message);
       toggleModalError();
     } finally {
       setLoading(false);
@@ -286,13 +298,46 @@ const ApprovedLoan: FC<ApprovedLoanProps> = ({ onApproved }) => {
     [],
   );
 
+  const content = () =>
+    width && width > 920 ? (
+      <Table
+        disableBoxShadow
+        checkboxSelection={false}
+        columns={columns}
+        rows={tableData}
+      />
+    ) : (
+      <InstallmentCard data={tableData} />
+    );
+
+  const inputCepHelperText = () =>
+    notFound ? 'CEP não encontrado' : undefined;
+
+  const addressInputDisabled = (data?: string) =>
+    cep?.length !== 9 || notFound || !!data;
+
+  const submitButtonText = (text: string, loadingText: string) =>
+    loading ? loadingText : text;
+
+  const reasonPlaceholder = () =>
+    reasonDescriptionRequired
+      ? 'Por favor, descreva porque você está recusando'
+      : 'Caso queira, descrever mais sobre o motivo... ';
+
+  const reasonError = () => reasonDescriptionRequired && totalCharacters === 0;
+
+  const reasonHelperText = () =>
+    reasonDescriptionRequired && totalCharacters === 0
+      ? 'Campo Obrigatório'
+      : undefined;
+
   return (
     <Styled.Card>
       <Styled.LoanInformation variant="h2">
         Olá {getToken()?.user.name}! Tudo bem? Temos uma ótima notícia! <br /> A
         sua proposta de empréstimo foi{' '}
         <Styled.Approved>
-          {loanData?.quotationStatus?.description || '-'}
+          {displayValue(loanData?.quotationStatus?.description)}
         </Styled.Approved>
         !
       </Styled.LoanInformation>
@@ -300,14 +345,14 @@ const ApprovedLoan: FC<ApprovedLoanProps> = ({ onApproved }) => {
       <Styled.TotalAmountOfLoanRequested variant="h2">
         Valor total do empréstimo solicitado:{' '}
         <Styled.TextBlack>
-          {loanData?.value ? formatValue(Number(loanData?.value)) : 'R$ -'}
+          {displayValue(formatValue(Number(loanData?.value)))}
         </Styled.TextBlack>
       </Styled.TotalAmountOfLoanRequested>
 
       <Styled.InstallmentDueDate variant="h2">
         Data de Vencimento da 1ª parcela:{' '}
         <Styled.TextBlack>
-          {loanData?.dueDate ? formatDate(loanData?.dueDate) : '-'}
+          {displayValue(formatDate(loanData?.dueDate))}
         </Styled.TextBlack>
       </Styled.InstallmentDueDate>
 
@@ -316,16 +361,8 @@ const ApprovedLoan: FC<ApprovedLoanProps> = ({ onApproved }) => {
         acordo com a data do aceite.
       </Styled.ProposalInformation>
 
-      {width && width > 920 ? (
-        <Table
-          disableBoxShadow
-          checkboxSelection={false}
-          columns={columns}
-          rows={tableData}
-        />
-      ) : (
-        <InstallmentCard data={tableData} />
-      )}
+      {content()}
+
       <Styled.DivButtons>
         <Styled.ButtonAcceptProposal
           variant="contained"
@@ -397,7 +434,7 @@ const ApprovedLoan: FC<ApprovedLoanProps> = ({ onApproved }) => {
                   variant="outlined"
                   onKeyUp={handleInput}
                   error={notFound}
-                  helperText={notFound ? 'CEP não encontrado' : undefined}
+                  helperText={inputCepHelperText()}
                 />
               </Grid>
               <Grid item xs={12} sm={3}>
@@ -406,9 +443,7 @@ const ApprovedLoan: FC<ApprovedLoanProps> = ({ onApproved }) => {
                   label="Endereço"
                   placeholder="Informe seu endereço"
                   variant="outlined"
-                  disabled={
-                    cep?.length !== 9 || notFound || !!address?.logradouro
-                  }
+                  disabled={addressInputDisabled(address?.logradouro)}
                 />
               </Grid>
               <Grid item xs={12} sm={3}>
@@ -425,7 +460,7 @@ const ApprovedLoan: FC<ApprovedLoanProps> = ({ onApproved }) => {
                   label="Bairro"
                   placeholder="Informe seu bairro"
                   variant="outlined"
-                  disabled={cep?.length !== 9 || notFound || !!address?.bairro}
+                  disabled={addressInputDisabled(address?.bairro)}
                 />
               </Grid>
             </Styled.GridContainer>
@@ -445,9 +480,7 @@ const ApprovedLoan: FC<ApprovedLoanProps> = ({ onApproved }) => {
                   label="Cidade"
                   placeholder="Informe sua cidade"
                   variant="outlined"
-                  disabled={
-                    cep?.length !== 9 || notFound || !!address?.localidade
-                  }
+                  disabled={addressInputDisabled(address?.localidade)}
                 />
               </Grid>
               <Grid item xs={12} sm={4}>
@@ -458,7 +491,7 @@ const ApprovedLoan: FC<ApprovedLoanProps> = ({ onApproved }) => {
                     label="Estado"
                     placeholder="Selecione seu estado"
                     variant="outlined"
-                    disabled={cep?.length !== 9 || notFound || !!address?.uf}
+                    disabled={addressInputDisabled(address?.uf)}
                   />
                 </Styled.DivSelect>
               </Grid>
@@ -520,7 +553,7 @@ const ApprovedLoan: FC<ApprovedLoanProps> = ({ onApproved }) => {
               variant="contained"
               disabled={loading}
             >
-              {loading ? 'Enviando...' : 'Enviar'}
+              {submitButtonText('Enviar', 'Enviando...')}
             </Styled.ButtonToSend>
           </Styled.ContainerModal>
         </Formik>
@@ -606,31 +639,23 @@ const ApprovedLoan: FC<ApprovedLoanProps> = ({ onApproved }) => {
               id="reasonDescription"
               name="reasonDescription"
               label=""
-              placeholder={
-                reasonDescriptionRequired
-                  ? 'Por favor, descreva porque você está recusando'
-                  : 'Caso queira, descrever mais sobre o motivo... '
-              }
+              placeholder={reasonPlaceholder()}
               variant="outlined"
               multiline
               rows={8}
               inputProps={{
-                maxLength: 100,
+                maxLength: 300,
               }}
               onInput={handleInputTextArea}
-              error={reasonDescriptionRequired && totalCharacters === 0}
-              helperText={
-                reasonDescriptionRequired && totalCharacters === 0
-                  ? 'Campo Obrigatório'
-                  : undefined
-              }
+              error={reasonError()}
+              helperText={reasonHelperText()}
             />
             <Styled.TotalCharacters>
-              Máximo de carateres {totalCharacters}/100
+              Máximo de carateres {totalCharacters}/300
             </Styled.TotalCharacters>
 
             <Button type="submit" variant="contained" disabled={loading}>
-              {loading ? 'Enviando...' : 'Enviar'}
+              {submitButtonText('Enviar', 'Enviando...')}
             </Button>
           </Formik>
         </Styled.ReasonRefusesModal>

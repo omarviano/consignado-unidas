@@ -10,7 +10,11 @@ import * as Styled from './styles';
 import { CompleteNameFormProps } from './props';
 
 const CompleteNameForm: React.FC<CompleteNameFormProps> = ({ onSubmit }) => (
-  <Formik initialValues={{}} validationSchema={schema} onSubmit={onSubmit}>
+  <Formik
+    initialValues={{ name: '' }}
+    validationSchema={schema}
+    onSubmit={onSubmit}
+  >
     <StepSmallTitle>Qual o seu nome completo?</StepSmallTitle>
 
     <Styled.NameInput
@@ -19,6 +23,9 @@ const CompleteNameForm: React.FC<CompleteNameFormProps> = ({ onSubmit }) => (
       label="Digite seu nome completo"
       placeholder="Digite seu nome completo"
       variant="outlined"
+      FormHelperTextProps={{
+        id: 'error',
+      }}
     />
 
     <ContinueButton

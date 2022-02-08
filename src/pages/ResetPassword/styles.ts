@@ -21,7 +21,6 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  padding-bottom: 48px;
 
   background: url(${ImageBackground}) center no-repeat;
   background-size: cover;
@@ -106,6 +105,19 @@ export const ModalTitle = styled(TypographyStyles)`
   color: ${({ theme }) => theme.palette.grey[100]};
 
   @media (max-width: 360px) {
+    font-size: 16px;
+  }
+`;
+
+export const VersionText = styled.p`
+  margin-top: 50px;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 34.5px;
+  text-align: center;
+  color: ${({ theme }) => theme.palette.primary.contrastText};
+
+  @media (max-width: 768px) {
     font-size: 16px;
   }
 `;

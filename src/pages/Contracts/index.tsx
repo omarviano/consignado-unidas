@@ -1,17 +1,17 @@
-import React, { useMemo, useState, useEffect } from 'react';
+import React, { useMemo, useState, useEffect, useCallback } from 'react';
 import { GridColumns } from '@mui/x-data-grid';
 import { useHistory } from 'react-router-dom';
 import CircularProgress from '@mui/material/CircularProgress';
 
 import { RoutingPath } from 'utils/routing';
 
+import { Tooltip } from 'components/Tooltip';
 import { Layout } from 'components/Layout';
-import { RouteAccess } from 'components/RouteAccess';
 import { Button } from 'components/Buttons/Button';
 import { Table } from 'components/Table';
 import { NoDataTable } from 'components/NoDataTable';
 
-import useWindowDimensions from 'hooks/windowDimensions';
+import useWindowDimensions from 'hooks/useWindowDimensions';
 import { formatDate } from 'utils/formatDate';
 import { formatValue } from 'utils/formatValue';
 import { withAITracking } from '@microsoft/applicationinsights-react-js';
@@ -28,6 +28,14 @@ const Contracts: React.FC = () => {
   const [tableData, setTableData] = useState<ContractFormatted[]>([]);
   const [fetchingContracts, setFetchingContracts] = useState(true);
   const { width } = useWindowDimensions();
+
+  const goToDetails = useCallback(
+    (id: string) => {
+      history.push(`/contratos/${id}`);
+    },
+    [history],
+  );
+
   const columns = useMemo<GridColumns>(
     () => [
       {
@@ -45,7 +53,7 @@ const Contracts: React.FC = () => {
         disableReorder: true,
         disableColumnMenu: true,
         headerAlign: 'center',
-        width: 120,
+        width: 160,
       },
       {
         field: 'installments',
@@ -53,7 +61,7 @@ const Contracts: React.FC = () => {
         hideSortIcons: true,
         disableColumnMenu: true,
         headerAlign: 'center',
-        width: 160,
+        width: 140,
       },
       {
         field: 'value',
@@ -61,7 +69,7 @@ const Contracts: React.FC = () => {
         hideSortIcons: true,
         disableColumnMenu: true,
         headerAlign: 'center',
-        width: 240,
+        width: 220,
       },
       {
         field: 'installmentValue',
@@ -78,6 +86,12 @@ const Contracts: React.FC = () => {
         disableColumnMenu: true,
         headerAlign: 'center',
         width: 127,
+        align: 'center',
+        renderCell: tableData => (
+          <Tooltip placement="top" arrow title={tableData.row.status}>
+            {tableData.row.status}
+          </Tooltip>
+        ),
       },
       {
         field: 'details',
@@ -86,12 +100,17 @@ const Contracts: React.FC = () => {
         disableColumnMenu: true,
         headerAlign: 'center',
         width: 168,
-        renderCell: () => (
-          <Styled.TableButton variant="contained">Acessar</Styled.TableButton>
+        renderCell: ({ row }) => (
+          <Styled.TableButton
+            variant="contained"
+            onClick={() => goToDetails(row.id)}
+          >
+            Acessar
+          </Styled.TableButton>
         ),
       },
     ],
-    [],
+    [goToDetails],
   );
 
   const goToHome = () => {
@@ -139,56 +158,58 @@ const Contracts: React.FC = () => {
   }, []);
 
   return (
-    <RouteAccess typesOfAccess="auth">
-      <Layout
-        containerStyles={{
-          maxWidth: '1320px',
-        }}
-      >
-        <Styled.Container>
-          <Styled.Box>
-            <Styled.Header>
-              <Styled.Breadcrumb>
-                <Styled.BreadcrumbRoot>Meus contratos</Styled.BreadcrumbRoot>
-                <span>{'>'}</span>
-                <Styled.BreadcrumbPage>Contrato</Styled.BreadcrumbPage>
-              </Styled.Breadcrumb>
+    <Layout
+      containerStyles={{
+        maxWidth: '1286px',
+      }}
+    >
+      <Styled.Container>
+        <Styled.Box>
+          <Styled.Header>
+            <Styled.Breadcrumb>
+              <Styled.BreadcrumbRoot>Meus contratos</Styled.BreadcrumbRoot>
+              <span>{'>'}</span>
+              <Styled.BreadcrumbPage>Contrato</Styled.BreadcrumbPage>
+            </Styled.Breadcrumb>
 
-              <Styled.ButtonContainer
-                bottomOfPage={bottomOfPage}
-                className="button-container"
-              >
-                <Button type="button" variant="outlined" onClick={goToHome}>
-                  Simular novo empréstimo
-                </Button>
-              </Styled.ButtonContainer>
-            </Styled.Header>
+            <Styled.ButtonContainer
+              bottomOfPage={bottomOfPage}
+              className="button-container"
+            >
+              <Button type="button" variant="outlined" onClick={goToHome}>
+                Simular novo empréstimo
+              </Button>
+            </Styled.ButtonContainer>
+          </Styled.Header>
 
-            {width && width > 720 ? (
-              <Table
-                loading={fetchingContracts}
-                columns={columns}
-                rows={tableData}
-                noData={NoContracts}
-                rowHeight={88}
-              />
-            ) : (
-              <Styled.ResponsiveContainer noData={tableData.length === 0}>
-                {tableData.map(item => (
-                  <ContractCard key={item.id} data={item} />
-                ))}
+          {width && width > 720 ? (
+            <Table
+              loading={fetchingContracts}
+              columns={columns}
+              rows={tableData}
+              noData={NoContracts}
+              rowHeight={88}
+            />
+          ) : (
+            <Styled.ResponsiveContainer noData={tableData.length === 0}>
+              {tableData.map(item => (
+                <ContractCard
+                  key={item.id}
+                  data={item}
+                  onClickButton={goToDetails}
+                />
+              ))}
 
-                {fetchingContracts && <CircularProgress className="loading" />}
+              {fetchingContracts && <CircularProgress className="loading" />}
 
-                {tableData.length === 0 && !fetchingContracts && (
-                  <Styled.NoData>Você ainda não possui contratos</Styled.NoData>
-                )}
-              </Styled.ResponsiveContainer>
-            )}
-          </Styled.Box>
-        </Styled.Container>
-      </Layout>
-    </RouteAccess>
+              {tableData.length === 0 && !fetchingContracts && (
+                <Styled.NoData>Você ainda não possui contratos</Styled.NoData>
+              )}
+            </Styled.ResponsiveContainer>
+          )}
+        </Styled.Box>
+      </Styled.Container>
+    </Layout>
   );
 };
 
