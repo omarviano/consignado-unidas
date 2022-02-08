@@ -1,0 +1,1 @@
+export { CNPJForm } from './CNPJForm';
