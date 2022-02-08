@@ -277,7 +277,7 @@ const SimulateLoan: FC = withContext(
               </Styled.ContainerButton>
             </>
           ) : (
-            <Styled.ResponsiveContainer>
+            <Styled.ResponsiveContainer data-testid="cards-container">
               <LoanDetails />
 
               {loaderCircularProgress()}
