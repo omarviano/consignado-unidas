@@ -47,6 +47,12 @@ describe('Component: <Registration />', () => {
       data: [{ id: '3', description: 'Banco da Amazônia S.A.' }],
     });
     mock.onPost('auth/validate-cpf', { cpf: '11111111111' }).reply(200);
+    mock
+      .onPost('/auth/validate-cnpj-info', {
+        cpf: '11111111111',
+        cnpj: '40515554000146',
+      })
+      .reply(200);
     mock.onPost('/auth/validate-personal-info').reply(200);
     mock
       .onPost('/auth/validate-email', { email: 'email_valido@email.com' })
@@ -79,7 +85,7 @@ describe('Component: <Registration />', () => {
     const cnpjForm = screen.getByTestId('cnpj-form');
 
     const cnpjInput = screen.getByTestId('cnpj');
-    fireEvent.change(cnpjInput, { target: { value: '75.647.653/0001-66' } });
+    fireEvent.change(cnpjInput, { target: { value: '40.515.554/0001-46' } });
 
     fireEvent.submit(cnpjForm);
 
@@ -195,6 +201,12 @@ describe('Component: <Registration />', () => {
       data: [{ id: '3', description: 'Banco da Amazônia S.A.' }],
     });
     mock.onPost('auth/validate-cpf', { cpf: '11111111111' }).reply(200);
+    mock
+      .onPost('/auth/validate-cnpj-info', {
+        cpf: '11111111111',
+        cnpj: '40515554000146',
+      })
+      .reply(200);
     mock.onPost('/auth/validate-personal-info').reply(200);
     mock
       .onPost('/auth/validate-email', { email: 'email_valido@email.com' })
@@ -236,7 +248,7 @@ describe('Component: <Registration />', () => {
     const cnpjForm = screen.getByTestId('cnpj-form');
 
     const cnpjInput = screen.getByTestId('cnpj');
-    fireEvent.change(cnpjInput, { target: { value: '75.647.653/0001-66' } });
+    fireEvent.change(cnpjInput, { target: { value: '40.515.554/0001-46' } });
 
     fireEvent.submit(cnpjForm);
 
@@ -405,6 +417,12 @@ describe('Component: <Registration />', () => {
       data: [{ id: '3', description: 'Banco da Amazônia S.A.' }],
     });
     mock.onPost('auth/validate-cpf', { cpf: '11111111111' }).reply(200);
+    mock
+      .onPost('/auth/validate-cnpj-info', {
+        cpf: '11111111111',
+        cnpj: '40515554000146',
+      })
+      .reply(200);
     mock.onPost('/auth/validate-personal-info').reply(400, {
       message: 'Mensagem de erro da API (/auth/validate-personal-info)',
     });
@@ -434,7 +452,7 @@ describe('Component: <Registration />', () => {
     const cnpjForm = screen.getByTestId('cnpj-form');
 
     const cnpjInput = screen.getByTestId('cnpj');
-    fireEvent.change(cnpjInput, { target: { value: '75.647.653/0001-66' } });
+    fireEvent.change(cnpjInput, { target: { value: '40.515.554/0001-46' } });
 
     fireEvent.submit(cnpjForm);
 
@@ -494,6 +512,12 @@ describe('Component: <Registration />', () => {
       data: [{ id: '3', description: 'Banco da Amazônia S.A.' }],
     });
     mock.onPost('auth/validate-cpf', { cpf: '11111111111' }).reply(200);
+    mock
+      .onPost('/auth/validate-cnpj-info', {
+        cpf: '11111111111',
+        cnpj: '40515554000146',
+      })
+      .reply(200);
     mock.onPost('/auth/validate-personal-info').reply(200);
     mock
       .onPost('/auth/validate-email', { email: 'email_valido@email.com' })
@@ -537,7 +561,7 @@ describe('Component: <Registration />', () => {
     const cnpjForm = screen.getByTestId('cnpj-form');
 
     const cnpjInput = screen.getByTestId('cnpj');
-    fireEvent.change(cnpjInput, { target: { value: '75.647.653/0001-66' } });
+    fireEvent.change(cnpjInput, { target: { value: '40.515.554/0001-46' } });
 
     fireEvent.submit(cnpjForm);
 

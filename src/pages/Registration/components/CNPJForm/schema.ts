@@ -8,11 +8,14 @@ const schema = Yup.object().shape({
   cnpj: Yup.string()
     .required('Campo obrigatório')
     .min(18, 'CNPJ incompleto')
-    .test('CNPJ_validation', async (cnpj, { createError, path }) => {
-      if (!cnpj || cnpj.length !== 14) return false;
+    .test('CNPJ_validation', async (cnpj, { createError, path, parent }) => {
+      if (!cnpj || cnpj.length !== 18) return false;
 
       try {
-        await RegistrationServices.validateCPF(Document.removeMask(cnpj));
+        await RegistrationServices.validateCNPJ(
+          Document.removeMask(cnpj),
+          Document.removeMask(parent.cpf),
+        );
 
         return true;
       } catch (error) {

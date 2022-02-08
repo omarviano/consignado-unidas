@@ -44,7 +44,7 @@ describe('Component: <CNPJForm />', () => {
 
     await waitFor(async () => {
       expect(container.querySelector('#cnpj-error')?.textContent).toBe(
-        'Data de nascimento futura não é permitida',
+        'Campo obrigatório',
       );
     });
   });
@@ -61,8 +61,8 @@ describe('Component: <CNPJForm />', () => {
     fireEvent.focusOut(input);
 
     await waitFor(async () => {
-      expect(container.querySelector('cnpj-error')?.textContent).toBe(
-        'Data de nascimento futura não é permitida',
+      expect(container.querySelector('#cnpj-error')?.textContent).toBe(
+        'CNPJ incompleto',
       );
     });
   });
@@ -84,34 +84,37 @@ describe('Component: <CNPJForm />', () => {
     });
   });
 
-  test('should be able to show user not found', async () => {
+  test('should be able to validate data', async () => {
+    const mock = new MockAdapter(api);
+    mock
+      .onPost('/auth/validate-cnpj-info', {
+        cpf: '11111111111',
+        cnpj: '40515554000147',
+      })
+      .reply(400, {
+        message: 'Mensagem de erro da API',
+      });
+
     const onSubmit = jest.fn();
 
-    render(
+    const { container } = render(
       <Providers>
-        <CNPJForm data={{}} onSubmit={() => null} />
+        <CNPJForm data={{ cpf: '111.111.111-11' }} onSubmit={() => null} />
       </Providers>,
     );
-
-    const mock = new MockAdapter(api, { delayResponse: 200 });
-    mock.onPost('auth/validate-cpf', { cpf: '11111111111' }).reply(400, {
-      success: false,
-      errors: ['CPF: Usuário não encontrado.'],
-      message: 'Usuário não encontrado.',
-      statusCode: 400,
-      data: null,
-    });
 
     const form = screen.getByTestId('cnpj-form');
 
     const input = screen.getByTestId('cnpj');
-    fireEvent.change(input, { target: { value: '111.111.111-11' } });
+    fireEvent.change(input, { target: { value: '40.515.554/0001-47' } });
     fireEvent.focusOut(input);
 
     fireEvent.submit(form);
 
     await waitFor(async () => {
-      expect(screen.getByText('Usuário não encontrado.')).toBeDefined();
+      expect(container.querySelector('#cnpj-error')?.textContent).toBe(
+        'Mensagem de erro da API',
+      );
       expect(onSubmit).not.toBeCalled();
     });
   });
@@ -119,19 +122,24 @@ describe('Component: <CNPJForm />', () => {
   test('should be able to submit form data', async () => {
     const onSubmit = jest.fn();
 
+    const mock = new MockAdapter(api);
+    mock
+      .onPost('/auth/validate-cnpj-info', {
+        cpf: '11111111111',
+        cnpj: '40515554000146',
+      })
+      .reply(200);
+
     render(
       <Providers>
-        <CNPJForm data={{}} onSubmit={() => null} />
+        <CNPJForm data={{ cpf: '111.111.111-11' }} onSubmit={onSubmit} />
       </Providers>,
     );
-
-    const mock = new MockAdapter(api, { delayResponse: 200 });
-    mock.onPost('auth/validate-cpf', { cpf: '11111111111' }).reply(200);
 
     const form = screen.getByTestId('cnpj-form');
 
     const input = screen.getByTestId('cnpj');
-    fireEvent.change(input, { target: { value: '111.111.111-11' } });
+    fireEvent.change(input, { target: { value: '40.515.554/0001-46' } });
     fireEvent.focusOut(input);
 
     fireEvent.submit(form);

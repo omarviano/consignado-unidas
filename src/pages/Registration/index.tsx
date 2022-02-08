@@ -84,6 +84,7 @@ const Registration: React.FC = () => {
       await RegistrationServices.register({
         ...data,
         cpf: Document.removeMask(data.cpf),
+        cnpj: Document.removeMask(data.cnpj),
         phoneNumber: Document.removeMask(data.phoneNumber),
         accountNumber: `${data.accountNumber}${data.digit}`,
       });

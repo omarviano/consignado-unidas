@@ -14,6 +14,11 @@ export const RegistrationServices = {
     api.post(`/auth/validate-personal-info`, data),
   validateCPF: (cpf: string): Promise<AxiosResponse<ResponseData>> =>
     api.post(`/auth/validate-cpf`, { cpf }),
+  validateCNPJ: (
+    cnpj: string,
+    cpf: string,
+  ): Promise<AxiosResponse<ResponseData>> =>
+    api.post(`/auth/validate-cnpj-info`, { cnpj, cpf }),
   validateEmail: (email: string): Promise<AxiosResponse<ResponseData>> =>
     api.post(`/auth/validate-email`, { email }),
   validatePassword: (password: string): Promise<AxiosResponse<ResponseData>> =>

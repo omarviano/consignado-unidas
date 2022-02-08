@@ -1,5 +1,6 @@
 export interface Register {
   cpf: string;
+  cnpj: string;
   name: string;
   email: string;
   password: string;
