@@ -104,7 +104,9 @@
       "src/pages/**/*.tsx",
       "src/components/**/*.tsx",
       "src/hooks/*.tsx",
+      "src/hooks/*.ts",
       "src/utils/*.ts",
+      "src/hooks/**/*.tsx",
       "!src/hooks/index.tsx"
     ]
   },
