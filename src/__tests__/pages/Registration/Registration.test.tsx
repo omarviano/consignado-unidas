@@ -47,6 +47,12 @@ describe('Component: <Registration />', () => {
       data: [{ id: '3', description: 'Banco da Amazônia S.A.' }],
     });
     mock.onPost('auth/validate-cpf', { cpf: '11111111111' }).reply(200);
+    mock
+      .onPost('/auth/validate-cnpj-info', {
+        cpf: '11111111111',
+        cnpj: '40515554000146',
+      })
+      .reply(200);
     mock.onPost('/auth/validate-personal-info').reply(200);
     mock
       .onPost('/auth/validate-email', { email: 'email_valido@email.com' })
@@ -72,7 +78,21 @@ describe('Component: <Registration />', () => {
     await new Promise(r => setTimeout(r, 200));
 
     await waitFor(() => {
-      expect(screen.getByTestId('step').textContent).toBe('2/8');
+      expect(screen.getByTestId('step').textContent).toBe('2/9');
+    });
+
+    // Informing the CNPJ
+    const cnpjForm = screen.getByTestId('cnpj-form');
+
+    const cnpjInput = screen.getByTestId('cnpj');
+    fireEvent.change(cnpjInput, { target: { value: '40.515.554/0001-46' } });
+
+    fireEvent.submit(cnpjForm);
+
+    await new Promise(r => setTimeout(r, 200));
+
+    await waitFor(() => {
+      expect(screen.getByTestId('step').textContent).toBe('3/9');
     });
 
     // Informing the Name
@@ -89,7 +109,7 @@ describe('Component: <Registration />', () => {
     await new Promise(r => setTimeout(r, 200));
 
     await waitFor(() => {
-      expect(screen.getByTestId('step').textContent).toBe('3/8');
+      expect(screen.getByTestId('step').textContent).toBe('4/9');
     });
 
     // Informing the BirthDate
@@ -104,7 +124,7 @@ describe('Component: <Registration />', () => {
     await new Promise(r => setTimeout(r, 2000));
 
     await waitFor(() => {
-      expect(screen.getByTestId('step').textContent).toBe('4/8');
+      expect(screen.getByTestId('step').textContent).toBe('5/9');
     });
 
     // Informing the Email
@@ -121,7 +141,7 @@ describe('Component: <Registration />', () => {
     await new Promise(r => setTimeout(r, 2000));
 
     await waitFor(() => {
-      expect(screen.getByTestId('step').textContent).toBe('5/8');
+      expect(screen.getByTestId('step').textContent).toBe('6/9');
     });
 
     // Informing the PhoneNumber
@@ -136,7 +156,7 @@ describe('Component: <Registration />', () => {
     await new Promise(r => setTimeout(r, 2000));
 
     await waitFor(() => {
-      expect(screen.getByTestId('step').textContent).toBe('6/8');
+      expect(screen.getByTestId('step').textContent).toBe('7/9');
     });
 
     // Informing the Password
@@ -154,7 +174,7 @@ describe('Component: <Registration />', () => {
     await new Promise(r => setTimeout(r, 2000));
 
     await waitFor(() => {
-      expect(screen.getByTestId('step').textContent).toBe('7/8');
+      expect(screen.getByTestId('step').textContent).toBe('8/9');
     });
 
     // Accept terms and Click not now button
@@ -181,6 +201,12 @@ describe('Component: <Registration />', () => {
       data: [{ id: '3', description: 'Banco da Amazônia S.A.' }],
     });
     mock.onPost('auth/validate-cpf', { cpf: '11111111111' }).reply(200);
+    mock
+      .onPost('/auth/validate-cnpj-info', {
+        cpf: '11111111111',
+        cnpj: '40515554000146',
+      })
+      .reply(200);
     mock.onPost('/auth/validate-personal-info').reply(200);
     mock
       .onPost('/auth/validate-email', { email: 'email_valido@email.com' })
@@ -215,7 +241,21 @@ describe('Component: <Registration />', () => {
     await new Promise(r => setTimeout(r, 200));
 
     await waitFor(() => {
-      expect(screen.getByTestId('step').textContent).toBe('2/8');
+      expect(screen.getByTestId('step').textContent).toBe('2/9');
+    });
+
+    // Informing the CNPJ
+    const cnpjForm = screen.getByTestId('cnpj-form');
+
+    const cnpjInput = screen.getByTestId('cnpj');
+    fireEvent.change(cnpjInput, { target: { value: '40.515.554/0001-46' } });
+
+    fireEvent.submit(cnpjForm);
+
+    await new Promise(r => setTimeout(r, 200));
+
+    await waitFor(() => {
+      expect(screen.getByTestId('step').textContent).toBe('3/9');
     });
 
     // Informing the Name
@@ -232,7 +272,7 @@ describe('Component: <Registration />', () => {
     await new Promise(r => setTimeout(r, 200));
 
     await waitFor(() => {
-      expect(screen.getByTestId('step').textContent).toBe('3/8');
+      expect(screen.getByTestId('step').textContent).toBe('4/9');
     });
 
     // Informing the BirthDate
@@ -247,7 +287,7 @@ describe('Component: <Registration />', () => {
     await new Promise(r => setTimeout(r, 2000));
 
     await waitFor(() => {
-      expect(screen.getByTestId('step').textContent).toBe('4/8');
+      expect(screen.getByTestId('step').textContent).toBe('5/9');
     });
 
     // Informing the Email
@@ -264,7 +304,7 @@ describe('Component: <Registration />', () => {
     await new Promise(r => setTimeout(r, 2000));
 
     await waitFor(() => {
-      expect(screen.getByTestId('step').textContent).toBe('5/8');
+      expect(screen.getByTestId('step').textContent).toBe('6/9');
     });
 
     // Informing the PhoneNumber
@@ -279,7 +319,7 @@ describe('Component: <Registration />', () => {
     await new Promise(r => setTimeout(r, 2000));
 
     await waitFor(() => {
-      expect(screen.getByTestId('step').textContent).toBe('6/8');
+      expect(screen.getByTestId('step').textContent).toBe('7/9');
     });
 
     // Informing the Password
@@ -297,7 +337,7 @@ describe('Component: <Registration />', () => {
     await new Promise(r => setTimeout(r, 2000));
 
     await waitFor(() => {
-      expect(screen.getByTestId('step').textContent).toBe('7/8');
+      expect(screen.getByTestId('step').textContent).toBe('8/9');
     });
 
     // Accept terms and Click yes button
@@ -313,7 +353,7 @@ describe('Component: <Registration />', () => {
     await new Promise(r => setTimeout(r, 2000));
 
     await waitFor(() => {
-      expect(screen.getByTestId('step').textContent).toBe('8/8');
+      expect(screen.getByTestId('step').textContent).toBe('9/9');
     });
 
     // Informing all data
@@ -377,6 +417,12 @@ describe('Component: <Registration />', () => {
       data: [{ id: '3', description: 'Banco da Amazônia S.A.' }],
     });
     mock.onPost('auth/validate-cpf', { cpf: '11111111111' }).reply(200);
+    mock
+      .onPost('/auth/validate-cnpj-info', {
+        cpf: '11111111111',
+        cnpj: '40515554000146',
+      })
+      .reply(200);
     mock.onPost('/auth/validate-personal-info').reply(400, {
       message: 'Mensagem de erro da API (/auth/validate-personal-info)',
     });
@@ -399,7 +445,21 @@ describe('Component: <Registration />', () => {
     await new Promise(r => setTimeout(r, 200));
 
     await waitFor(() => {
-      expect(screen.getByTestId('step').textContent).toBe('2/8');
+      expect(screen.getByTestId('step').textContent).toBe('2/9');
+    });
+
+    // Informing the CNPJ
+    const cnpjForm = screen.getByTestId('cnpj-form');
+
+    const cnpjInput = screen.getByTestId('cnpj');
+    fireEvent.change(cnpjInput, { target: { value: '40.515.554/0001-46' } });
+
+    fireEvent.submit(cnpjForm);
+
+    await new Promise(r => setTimeout(r, 200));
+
+    await waitFor(() => {
+      expect(screen.getByTestId('step').textContent).toBe('3/9');
     });
 
     // Informing the Name
@@ -416,7 +476,7 @@ describe('Component: <Registration />', () => {
     await new Promise(r => setTimeout(r, 200));
 
     await waitFor(() => {
-      expect(screen.getByTestId('step').textContent).toBe('3/8');
+      expect(screen.getByTestId('step').textContent).toBe('4/9');
     });
 
     // Informing the BirthDate
@@ -442,7 +502,7 @@ describe('Component: <Registration />', () => {
     await new Promise(r => setTimeout(r, 2000));
 
     await waitFor(() => {
-      expect(screen.getByTestId('step').textContent).toBe('1/8');
+      expect(screen.getByTestId('step').textContent).toBe('1/9');
     });
   }, 50000);
 
@@ -452,6 +512,12 @@ describe('Component: <Registration />', () => {
       data: [{ id: '3', description: 'Banco da Amazônia S.A.' }],
     });
     mock.onPost('auth/validate-cpf', { cpf: '11111111111' }).reply(200);
+    mock
+      .onPost('/auth/validate-cnpj-info', {
+        cpf: '11111111111',
+        cnpj: '40515554000146',
+      })
+      .reply(200);
     mock.onPost('/auth/validate-personal-info').reply(200);
     mock
       .onPost('/auth/validate-email', { email: 'email_valido@email.com' })
@@ -488,7 +554,21 @@ describe('Component: <Registration />', () => {
     await new Promise(r => setTimeout(r, 200));
 
     await waitFor(() => {
-      expect(screen.getByTestId('step').textContent).toBe('2/8');
+      expect(screen.getByTestId('step').textContent).toBe('2/9');
+    });
+
+    // Informing the CNPJ
+    const cnpjForm = screen.getByTestId('cnpj-form');
+
+    const cnpjInput = screen.getByTestId('cnpj');
+    fireEvent.change(cnpjInput, { target: { value: '40.515.554/0001-46' } });
+
+    fireEvent.submit(cnpjForm);
+
+    await new Promise(r => setTimeout(r, 200));
+
+    await waitFor(() => {
+      expect(screen.getByTestId('step').textContent).toBe('3/9');
     });
 
     // Informing the Name
@@ -505,7 +585,7 @@ describe('Component: <Registration />', () => {
     await new Promise(r => setTimeout(r, 200));
 
     await waitFor(() => {
-      expect(screen.getByTestId('step').textContent).toBe('3/8');
+      expect(screen.getByTestId('step').textContent).toBe('4/9');
     });
 
     // Informing the BirthDate
@@ -520,7 +600,7 @@ describe('Component: <Registration />', () => {
     await new Promise(r => setTimeout(r, 2000));
 
     await waitFor(() => {
-      expect(screen.getByTestId('step').textContent).toBe('4/8');
+      expect(screen.getByTestId('step').textContent).toBe('5/9');
     });
 
     // Informing the Email
@@ -537,7 +617,7 @@ describe('Component: <Registration />', () => {
     await new Promise(r => setTimeout(r, 2000));
 
     await waitFor(() => {
-      expect(screen.getByTestId('step').textContent).toBe('5/8');
+      expect(screen.getByTestId('step').textContent).toBe('6/9');
     });
 
     // Informing the PhoneNumber
@@ -552,7 +632,7 @@ describe('Component: <Registration />', () => {
     await new Promise(r => setTimeout(r, 2000));
 
     await waitFor(() => {
-      expect(screen.getByTestId('step').textContent).toBe('6/8');
+      expect(screen.getByTestId('step').textContent).toBe('7/9');
     });
 
     // Informing the Password
@@ -570,7 +650,7 @@ describe('Component: <Registration />', () => {
     await new Promise(r => setTimeout(r, 2000));
 
     await waitFor(() => {
-      expect(screen.getByTestId('step').textContent).toBe('7/8');
+      expect(screen.getByTestId('step').textContent).toBe('8/9');
     });
 
     // Accept terms and Click yes button
@@ -586,7 +666,7 @@ describe('Component: <Registration />', () => {
     await new Promise(r => setTimeout(r, 2000));
 
     await waitFor(() => {
-      expect(screen.getByTestId('step').textContent).toBe('8/8');
+      expect(screen.getByTestId('step').textContent).toBe('9/9');
     });
 
     // Informing all data
