@@ -14,6 +14,7 @@ import { withAITracking } from '@microsoft/applicationinsights-react-js';
 import { reactPlugin } from 'hooks/appInsights';
 import { Modal } from 'components/Modal';
 import { CPFForm } from './components/CPFForm';
+import { CNPJForm } from './components/CNPJForm';
 import { CompleteNameForm } from './components/CompleteNameForm';
 import { BirthDateForm } from './components/BirthDateForm';
 import { EmailForm } from './components/EmailForm';
@@ -27,11 +28,12 @@ import { RegistrationServices } from './services/registration.services';
 
 import * as Styled from './styles';
 
-const NUMBER_OF_STEPS = 8;
+const NUMBER_OF_STEPS = 9;
 
 const Registration: React.FC = () => {
   const [currentStep, setCurrentStep] = useState(0);
   const [formsData, setFormsData] = useState<Register>();
+  const [cpf, setCpf] = useState<string>();
   const [responseErros, setResponseErros] = useState<string>();
   const [registering, setRegistering] = useState(false);
   const { open: emailModalOpen, toggle: toggleEmailModal } = useModal();
@@ -52,6 +54,11 @@ const Registration: React.FC = () => {
   const onSubmit = (data): void => {
     setFormsData(state => ({ ...state, ...data }));
     nextStep();
+  };
+
+  const onSubmitCPFForm = (data): void => {
+    setCpf(data.cpf);
+    onSubmit(data);
   };
 
   const validateData = async ({ birthDate }: Register) => {
@@ -77,6 +84,7 @@ const Registration: React.FC = () => {
       await RegistrationServices.register({
         ...data,
         cpf: Document.removeMask(data.cpf),
+        cnpj: Document.removeMask(data.cnpj),
         phoneNumber: Document.removeMask(data.phoneNumber),
         accountNumber: `${data.accountNumber}${data.digit}`,
       });
@@ -113,12 +121,12 @@ const Registration: React.FC = () => {
   return (
     <Layout>
       <Styled.CurrentStep data-testid="step">
-        {`${currentStep + 1}/8`}
+        {`${currentStep + 1}/9`}
       </Styled.CurrentStep>
 
       <Styled.StepsContainer currentStep={currentStep}>
         <Styled.Step step={0} currentStep={currentStep}>
-          <CPFForm onSubmit={onSubmit} />
+          <CPFForm onSubmit={onSubmitCPFForm} />
         </Styled.Step>
 
         <Styled.Step step={1} currentStep={currentStep}>
@@ -126,7 +134,7 @@ const Registration: React.FC = () => {
             <ArrowBack />
           </Styled.BackButton>
 
-          <CompleteNameForm onSubmit={onSubmit} />
+          <CNPJForm data={{ cpf }} onSubmit={onSubmit} />
         </Styled.Step>
 
         <Styled.Step step={2} currentStep={currentStep}>
@@ -134,7 +142,7 @@ const Registration: React.FC = () => {
             <ArrowBack />
           </Styled.BackButton>
 
-          <BirthDateForm onSubmit={validateData} />
+          <CompleteNameForm onSubmit={onSubmit} />
         </Styled.Step>
 
         <Styled.Step step={3} currentStep={currentStep}>
@@ -142,7 +150,7 @@ const Registration: React.FC = () => {
             <ArrowBack />
           </Styled.BackButton>
 
-          <EmailForm onSubmit={onSubmit} />
+          <BirthDateForm onSubmit={validateData} />
         </Styled.Step>
 
         <Styled.Step step={4} currentStep={currentStep}>
@@ -150,7 +158,7 @@ const Registration: React.FC = () => {
             <ArrowBack />
           </Styled.BackButton>
 
-          <PhoneNumberForm onSubmit={onSubmit} />
+          <EmailForm onSubmit={onSubmit} />
         </Styled.Step>
 
         <Styled.Step step={5} currentStep={currentStep}>
@@ -158,10 +166,18 @@ const Registration: React.FC = () => {
             <ArrowBack />
           </Styled.BackButton>
 
-          <PasswordForm onSubmit={onSubmit} />
+          <PhoneNumberForm onSubmit={onSubmit} />
         </Styled.Step>
 
         <Styled.Step step={6} currentStep={currentStep}>
+          <Styled.BackButton type="button" onClick={handleClickPrev}>
+            <ArrowBack />
+          </Styled.BackButton>
+
+          <PasswordForm onSubmit={onSubmit} />
+        </Styled.Step>
+
+        <Styled.Step step={7} currentStep={currentStep}>
           <Styled.BackButton type="button" onClick={handleClickPrev}>
             <ArrowBack />
           </Styled.BackButton>
@@ -175,7 +191,7 @@ const Registration: React.FC = () => {
           />
         </Styled.Step>
 
-        <Styled.Step step={7} currentStep={currentStep}>
+        <Styled.Step step={8} currentStep={currentStep}>
           <Styled.BackButton type="button" onClick={handleClickPrev}>
             <ArrowBack />
           </Styled.BackButton>

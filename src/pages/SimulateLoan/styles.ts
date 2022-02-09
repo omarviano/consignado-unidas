@@ -94,7 +94,7 @@ export const ModalText = styled(TypographyStyles)`
 export const ModalConfirmContent = styled(Box)`
   width: 464px;
   text-align: center;
-  padding: 40px;
+  padding: 32px;
 
   .confirm-button {
     max-width: 137px;
@@ -143,6 +143,17 @@ export const ModalConfirmData = styled(TypographyStyles)`
     span {
       font-weight: bold;
     }
+  }
+`;
+
+export const IncorrectData = styled(TypographyStyles)`
+  margin-top: 32px;
+  font-size: 18px;
+  line-height: 34px;
+  color: ${({ theme }) => theme.palette.grey[200]};
+
+  @media (max-width: 768px) {
+    line-height: 24px;
   }
 `;
 

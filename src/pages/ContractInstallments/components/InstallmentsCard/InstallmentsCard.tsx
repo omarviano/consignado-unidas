@@ -7,7 +7,7 @@ const InstallmentsCard: React.FC<InstallmentsCardProps> = ({
   data,
   totalInstallments,
 }) => (
-  <Styled.Container>
+  <Styled.Container data-testid="installment-card">
     <Styled.DataContainer>
       <Styled.Installment>
         Parcela - {data?.installment} de {totalInstallments}

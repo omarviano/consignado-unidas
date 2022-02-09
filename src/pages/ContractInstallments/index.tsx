@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { GridColumns } from '@mui/x-data-grid';
 import { withAITracking } from '@microsoft/applicationinsights-react-js';
 import { reactPlugin } from 'hooks/appInsights';
@@ -19,6 +19,7 @@ import { formatDate } from 'utils/formatDate';
 import { formatValue } from 'utils/formatValue';
 
 import { format } from 'date-fns';
+import { RoutingPath } from 'utils/routing';
 import * as Styled from './styles';
 import { InstallmentsCard } from './components/InstallmentsCard';
 import {
@@ -36,6 +37,7 @@ const ContractInstallments: React.FC = () => {
   const [fetchingInstallments, setFetchingInstallments] = useState(true);
   const [cardDataOpen, setCardDataOpen] = useState(false);
   const { width } = useWindowDimensions();
+  const history = useHistory();
 
   const formatStringYearMonth = (data: string) => {
     if (!data) return '';
@@ -153,9 +155,10 @@ const ContractInstallments: React.FC = () => {
 
         {showLoading()}
 
-        <Styled.Installments>
+        <Styled.Installments data-testid="cards-container">
           {tableData.map(item => (
             <InstallmentsCard
+              key={item.id}
               data={item}
               totalInstallments={tableData.length}
             />
@@ -180,8 +183,11 @@ const ContractInstallments: React.FC = () => {
             })),
           );
         })
+        .catch(() => {
+          history.push(RoutingPath.CONTRACTS);
+        })
         .finally(() => setFetchingInstallments(false));
-  }, [id]);
+  }, [id, history]);
 
   return (
     <Layout
@@ -201,7 +207,7 @@ const ContractInstallments: React.FC = () => {
                 <Styled.Status>
                   <Styled.StatusLabel>Status:</Styled.StatusLabel>
                   {getDataValue(
-                    <Styled.StatusText>
+                    <Styled.StatusText data-testid="status-text">
                       <ConfirmIcon /> {contractDetails?.status}
                     </Styled.StatusText>,
                   )}
@@ -212,28 +218,28 @@ const ContractInstallments: React.FC = () => {
             <Styled.DataContainer className="data-container">
               <Styled.Data>
                 <Styled.DataLabel>Nº do contrato:</Styled.DataLabel>
-                <Styled.DataValue>
+                <Styled.DataValue data-testid="contract-number">
                   {getDataValue(contractDetails?.contractNumber)}
                 </Styled.DataValue>
               </Styled.Data>
 
               <Styled.Data>
                 <Styled.DataLabel>Data do contrato</Styled.DataLabel>
-                <Styled.DataValue>
+                <Styled.DataValue data-testid="contract-date">
                   {getDataValue(getContractDate(contractDetails?.contractDate))}
                 </Styled.DataValue>
               </Styled.Data>
 
               <Styled.Data>
                 <Styled.DataLabel>Nº de Parcelas</Styled.DataLabel>
-                <Styled.DataValue>
+                <Styled.DataValue data-testid="quantity-installment">
                   {getDataValue(contractDetails?.quantityInstallment)}
                 </Styled.DataValue>
               </Styled.Data>
 
               <Styled.Data>
                 <Styled.DataLabel>Valor da Parcela</Styled.DataLabel>
-                <Styled.DataValue>
+                <Styled.DataValue data-testid="installments-value">
                   {getDataValue(
                     formatValue(contractDetails?.installmentsValue),
                   )}
@@ -242,7 +248,7 @@ const ContractInstallments: React.FC = () => {
 
               <Styled.Data>
                 <Styled.DataLabel>Primeiro desconto em Folha</Styled.DataLabel>
-                <Styled.DataValue>
+                <Styled.DataValue data-testid="first-discount">
                   {getDataValue(
                     getDateFirstDiscount(contractDetails?.installmentDetails),
                   )}
@@ -251,7 +257,7 @@ const ContractInstallments: React.FC = () => {
 
               <Styled.Data>
                 <Styled.DataLabel>Último desconto em Folha</Styled.DataLabel>
-                <Styled.DataValue>
+                <Styled.DataValue data-testid="last-discount">
                   {getDataValue(
                     getDateLastDiscount(contractDetails?.installmentDetails),
                   )}
@@ -260,7 +266,7 @@ const ContractInstallments: React.FC = () => {
 
               <Styled.Data>
                 <Styled.DataLabel>Valor total do contrato</Styled.DataLabel>
-                <Styled.DataValue>
+                <Styled.DataValue data-testid="value">
                   {getDataValue(formatValue(contractDetails?.value))}
                 </Styled.DataValue>
               </Styled.Data>

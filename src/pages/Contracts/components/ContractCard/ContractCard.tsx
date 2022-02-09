@@ -6,7 +6,7 @@ import { ContractCardProps } from './props';
 import * as Styled from './styles';
 
 const ContractCard: React.FC<ContractCardProps> = ({ data, onClickButton }) => (
-  <Styled.Container>
+  <Styled.Container data-testid="card-contract">
     <Styled.Status>
       <Styled.StatusLabel>Status:</Styled.StatusLabel>
       <Styled.StatusValue>
@@ -38,7 +38,10 @@ const ContractCard: React.FC<ContractCardProps> = ({ data, onClickButton }) => (
       </Styled.DataContainer>
     </Styled.Flex>
 
-    <Styled.DetailsButton onClick={() => onClickButton(data.id)}>
+    <Styled.DetailsButton
+      onClick={() => onClickButton(data.id)}
+      data-testid="cards-button"
+    >
       Mais detalhes {'>'}
     </Styled.DetailsButton>
   </Styled.Container>
