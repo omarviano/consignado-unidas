@@ -26,7 +26,6 @@ import {
   ModalSimulateLoanProvider,
 } from 'pages/LoggedArea/components/ModalSimulateLoan/context';
 import { ModalSimulateLoan } from 'pages/LoggedArea/components/ModalSimulateLoan';
-import { generateRandom } from 'utils/generateRandom';
 import { CardSimulateLoan } from './components/CardSimulateLoan';
 import { LoanDetails } from './components/LoanDetails';
 
@@ -64,7 +63,7 @@ const SimulateLoan: FC = withContext(
 
       const data = dataSimulateLoan.installments.map(item => ({
         ...item,
-        id: generateRandom(),
+        id: item.quantity,
         valueFormatted: formatValue(item.value),
         effectiveCostPerYearFormatted: `${item.effectiveCostPerYear}%`,
         feesPerMonthFormatted: `${item.feesPerMonth.toFixed(2)}%`,
@@ -226,6 +225,7 @@ const SimulateLoan: FC = withContext(
             key={item.id}
             data={item}
             onSelect={handleApplyForLoan}
+            requesting={validatingSolicitation}
           />
         ));
       }
@@ -263,6 +263,12 @@ const SimulateLoan: FC = withContext(
                 onSelectionModelChange={handleSelectionModelChange}
                 columns={columns}
                 rows={tableData}
+                componentsProps={{
+                  checkbox: {
+                    'data-testid': 'checkbox',
+                  },
+                }}
+                disableVirtualization
               />
 
               <Styled.ContainerButton>
@@ -271,6 +277,7 @@ const SimulateLoan: FC = withContext(
                   variant="contained"
                   onClick={applyForLoan}
                   disabled={!selectedRow || validatingSolicitation}
+                  data-testid="request-button"
                 >
                   {getTextRequestButton()}
                 </Styled.RequestButton>
@@ -289,7 +296,7 @@ const SimulateLoan: FC = withContext(
           )}
 
           <Modal open={modalSuccesOpen} onClose={goToAccompaniment}>
-            <Styled.ModalSuccessContent>
+            <Styled.ModalSuccessContent data-testid="modal-success-content">
               <CheckCircle className="success-icon" />
 
               <Styled.ModalText>Solicitação enviada!</Styled.ModalText>
@@ -305,6 +312,7 @@ const SimulateLoan: FC = withContext(
                 variant="contained"
                 className="redirect-button"
                 onClick={goToAccompaniment}
+                data-testid="redirect-button"
               >
                 Acompanhar
               </Button>
@@ -321,12 +329,14 @@ const SimulateLoan: FC = withContext(
 
               <Styled.ModalText
                 dangerouslySetInnerHTML={{ __html: errorMessage || '' }}
+                data-testid="error-modal-text"
+                id="error-modal-text"
               />
             </Styled.ModalErrorContent>
           </Modal>
 
           <Modal open={modalConfirmOpen} onClose={toggleModalConfirm}>
-            <Styled.ModalConfirmContent>
+            <Styled.ModalConfirmContent data-testid="modal-confirm-content">
               <Styled.ModalConfirmHello>
                 Olá, {getToken()?.user.name}! Tudo bem?
                 <b>Você confirma os seus dados abaixo?</b>
@@ -356,6 +366,7 @@ const SimulateLoan: FC = withContext(
                 variant="contained"
                 onClick={confirmLoanRequest}
                 disabled={requestingLoan}
+                data-testid="confirm-loan-button"
               >
                 {displayCorrectText}
               </Button>

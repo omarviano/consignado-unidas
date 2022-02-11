@@ -15,7 +15,7 @@ import { SimulateLoanRealTimeContextData } from './props';
 
 const initialValue = {} as SimulateLoanRealTimeContextData;
 
-const SimulateLoanRealTimeContext = createContext(initialValue);
+export const SimulateLoanRealTimeContext = createContext(initialValue);
 
 export const SimulateLoanRealTimeProvider: FC = props => {
   const { children } = props;
