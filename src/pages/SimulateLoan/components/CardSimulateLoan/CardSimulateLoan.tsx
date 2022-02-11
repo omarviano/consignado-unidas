@@ -48,7 +48,7 @@ const CardSimulateLoan: FC = () => {
         <Styled.TextContractProposal variant="h2">
           Proposta de contratos para o empréstimo no valor de
         </Styled.TextContractProposal>
-        <Styled.TextValueSlider>
+        <Styled.TextValueSlider data-testid="value">
           {formatValue(valueSliderSimulate)}
         </Styled.TextValueSlider>
         <Slider

@@ -7,8 +7,9 @@ import * as Styled from './styles';
 const InstallmentCard: React.FC<InstallmentCardProps> = ({
   data,
   onSelect,
+  requesting,
 }) => (
-  <Styled.Container>
+  <Styled.Container data-testid="card-contract">
     <Styled.NumberInstallments>
       {data.quantityFormatted} parcelas
     </Styled.NumberInstallments>
@@ -24,8 +25,14 @@ const InstallmentCard: React.FC<InstallmentCardProps> = ({
       <Styled.Dd>{data.effectiveCostPerYearFormatted}</Styled.Dd>
     </Styled.DataContainer>
 
-    <Button type="button" onClick={() => onSelect(data.id)} variant="contained">
-      Solicitar empréstimo
+    <Button
+      type="button"
+      onClick={() => onSelect(data.id)}
+      variant="contained"
+      data-testid="request-button-mobile"
+      disabled={requesting}
+    >
+      {requesting ? 'Validando solicitação...' : 'Solicitar empréstimo'}
     </Button>
   </Styled.Container>
 );
