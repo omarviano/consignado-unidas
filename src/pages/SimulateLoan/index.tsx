@@ -140,16 +140,14 @@ const SimulateLoan: FC = withContext(
       }
     };
 
-    const applyForLoan = async () => {
-      if (!selectedRow) return;
-
+    const validateSimulate = async (installment: TableSimulateProps) => {
       try {
         setValidatingSolicitation(true);
 
         await SimulateLoanServices.validateSimulate({
           value: dataSimulateLoan.value,
           simulationId: dataSimulateLoan.id,
-          installment: selectedRow,
+          installment,
         });
 
         toggleModalConfirm();
@@ -165,6 +163,15 @@ const SimulateLoan: FC = withContext(
       } finally {
         setValidatingSolicitation(false);
       }
+    };
+
+    const applyForLoan = async (
+      installment: TableSimulateProps | undefined,
+    ) => {
+      if (!installment) return;
+
+      setSelectedRow(installment);
+      validateSimulate(installment);
     };
 
     const confirmLoanRequest = async () => {
@@ -193,8 +200,8 @@ const SimulateLoan: FC = withContext(
     };
 
     const handleApplyForLoan = async (id: number) => {
-      setSelectedRow(tableData.find(item => item.id === id));
-      applyForLoan();
+      const item = tableData.find(item => item.id === id);
+      applyForLoan(item);
     };
 
     const displayCorrectText = useMemo(() => {
@@ -275,8 +282,8 @@ const SimulateLoan: FC = withContext(
                 <Styled.RequestButton
                   type="button"
                   variant="contained"
-                  onClick={applyForLoan}
                   disabled={!selectedRow || validatingSolicitation}
+                  onClick={() => applyForLoan(selectedRow)}
                   data-testid="request-button"
                 >
                   {getTextRequestButton()}

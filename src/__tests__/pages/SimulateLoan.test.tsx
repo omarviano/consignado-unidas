@@ -14,6 +14,7 @@ import { api } from 'services/api';
 
 import SimulateLoan from 'pages/SimulateLoan';
 import { SimulateLoanRealTimeContext } from 'hooks/simulateRealtime';
+import { SimulateLoanContext } from 'hooks/simulate';
 
 const mockHistoryPush = jest.fn();
 
@@ -27,8 +28,22 @@ jest.mock('react-router-dom', () => ({
 const getMarginFn = jest.fn(() => Promise.resolve());
 const addValueSliderSimulateFn = jest.fn(() => Promise.resolve());
 const addDataSimulateLoanFn = jest.fn(() => Promise.resolve());
+const simulateLoanFn = jest.fn(() => Promise.resolve());
 
-const contextDataMock = {
+const mockSimulateLoan = {
+  messageError: '',
+  modalActive: false,
+  resetModalActive: jest.fn,
+  statusCode: 200,
+  simulateLoan: simulateLoanFn,
+  requestStatus: {
+    error: false,
+    loading: false,
+    success: true,
+  },
+};
+
+const mockSimulateLoanRealTime = {
   requestStatus: {
     error: false,
     loading: false,
@@ -68,7 +83,9 @@ const Providers = ({ children }) => (
     <StyledEngineProvider injectFirst>
       <ThemeProviderStyledComponents theme={materialUiTheme}>
         <AppProvider>
-          <BrowserRouter>{children}</BrowserRouter>
+          <SimulateLoanContext.Provider value={mockSimulateLoan}>
+            <BrowserRouter>{children}</BrowserRouter>
+          </SimulateLoanContext.Provider>
         </AppProvider>
       </ThemeProviderStyledComponents>
     </StyledEngineProvider>
@@ -84,7 +101,7 @@ describe('Page: <Contracts />', () => {
     });
 
     const { container } = render(
-      <SimulateLoanRealTimeContext.Provider value={contextDataMock}>
+      <SimulateLoanRealTimeContext.Provider value={mockSimulateLoanRealTime}>
         <Providers>
           <SimulateLoan />
         </Providers>
@@ -106,7 +123,7 @@ describe('Page: <Contracts />', () => {
     });
 
     render(
-      <SimulateLoanRealTimeContext.Provider value={contextDataMock}>
+      <SimulateLoanRealTimeContext.Provider value={mockSimulateLoanRealTime}>
         <Providers>
           <SimulateLoan />
         </Providers>
@@ -121,7 +138,7 @@ describe('Page: <Contracts />', () => {
 
   test('should be able to render selected value', async () => {
     render(
-      <SimulateLoanRealTimeContext.Provider value={contextDataMock}>
+      <SimulateLoanRealTimeContext.Provider value={mockSimulateLoanRealTime}>
         <Providers>
           <SimulateLoan />
         </Providers>
@@ -136,7 +153,7 @@ describe('Page: <Contracts />', () => {
   test('should be able to redirect when value is 0', async () => {
     render(
       <SimulateLoanRealTimeContext.Provider
-        value={{ ...contextDataMock, valueSliderSimulate: 0 }}
+        value={{ ...mockSimulateLoanRealTime, valueSliderSimulate: 0 }}
       >
         <Providers>
           <SimulateLoan />
@@ -161,7 +178,7 @@ describe('Page: <Contracts />', () => {
     });
 
     render(
-      <SimulateLoanRealTimeContext.Provider value={contextDataMock}>
+      <SimulateLoanRealTimeContext.Provider value={mockSimulateLoanRealTime}>
         <Providers>
           <SimulateLoan />
         </Providers>
@@ -196,7 +213,7 @@ describe('Page: <Contracts />', () => {
     });
 
     render(
-      <SimulateLoanRealTimeContext.Provider value={contextDataMock}>
+      <SimulateLoanRealTimeContext.Provider value={mockSimulateLoanRealTime}>
         <Providers>
           <SimulateLoan />
         </Providers>
@@ -242,7 +259,7 @@ describe('Page: <Contracts />', () => {
     });
 
     render(
-      <SimulateLoanRealTimeContext.Provider value={contextDataMock}>
+      <SimulateLoanRealTimeContext.Provider value={mockSimulateLoanRealTime}>
         <Providers>
           <SimulateLoan />
         </Providers>
@@ -271,10 +288,12 @@ describe('Page: <Contracts />', () => {
     });
   }, 5000);
 
-  /* test('should be able to show validation error - MOBILE', async () => {
+  test('should be able to show validation error - MOBILE', async () => {
     const mock = new MockAdapter(api);
     mock.onPost('/financial/simulate').reply(200, { data: {} });
-    mock.onPost('/financial/quote-validator').reply(400);
+    mock
+      .onPost('/financial/quote')
+      .reply(400, { message: 'Mensagem de erro da API' });
 
     Object.defineProperty(window, 'innerWidth', {
       writable: true,
@@ -283,7 +302,7 @@ describe('Page: <Contracts />', () => {
     });
 
     render(
-      <SimulateLoanRealTimeContext.Provider value={contextDataMock}>
+      <SimulateLoanRealTimeContext.Provider value={mockSimulateLoanRealTime}>
         <Providers>
           <SimulateLoan />
         </Providers>
@@ -293,16 +312,94 @@ describe('Page: <Contracts />', () => {
     const button = screen.getAllByTestId('request-button-mobile');
     fireEvent.click(button[0]);
 
-    await new Promise(r => setTimeout(r, 2000));
+    await waitFor(() => {
+      expect(screen.getByTestId('error-modal-text')).toBeDefined();
+      expect(screen.getByTestId('error-modal-text').textContent).toBe(
+        'Infelizmente, você não atende os requisitos mínimos para solicitar o empréstimo neste momento. Por favor, verifique a aba Dúvidas Frequentes para conferir os requisitos e envie um e-mail para consignado@unidas.com.br em caso de dúvidas.',
+      );
+    });
+  }, 5000);
+
+  test('should be able to request loan - Mobile', async () => {
+    const mock = new MockAdapter(api);
+    mock.onPost('/financial/quote-validator').reply(200);
+    mock.onPost('/financial/quote').reply(200);
+
+    Object.defineProperty(window, 'innerWidth', {
+      writable: true,
+      configurable: true,
+      value: 1000,
+    });
+
+    render(
+      <SimulateLoanRealTimeContext.Provider value={mockSimulateLoanRealTime}>
+        <Providers>
+          <SimulateLoan />
+        </Providers>
+      </SimulateLoanRealTimeContext.Provider>,
+    );
+
+    const button = screen.getAllByTestId('request-button-mobile');
+    fireEvent.click(button[0]);
 
     await waitFor(() => {
-      expect(screen.getAllByTestId('card-contract').length).toBe(1);
+      expect(screen.getByTestId('modal-confirm-content')).toBeDefined();
     });
-  }, 5000); */
+
+    fireEvent.click(screen.getByTestId('confirm-loan-button'));
+
+    await waitFor(() => {
+      expect(screen.getByTestId('modal-success-content')).toBeDefined();
+    });
+
+    fireEvent.click(screen.getByTestId('redirect-button'));
+
+    await waitFor(() => {
+      expect(mockHistoryPush).toHaveBeenCalledWith('/acompanhamento');
+    });
+  }, 5000);
+
+  test('should be able show error message - Mobile', async () => {
+    const mock = new MockAdapter(api);
+    mock.onPost('/financial/quote-validator').reply(200);
+    mock
+      .onPost('/financial/quote')
+      .reply(400, { message: 'Mensagem de erro da API' });
+
+    Object.defineProperty(window, 'innerWidth', {
+      writable: true,
+      configurable: true,
+      value: 1000,
+    });
+
+    render(
+      <SimulateLoanRealTimeContext.Provider value={mockSimulateLoanRealTime}>
+        <Providers>
+          <SimulateLoan />
+        </Providers>
+      </SimulateLoanRealTimeContext.Provider>,
+    );
+
+    const button = screen.getAllByTestId('request-button-mobile');
+    fireEvent.click(button[0]);
+
+    await waitFor(() => {
+      expect(screen.getByTestId('modal-confirm-content')).toBeDefined();
+    });
+
+    fireEvent.click(screen.getByTestId('confirm-loan-button'));
+
+    await waitFor(() => {
+      expect(screen.getByTestId('error-modal-text')).toBeDefined();
+      expect(screen.getByTestId('error-modal-text').textContent).toBe(
+        'Mensagem de erro da API',
+      );
+    });
+  }, 5000);
 
   test('should be able to change slider value', async () => {
     const { container } = render(
-      <SimulateLoanRealTimeContext.Provider value={contextDataMock}>
+      <SimulateLoanRealTimeContext.Provider value={mockSimulateLoanRealTime}>
         <Providers>
           <SimulateLoan />
         </Providers>
@@ -320,5 +417,3 @@ describe('Page: <Contracts />', () => {
     });
   }, 5000);
 });
-
-// tentar mockar os dois hooks para ter mais controle
