@@ -10,7 +10,7 @@ import { SimulateLoanContextData } from './props';
 
 const initialValue = {} as SimulateLoanContextData;
 
-const SimulateLoanContext = createContext(initialValue);
+export const SimulateLoanContext = createContext(initialValue);
 
 export const SimulateLoanProvider: FC = props => {
   const { children } = props;
