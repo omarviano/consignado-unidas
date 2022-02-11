@@ -4,7 +4,7 @@ import { RegistrationServices } from 'pages/Registration/services/registration.s
 const schema = Yup.object().shape({
   password: Yup.string()
     .required('Informe sua senha')
-    .min(8, 'Senha deve conter pelo menos 8 carcteres')
+    .min(8, 'Senha deve conter pelo menos 8 caracteres')
     .test('password_validation', async (password, { createError, path }) => {
       if (!password || password.length < 8) return false;
 
