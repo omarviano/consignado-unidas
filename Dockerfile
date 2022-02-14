@@ -7,6 +7,10 @@ RUN npm config set strict-ssl false
 RUN npm install
 COPY . .
 RUN npm run $npm_build_command
+RUN touch build/static/index.html
+RUN touch build/static/js/index.html
+RUN touch build/static/media/index.html
+
 
 ### STAGE 2: Run ###
 FROM nginx:1.21.1
