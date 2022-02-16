@@ -37,6 +37,7 @@ const Select: FC<SelectProps> = React.memo(
         </Styled.Label>
         <Styled.Select
           {...field}
+          data-testid="select"
           placeholder={label}
           fullWidth
           select
