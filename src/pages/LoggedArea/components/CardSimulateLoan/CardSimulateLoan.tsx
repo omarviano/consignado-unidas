@@ -89,6 +89,7 @@ const CardSimulateLoan: FC = memo(() => {
           variant="contained"
           disabled={disableSliderAndButton || requestStatus.loading}
           color="primary"
+          data-testid="redirect-button"
         >
           {requestStatus.loading
             ? 'Simulando Empréstimo'
