@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/11</span>
+                <span class='fraction'>11/11</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/3</span>
+                <span class='fraction'>3/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/11</span>
+                <span class='fraction'>11/11</span>
             </div>
         
             
@@ -55,7 +55,7 @@
             Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
         </p>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -140,41 +140,41 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">65x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">65x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">65x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">65x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">65x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -213,27 +213,27 @@ import { useSimulateLoanRealTime } from 'hooks/simulateRealtime';
 import * as Styled from './styles';
 import { LoanDetails } from '../LoanDetails';
 &nbsp;
-const CardSimulateLoan: FC = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
+const CardSimulateLoan: FC = () =&gt; {
   const {
     valueSliderSimulate,
     addValueSliderSimulate,
     dataMargin,
     addDataSimulateLoan,
-  } = <span class="cstat-no" title="statement not covered" >useSimulateLoanRealTime();</span>
+  } = useSimulateLoanRealTime();
 &nbsp;
-  const { simulateLoan, resetModalActive } = <span class="cstat-no" title="statement not covered" >useSimulateLoan();</span>
+  const { simulateLoan, resetModalActive } = useSimulateLoan();
 &nbsp;
-  const handleSliderChange = <span class="cstat-no" title="statement not covered" >useCallback(</span>
-<span class="fstat-no" title="function not covered" >    (e</span>vent: Event, newValue: number | number[]) =&gt; {
-<span class="cstat-no" title="statement not covered" >      addDataSimulateLoan({} as DataSimulateProps);</span>
-<span class="cstat-no" title="statement not covered" >      addValueSliderSimulate(newValue as number);</span>
+  const handleSliderChange = useCallback(
+    (event: Event, newValue: number | number[]) =&gt; {
+      addDataSimulateLoan({} as DataSimulateProps);
+      addValueSliderSimulate(newValue as number);
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [],
   );
 &nbsp;
-  const handleSubmit = <span class="cstat-no" title="statement not covered" >useCallback(<span class="fstat-no" title="function not covered" >as</span>ync () =&gt; {</span>
-    const data: SimulateLoanProps = <span class="cstat-no" title="statement not covered" >{</span>
+  const handleSubmit = useCallback(async () =&gt; {
+    const data: SimulateLoanProps = {
       value: valueSliderSimulate,
       admissionDate: dataMargin[0].admissionDate,
       marginAvailableValue: dataMargin[0].availableValue,
@@ -241,19 +241,19 @@ const CardSimulateLoan: FC = <span class="cstat-no" title="statement not covered
       relationship: dataMargin[0].situation,
     };
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    await simulateLoan(data);</span>
-<span class="cstat-no" title="statement not covered" >    resetModalActive();</span>
+    await simulateLoan(data);
+    resetModalActive();
 &nbsp;
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dataMargin, valueSliderSimulate]);
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  return (</span>
+  return (
     &lt;Styled.Container&gt;
       &lt;Styled.ContentSlider&gt;
         &lt;Styled.TextContractProposal variant="h2"&gt;
           Proposta de contratos para o empréstimo no valor de
         &lt;/Styled.TextContractProposal&gt;
-        &lt;Styled.TextValueSlider&gt;
+        &lt;Styled.TextValueSlider data-testid="value"&gt;
           {formatValue(valueSliderSimulate)}
         &lt;/Styled.TextValueSlider&gt;
         &lt;Slider
@@ -283,7 +283,7 @@ export { CardSimulateLoan };
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Fri Jan 28 2022 15:24:41 GMT-0300 (Horário Padrão de Brasília)
+                at Fri Feb 11 2022 14:16:01 GMT-0300 (Horário Padrão de Brasília)
             </div>
         </div>
         <script src="../../../../prettify.js"></script>

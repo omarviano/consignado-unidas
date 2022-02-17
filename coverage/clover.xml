@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1643394282441" clover="3.2.0">
-  <project timestamp="1643394282441" name="All files">
-    <metrics statements="1017" coveredstatements="259" conditionals="396" coveredconditionals="80" methods="335" coveredmethods="68" elements="1748" coveredelements="407" complexity="0" loc="1017" ncloc="1017" packages="83" files="130" classes="130"/>
+<coverage generated="1644599762085" clover="3.2.0">
+  <project timestamp="1644599762085" name="All files">
+    <metrics statements="1202" coveredstatements="672" conditionals="451" coveredconditionals="209" methods="378" coveredmethods="197" elements="2031" coveredelements="1078" complexity="0" loc="1202" ncloc="1202" packages="89" files="140" classes="140"/>
     <package name="components.AcceptCookies">
       <metrics statements="8" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="3" coveredmethods="0"/>
-      <file name="AcceptCookies.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\components\AcceptCookies\AcceptCookies.tsx">
+      <file name="AcceptCookies.tsx" path="C:\dev\portal-Consignado\src\components\AcceptCookies\AcceptCookies.tsx">
         <metrics statements="8" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="3" coveredmethods="0"/>
         <line num="13" count="0" type="stmt"/>
         <line num="14" count="0" type="stmt"/>
@@ -17,47 +17,47 @@
       </file>
     </package>
     <package name="components.Autocomplete">
-      <metrics statements="17" coveredstatements="13" conditionals="10" coveredconditionals="9" methods="9" coveredmethods="4"/>
-      <file name="Autocomplete.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\components\Autocomplete\Autocomplete.tsx">
-        <metrics statements="17" coveredstatements="13" conditionals="10" coveredconditionals="9" methods="9" coveredmethods="4"/>
-        <line num="12" count="1" type="stmt"/>
-        <line num="14" count="17" type="stmt"/>
-        <line num="19" count="17" type="stmt"/>
-        <line num="21" count="17" type="stmt"/>
-        <line num="23" count="0" type="stmt"/>
-        <line num="27" count="17" type="stmt"/>
-        <line num="28" count="0" type="stmt"/>
-        <line num="33" count="17" type="stmt"/>
-        <line num="35" count="0" type="stmt"/>
-        <line num="40" count="17" type="stmt"/>
-        <line num="41" count="3" type="stmt"/>
-        <line num="43" count="3" type="cond" truecount="1" falsecount="1"/>
-        <line num="44" count="3" type="stmt"/>
-        <line num="47" count="17" type="stmt"/>
-        <line num="55" count="34" type="stmt"/>
-        <line num="61" count="17" type="stmt"/>
-        <line num="67" count="0" type="stmt"/>
+      <metrics statements="17" coveredstatements="17" conditionals="10" coveredconditionals="10" methods="9" coveredmethods="9"/>
+      <file name="Autocomplete.tsx" path="C:\dev\portal-Consignado\src\components\Autocomplete\Autocomplete.tsx">
+        <metrics statements="17" coveredstatements="17" conditionals="10" coveredconditionals="10" methods="9" coveredmethods="9"/>
+        <line num="12" count="2" type="stmt"/>
+        <line num="22" count="248" type="stmt"/>
+        <line num="27" count="248" type="stmt"/>
+        <line num="29" count="248" type="stmt"/>
+        <line num="31" count="16" type="stmt"/>
+        <line num="35" count="248" type="stmt"/>
+        <line num="36" count="16" type="stmt"/>
+        <line num="41" count="248" type="stmt"/>
+        <line num="43" count="4" type="stmt"/>
+        <line num="48" count="248" type="stmt"/>
+        <line num="49" count="24" type="stmt"/>
+        <line num="51" count="24" type="cond" truecount="2" falsecount="0"/>
+        <line num="52" count="20" type="stmt"/>
+        <line num="55" count="248" type="stmt"/>
+        <line num="63" count="524" type="stmt"/>
+        <line num="71" count="252" type="stmt"/>
+        <line num="77" count="4" type="stmt"/>
       </file>
-      <file name="index.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\components\Autocomplete\index.tsx">
+      <file name="index.tsx" path="C:\dev\portal-Consignado\src\components\Autocomplete\index.tsx">
         <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       </file>
     </package>
     <package name="components.Buttons.Button">
       <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-      <file name="Button.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\components\Buttons\Button\Button.tsx">
+      <file name="Button.tsx" path="C:\dev\portal-Consignado\src\components\Buttons\Button\Button.tsx">
         <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-        <line num="6" count="11" type="stmt"/>
-        <line num="8" count="303" type="stmt"/>
-        <line num="10" count="303" type="stmt"/>
-        <line num="24" count="11" type="stmt"/>
+        <line num="6" count="16" type="stmt"/>
+        <line num="8" count="1459" type="stmt"/>
+        <line num="10" count="1459" type="stmt"/>
+        <line num="24" count="16" type="stmt"/>
       </file>
-      <file name="index.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\components\Buttons\Button\index.tsx">
+      <file name="index.tsx" path="C:\dev\portal-Consignado\src\components\Buttons\Button\index.tsx">
         <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       </file>
     </package>
     <package name="components.Buttons.SubmitButton">
       <metrics statements="5" coveredstatements="5" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
-      <file name="SubmitButton.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\components\Buttons\SubmitButton\SubmitButton.tsx">
+      <file name="SubmitButton.tsx" path="C:\dev\portal-Consignado\src\components\Buttons\SubmitButton\SubmitButton.tsx">
         <metrics statements="5" coveredstatements="5" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
         <line num="7" count="1" type="stmt"/>
         <line num="10" count="81" type="stmt"/>
@@ -65,109 +65,106 @@
         <line num="12" count="22" type="cond" truecount="2" falsecount="0"/>
         <line num="16" count="81" type="stmt"/>
       </file>
-      <file name="index.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\components\Buttons\SubmitButton\index.tsx">
+      <file name="index.tsx" path="C:\dev\portal-Consignado\src\components\Buttons\SubmitButton\index.tsx">
         <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       </file>
     </package>
     <package name="components.Card">
       <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-      <file name="Card.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\components\Card\Card.tsx">
+      <file name="Card.tsx" path="C:\dev\portal-Consignado\src\components\Card\Card.tsx">
         <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="5" count="1" type="stmt"/>
         <line num="6" count="1" type="stmt"/>
         <line num="8" count="1" type="stmt"/>
       </file>
-      <file name="index.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\components\Card\index.tsx">
+      <file name="index.tsx" path="C:\dev\portal-Consignado\src\components\Card\index.tsx">
         <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       </file>
     </package>
     <package name="components.CardWithCloseIcon">
       <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
-      <file name="CardWithCloseIcon.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\components\CardWithCloseIcon\CardWithCloseIcon.tsx">
+      <file name="CardWithCloseIcon.tsx" path="C:\dev\portal-Consignado\src\components\CardWithCloseIcon\CardWithCloseIcon.tsx">
         <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="7" count="0" type="stmt"/>
         <line num="11" count="0" type="stmt"/>
       </file>
-      <file name="index.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\components\CardWithCloseIcon\index.tsx">
+      <file name="index.tsx" path="C:\dev\portal-Consignado\src\components\CardWithCloseIcon\index.tsx">
         <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       </file>
     </package>
     <package name="components.DatePicker">
-      <metrics statements="15" coveredstatements="13" conditionals="11" coveredconditionals="8" methods="6" coveredmethods="5"/>
-      <file name="DatePicker.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\components\DatePicker\DatePicker.tsx">
-        <metrics statements="15" coveredstatements="13" conditionals="11" coveredconditionals="8" methods="6" coveredmethods="5"/>
-        <line num="9" count="1" type="stmt"/>
-        <line num="11" count="10" type="stmt"/>
-        <line num="16" count="10" type="stmt"/>
-        <line num="17" count="5" type="cond" truecount="1" falsecount="1"/>
+      <metrics statements="12" coveredstatements="10" conditionals="9" coveredconditionals="7" methods="5" coveredmethods="4"/>
+      <file name="DatePicker.tsx" path="C:\dev\portal-Consignado\src\components\DatePicker\DatePicker.tsx">
+        <metrics statements="12" coveredstatements="10" conditionals="9" coveredconditionals="7" methods="5" coveredmethods="4"/>
+        <line num="9" count="2" type="stmt"/>
+        <line num="11" count="156" type="stmt"/>
+        <line num="16" count="156" type="stmt"/>
+        <line num="17" count="36" type="cond" truecount="1" falsecount="1"/>
         <line num="18" count="0" type="stmt"/>
-        <line num="24" count="5" type="cond" truecount="4" falsecount="0"/>
-        <line num="25" count="1" type="stmt"/>
-        <line num="31" count="4" type="stmt"/>
-        <line num="34" count="10" type="stmt"/>
-        <line num="35" count="2" type="stmt"/>
-        <line num="39" count="2" type="cond" truecount="1" falsecount="1"/>
-        <line num="42" count="10" type="stmt"/>
-        <line num="45" count="20" type="stmt"/>
-        <line num="48" count="0" type="stmt"/>
-        <line num="58" count="10" type="stmt"/>
+        <line num="24" count="36" type="cond" truecount="4" falsecount="0"/>
+        <line num="25" count="11" type="stmt"/>
+        <line num="31" count="25" type="stmt"/>
+        <line num="34" count="156" type="stmt"/>
+        <line num="37" count="312" type="stmt"/>
+        <line num="40" count="0" type="stmt"/>
+        <line num="50" count="156" type="stmt"/>
       </file>
     </package>
     <package name="components.Error500">
       <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
-      <file name="Error500.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\components\Error500\Error500.tsx">
+      <file name="Error500.tsx" path="C:\dev\portal-Consignado\src\components\Error500\Error500.tsx">
         <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="5" count="0" type="stmt"/>
         <line num="6" count="0" type="stmt"/>
       </file>
-      <file name="index.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\components\Error500\index.tsx">
+      <file name="index.tsx" path="C:\dev\portal-Consignado\src\components\Error500\index.tsx">
         <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       </file>
     </package>
     <package name="components.Formik">
-      <metrics statements="6" coveredstatements="6" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
-      <file name="Formik.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\components\Formik\Formik.tsx">
-        <metrics statements="6" coveredstatements="6" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
-        <line num="13" count="78" type="stmt"/>
-        <line num="15" count="78" type="stmt"/>
-        <line num="17" count="78" type="stmt"/>
-        <line num="18" count="55" type="cond" truecount="2" falsecount="0"/>
-        <line num="19" count="52" type="stmt"/>
-        <line num="23" count="78" type="stmt"/>
+      <metrics statements="6" coveredstatements="6" conditionals="3" coveredconditionals="3" methods="2" coveredmethods="2"/>
+      <file name="Formik.tsx" path="C:\dev\portal-Consignado\src\components\Formik\Formik.tsx">
+        <metrics statements="6" coveredstatements="6" conditionals="3" coveredconditionals="3" methods="2" coveredmethods="2"/>
+        <line num="18" count="796" type="cond" truecount="1" falsecount="0"/>
+        <line num="20" count="795" type="stmt"/>
+        <line num="22" count="795" type="stmt"/>
+        <line num="23" count="105" type="cond" truecount="2" falsecount="0"/>
+        <line num="24" count="95" type="stmt"/>
+        <line num="28" count="795" type="stmt"/>
       </file>
-      <file name="index.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\components\Formik\index.tsx">
+      <file name="index.tsx" path="C:\dev\portal-Consignado\src\components\Formik\index.tsx">
         <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       </file>
     </package>
     <package name="components.Inputs.Input">
       <metrics statements="17" coveredstatements="15" conditionals="13" coveredconditionals="10" methods="4" coveredmethods="4"/>
-      <file name="Input.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\components\Inputs\Input\Input.tsx">
+      <file name="Input.tsx" path="C:\dev\portal-Consignado\src\components\Inputs\Input\Input.tsx">
         <metrics statements="17" coveredstatements="15" conditionals="13" coveredconditionals="10" methods="4" coveredmethods="4"/>
-        <line num="10" count="9" type="stmt"/>
-        <line num="27" count="870" type="stmt"/>
-        <line num="29" count="870" type="stmt"/>
-        <line num="37" count="870" type="stmt"/>
-        <line num="39" count="7" type="stmt"/>
-        <line num="40" count="7" type="cond" truecount="1" falsecount="1"/>
+        <line num="10" count="11" type="stmt"/>
+        <line num="27" count="4481" type="stmt"/>
+        <line num="29" count="4480" type="stmt"/>
+        <line num="37" count="4480" type="stmt"/>
+        <line num="39" count="11" type="stmt"/>
+        <line num="40" count="11" type="cond" truecount="1" falsecount="1"/>
         <line num="41" count="0" type="stmt"/>
-        <line num="44" count="7" type="cond" truecount="2" falsecount="0"/>
-        <line num="45" count="5" type="stmt"/>
-        <line num="51" count="870" type="stmt"/>
-        <line num="52" count="299" type="cond" truecount="1" falsecount="1"/>
+        <line num="44" count="11" type="cond" truecount="2" falsecount="0"/>
+        <line num="45" count="9" type="stmt"/>
+        <line num="51" count="4480" type="stmt"/>
+        <line num="52" count="640" type="cond" truecount="1" falsecount="1"/>
         <line num="53" count="0" type="stmt"/>
-        <line num="59" count="299" type="cond" truecount="4" falsecount="0"/>
-        <line num="60" count="74" type="stmt"/>
-        <line num="66" count="225" type="stmt"/>
-        <line num="69" count="870" type="stmt"/>
-        <line num="104" count="870" type="stmt"/>
+        <line num="59" count="640" type="cond" truecount="4" falsecount="0"/>
+        <line num="60" count="124" type="stmt"/>
+        <line num="66" count="516" type="stmt"/>
+        <line num="69" count="4480" type="stmt"/>
+        <line num="104" count="4480" type="stmt"/>
       </file>
-      <file name="index.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\components\Inputs\Input\index.tsx">
+      <file name="index.tsx" path="C:\dev\portal-Consignado\src\components\Inputs\Input\index.tsx">
         <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       </file>
     </package>
     <package name="components.Interceptors">
       <metrics statements="3" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
-      <file name="Interceptors.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\components\Interceptors\Interceptors.tsx">
+      <file name="Interceptors.tsx" path="C:\dev\portal-Consignado\src\components\Interceptors\Interceptors.tsx">
         <metrics statements="3" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="4" count="0" type="stmt"/>
         <line num="5" count="0" type="stmt"/>
@@ -176,85 +173,85 @@
     </package>
     <package name="components.Layout">
       <metrics statements="17" coveredstatements="10" conditionals="6" coveredconditionals="3" methods="6" coveredmethods="1"/>
-      <file name="Layout.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\components\Layout\Layout.tsx">
+      <file name="Layout.tsx" path="C:\dev\portal-Consignado\src\components\Layout\Layout.tsx">
         <metrics statements="17" coveredstatements="10" conditionals="6" coveredconditionals="3" methods="6" coveredmethods="1"/>
-        <line num="23" count="1" type="stmt"/>
-        <line num="24" count="15" type="stmt"/>
-        <line num="25" count="15" type="stmt"/>
-        <line num="26" count="15" type="stmt"/>
-        <line num="28" count="15" type="stmt"/>
-        <line num="29" count="15" type="stmt"/>
-        <line num="31" count="15" type="stmt"/>
+        <line num="23" count="5" type="stmt"/>
+        <line num="24" count="202" type="stmt"/>
+        <line num="25" count="202" type="stmt"/>
+        <line num="26" count="202" type="stmt"/>
+        <line num="28" count="202" type="stmt"/>
+        <line num="29" count="202" type="stmt"/>
+        <line num="31" count="202" type="stmt"/>
         <line num="32" count="0" type="stmt"/>
         <line num="33" count="0" type="stmt"/>
         <line num="34" count="0" type="stmt"/>
-        <line num="37" count="15" type="stmt"/>
+        <line num="37" count="202" type="stmt"/>
         <line num="38" count="0" type="stmt"/>
-        <line num="41" count="15" type="stmt"/>
+        <line num="41" count="202" type="stmt"/>
         <line num="42" count="0" type="stmt"/>
         <line num="43" count="0" type="stmt"/>
-        <line num="46" count="15" type="stmt"/>
+        <line num="46" count="202" type="stmt"/>
         <line num="164" count="0" type="stmt"/>
       </file>
     </package>
     <package name="components.Layout.LeftMenu">
       <metrics statements="7" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="1"/>
-      <file name="LeftMenu.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\components\Layout\LeftMenu\LeftMenu.tsx">
+      <file name="LeftMenu.tsx" path="C:\dev\portal-Consignado\src\components\Layout\LeftMenu\LeftMenu.tsx">
         <metrics statements="7" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="1"/>
-        <line num="9" count="1" type="stmt"/>
-        <line num="10" count="16" type="stmt"/>
-        <line num="11" count="15" type="stmt"/>
-        <line num="13" count="15" type="stmt"/>
+        <line num="9" count="5" type="stmt"/>
+        <line num="10" count="208" type="stmt"/>
+        <line num="11" count="203" type="stmt"/>
+        <line num="13" count="203" type="stmt"/>
         <line num="14" count="0" type="stmt"/>
         <line num="15" count="0" type="stmt"/>
-        <line num="18" count="15" type="stmt"/>
+        <line num="18" count="203" type="stmt"/>
       </file>
-      <file name="index.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\components\Layout\LeftMenu\index.tsx">
+      <file name="index.tsx" path="C:\dev\portal-Consignado\src\components\Layout\LeftMenu\index.tsx">
         <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       </file>
     </package>
     <package name="components.Modal">
       <metrics statements="3" coveredstatements="2" conditionals="6" coveredconditionals="6" methods="2" coveredmethods="1"/>
-      <file name="Modal.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\components\Modal\Modal.tsx">
+      <file name="Modal.tsx" path="C:\dev\portal-Consignado\src\components\Modal\Modal.tsx">
         <metrics statements="3" coveredstatements="2" conditionals="6" coveredconditionals="6" methods="2" coveredmethods="1"/>
-        <line num="7" count="4" type="stmt"/>
-        <line num="14" count="100" type="cond" truecount="2" falsecount="0"/>
+        <line num="7" count="8" type="stmt"/>
+        <line num="14" count="796" type="cond" truecount="2" falsecount="0"/>
         <line num="20" count="0" type="stmt"/>
       </file>
     </package>
     <package name="components.ModalMessage">
       <metrics statements="2" coveredstatements="2" conditionals="6" coveredconditionals="5" methods="1" coveredmethods="1"/>
-      <file name="ModalMessage.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\components\ModalMessage\ModalMessage.tsx">
+      <file name="ModalMessage.tsx" path="C:\dev\portal-Consignado\src\components\ModalMessage\ModalMessage.tsx">
         <metrics statements="2" coveredstatements="2" conditionals="6" coveredconditionals="5" methods="1" coveredmethods="1"/>
-        <line num="8" count="4" type="stmt"/>
-        <line num="16" count="69" type="stmt"/>
+        <line num="8" count="6" type="stmt"/>
+        <line num="16" count="310" type="stmt"/>
       </file>
-      <file name="index.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\components\ModalMessage\index.tsx">
+      <file name="index.tsx" path="C:\dev\portal-Consignado\src\components\ModalMessage\index.tsx">
         <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       </file>
     </package>
     <package name="components.NoDataTable">
-      <metrics statements="2" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="1" coveredmethods="0"/>
-      <file name="NoDataTable.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\components\NoDataTable\NoDataTable.tsx">
-        <metrics statements="2" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="1" coveredmethods="0"/>
-        <line num="5" count="0" type="stmt"/>
-        <line num="6" count="0" type="cond" truecount="0" falsecount="2"/>
+      <metrics statements="2" coveredstatements="2" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
+      <file name="NoDataTable.tsx" path="C:\dev\portal-Consignado\src\components\NoDataTable\NoDataTable.tsx">
+        <metrics statements="2" coveredstatements="2" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
+        <line num="5" count="3" type="stmt"/>
+        <line num="6" count="10" type="stmt"/>
       </file>
-      <file name="index.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\components\NoDataTable\index.tsx">
+      <file name="index.tsx" path="C:\dev\portal-Consignado\src\components\NoDataTable\index.tsx">
         <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       </file>
     </package>
     <package name="components.PasswordRules">
       <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-      <file name="PasswordRules.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\components\PasswordRules\PasswordRules.tsx">
+      <file name="PasswordRules.tsx" path="C:\dev\portal-Consignado\src\components\PasswordRules\PasswordRules.tsx">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-        <line num="6" count="3" type="stmt"/>
-        <line num="7" count="38" type="stmt"/>
+        <line num="6" count="4" type="stmt"/>
+        <line num="7" count="111" type="stmt"/>
       </file>
     </package>
     <package name="components.RouteAccess">
       <metrics statements="16" coveredstatements="0" conditionals="14" coveredconditionals="0" methods="4" coveredmethods="0"/>
-      <file name="RouteAccess.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\components\RouteAccess\RouteAccess.tsx">
+      <file name="RouteAccess.tsx" path="C:\dev\portal-Consignado\src\components\RouteAccess\RouteAccess.tsx">
         <metrics statements="16" coveredstatements="0" conditionals="14" coveredconditionals="0" methods="4" coveredmethods="0"/>
         <line num="11" count="0" type="stmt"/>
         <line num="12" count="0" type="stmt"/>
@@ -273,50 +270,50 @@
         <line num="33" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="35" count="0" type="stmt"/>
       </file>
-      <file name="index.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\components\RouteAccess\index.tsx">
+      <file name="index.tsx" path="C:\dev\portal-Consignado\src\components\RouteAccess\index.tsx">
         <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       </file>
     </package>
     <package name="components.Select">
       <metrics statements="11" coveredstatements="8" conditionals="8" coveredconditionals="4" methods="4" coveredmethods="3"/>
-      <file name="Select.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\components\Select\Select.tsx">
+      <file name="Select.tsx" path="C:\dev\portal-Consignado\src\components\Select\Select.tsx">
         <metrics statements="11" coveredstatements="8" conditionals="8" coveredconditionals="4" methods="4" coveredmethods="3"/>
-        <line num="8" count="1" type="stmt"/>
-        <line num="10" count="17" type="stmt"/>
-        <line num="11" count="17" type="stmt"/>
-        <line num="13" count="17" type="stmt"/>
-        <line num="15" count="3" type="stmt"/>
-        <line num="16" count="81" type="stmt"/>
-        <line num="23" count="17" type="stmt"/>
+        <line num="8" count="2" type="stmt"/>
+        <line num="10" count="236" type="stmt"/>
+        <line num="11" count="236" type="stmt"/>
+        <line num="13" count="236" type="stmt"/>
+        <line num="15" count="10" type="stmt"/>
+        <line num="16" count="270" type="stmt"/>
+        <line num="23" count="236" type="stmt"/>
         <line num="25" count="0" type="stmt"/>
         <line num="26" count="0" type="stmt"/>
         <line num="28" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="33" count="17" type="stmt"/>
+        <line num="33" count="236" type="stmt"/>
       </file>
-      <file name="index.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\components\Select\index.tsx">
+      <file name="index.tsx" path="C:\dev\portal-Consignado\src\components\Select\index.tsx">
         <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       </file>
     </package>
     <package name="components.SessionExpired">
       <metrics statements="5" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
-      <file name="SessionExpired.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\components\SessionExpired\SessionExpired.tsx">
+      <file name="SessionExpired.tsx" path="C:\dev\portal-Consignado\src\components\SessionExpired\SessionExpired.tsx">
         <metrics statements="5" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
-        <line num="9" count="1" type="stmt"/>
+        <line num="9" count="5" type="stmt"/>
         <line num="10" count="0" type="stmt"/>
         <line num="11" count="0" type="stmt"/>
         <line num="12" count="0" type="stmt"/>
         <line num="15" count="0" type="stmt"/>
       </file>
-      <file name="index.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\components\SessionExpired\index.tsx">
+      <file name="index.tsx" path="C:\dev\portal-Consignado\src\components\SessionExpired\index.tsx">
         <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       </file>
     </package>
     <package name="components.SessionModal">
       <metrics statements="12" coveredstatements="2" conditionals="2" coveredconditionals="0" methods="3" coveredmethods="0"/>
-      <file name="SessionModal.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\components\SessionModal\SessionModal.tsx">
+      <file name="SessionModal.tsx" path="C:\dev\portal-Consignado\src\components\SessionModal\SessionModal.tsx">
         <metrics statements="12" coveredstatements="2" conditionals="2" coveredconditionals="0" methods="3" coveredmethods="0"/>
-        <line num="9" count="1" type="stmt"/>
-        <line num="11" count="1" type="stmt"/>
+        <line num="9" count="5" type="stmt"/>
+        <line num="11" count="5" type="stmt"/>
         <line num="12" count="0" type="stmt"/>
         <line num="13" count="0" type="stmt"/>
         <line num="14" count="0" type="stmt"/>
@@ -330,44 +327,54 @@
       </file>
     </package>
     <package name="components.Slider">
-      <metrics statements="5" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
-      <file name="Slider.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\components\Slider\Slider.tsx">
-        <metrics statements="5" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
-        <line num="8" count="0" type="stmt"/>
-        <line num="9" count="0" type="stmt"/>
-        <line num="16" count="0" type="stmt"/>
-        <line num="17" count="0" type="stmt"/>
-        <line num="25" count="0" type="stmt"/>
+      <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+      <file name="Slider.tsx" path="C:\dev\portal-Consignado\src\components\Slider\Slider.tsx">
+        <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+        <line num="8" count="1" type="stmt"/>
+        <line num="9" count="11" type="stmt"/>
+        <line num="16" count="12" type="stmt"/>
+        <line num="17" count="12" type="stmt"/>
+        <line num="25" count="11" type="stmt"/>
       </file>
-      <file name="index.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\components\Slider\index.tsx">
+      <file name="index.tsx" path="C:\dev\portal-Consignado\src\components\Slider\index.tsx">
         <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       </file>
     </package>
     <package name="components.Table">
-      <metrics statements="3" coveredstatements="0" conditionals="8" coveredconditionals="0" methods="1" coveredmethods="0"/>
-      <file name="Table.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\components\Table\Table.tsx">
-        <metrics statements="3" coveredstatements="0" conditionals="8" coveredconditionals="0" methods="1" coveredmethods="0"/>
-        <line num="10" count="0" type="stmt"/>
-        <line num="24" count="0" type="stmt"/>
-        <line num="26" count="0" type="stmt"/>
+      <metrics statements="3" coveredstatements="3" conditionals="8" coveredconditionals="8" methods="1" coveredmethods="1"/>
+      <file name="Table.tsx" path="C:\dev\portal-Consignado\src\components\Table\Table.tsx">
+        <metrics statements="3" coveredstatements="3" conditionals="8" coveredconditionals="8" methods="1" coveredmethods="1"/>
+        <line num="10" count="3" type="stmt"/>
+        <line num="24" count="48" type="stmt"/>
+        <line num="26" count="48" type="stmt"/>
       </file>
     </package>
     <package name="components.Tooltip">
-      <metrics statements="4" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
-      <file name="Tooltip.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\components\Tooltip\Tooltip.tsx">
-        <metrics statements="4" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
-        <line num="8" count="0" type="stmt"/>
-        <line num="9" count="0" type="stmt"/>
-        <line num="11" count="0" type="stmt"/>
-        <line num="13" count="0" type="stmt"/>
+      <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <file name="Tooltip.tsx" path="C:\dev\portal-Consignado\src\components\Tooltip\Tooltip.tsx">
+        <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="8" count="1" type="stmt"/>
+        <line num="9" count="8" type="stmt"/>
+        <line num="11" count="8" type="stmt"/>
+        <line num="13" count="8" type="stmt"/>
       </file>
-      <file name="index.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\components\Tooltip\index.tsx">
+      <file name="index.tsx" path="C:\dev\portal-Consignado\src\components\Tooltip\index.tsx">
         <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       </file>
     </package>
     <package name="hooks">
-      <metrics statements="58" coveredstatements="13" conditionals="14" coveredconditionals="2" methods="18" coveredmethods="4"/>
-      <file name="useInterceptors.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\hooks\useInterceptors.tsx">
+      <metrics statements="80" coveredstatements="38" conditionals="22" coveredconditionals="10" methods="27" coveredmethods="13"/>
+      <file name="appInsights.ts" path="C:\dev\portal-Consignado\src\hooks\appInsights.ts">
+        <metrics statements="4" coveredstatements="4" conditionals="2" coveredconditionals="2" methods="0" coveredmethods="0"/>
+        <line num="5" count="7" type="stmt"/>
+        <line num="6" count="7" type="stmt"/>
+        <line num="7" count="7" type="stmt"/>
+        <line num="16" count="7" type="stmt"/>
+      </file>
+      <file name="props.ts" path="C:\dev\portal-Consignado\src\hooks\props.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+      <file name="useInterceptors.tsx" path="C:\dev\portal-Consignado\src\hooks\useInterceptors.tsx">
         <metrics statements="37" coveredstatements="0" conditionals="8" coveredconditionals="0" methods="11" coveredmethods="0"/>
         <line num="12" count="0" type="stmt"/>
         <line num="13" count="0" type="stmt"/>
@@ -407,34 +414,225 @@
         <line num="99" count="0" type="stmt"/>
         <line num="103" count="0" type="stmt"/>
       </file>
-      <file name="useViaCEP.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\hooks\useViaCEP.tsx">
-        <metrics statements="21" coveredstatements="13" conditionals="6" coveredconditionals="2" methods="7" coveredmethods="4"/>
-        <line num="22" count="1" type="stmt"/>
-        <line num="23" count="9" type="stmt"/>
-        <line num="30" count="9" type="stmt"/>
-        <line num="31" count="9" type="stmt"/>
-        <line num="32" count="9" type="stmt"/>
-        <line num="35" count="3" type="stmt"/>
-        <line num="36" count="3" type="stmt"/>
-        <line num="37" count="3" type="stmt"/>
-        <line num="38" count="3" type="stmt"/>
-        <line num="42" count="3" type="stmt"/>
-        <line num="52" count="3" type="stmt"/>
-        <line num="54" count="3" type="cond" truecount="2" falsecount="2"/>
-        <line num="56" count="0" type="stmt"/>
-        <line num="58" count="0" type="stmt"/>
-        <line num="61" count="0" type="cond" truecount="0" falsecount="2"/>
+      <file name="useModal.ts" path="C:\dev\portal-Consignado\src\hooks\useModal.ts">
+        <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3"/>
+        <line num="8" count="8" type="stmt"/>
+        <line num="9" count="780" type="stmt"/>
+        <line num="12" count="22" type="stmt"/>
+        <line num="15" count="780" type="stmt"/>
+      </file>
+      <file name="useViaCEP.tsx" path="C:\dev\portal-Consignado\src\hooks\useViaCEP.tsx">
+        <metrics statements="21" coveredstatements="18" conditionals="6" coveredconditionals="5" methods="7" coveredmethods="6"/>
+        <line num="22" count="3" type="stmt"/>
+        <line num="23" count="129" type="stmt"/>
+        <line num="30" count="129" type="stmt"/>
+        <line num="31" count="129" type="stmt"/>
+        <line num="32" count="129" type="stmt"/>
+        <line num="35" count="14" type="stmt"/>
+        <line num="36" count="14" type="stmt"/>
+        <line num="37" count="14" type="stmt"/>
+        <line num="38" count="14" type="stmt"/>
+        <line num="42" count="14" type="stmt"/>
+        <line num="52" count="14" type="stmt"/>
+        <line num="54" count="14" type="cond" truecount="4" falsecount="0"/>
+        <line num="56" count="4" type="stmt"/>
+        <line num="58" count="4" type="stmt"/>
+        <line num="61" count="3" type="cond" truecount="1" falsecount="1"/>
         <line num="62" count="0" type="stmt"/>
         <line num="63" count="0" type="stmt"/>
-        <line num="64" count="0" type="stmt"/>
+        <line num="64" count="3" type="stmt"/>
         <line num="66" count="0" type="stmt"/>
+        <line num="67" count="3" type="stmt"/>
+        <line num="70" count="129" type="stmt"/>
+      </file>
+      <file name="useWindowDimensions.ts" path="C:\dev\portal-Consignado\src\hooks\useWindowDimensions.ts">
+        <metrics statements="14" coveredstatements="12" conditionals="6" coveredconditionals="3" methods="6" coveredmethods="4"/>
+        <line num="4" count="117" type="stmt"/>
+        <line num="6" count="117" type="stmt"/>
+        <line num="7" count="116" type="cond" truecount="1" falsecount="1"/>
+        <line num="8" count="116" type="cond" truecount="1" falsecount="1"/>
+        <line num="10" count="116" type="stmt"/>
+        <line num="16" count="116" type="stmt"/>
+        <line num="20" count="116" type="stmt"/>
+        <line num="21" count="0" type="stmt"/>
+        <line num="24" count="116" type="stmt"/>
+        <line num="25" count="28" type="cond" truecount="1" falsecount="1"/>
+        <line num="26" count="28" type="stmt"/>
+        <line num="28" count="28" type="stmt"/>
+        <line num="31" count="0" type="stmt"/>
+        <line num="34" count="116" type="stmt"/>
+      </file>
+    </package>
+    <package name="hooks.auth">
+      <metrics statements="43" coveredstatements="35" conditionals="10" coveredconditionals="7" methods="9" coveredmethods="5"/>
+      <file name="index.tsx" path="C:\dev\portal-Consignado\src\hooks\auth\index.tsx">
+        <metrics statements="43" coveredstatements="35" conditionals="10" coveredconditionals="7" methods="9" coveredmethods="5"/>
+        <line num="26" count="8" type="stmt"/>
+        <line num="27" count="8" type="stmt"/>
+        <line num="29" count="8" type="stmt"/>
+        <line num="30" count="62" type="stmt"/>
+        <line num="31" count="57" type="stmt"/>
+        <line num="32" count="57" type="stmt"/>
+        <line num="33" count="57" type="stmt"/>
+        <line num="35" count="57" type="stmt"/>
+        <line num="40" count="57" type="cond" truecount="2" falsecount="0"/>
+        <line num="44" count="57" type="stmt"/>
+        <line num="45" count="45" type="stmt"/>
+        <line num="49" count="57" type="stmt"/>
+        <line num="51" count="3" type="stmt"/>
+        <line num="52" count="3" type="stmt"/>
+        <line num="54" count="3" type="stmt"/>
+        <line num="56" count="3" type="stmt"/>
+        <line num="60" count="1" type="stmt"/>
+        <line num="61" count="1" type="stmt"/>
+        <line num="62" count="1" type="stmt"/>
+        <line num="64" count="1" type="stmt"/>
+        <line num="66" count="2" type="stmt"/>
+        <line num="67" count="2" type="stmt"/>
+        <line num="68" count="2" type="stmt"/>
+        <line num="69" count="2" type="stmt"/>
+        <line num="70" count="2" type="stmt"/>
+        <line num="71" count="2" type="stmt"/>
+        <line num="77" count="57" type="stmt"/>
+        <line num="78" count="0" type="stmt"/>
+        <line num="79" count="0" type="stmt"/>
+        <line num="80" count="0" type="stmt"/>
+        <line num="83" count="57" type="stmt"/>
+        <line num="84" count="0" type="stmt"/>
+        <line num="87" count="57" type="stmt"/>
+        <line num="88" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="91" count="57" type="stmt"/>
+        <line num="92" count="0" type="stmt"/>
+        <line num="93" count="0" type="stmt"/>
+        <line num="96" count="57" type="stmt"/>
+        <line num="98" count="57" type="stmt"/>
+        <line num="119" count="223" type="stmt"/>
+        <line num="121" count="223" type="cond" truecount="3" falsecount="1"/>
+        <line num="122" count="0" type="stmt"/>
+        <line num="125" count="223" type="stmt"/>
+      </file>
+    </package>
+    <package name="hooks.headerMobile">
+      <metrics statements="12" coveredstatements="11" conditionals="4" coveredconditionals="3" methods="4" coveredmethods="4"/>
+      <file name="index.tsx" path="C:\dev\portal-Consignado\src\hooks\headerMobile\index.tsx">
+        <metrics statements="12" coveredstatements="11" conditionals="4" coveredconditionals="3" methods="4" coveredmethods="4"/>
+        <line num="5" count="6" type="stmt"/>
+        <line num="7" count="6" type="stmt"/>
+        <line num="9" count="6" type="stmt"/>
+        <line num="10" count="45" type="stmt"/>
+        <line num="12" count="40" type="stmt"/>
+        <line num="14" count="40" type="stmt"/>
+        <line num="15" count="1" type="stmt"/>
+        <line num="18" count="40" type="stmt"/>
+        <line num="26" count="204" type="stmt"/>
+        <line num="28" count="204" type="cond" truecount="3" falsecount="1"/>
+        <line num="29" count="0" type="stmt"/>
+        <line num="34" count="204" type="stmt"/>
+      </file>
+    </package>
+    <package name="hooks.session">
+      <metrics statements="14" coveredstatements="13" conditionals="4" coveredconditionals="2" methods="4" coveredmethods="4"/>
+      <file name="index.tsx" path="C:\dev\portal-Consignado\src\hooks\session\index.tsx">
+        <metrics statements="14" coveredstatements="13" conditionals="4" coveredconditionals="2" methods="4" coveredmethods="4"/>
+        <line num="5" count="6" type="stmt"/>
+        <line num="7" count="6" type="stmt"/>
+        <line num="8" count="40" type="stmt"/>
+        <line num="9" count="39" type="stmt"/>
+        <line num="11" count="39" type="cond" truecount="1" falsecount="1"/>
+        <line num="13" count="39" type="stmt"/>
+        <line num="16" count="40" type="stmt"/>
+        <line num="17" count="1" type="stmt"/>
+        <line num="18" count="1" type="stmt"/>
+        <line num="21" count="40" type="stmt"/>
+        <line num="29" count="2" type="stmt"/>
+        <line num="31" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="32" count="0" type="stmt"/>
+        <line num="35" count="2" type="stmt"/>
+      </file>
+    </package>
+    <package name="hooks.simulate">
+      <metrics statements="30" coveredstatements="26" conditionals="4" coveredconditionals="3" methods="4" coveredmethods="4"/>
+      <file name="index.tsx" path="C:\dev\portal-Consignado\src\hooks\simulate\index.tsx">
+        <metrics statements="30" coveredstatements="26" conditionals="4" coveredconditionals="3" methods="4" coveredmethods="4"/>
+        <line num="11" count="2" type="stmt"/>
+        <line num="13" count="2" type="stmt"/>
+        <line num="15" count="2" type="stmt"/>
+        <line num="16" count="23" type="stmt"/>
+        <line num="17" count="23" type="stmt"/>
+        <line num="18" count="23" type="stmt"/>
+        <line num="20" count="23" type="stmt"/>
+        <line num="21" count="23" type="stmt"/>
+        <line num="22" count="23" type="stmt"/>
+        <line num="23" count="23" type="stmt"/>
+        <line num="29" count="23" type="stmt"/>
+        <line num="30" count="2" type="stmt"/>
+        <line num="31" count="2" type="stmt"/>
+        <line num="39" count="2" type="stmt"/>
+        <line num="44" count="0" type="stmt"/>
+        <line num="46" count="0" type="stmt"/>
+        <line num="52" count="0" type="stmt"/>
+        <line num="54" count="2" type="stmt"/>
+        <line num="56" count="2" type="stmt"/>
+        <line num="57" count="2" type="stmt"/>
+        <line num="58" count="2" type="stmt"/>
+        <line num="59" count="2" type="stmt"/>
+        <line num="60" count="2" type="stmt"/>
+        <line num="69" count="23" type="stmt"/>
+        <line num="70" count="1" type="stmt"/>
+        <line num="73" count="23" type="stmt"/>
+        <line num="90" count="153" type="stmt"/>
+        <line num="92" count="153" type="cond" truecount="3" falsecount="1"/>
+        <line num="93" count="0" type="stmt"/>
+        <line num="98" count="153" type="stmt"/>
+      </file>
+    </package>
+    <package name="hooks.simulateRealtime">
+      <metrics statements="38" coveredstatements="33" conditionals="14" coveredconditionals="9" methods="8" coveredmethods="8"/>
+      <file name="index.tsx" path="C:\dev\portal-Consignado\src\hooks\simulateRealtime\index.tsx">
+        <metrics statements="38" coveredstatements="33" conditionals="14" coveredconditionals="9" methods="8" coveredmethods="8"/>
+        <line num="16" count="3" type="stmt"/>
+        <line num="18" count="3" type="stmt"/>
+        <line num="20" count="3" type="stmt"/>
+        <line num="21" count="6" type="stmt"/>
+        <line num="22" count="6" type="stmt"/>
+        <line num="23" count="6" type="cond" truecount="1" falsecount="1"/>
+        <line num="27" count="6" type="stmt"/>
+        <line num="32" count="6" type="stmt"/>
+        <line num="34" count="4" type="stmt"/>
+        <line num="36" count="4" type="cond" truecount="1" falsecount="1"/>
+        <line num="38" count="4" type="stmt"/>
+        <line num="41" count="6" type="stmt"/>
+        <line num="42" count="4" type="stmt"/>
+        <line num="44" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="46" count="3" type="stmt"/>
+        <line num="48" count="6" type="stmt"/>
+        <line num="49" count="4" type="stmt"/>
+        <line num="51" count="4" type="cond" truecount="1" falsecount="1"/>
+        <line num="53" count="4" type="stmt"/>
+        <line num="56" count="6" type="stmt"/>
+        <line num="57" count="1" type="stmt"/>
+        <line num="58" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="61" count="0" type="stmt"/>
+        <line num="63" count="0" type="stmt"/>
+        <line num="64" count="0" type="stmt"/>
         <line num="67" count="0" type="stmt"/>
-        <line num="70" count="9" type="stmt"/>
+        <line num="71" count="6" type="stmt"/>
+        <line num="72" count="1" type="stmt"/>
+        <line num="73" count="1" type="stmt"/>
+        <line num="76" count="6" type="stmt"/>
+        <line num="77" count="1" type="stmt"/>
+        <line num="78" count="1" type="stmt"/>
+        <line num="79" count="1" type="stmt"/>
+        <line num="82" count="6" type="stmt"/>
+        <line num="100" count="158" type="stmt"/>
+        <line num="102" count="158" type="cond" truecount="3" falsecount="1"/>
+        <line num="103" count="0" type="stmt"/>
+        <line num="108" count="158" type="stmt"/>
       </file>
     </package>
     <package name="pages.Accompaniment">
       <metrics statements="57" coveredstatements="0" conditionals="32" coveredconditionals="0" methods="15" coveredmethods="0"/>
-      <file name="index.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\pages\Accompaniment\index.tsx">
+      <file name="index.tsx" path="C:\dev\portal-Consignado\src\pages\Accompaniment\index.tsx">
         <metrics statements="57" coveredstatements="0" conditionals="32" coveredconditionals="0" methods="15" coveredmethods="0"/>
         <line num="33" count="0" type="stmt"/>
         <line num="51" count="0" type="stmt"/>
@@ -497,7 +695,7 @@
     </package>
     <package name="pages.Accompaniment.CardMobile">
       <metrics statements="59" coveredstatements="0" conditionals="26" coveredconditionals="0" methods="15" coveredmethods="0"/>
-      <file name="CardMobile.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\pages\Accompaniment\CardMobile\CardMobile.tsx">
+      <file name="CardMobile.tsx" path="C:\dev\portal-Consignado\src\pages\Accompaniment\CardMobile\CardMobile.tsx">
         <metrics statements="59" coveredstatements="0" conditionals="26" coveredconditionals="0" methods="15" coveredmethods="0"/>
         <line num="16" count="0" type="stmt"/>
         <line num="18" count="0" type="stmt"/>
@@ -559,13 +757,13 @@
         <line num="187" count="0" type="stmt"/>
         <line num="206" count="0" type="stmt"/>
       </file>
-      <file name="index.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\pages\Accompaniment\CardMobile\index.tsx">
+      <file name="index.tsx" path="C:\dev\portal-Consignado\src\pages\Accompaniment\CardMobile\index.tsx">
         <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       </file>
     </package>
     <package name="pages.Accompaniment.components.ApprovedLoan">
       <metrics statements="111" coveredstatements="0" conditionals="31" coveredconditionals="0" methods="35" coveredmethods="0"/>
-      <file name="ApprovedLoan.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\pages\Accompaniment\components\ApprovedLoan\ApprovedLoan.tsx">
+      <file name="ApprovedLoan.tsx" path="C:\dev\portal-Consignado\src\pages\Accompaniment\components\ApprovedLoan\ApprovedLoan.tsx">
         <metrics statements="111" coveredstatements="0" conditionals="31" coveredconditionals="0" methods="35" coveredmethods="0"/>
         <line num="36" count="0" type="stmt"/>
         <line num="37" count="0" type="stmt"/>
@@ -679,13 +877,13 @@
         <line num="334" count="0" type="stmt"/>
         <line num="612" count="0" type="stmt"/>
       </file>
-      <file name="index.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\pages\Accompaniment\components\ApprovedLoan\index.tsx">
+      <file name="index.tsx" path="C:\dev\portal-Consignado\src\pages\Accompaniment\components\ApprovedLoan\index.tsx">
         <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       </file>
     </package>
     <package name="pages.Accompaniment.components.ApprovedLoan.components.InstallmentCard">
       <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
-      <file name="InstallmentCard.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\pages\Accompaniment\components\ApprovedLoan\components\InstallmentCard\InstallmentCard.tsx">
+      <file name="InstallmentCard.tsx" path="C:\dev\portal-Consignado\src\pages\Accompaniment\components\ApprovedLoan\components\InstallmentCard\InstallmentCard.tsx">
         <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="6" count="0" type="stmt"/>
         <line num="7" count="0" type="stmt"/>
@@ -693,7 +891,7 @@
     </package>
     <package name="pages.Accompaniment.components.AwaitingSubmissionOfDocumentation">
       <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
-      <file name="AwaitingSubmissionOfDocumentation.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\pages\Accompaniment\components\AwaitingSubmissionOfDocumentation\AwaitingSubmissionOfDocumentation.tsx">
+      <file name="AwaitingSubmissionOfDocumentation.tsx" path="C:\dev\portal-Consignado\src\pages\Accompaniment\components\AwaitingSubmissionOfDocumentation\AwaitingSubmissionOfDocumentation.tsx">
         <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="7" count="0" type="stmt"/>
         <line num="8" count="0" type="stmt"/>
@@ -701,7 +899,7 @@
     </package>
     <package name="pages.Accompaniment.components.ContractSigning">
       <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
-      <file name="ContractSigning.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\pages\Accompaniment\components\ContractSigning\ContractSigning.tsx">
+      <file name="ContractSigning.tsx" path="C:\dev\portal-Consignado\src\pages\Accompaniment\components\ContractSigning\ContractSigning.tsx">
         <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="7" count="0" type="stmt"/>
         <line num="8" count="0" type="stmt"/>
@@ -709,7 +907,7 @@
     </package>
     <package name="pages.Accompaniment.components.DocumentationSent">
       <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
-      <file name="DocumentationSent.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\pages\Accompaniment\components\DocumentationSent\DocumentationSent.tsx">
+      <file name="DocumentationSent.tsx" path="C:\dev\portal-Consignado\src\pages\Accompaniment\components\DocumentationSent\DocumentationSent.tsx">
         <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="7" count="0" type="stmt"/>
         <line num="8" count="0" type="stmt"/>
@@ -717,7 +915,7 @@
     </package>
     <package name="pages.Accompaniment.components.ReleasedCredit">
       <metrics statements="2" coveredstatements="0" conditionals="10" coveredconditionals="0" methods="1" coveredmethods="0"/>
-      <file name="ReleasedCredit.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\pages\Accompaniment\components\ReleasedCredit\ReleasedCredit.tsx">
+      <file name="ReleasedCredit.tsx" path="C:\dev\portal-Consignado\src\pages\Accompaniment\components\ReleasedCredit\ReleasedCredit.tsx">
         <metrics statements="2" coveredstatements="0" conditionals="10" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="10" count="0" type="stmt"/>
         <line num="11" count="0" type="stmt"/>
@@ -725,31 +923,31 @@
     </package>
     <package name="pages.Accompaniment.components.ReprovidedLoan">
       <metrics statements="4" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
-      <file name="ReprovidedLoan.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\pages\Accompaniment\components\ReprovidedLoan\ReprovidedLoan.tsx">
+      <file name="ReprovidedLoan.tsx" path="C:\dev\portal-Consignado\src\pages\Accompaniment\components\ReprovidedLoan\ReprovidedLoan.tsx">
         <metrics statements="4" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
         <line num="8" count="0" type="stmt"/>
         <line num="9" count="0" type="stmt"/>
         <line num="11" count="0" type="stmt"/>
         <line num="24" count="0" type="stmt"/>
       </file>
-      <file name="index.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\pages\Accompaniment\components\ReprovidedLoan\index.tsx">
+      <file name="index.tsx" path="C:\dev\portal-Consignado\src\pages\Accompaniment\components\ReprovidedLoan\index.tsx">
         <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       </file>
     </package>
     <package name="pages.Accompaniment.components.RequestUnderAnalysis">
       <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
-      <file name="RequestUnderAnalysis.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\pages\Accompaniment\components\RequestUnderAnalysis\RequestUnderAnalysis.tsx">
+      <file name="RequestUnderAnalysis.tsx" path="C:\dev\portal-Consignado\src\pages\Accompaniment\components\RequestUnderAnalysis\RequestUnderAnalysis.tsx">
         <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="7" count="0" type="stmt"/>
         <line num="8" count="0" type="stmt"/>
       </file>
-      <file name="index.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\pages\Accompaniment\components\RequestUnderAnalysis\index.tsx">
+      <file name="index.tsx" path="C:\dev\portal-Consignado\src\pages\Accompaniment\components\RequestUnderAnalysis\index.tsx">
         <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       </file>
     </package>
     <package name="pages.AccountConfirmation">
       <metrics statements="23" coveredstatements="0" conditionals="8" coveredconditionals="0" methods="4" coveredmethods="0"/>
-      <file name="index.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\pages\AccountConfirmation\index.tsx">
+      <file name="index.tsx" path="C:\dev\portal-Consignado\src\pages\AccountConfirmation\index.tsx">
         <metrics statements="23" coveredstatements="0" conditionals="8" coveredconditionals="0" methods="4" coveredmethods="0"/>
         <line num="20" count="0" type="stmt"/>
         <line num="21" count="0" type="stmt"/>
@@ -778,7 +976,7 @@
     </package>
     <package name="pages.ChangePassword">
       <metrics statements="27" coveredstatements="24" conditionals="8" coveredconditionals="6" methods="7" coveredmethods="4"/>
-      <file name="index.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\pages\ChangePassword\index.tsx">
+      <file name="index.tsx" path="C:\dev\portal-Consignado\src\pages\ChangePassword\index.tsx">
         <metrics statements="27" coveredstatements="24" conditionals="8" coveredconditionals="6" methods="7" coveredmethods="4"/>
         <line num="27" count="1" type="stmt"/>
         <line num="28" count="16" type="stmt"/>
@@ -810,122 +1008,124 @@
       </file>
     </package>
     <package name="pages.ContractInstallments">
-      <metrics statements="50" coveredstatements="0" conditionals="28" coveredconditionals="0" methods="20" coveredmethods="0"/>
-      <file name="index.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\pages\ContractInstallments\index.tsx">
-        <metrics statements="50" coveredstatements="0" conditionals="28" coveredconditionals="0" methods="20" coveredmethods="0"/>
-        <line num="31" count="0" type="stmt"/>
-        <line num="32" count="0" type="stmt"/>
-        <line num="34" count="0" type="stmt"/>
-        <line num="35" count="0" type="stmt"/>
-        <line num="36" count="0" type="stmt"/>
-        <line num="37" count="0" type="stmt"/>
-        <line num="38" count="0" type="stmt"/>
-        <line num="40" count="0" type="stmt"/>
-        <line num="41" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="43" count="0" type="stmt"/>
-        <line num="46" count="0" type="stmt"/>
-        <line num="47" count="0" type="stmt"/>
-        <line num="48" count="0" type="stmt"/>
-        <line num="50" count="0" type="stmt"/>
-        <line num="55" count="0" type="stmt"/>
-        <line num="56" count="0" type="stmt"/>
-        <line num="90" count="0" type="stmt"/>
-        <line num="97" count="0" type="stmt"/>
-        <line num="98" count="0" type="stmt"/>
-        <line num="101" count="0" type="stmt"/>
-        <line num="102" count="0" type="cond" truecount="0" falsecount="4"/>
-        <line num="106" count="0" type="stmt"/>
-        <line num="107" count="0" type="cond" truecount="0" falsecount="4"/>
-        <line num="108" count="0" type="stmt"/>
-        <line num="110" count="0" type="stmt"/>
-        <line num="112" count="0" type="stmt"/>
-        <line num="115" count="0" type="stmt"/>
-        <line num="116" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="118" count="0" type="stmt"/>
-        <line num="120" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="122" count="0" type="stmt"/>
-        <line num="125" count="0" type="stmt"/>
-        <line num="128" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="130" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="132" count="0" type="stmt"/>
-        <line num="135" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="137" count="0" type="stmt"/>
-        <line num="138" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="140" count="0" type="stmt"/>
-        <line num="141" count="0" type="cond" truecount="0" falsecount="4"/>
-        <line num="158" count="0" type="stmt"/>
-        <line num="167" count="0" type="stmt"/>
-        <line num="168" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="169" count="0" type="stmt"/>
-        <line num="171" count="0" type="stmt"/>
-        <line num="173" count="0" type="stmt"/>
-        <line num="174" count="0" type="stmt"/>
-        <line num="183" count="0" type="stmt"/>
-        <line num="186" count="0" type="stmt"/>
-        <line num="271" count="0" type="stmt"/>
+      <metrics statements="52" coveredstatements="48" conditionals="28" coveredconditionals="24" methods="21" coveredmethods="17"/>
+      <file name="index.tsx" path="C:\dev\portal-Consignado\src\pages\ContractInstallments\index.tsx">
+        <metrics statements="52" coveredstatements="48" conditionals="28" coveredconditionals="24" methods="21" coveredmethods="17"/>
+        <line num="32" count="1" type="stmt"/>
+        <line num="33" count="23" type="stmt"/>
+        <line num="35" count="23" type="stmt"/>
+        <line num="36" count="22" type="stmt"/>
+        <line num="37" count="22" type="stmt"/>
+        <line num="38" count="22" type="stmt"/>
+        <line num="39" count="22" type="stmt"/>
+        <line num="40" count="22" type="stmt"/>
+        <line num="42" count="22" type="stmt"/>
+        <line num="43" count="5" type="cond" truecount="1" falsecount="1"/>
+        <line num="45" count="5" type="stmt"/>
+        <line num="48" count="22" type="stmt"/>
+        <line num="49" count="30" type="stmt"/>
+        <line num="50" count="30" type="stmt"/>
+        <line num="52" count="30" type="stmt"/>
+        <line num="57" count="22" type="stmt"/>
+        <line num="58" count="6" type="stmt"/>
+        <line num="92" count="0" type="stmt"/>
+        <line num="99" count="22" type="stmt"/>
+        <line num="100" count="0" type="stmt"/>
+        <line num="103" count="22" type="stmt"/>
+        <line num="104" count="22" type="cond" truecount="4" falsecount="0"/>
+        <line num="108" count="22" type="stmt"/>
+        <line num="109" count="22" type="cond" truecount="4" falsecount="0"/>
+        <line num="110" count="15" type="stmt"/>
+        <line num="112" count="15" type="stmt"/>
+        <line num="114" count="7" type="stmt"/>
+        <line num="117" count="22" type="stmt"/>
+        <line num="118" count="22" type="cond" truecount="2" falsecount="0"/>
+        <line num="120" count="15" type="stmt"/>
+        <line num="122" count="15" type="cond" truecount="1" falsecount="1"/>
+        <line num="124" count="0" type="stmt"/>
+        <line num="127" count="22" type="stmt"/>
+        <line num="130" count="176" type="cond" truecount="2" falsecount="0"/>
+        <line num="132" count="48" type="cond" truecount="2" falsecount="0"/>
+        <line num="134" count="46" type="stmt"/>
+        <line num="137" count="22" type="cond" truecount="1" falsecount="1"/>
+        <line num="139" count="22" type="stmt"/>
+        <line num="140" count="14" type="cond" truecount="2" falsecount="0"/>
+        <line num="142" count="22" type="stmt"/>
+        <line num="143" count="22" type="cond" truecount="4" falsecount="0"/>
+        <line num="160" count="6" type="stmt"/>
+        <line num="170" count="22" type="stmt"/>
+        <line num="171" count="6" type="cond" truecount="1" falsecount="1"/>
+        <line num="172" count="6" type="stmt"/>
+        <line num="174" count="5" type="stmt"/>
+        <line num="176" count="5" type="stmt"/>
+        <line num="177" count="5" type="stmt"/>
+        <line num="187" count="1" type="stmt"/>
+        <line num="189" count="6" type="stmt"/>
+        <line num="192" count="22" type="stmt"/>
+        <line num="277" count="0" type="stmt"/>
       </file>
     </package>
     <package name="pages.ContractInstallments.components.InstallmentsCard">
-      <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
-      <file name="InstallmentsCard.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\pages\ContractInstallments\components\InstallmentsCard\InstallmentsCard.tsx">
-        <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
-        <line num="6" count="0" type="stmt"/>
-        <line num="10" count="0" type="stmt"/>
+      <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <file name="InstallmentsCard.tsx" path="C:\dev\portal-Consignado\src\pages\ContractInstallments\components\InstallmentsCard\InstallmentsCard.tsx">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="10" count="6" type="stmt"/>
       </file>
-      <file name="index.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\pages\ContractInstallments\components\InstallmentsCard\index.tsx">
+      <file name="index.tsx" path="C:\dev\portal-Consignado\src\pages\ContractInstallments\components\InstallmentsCard\index.tsx">
         <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       </file>
     </package>
     <package name="pages.Contracts">
-      <metrics statements="32" coveredstatements="0" conditionals="14" coveredconditionals="0" methods="16" coveredmethods="0"/>
-      <file name="index.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\pages\Contracts\index.tsx">
-        <metrics statements="32" coveredstatements="0" conditionals="14" coveredconditionals="0" methods="16" coveredmethods="0"/>
-        <line num="25" count="0" type="stmt"/>
-        <line num="26" count="0" type="stmt"/>
-        <line num="27" count="0" type="stmt"/>
-        <line num="28" count="0" type="stmt"/>
-        <line num="29" count="0" type="stmt"/>
-        <line num="30" count="0" type="stmt"/>
-        <line num="32" count="0" type="stmt"/>
-        <line num="34" count="0" type="stmt"/>
-        <line num="39" count="0" type="stmt"/>
-        <line num="40" count="0" type="stmt"/>
-        <line num="91" count="0" type="stmt"/>
-        <line num="104" count="0" type="stmt"/>
-        <line num="106" count="0" type="stmt"/>
-        <line num="116" count="0" type="stmt"/>
-        <line num="117" count="0" type="stmt"/>
-        <line num="120" count="0" type="stmt"/>
-        <line num="121" count="0" type="stmt"/>
-        <line num="123" count="0" type="stmt"/>
-        <line num="124" count="0" type="stmt"/>
-        <line num="134" count="0" type="stmt"/>
-        <line num="137" count="0" type="stmt"/>
-        <line num="138" count="0" type="stmt"/>
-        <line num="141" count="0" type="stmt"/>
-        <line num="143" count="0" type="stmt"/>
-        <line num="146" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="147" count="0" type="stmt"/>
+      <metrics statements="32" coveredstatements="29" conditionals="14" coveredconditionals="12" methods="16" coveredmethods="15"/>
+      <file name="index.tsx" path="C:\dev\portal-Consignado\src\pages\Contracts\index.tsx">
+        <metrics statements="32" coveredstatements="29" conditionals="14" coveredconditionals="12" methods="16" coveredmethods="15"/>
+        <line num="25" count="1" type="stmt"/>
+        <line num="26" count="28" type="stmt"/>
+        <line num="27" count="28" type="stmt"/>
+        <line num="28" count="27" type="stmt"/>
+        <line num="29" count="27" type="stmt"/>
+        <line num="30" count="27" type="stmt"/>
+        <line num="32" count="27" type="stmt"/>
+        <line num="34" count="2" type="stmt"/>
+        <line num="39" count="27" type="stmt"/>
+        <line num="40" count="27" type="stmt"/>
+        <line num="91" count="8" type="stmt"/>
+        <line num="105" count="8" type="stmt"/>
+        <line num="107" count="1" type="stmt"/>
+        <line num="119" count="27" type="stmt"/>
+        <line num="120" count="1" type="stmt"/>
+        <line num="123" count="27" type="stmt"/>
+        <line num="124" count="9" type="stmt"/>
+        <line num="126" count="9" type="stmt"/>
+        <line num="127" count="10" type="stmt"/>
+        <line num="137" count="9" type="stmt"/>
+        <line num="140" count="27" type="stmt"/>
+        <line num="141" count="6" type="stmt"/>
+        <line num="144" count="27" type="stmt"/>
+        <line num="146" count="0" type="stmt"/>
+        <line num="149" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="150" count="0" type="stmt"/>
-        <line num="151" count="0" type="stmt"/>
-        <line num="155" count="0" type="stmt"/>
-        <line num="156" count="0" type="stmt"/>
-        <line num="160" count="0" type="stmt"/>
-        <line num="196" count="0" type="stmt"/>
+        <line num="153" count="27" type="stmt"/>
+        <line num="154" count="9" type="stmt"/>
+        <line num="158" count="9" type="stmt"/>
+        <line num="159" count="9" type="stmt"/>
+        <line num="163" count="27" type="stmt"/>
+        <line num="208" count="12" type="stmt"/>
       </file>
     </package>
     <package name="pages.Contracts.components.ContractCard">
-      <metrics statements="3" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
-      <file name="ContractCard.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\pages\Contracts\components\ContractCard\ContractCard.tsx">
-        <metrics statements="3" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
-        <line num="8" count="0" type="stmt"/>
-        <line num="9" count="0" type="stmt"/>
-        <line num="41" count="0" type="stmt"/>
+      <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+      <file name="ContractCard.tsx" path="C:\dev\portal-Consignado\src\pages\Contracts\components\ContractCard\ContractCard.tsx">
+        <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+        <line num="8" count="1" type="stmt"/>
+        <line num="9" count="12" type="stmt"/>
+        <line num="42" count="1" type="stmt"/>
       </file>
     </package>
     <package name="pages.FAQ">
       <metrics statements="6" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="4" coveredmethods="0"/>
-      <file name="index.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\pages\FAQ\index.tsx">
+      <file name="index.tsx" path="C:\dev\portal-Consignado\src\pages\FAQ\index.tsx">
         <metrics statements="6" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="4" coveredmethods="0"/>
         <line num="13" count="0" type="stmt"/>
         <line num="14" count="0" type="stmt"/>
@@ -937,7 +1137,7 @@
     </package>
     <package name="pages.ForgotPassword">
       <metrics statements="25" coveredstatements="0" conditionals="11" coveredconditionals="0" methods="6" coveredmethods="0"/>
-      <file name="index.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\pages\ForgotPassword\index.tsx">
+      <file name="index.tsx" path="C:\dev\portal-Consignado\src\pages\ForgotPassword\index.tsx">
         <metrics statements="25" coveredstatements="0" conditionals="11" coveredconditionals="0" methods="6" coveredmethods="0"/>
         <line num="30" count="0" type="stmt"/>
         <line num="31" count="0" type="stmt"/>
@@ -968,7 +1168,7 @@
     </package>
     <package name="pages.LoggedArea">
       <metrics statements="11" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="4" coveredmethods="0"/>
-      <file name="index.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\pages\LoggedArea\index.tsx">
+      <file name="index.tsx" path="C:\dev\portal-Consignado\src\pages\LoggedArea\index.tsx">
         <metrics statements="11" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="4" coveredmethods="0"/>
         <line num="19" count="0" type="stmt"/>
         <line num="21" count="0" type="stmt"/>
@@ -985,7 +1185,7 @@
     </package>
     <package name="pages.LoggedArea.components.CardMarginAvailable">
       <metrics statements="7" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="2" coveredmethods="0"/>
-      <file name="CardMarginAvailable.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\pages\LoggedArea\components\CardMarginAvailable\CardMarginAvailable.tsx">
+      <file name="CardMarginAvailable.tsx" path="C:\dev\portal-Consignado\src\pages\LoggedArea\components\CardMarginAvailable\CardMarginAvailable.tsx">
         <metrics statements="7" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="2" coveredmethods="0"/>
         <line num="12" count="0" type="stmt"/>
         <line num="13" count="0" type="stmt"/>
@@ -995,13 +1195,13 @@
         <line num="19" count="0" type="stmt"/>
         <line num="22" count="0" type="stmt"/>
       </file>
-      <file name="index.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\pages\LoggedArea\components\CardMarginAvailable\index.tsx">
+      <file name="index.tsx" path="C:\dev\portal-Consignado\src\pages\LoggedArea\components\CardMarginAvailable\index.tsx">
         <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       </file>
     </package>
     <package name="pages.LoggedArea.components.CardSimulateLoan">
       <metrics statements="21" coveredstatements="0" conditionals="12" coveredconditionals="0" methods="7" coveredmethods="0"/>
-      <file name="CardSimulateLoan.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\pages\LoggedArea\components\CardSimulateLoan\CardSimulateLoan.tsx">
+      <file name="CardSimulateLoan.tsx" path="C:\dev\portal-Consignado\src\pages\LoggedArea\components\CardSimulateLoan\CardSimulateLoan.tsx">
         <metrics statements="21" coveredstatements="0" conditionals="12" coveredconditionals="0" methods="7" coveredmethods="0"/>
         <line num="12" count="0" type="stmt"/>
         <line num="14" count="0" type="stmt"/>
@@ -1025,13 +1225,13 @@
         <line num="60" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="63" count="0" type="stmt"/>
       </file>
-      <file name="index.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\pages\LoggedArea\components\CardSimulateLoan\index.tsx">
+      <file name="index.tsx" path="C:\dev\portal-Consignado\src\pages\LoggedArea\components\CardSimulateLoan\index.tsx">
         <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       </file>
     </package>
     <package name="pages.LoggedArea.components.CreditUnderAnalysis">
       <metrics statements="15" coveredstatements="0" conditionals="10" coveredconditionals="0" methods="6" coveredmethods="0"/>
-      <file name="CreditUnderAnalysis.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\pages\LoggedArea\components\CreditUnderAnalysis\CreditUnderAnalysis.tsx">
+      <file name="CreditUnderAnalysis.tsx" path="C:\dev\portal-Consignado\src\pages\LoggedArea\components\CreditUnderAnalysis\CreditUnderAnalysis.tsx">
         <metrics statements="15" coveredstatements="0" conditionals="10" coveredconditionals="0" methods="6" coveredmethods="0"/>
         <line num="11" count="0" type="stmt"/>
         <line num="12" count="0" type="stmt"/>
@@ -1051,44 +1251,44 @@
       </file>
     </package>
     <package name="pages.LoggedArea.components.ModalSimulateLoan">
-      <metrics statements="4" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
-      <file name="ModalSimulateLoan.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\pages\LoggedArea\components\ModalSimulateLoan\ModalSimulateLoan.tsx">
-        <metrics statements="4" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
-        <line num="7" count="0" type="stmt"/>
-        <line num="8" count="0" type="stmt"/>
-        <line num="9" count="0" type="stmt"/>
-        <line num="11" count="0" type="stmt"/>
+      <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <file name="ModalSimulateLoan.tsx" path="C:\dev\portal-Consignado\src\pages\LoggedArea\components\ModalSimulateLoan\ModalSimulateLoan.tsx">
+        <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="8" count="17" type="stmt"/>
+        <line num="9" count="17" type="stmt"/>
+        <line num="11" count="17" type="stmt"/>
       </file>
-      <file name="index.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\pages\LoggedArea\components\ModalSimulateLoan\index.tsx">
+      <file name="index.tsx" path="C:\dev\portal-Consignado\src\pages\LoggedArea\components\ModalSimulateLoan\index.tsx">
         <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       </file>
     </package>
     <package name="pages.LoggedArea.components.ModalSimulateLoan.context">
-      <metrics statements="8" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="0"/>
-      <file name="index.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\pages\LoggedArea\components\ModalSimulateLoan\context\index.tsx">
-        <metrics statements="8" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="0"/>
-        <line num="11" count="0" type="stmt"/>
-        <line num="13" count="0" type="stmt"/>
-        <line num="14" count="0" type="stmt"/>
-        <line num="16" count="0" type="stmt"/>
-        <line num="18" count="0" type="stmt"/>
-        <line num="19" count="0" type="stmt"/>
-        <line num="22" count="0" type="stmt"/>
-        <line num="29" count="0" type="stmt"/>
+      <metrics statements="8" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="4"/>
+      <file name="index.tsx" path="C:\dev\portal-Consignado\src\pages\LoggedArea\components\ModalSimulateLoan\context\index.tsx">
+        <metrics statements="8" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="4"/>
+        <line num="11" count="1" type="stmt"/>
+        <line num="13" count="1" type="stmt"/>
+        <line num="14" count="19" type="stmt"/>
+        <line num="16" count="17" type="stmt"/>
+        <line num="18" count="17" type="stmt"/>
+        <line num="19" count="1" type="stmt"/>
+        <line num="22" count="17" type="stmt"/>
+        <line num="29" count="82" type="stmt"/>
       </file>
     </package>
     <package name="pages.Login">
       <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-      <file name="index.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\pages\Login\index.tsx">
+      <file name="index.tsx" path="C:\dev\portal-Consignado\src\pages\Login\index.tsx">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="17" count="1" type="stmt"/>
         <line num="20" count="1" type="stmt"/>
       </file>
     </package>
     <package name="pages.Login.components.Form">
-      <metrics statements="29" coveredstatements="21" conditionals="14" coveredconditionals="5" methods="10" coveredmethods="6"/>
-      <file name="Form.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\pages\Login\components\Form\Form.tsx">
-        <metrics statements="29" coveredstatements="21" conditionals="14" coveredconditionals="5" methods="10" coveredmethods="6"/>
+      <metrics statements="29" coveredstatements="24" conditionals="14" coveredconditionals="7" methods="10" coveredmethods="8"/>
+      <file name="Form.tsx" path="C:\dev\portal-Consignado\src\pages\Login\components\Form\Form.tsx">
+        <metrics statements="29" coveredstatements="24" conditionals="14" coveredconditionals="7" methods="10" coveredmethods="8"/>
         <line num="17" count="1" type="stmt"/>
         <line num="18" count="1" type="stmt"/>
         <line num="19" count="1" type="stmt"/>
@@ -1103,12 +1303,12 @@
         <line num="46" count="1" type="stmt"/>
         <line num="47" count="1" type="cond" truecount="1" falsecount="1"/>
         <line num="51" count="1" type="stmt"/>
-        <line num="52" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="52" count="1" type="cond" truecount="1" falsecount="1"/>
         <line num="54" count="0" type="stmt"/>
         <line num="56" count="0" type="stmt"/>
         <line num="59" count="1" type="stmt"/>
-        <line num="61" count="0" type="stmt"/>
-        <line num="63" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="61" count="1" type="stmt"/>
+        <line num="63" count="1" type="cond" truecount="1" falsecount="1"/>
         <line num="65" count="0" type="stmt"/>
         <line num="66" count="0" type="stmt"/>
         <line num="71" count="1" type="stmt"/>
@@ -1119,26 +1319,26 @@
         <line num="79" count="1" type="cond" truecount="1" falsecount="1"/>
         <line num="82" count="1" type="stmt"/>
       </file>
-      <file name="index.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\pages\Login\components\Form\index.tsx">
+      <file name="index.tsx" path="C:\dev\portal-Consignado\src\pages\Login\components\Form\index.tsx">
         <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       </file>
     </package>
     <package name="pages.Login.components.ModalLogin">
       <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-      <file name="ModalLogin.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\pages\Login\components\ModalLogin\ModalLogin.tsx">
+      <file name="ModalLogin.tsx" path="C:\dev\portal-Consignado\src\pages\Login\components\ModalLogin\ModalLogin.tsx">
         <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="10" count="1" type="stmt"/>
         <line num="11" count="1" type="stmt"/>
         <line num="12" count="1" type="stmt"/>
         <line num="14" count="1" type="stmt"/>
       </file>
-      <file name="index.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\pages\Login\components\ModalLogin\index.tsx">
+      <file name="index.tsx" path="C:\dev\portal-Consignado\src\pages\Login\components\ModalLogin\index.tsx">
         <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       </file>
     </package>
     <package name="pages.Login.components.ModalLogin.context">
       <metrics statements="8" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="2"/>
-      <file name="index.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\pages\Login\components\ModalLogin\context\index.tsx">
+      <file name="index.tsx" path="C:\dev\portal-Consignado\src\pages\Login\components\ModalLogin\context\index.tsx">
         <metrics statements="8" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="2"/>
         <line num="11" count="1" type="stmt"/>
         <line num="13" count="1" type="stmt"/>
@@ -1152,7 +1352,7 @@
     </package>
     <package name="pages.Privacy">
       <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
-      <file name="index.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\pages\Privacy\index.tsx">
+      <file name="index.tsx" path="C:\dev\portal-Consignado\src\pages\Privacy\index.tsx">
         <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="18" count="0" type="stmt"/>
         <line num="19" count="0" type="stmt"/>
@@ -1160,301 +1360,317 @@
     </package>
     <package name="pages.Privacy.Components.Table1">
       <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
-      <file name="Table1.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\pages\Privacy\Components\Table1\Table1.tsx">
+      <file name="Table1.tsx" path="C:\dev\portal-Consignado\src\pages\Privacy\Components\Table1\Table1.tsx">
         <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="4" count="0" type="stmt"/>
         <line num="5" count="0" type="stmt"/>
       </file>
-      <file name="index.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\pages\Privacy\Components\Table1\index.tsx">
+      <file name="index.tsx" path="C:\dev\portal-Consignado\src\pages\Privacy\Components\Table1\index.tsx">
         <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       </file>
     </package>
     <package name="pages.Privacy.Components.Table2">
       <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
-      <file name="Table2.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\pages\Privacy\Components\Table2\Table2.tsx">
+      <file name="Table2.tsx" path="C:\dev\portal-Consignado\src\pages\Privacy\Components\Table2\Table2.tsx">
         <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="5" count="0" type="stmt"/>
         <line num="6" count="0" type="stmt"/>
       </file>
-      <file name="index.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\pages\Privacy\Components\Table2\index.tsx">
+      <file name="index.tsx" path="C:\dev\portal-Consignado\src\pages\Privacy\Components\Table2\index.tsx">
         <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       </file>
     </package>
     <package name="pages.Privacy.Components.TopicI">
       <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
-      <file name="TopicI.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\pages\Privacy\Components\TopicI\TopicI.tsx">
+      <file name="TopicI.tsx" path="C:\dev\portal-Consignado\src\pages\Privacy\Components\TopicI\TopicI.tsx">
         <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="5" count="0" type="stmt"/>
         <line num="6" count="0" type="stmt"/>
       </file>
-      <file name="index.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\pages\Privacy\Components\TopicI\index.tsx">
+      <file name="index.tsx" path="C:\dev\portal-Consignado\src\pages\Privacy\Components\TopicI\index.tsx">
         <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       </file>
     </package>
     <package name="pages.Privacy.Components.TopicII">
       <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
-      <file name="TopicII.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\pages\Privacy\Components\TopicII\TopicII.tsx">
+      <file name="TopicII.tsx" path="C:\dev\portal-Consignado\src\pages\Privacy\Components\TopicII\TopicII.tsx">
         <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="5" count="0" type="stmt"/>
         <line num="6" count="0" type="stmt"/>
       </file>
-      <file name="index.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\pages\Privacy\Components\TopicII\index.tsx">
+      <file name="index.tsx" path="C:\dev\portal-Consignado\src\pages\Privacy\Components\TopicII\index.tsx">
         <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       </file>
     </package>
     <package name="pages.Privacy.Components.TopicIII">
       <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
-      <file name="TopicIII.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\pages\Privacy\Components\TopicIII\TopicIII.tsx">
+      <file name="TopicIII.tsx" path="C:\dev\portal-Consignado\src\pages\Privacy\Components\TopicIII\TopicIII.tsx">
         <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="7" count="0" type="stmt"/>
         <line num="8" count="0" type="stmt"/>
       </file>
-      <file name="index.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\pages\Privacy\Components\TopicIII\index.tsx">
+      <file name="index.tsx" path="C:\dev\portal-Consignado\src\pages\Privacy\Components\TopicIII\index.tsx">
         <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       </file>
     </package>
     <package name="pages.Privacy.Components.TopicIV">
       <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
-      <file name="TopicIV.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\pages\Privacy\Components\TopicIV\TopicIV.tsx">
+      <file name="TopicIV.tsx" path="C:\dev\portal-Consignado\src\pages\Privacy\Components\TopicIV\TopicIV.tsx">
         <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="5" count="0" type="stmt"/>
         <line num="6" count="0" type="stmt"/>
       </file>
-      <file name="index.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\pages\Privacy\Components\TopicIV\index.tsx">
+      <file name="index.tsx" path="C:\dev\portal-Consignado\src\pages\Privacy\Components\TopicIV\index.tsx">
         <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       </file>
     </package>
     <package name="pages.Privacy.Components.TopicIX">
       <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
-      <file name="TopicIX.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\pages\Privacy\Components\TopicIX\TopicIX.tsx">
+      <file name="TopicIX.tsx" path="C:\dev\portal-Consignado\src\pages\Privacy\Components\TopicIX\TopicIX.tsx">
         <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="5" count="0" type="stmt"/>
         <line num="6" count="0" type="stmt"/>
       </file>
-      <file name="index.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\pages\Privacy\Components\TopicIX\index.tsx">
+      <file name="index.tsx" path="C:\dev\portal-Consignado\src\pages\Privacy\Components\TopicIX\index.tsx">
         <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       </file>
     </package>
     <package name="pages.Privacy.Components.TopicV">
       <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
-      <file name="TopicV.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\pages\Privacy\Components\TopicV\TopicV.tsx">
+      <file name="TopicV.tsx" path="C:\dev\portal-Consignado\src\pages\Privacy\Components\TopicV\TopicV.tsx">
         <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="5" count="0" type="stmt"/>
         <line num="6" count="0" type="stmt"/>
       </file>
-      <file name="index.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\pages\Privacy\Components\TopicV\index.tsx">
+      <file name="index.tsx" path="C:\dev\portal-Consignado\src\pages\Privacy\Components\TopicV\index.tsx">
         <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       </file>
     </package>
     <package name="pages.Privacy.Components.TopicVI">
       <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
-      <file name="TopicVI.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\pages\Privacy\Components\TopicVI\TopicVI.tsx">
+      <file name="TopicVI.tsx" path="C:\dev\portal-Consignado\src\pages\Privacy\Components\TopicVI\TopicVI.tsx">
         <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="5" count="0" type="stmt"/>
         <line num="6" count="0" type="stmt"/>
       </file>
-      <file name="index.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\pages\Privacy\Components\TopicVI\index.tsx">
+      <file name="index.tsx" path="C:\dev\portal-Consignado\src\pages\Privacy\Components\TopicVI\index.tsx">
         <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       </file>
     </package>
     <package name="pages.Privacy.Components.TopicVII">
       <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
-      <file name="TopicVII.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\pages\Privacy\Components\TopicVII\TopicVII.tsx">
+      <file name="TopicVII.tsx" path="C:\dev\portal-Consignado\src\pages\Privacy\Components\TopicVII\TopicVII.tsx">
         <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="5" count="0" type="stmt"/>
         <line num="6" count="0" type="stmt"/>
       </file>
-      <file name="index.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\pages\Privacy\Components\TopicVII\index.tsx">
+      <file name="index.tsx" path="C:\dev\portal-Consignado\src\pages\Privacy\Components\TopicVII\index.tsx">
         <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       </file>
     </package>
     <package name="pages.Privacy.Components.TopicVIII">
       <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
-      <file name="TopicVIII.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\pages\Privacy\Components\TopicVIII\TopicVIII.tsx">
+      <file name="TopicVIII.tsx" path="C:\dev\portal-Consignado\src\pages\Privacy\Components\TopicVIII\TopicVIII.tsx">
         <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="5" count="0" type="stmt"/>
         <line num="6" count="0" type="stmt"/>
       </file>
-      <file name="index.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\pages\Privacy\Components\TopicVIII\index.tsx">
+      <file name="index.tsx" path="C:\dev\portal-Consignado\src\pages\Privacy\Components\TopicVIII\index.tsx">
         <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       </file>
     </package>
     <package name="pages.Registration">
-      <metrics statements="46" coveredstatements="0" conditionals="10" coveredconditionals="0" methods="13" coveredmethods="0"/>
-      <file name="index.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\pages\Registration\index.tsx">
-        <metrics statements="46" coveredstatements="0" conditionals="10" coveredconditionals="0" methods="13" coveredmethods="0"/>
-        <line num="30" count="0" type="stmt"/>
-        <line num="32" count="0" type="stmt"/>
-        <line num="33" count="0" type="stmt"/>
-        <line num="34" count="0" type="stmt"/>
-        <line num="35" count="0" type="stmt"/>
-        <line num="36" count="0" type="stmt"/>
-        <line num="37" count="0" type="stmt"/>
-        <line num="38" count="0" type="stmt"/>
-        <line num="40" count="0" type="stmt"/>
-        <line num="41" count="0" type="stmt"/>
-        <line num="42" count="0" type="stmt"/>
-        <line num="44" count="0" type="stmt"/>
-        <line num="45" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="48" count="0" type="stmt"/>
-        <line num="49" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="52" count="0" type="stmt"/>
-        <line num="53" count="0" type="stmt"/>
-        <line num="54" count="0" type="stmt"/>
-        <line num="57" count="0" type="stmt"/>
-        <line num="58" count="0" type="stmt"/>
-        <line num="59" count="0" type="stmt"/>
-        <line num="64" count="0" type="stmt"/>
-        <line num="66" count="0" type="stmt"/>
-        <line num="68" count="0" type="stmt"/>
-        <line num="69" count="0" type="stmt"/>
-        <line num="73" count="0" type="stmt"/>
-        <line num="74" count="0" type="stmt"/>
-        <line num="75" count="0" type="stmt"/>
-        <line num="77" count="0" type="stmt"/>
-        <line num="84" count="0" type="stmt"/>
-        <line num="86" count="0" type="stmt"/>
-        <line num="87" count="0" type="stmt"/>
-        <line num="88" count="0" type="stmt"/>
-        <line num="90" count="0" type="stmt"/>
-        <line num="94" count="0" type="stmt"/>
-        <line num="95" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="96" count="0" type="stmt"/>
-        <line num="99" count="0" type="stmt"/>
-        <line num="100" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="101" count="0" type="stmt"/>
-        <line num="104" count="0" type="stmt"/>
-        <line num="105" count="0" type="stmt"/>
-        <line num="108" count="0" type="stmt"/>
-        <line num="109" count="0" type="stmt"/>
-        <line num="110" count="0" type="stmt"/>
+      <metrics statements="50" coveredstatements="48" conditionals="10" coveredconditionals="4" methods="14" coveredmethods="11"/>
+      <file name="index.tsx" path="C:\dev\portal-Consignado\src\pages\Registration\index.tsx">
+        <metrics statements="50" coveredstatements="48" conditionals="10" coveredconditionals="4" methods="14" coveredmethods="11"/>
+        <line num="31" count="1" type="stmt"/>
+        <line num="33" count="1" type="stmt"/>
+        <line num="34" count="74" type="stmt"/>
+        <line num="35" count="73" type="stmt"/>
+        <line num="36" count="73" type="stmt"/>
+        <line num="37" count="73" type="stmt"/>
+        <line num="38" count="73" type="stmt"/>
+        <line num="39" count="73" type="stmt"/>
+        <line num="40" count="73" type="stmt"/>
+        <line num="42" count="73" type="stmt"/>
+        <line num="43" count="73" type="stmt"/>
+        <line num="44" count="73" type="stmt"/>
+        <line num="46" count="73" type="stmt"/>
+        <line num="47" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="50" count="73" type="stmt"/>
+        <line num="51" count="26" type="cond" truecount="1" falsecount="1"/>
+        <line num="54" count="73" type="stmt"/>
+        <line num="55" count="26" type="stmt"/>
+        <line num="56" count="26" type="stmt"/>
+        <line num="59" count="73" type="stmt"/>
+        <line num="60" count="4" type="stmt"/>
+        <line num="61" count="4" type="stmt"/>
+        <line num="64" count="73" type="stmt"/>
+        <line num="65" count="4" type="stmt"/>
+        <line num="66" count="4" type="stmt"/>
+        <line num="71" count="3" type="stmt"/>
+        <line num="73" count="1" type="stmt"/>
+        <line num="75" count="1" type="stmt"/>
+        <line num="76" count="1" type="stmt"/>
+        <line num="80" count="73" type="stmt"/>
+        <line num="81" count="3" type="stmt"/>
+        <line num="82" count="3" type="stmt"/>
+        <line num="84" count="3" type="stmt"/>
+        <line num="92" count="2" type="stmt"/>
+        <line num="94" count="1" type="stmt"/>
+        <line num="95" count="1" type="stmt"/>
+        <line num="96" count="1" type="stmt"/>
+        <line num="98" count="3" type="stmt"/>
+        <line num="102" count="73" type="stmt"/>
+        <line num="103" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="104" count="1" type="stmt"/>
+        <line num="107" count="73" type="stmt"/>
+        <line num="108" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="109" count="2" type="stmt"/>
+        <line num="112" count="73" type="stmt"/>
         <line num="113" count="0" type="stmt"/>
+        <line num="116" count="73" type="stmt"/>
+        <line num="117" count="1" type="stmt"/>
+        <line num="118" count="1" type="stmt"/>
+        <line num="121" count="73" type="stmt"/>
       </file>
     </package>
     <package name="pages.Registration.components.BankDataConfirmation">
-      <metrics statements="11" coveredstatements="10" conditionals="6" coveredconditionals="3" methods="4" coveredmethods="3"/>
-      <file name="BankDataConfirmation.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\pages\Registration\components\BankDataConfirmation\BankDataConfirmation.tsx">
-        <metrics statements="11" coveredstatements="10" conditionals="6" coveredconditionals="3" methods="4" coveredmethods="3"/>
-        <line num="17" count="1" type="stmt"/>
-        <line num="24" count="6" type="stmt"/>
-        <line num="25" count="6" type="stmt"/>
-        <line num="27" count="6" type="stmt"/>
-        <line num="28" count="2" type="cond" truecount="2" falsecount="0"/>
+      <metrics statements="15" coveredstatements="13" conditionals="6" coveredconditionals="5" methods="4" coveredmethods="4"/>
+      <file name="BankDataConfirmation.tsx" path="C:\dev\portal-Consignado\src\pages\Registration\components\BankDataConfirmation\BankDataConfirmation.tsx">
+        <metrics statements="15" coveredstatements="13" conditionals="6" coveredconditionals="5" methods="4" coveredmethods="4"/>
+        <line num="17" count="2" type="stmt"/>
+        <line num="24" count="84" type="stmt"/>
+        <line num="25" count="84" type="stmt"/>
+        <line num="27" count="84" type="stmt"/>
+        <line num="28" count="4" type="cond" truecount="2" falsecount="0"/>
         <line num="29" count="1" type="stmt"/>
         <line num="30" count="1" type="stmt"/>
-        <line num="33" count="1" type="stmt"/>
-        <line num="36" count="6" type="stmt"/>
-        <line num="54" count="1" type="stmt"/>
-        <line num="80" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="33" count="3" type="stmt"/>
+        <line num="36" count="84" type="stmt"/>
+        <line num="37" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="38" count="0" type="stmt"/>
+        <line num="39" count="0" type="stmt"/>
+        <line num="42" count="2" type="stmt"/>
+        <line num="45" count="84" type="stmt"/>
+        <line num="63" count="5" type="stmt"/>
       </file>
     </package>
     <package name="pages.Registration.components.BankDataForm">
-      <metrics statements="21" coveredstatements="15" conditionals="13" coveredconditionals="4" methods="8" coveredmethods="4"/>
-      <file name="BankDataForm.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\pages\Registration\components\BankDataForm\BankDataForm.tsx">
-        <metrics statements="21" coveredstatements="15" conditionals="13" coveredconditionals="4" methods="8" coveredmethods="4"/>
-        <line num="21" count="1" type="stmt"/>
-        <line num="27" count="9" type="stmt"/>
-        <line num="28" count="9" type="stmt"/>
-        <line num="29" count="9" type="stmt"/>
-        <line num="30" count="9" type="stmt"/>
-        <line num="31" count="9" type="stmt"/>
-        <line num="48" count="9" type="stmt"/>
-        <line num="49" count="0" type="stmt"/>
-        <line num="51" count="0" type="stmt"/>
-        <line num="54" count="9" type="stmt"/>
-        <line num="55" count="0" type="stmt"/>
-        <line num="57" count="0" type="stmt"/>
-        <line num="67" count="9" type="stmt"/>
-        <line num="68" count="3" type="cond" truecount="0" falsecount="1"/>
-        <line num="69" count="0" type="stmt"/>
-        <line num="70" count="0" type="stmt"/>
-        <line num="78" count="9" type="stmt"/>
-        <line num="79" count="3" type="stmt"/>
-        <line num="83" count="9" type="stmt"/>
-        <line num="84" count="6" type="stmt"/>
-        <line num="90" count="9" type="stmt"/>
+      <metrics statements="21" coveredstatements="21" conditionals="13" coveredconditionals="11" methods="8" coveredmethods="8"/>
+      <file name="BankDataForm.tsx" path="C:\dev\portal-Consignado\src\pages\Registration\components\BankDataForm\BankDataForm.tsx">
+        <metrics statements="21" coveredstatements="21" conditionals="13" coveredconditionals="11" methods="8" coveredmethods="8"/>
+        <line num="21" count="2" type="stmt"/>
+        <line num="27" count="127" type="stmt"/>
+        <line num="28" count="127" type="stmt"/>
+        <line num="29" count="127" type="stmt"/>
+        <line num="30" count="127" type="stmt"/>
+        <line num="31" count="127" type="stmt"/>
+        <line num="48" count="127" type="stmt"/>
+        <line num="49" count="3" type="stmt"/>
+        <line num="51" count="3" type="stmt"/>
+        <line num="54" count="127" type="stmt"/>
+        <line num="55" count="4" type="stmt"/>
+        <line num="57" count="4" type="stmt"/>
+        <line num="67" count="127" type="stmt"/>
+        <line num="68" count="10" type="cond" truecount="0" falsecount="1"/>
+        <line num="69" count="10" type="stmt"/>
+        <line num="70" count="10" type="stmt"/>
+        <line num="78" count="127" type="stmt"/>
+        <line num="79" count="13" type="stmt"/>
+        <line num="83" count="127" type="stmt"/>
+        <line num="84" count="26" type="stmt"/>
+        <line num="90" count="127" type="stmt"/>
       </file>
     </package>
     <package name="pages.Registration.components.BirthDateForm">
       <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-      <file name="BirthDateForm.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\pages\Registration\components\BirthDateForm\BirthDateForm.tsx">
+      <file name="BirthDateForm.tsx" path="C:\dev\portal-Consignado\src\pages\Registration\components\BirthDateForm\BirthDateForm.tsx">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-        <line num="12" count="1" type="stmt"/>
-        <line num="13" count="2" type="stmt"/>
+        <line num="12" count="2" type="stmt"/>
+        <line num="13" count="79" type="stmt"/>
+      </file>
+    </package>
+    <package name="pages.Registration.components.CNPJForm">
+      <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <file name="CNPJForm.tsx" path="C:\dev\portal-Consignado\src\pages\Registration\components\CNPJForm\CNPJForm.tsx">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="12" count="2" type="stmt"/>
+        <line num="13" count="79" type="stmt"/>
       </file>
     </package>
     <package name="pages.Registration.components.CPFForm">
       <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-      <file name="CPFForm.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\pages\Registration\components\CPFForm\CPFForm.tsx">
+      <file name="CPFForm.tsx" path="C:\dev\portal-Consignado\src\pages\Registration\components\CPFForm\CPFForm.tsx">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-        <line num="12" count="1" type="stmt"/>
-        <line num="13" count="6" type="stmt"/>
+        <line num="12" count="2" type="stmt"/>
+        <line num="13" count="79" type="stmt"/>
       </file>
     </package>
     <package name="pages.Registration.components.CompleteNameForm">
       <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-      <file name="CompleteNameForm.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\pages\Registration\components\CompleteNameForm\CompleteNameForm.tsx">
+      <file name="CompleteNameForm.tsx" path="C:\dev\portal-Consignado\src\pages\Registration\components\CompleteNameForm\CompleteNameForm.tsx">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-        <line num="12" count="1" type="stmt"/>
-        <line num="13" count="4" type="stmt"/>
+        <line num="12" count="2" type="stmt"/>
+        <line num="13" count="77" type="stmt"/>
       </file>
     </package>
     <package name="pages.Registration.components.ContinueButton">
       <metrics statements="4" coveredstatements="4" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
-      <file name="ContinueButton.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\pages\Registration\components\ContinueButton\ContinueButton.tsx">
+      <file name="ContinueButton.tsx" path="C:\dev\portal-Consignado\src\pages\Registration\components\ContinueButton\ContinueButton.tsx">
         <metrics statements="4" coveredstatements="4" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
-        <line num="8" count="6" type="stmt"/>
-        <line num="12" count="247" type="stmt"/>
-        <line num="13" count="247" type="cond" truecount="2" falsecount="0"/>
-        <line num="15" count="247" type="stmt"/>
+        <line num="8" count="8" type="stmt"/>
+        <line num="12" count="1088" type="stmt"/>
+        <line num="13" count="1088" type="cond" truecount="2" falsecount="0"/>
+        <line num="15" count="1088" type="stmt"/>
       </file>
     </package>
     <package name="pages.Registration.components.EmailForm">
       <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-      <file name="EmailForm.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\pages\Registration\components\EmailForm\EmailForm.tsx">
+      <file name="EmailForm.tsx" path="C:\dev\portal-Consignado\src\pages\Registration\components\EmailForm\EmailForm.tsx">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-        <line num="12" count="1" type="stmt"/>
-        <line num="13" count="7" type="stmt"/>
+        <line num="12" count="2" type="stmt"/>
+        <line num="13" count="80" type="stmt"/>
       </file>
     </package>
     <package name="pages.Registration.components.PasswordForm">
       <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-      <file name="PasswordForm.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\pages\Registration\components\PasswordForm\PasswordForm.tsx">
+      <file name="PasswordForm.tsx" path="C:\dev\portal-Consignado\src\pages\Registration\components\PasswordForm\PasswordForm.tsx">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-        <line num="12" count="1" type="stmt"/>
-        <line num="13" count="7" type="stmt"/>
+        <line num="12" count="2" type="stmt"/>
+        <line num="13" count="80" type="stmt"/>
       </file>
     </package>
     <package name="pages.Registration.components.PhoneNumberForm">
       <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-      <file name="PhoneNumberForm.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\pages\Registration\components\PhoneNumberForm\PhoneNumberForm.tsx">
+      <file name="PhoneNumberForm.tsx" path="C:\dev\portal-Consignado\src\pages\Registration\components\PhoneNumberForm\PhoneNumberForm.tsx">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-        <line num="12" count="1" type="stmt"/>
-        <line num="13" count="5" type="stmt"/>
+        <line num="12" count="2" type="stmt"/>
+        <line num="13" count="78" type="stmt"/>
       </file>
     </package>
     <package name="pages.Registration.components.StepSmallTitle">
       <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-      <file name="StepSmallTitle.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\pages\Registration\components\StepSmallTitle\StepSmallTitle.tsx">
+      <file name="StepSmallTitle.tsx" path="C:\dev\portal-Consignado\src\pages\Registration\components\StepSmallTitle\StepSmallTitle.tsx">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-        <line num="5" count="5" type="stmt"/>
-        <line num="6" count="25" type="stmt"/>
+        <line num="5" count="7" type="stmt"/>
+        <line num="6" count="473" type="stmt"/>
       </file>
     </package>
     <package name="pages.Registration.components.StepTile">
       <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-      <file name="StepTitle.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\pages\Registration\components\StepTile\StepTitle.tsx">
+      <file name="StepTitle.tsx" path="C:\dev\portal-Consignado\src\pages\Registration\components\StepTile\StepTitle.tsx">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-        <line num="5" count="1" type="stmt"/>
-        <line num="6" count="6" type="stmt"/>
+        <line num="5" count="2" type="stmt"/>
+        <line num="6" count="79" type="stmt"/>
       </file>
-      <file name="index.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\pages\Registration\components\StepTile\index.tsx">
+      <file name="index.tsx" path="C:\dev\portal-Consignado\src\pages\Registration\components\StepTile\index.tsx">
         <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       </file>
     </package>
     <package name="pages.ResetPassword">
       <metrics statements="25" coveredstatements="23" conditionals="6" coveredconditionals="6" methods="3" coveredmethods="2"/>
-      <file name="index.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\pages\ResetPassword\index.tsx">
+      <file name="index.tsx" path="C:\dev\portal-Consignado\src\pages\ResetPassword\index.tsx">
         <metrics statements="25" coveredstatements="23" conditionals="6" coveredconditionals="6" methods="3" coveredmethods="2"/>
         <line num="31" count="1" type="stmt"/>
         <line num="32" count="16" type="stmt"/>
@@ -1484,176 +1700,193 @@
       </file>
     </package>
     <package name="pages.SimulateLoan">
-      <metrics statements="74" coveredstatements="0" conditionals="34" coveredconditionals="0" methods="21" coveredmethods="0"/>
-      <file name="index.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\pages\SimulateLoan\index.tsx">
-        <metrics statements="74" coveredstatements="0" conditionals="34" coveredconditionals="0" methods="21" coveredmethods="0"/>
-        <line num="38" count="0" type="stmt"/>
-        <line num="40" count="0" type="stmt"/>
-        <line num="41" count="0" type="stmt"/>
-        <line num="42" count="0" type="stmt"/>
-        <line num="43" count="0" type="stmt"/>
-        <line num="44" count="0" type="stmt"/>
-        <line num="45" count="0" type="stmt"/>
-        <line num="46" count="0" type="stmt"/>
-        <line num="47" count="0" type="stmt"/>
-        <line num="48" count="0" type="stmt"/>
-        <line num="49" count="0" type="stmt"/>
-        <line num="50" count="0" type="stmt"/>
-        <line num="51" count="0" type="stmt"/>
-        <line num="53" count="0" type="stmt"/>
-        <line num="54" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="55" count="0" type="stmt"/>
-        <line num="59" count="0" type="stmt"/>
-        <line num="60" count="0" type="cond" truecount="0" falsecount="2"/>
+      <metrics statements="91" coveredstatements="83" conditionals="44" coveredconditionals="33" methods="24" coveredmethods="21"/>
+      <file name="index.tsx" path="C:\dev\portal-Consignado\src\pages\SimulateLoan\index.tsx">
+        <metrics statements="91" coveredstatements="83" conditionals="44" coveredconditionals="33" methods="24" coveredmethods="21"/>
+        <line num="37" count="1" type="stmt"/>
+        <line num="39" count="66" type="stmt"/>
+        <line num="40" count="66" type="stmt"/>
+        <line num="41" count="65" type="stmt"/>
+        <line num="42" count="65" type="stmt"/>
+        <line num="43" count="65" type="stmt"/>
+        <line num="44" count="65" type="stmt"/>
+        <line num="45" count="65" type="stmt"/>
+        <line num="46" count="65" type="stmt"/>
+        <line num="47" count="65" type="stmt"/>
+        <line num="48" count="65" type="stmt"/>
+        <line num="49" count="65" type="stmt"/>
+        <line num="50" count="65" type="stmt"/>
+        <line num="51" count="65" type="stmt"/>
+        <line num="53" count="65" type="stmt"/>
+        <line num="54" count="65" type="cond" truecount="2" falsecount="0"/>
+        <line num="55" count="2" type="stmt"/>
+        <line num="59" count="65" type="stmt"/>
+        <line num="60" count="11" type="cond" truecount="1" falsecount="1"/>
         <line num="61" count="0" type="stmt"/>
-        <line num="64" count="0" type="stmt"/>
-        <line num="72" count="0" type="stmt"/>
-        <line num="75" count="0" type="stmt"/>
-        <line num="76" count="0" type="cond" truecount="0" falsecount="4"/>
-        <line num="77" count="0" type="stmt"/>
-        <line num="78" count="0" type="stmt"/>
-        <line num="80" count="0" type="stmt"/>
-        <line num="81" count="0" type="stmt"/>
-        <line num="86" count="0" type="stmt"/>
-        <line num="88" count="0" type="stmt"/>
-        <line num="89" count="0" type="stmt"/>
-        <line num="126" count="0" type="stmt"/>
-        <line num="127" count="0" type="stmt"/>
-        <line num="130" count="0" type="stmt"/>
-        <line num="131" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="64" count="11" type="stmt"/>
+        <line num="72" count="11" type="stmt"/>
+        <line num="75" count="65" type="stmt"/>
+        <line num="76" count="14" type="cond" truecount="4" falsecount="0"/>
+        <line num="77" count="1" type="stmt"/>
+        <line num="78" count="1" type="stmt"/>
+        <line num="80" count="14" type="stmt"/>
+        <line num="81" count="14" type="stmt"/>
+        <line num="86" count="65" type="stmt"/>
+        <line num="88" count="65" type="stmt"/>
+        <line num="89" count="11" type="stmt"/>
+        <line num="126" count="65" type="stmt"/>
+        <line num="127" count="2" type="stmt"/>
+        <line num="130" count="65" type="stmt"/>
+        <line num="131" count="3" type="cond" truecount="1" falsecount="1"/>
         <line num="132" count="0" type="stmt"/>
         <line num="133" count="0" type="stmt"/>
         <line num="135" count="0" type="stmt"/>
         <line num="136" count="0" type="stmt"/>
-        <line num="138" count="0" type="stmt"/>
-        <line num="139" count="0" type="stmt"/>
-        <line num="143" count="0" type="stmt"/>
-        <line num="144" count="0" type="stmt"/>
-        <line num="147" count="0" type="stmt"/>
-        <line num="148" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="150" count="0" type="stmt"/>
-        <line num="151" count="0" type="stmt"/>
-        <line num="153" count="0" type="stmt"/>
-        <line num="159" count="0" type="stmt"/>
-        <line num="161" count="0" type="stmt"/>
-        <line num="162" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="164" count="0" type="cond" truecount="0" falsecount="4"/>
-        <line num="165" count="0" type="stmt"/>
-        <line num="168" count="0" type="stmt"/>
-        <line num="172" count="0" type="stmt"/>
-        <line num="173" count="0" type="stmt"/>
-        <line num="174" count="0" type="stmt"/>
-        <line num="177" count="0" type="stmt"/>
-        <line num="178" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="179" count="0" type="stmt"/>
-        <line num="181" count="0" type="stmt"/>
-        <line num="184" count="0" type="stmt"/>
-        <line num="185" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="186" count="0" type="stmt"/>
-        <line num="189" count="0" type="stmt"/>
-        <line num="192" count="0" type="stmt"/>
-        <line num="193" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="194" count="0" type="stmt"/>
-        <line num="195" count="0" type="stmt"/>
-        <line num="203" count="0" type="stmt"/>
-        <line num="206" count="0" type="stmt"/>
-        <line num="207" count="0" type="cond" truecount="0" falsecount="4"/>
-        <line num="208" count="0" type="stmt"/>
-        <line num="211" count="0" type="stmt"/>
-        <line num="214" count="0" type="stmt"/>
+        <line num="138" count="3" type="stmt"/>
+        <line num="139" count="3" type="stmt"/>
+        <line num="143" count="65" type="stmt"/>
+        <line num="144" count="6" type="stmt"/>
+        <line num="145" count="6" type="stmt"/>
+        <line num="147" count="6" type="stmt"/>
+        <line num="153" count="4" type="stmt"/>
+        <line num="155" count="2" type="stmt"/>
+        <line num="156" count="2" type="stmt"/>
+        <line num="160" count="2" type="cond" truecount="3" falsecount="1"/>
+        <line num="161" count="2" type="stmt"/>
+        <line num="164" count="6" type="stmt"/>
+        <line num="168" count="65" type="stmt"/>
+        <line num="171" count="6" type="cond" truecount="1" falsecount="1"/>
+        <line num="173" count="6" type="stmt"/>
+        <line num="174" count="6" type="stmt"/>
+        <line num="177" count="65" type="stmt"/>
+        <line num="178" count="4" type="cond" truecount="1" falsecount="1"/>
+        <line num="180" count="4" type="stmt"/>
+        <line num="181" count="4" type="stmt"/>
+        <line num="183" count="4" type="stmt"/>
+        <line num="189" count="2" type="stmt"/>
+        <line num="191" count="2" type="stmt"/>
+        <line num="192" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="194" count="2" type="cond" truecount="3" falsecount="1"/>
+        <line num="195" count="2" type="stmt"/>
+        <line num="198" count="4" type="stmt"/>
+        <line num="202" count="65" type="stmt"/>
+        <line num="203" count="3" type="stmt"/>
+        <line num="204" count="3" type="stmt"/>
+        <line num="207" count="65" type="stmt"/>
+        <line num="208" count="19" type="cond" truecount="2" falsecount="0"/>
+        <line num="209" count="4" type="stmt"/>
+        <line num="211" count="15" type="stmt"/>
+        <line num="214" count="65" type="stmt"/>
+        <line num="215" count="28" type="cond" truecount="2" falsecount="0"/>
+        <line num="217" count="21" type="stmt"/>
+        <line num="220" count="65" type="stmt"/>
+        <line num="221" count="37" type="cond" truecount="2" falsecount="0"/>
+        <line num="222" count="4" type="stmt"/>
+        <line num="225" count="33" type="stmt"/>
+        <line num="228" count="65" type="stmt"/>
+        <line num="229" count="37" type="cond" truecount="2" falsecount="0"/>
+        <line num="230" count="33" type="stmt"/>
+        <line num="231" count="24" type="stmt"/>
+        <line num="240" count="4" type="stmt"/>
+        <line num="243" count="65" type="stmt"/>
+        <line num="244" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="245" count="0" type="stmt"/>
+        <line num="248" count="0" type="stmt"/>
+        <line num="251" count="65" type="stmt"/>
+        <line num="286" count="3" type="stmt"/>
       </file>
     </package>
     <package name="pages.SimulateLoan.components.CardSimulateLoan">
-      <metrics statements="11" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="0"/>
-      <file name="CardSimulateLoan.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\pages\SimulateLoan\components\CardSimulateLoan\CardSimulateLoan.tsx">
-        <metrics statements="11" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="0"/>
-        <line num="11" count="0" type="stmt"/>
-        <line num="17" count="0" type="stmt"/>
-        <line num="19" count="0" type="stmt"/>
-        <line num="21" count="0" type="stmt"/>
-        <line num="23" count="0" type="stmt"/>
-        <line num="24" count="0" type="stmt"/>
-        <line num="30" count="0" type="stmt"/>
-        <line num="31" count="0" type="stmt"/>
-        <line num="39" count="0" type="stmt"/>
-        <line num="40" count="0" type="stmt"/>
-        <line num="45" count="0" type="stmt"/>
+      <metrics statements="11" coveredstatements="11" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3"/>
+      <file name="CardSimulateLoan.tsx" path="C:\dev\portal-Consignado\src\pages\SimulateLoan\components\CardSimulateLoan\CardSimulateLoan.tsx">
+        <metrics statements="11" coveredstatements="11" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3"/>
+        <line num="11" count="1" type="stmt"/>
+        <line num="17" count="65" type="stmt"/>
+        <line num="19" count="65" type="stmt"/>
+        <line num="21" count="65" type="stmt"/>
+        <line num="23" count="1" type="stmt"/>
+        <line num="24" count="1" type="stmt"/>
+        <line num="30" count="65" type="stmt"/>
+        <line num="31" count="1" type="stmt"/>
+        <line num="39" count="1" type="stmt"/>
+        <line num="40" count="1" type="stmt"/>
+        <line num="45" count="65" type="stmt"/>
       </file>
-      <file name="index.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\pages\SimulateLoan\components\CardSimulateLoan\index.tsx">
+      <file name="index.tsx" path="C:\dev\portal-Consignado\src\pages\SimulateLoan\components\CardSimulateLoan\index.tsx">
         <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       </file>
     </package>
     <package name="pages.SimulateLoan.components.InstallmentCard">
-      <metrics statements="3" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
-      <file name="InstallmentCard.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\pages\SimulateLoan\components\InstallmentCard\InstallmentCard.tsx">
-        <metrics statements="3" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
-        <line num="7" count="0" type="stmt"/>
-        <line num="11" count="0" type="stmt"/>
-        <line num="27" count="0" type="stmt"/>
+      <metrics statements="3" coveredstatements="3" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
+      <file name="InstallmentCard.tsx" path="C:\dev\portal-Consignado\src\pages\SimulateLoan\components\InstallmentCard\InstallmentCard.tsx">
+        <metrics statements="3" coveredstatements="3" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="12" count="24" type="stmt"/>
+        <line num="30" count="3" type="stmt"/>
       </file>
     </package>
     <package name="pages.SimulateLoan.components.LoanDetails">
-      <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
-      <file name="LoanDetails.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\pages\SimulateLoan\components\LoanDetails\LoanDetails.tsx">
-        <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
-        <line num="5" count="0" type="stmt"/>
-        <line num="6" count="0" type="stmt"/>
+      <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <file name="LoanDetails.tsx" path="C:\dev\portal-Consignado\src\pages\SimulateLoan\components\LoanDetails\LoanDetails.tsx">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="6" count="102" type="stmt"/>
       </file>
-      <file name="index.tsx" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\pages\SimulateLoan\components\LoanDetails\index.tsx">
+      <file name="index.tsx" path="C:\dev\portal-Consignado\src\pages\SimulateLoan\components\LoanDetails\index.tsx">
         <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       </file>
     </package>
     <package name="utils">
       <metrics statements="31" coveredstatements="29" conditionals="3" coveredconditionals="3" methods="6" coveredmethods="4"/>
-      <file name="document.ts" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\utils\document.ts">
+      <file name="document.ts" path="C:\dev\portal-Consignado\src\utils\document.ts">
         <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-        <line num="4" count="11" type="stmt"/>
+        <line num="4" count="71" type="stmt"/>
       </file>
-      <file name="formatDate.ts" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\utils\formatDate.ts">
+      <file name="formatDate.ts" path="C:\dev\portal-Consignado\src\utils\formatDate.ts">
         <metrics statements="2" coveredstatements="2" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
-        <line num="2" count="2" type="cond" truecount="2" falsecount="0"/>
-        <line num="4" count="1" type="stmt"/>
+        <line num="2" count="27" type="cond" truecount="2" falsecount="0"/>
+        <line num="4" count="16" type="stmt"/>
       </file>
-      <file name="formatValue.ts" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\utils\formatValue.ts">
+      <file name="formatValue.ts" path="C:\dev\portal-Consignado\src\utils\formatValue.ts">
         <metrics statements="2" coveredstatements="2" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
-        <line num="2" count="3" type="stmt"/>
-        <line num="7" count="3" type="stmt"/>
+        <line num="2" count="148" type="stmt"/>
+        <line num="7" count="148" type="stmt"/>
       </file>
-      <file name="generateRandom.ts" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\utils\generateRandom.ts">
+      <file name="generateRandom.ts" path="C:\dev\portal-Consignado\src\utils\generateRandom.ts">
         <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="2" count="2" type="stmt"/>
         <line num="4" count="2" type="stmt"/>
         <line num="6" count="2" type="stmt"/>
       </file>
-      <file name="getVersion.ts" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\utils\getVersion.ts">
+      <file name="getVersion.ts" path="C:\dev\portal-Consignado\src\utils\getVersion.ts">
         <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       </file>
-      <file name="routing.ts" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\utils\routing.ts">
+      <file name="routing.ts" path="C:\dev\portal-Consignado\src\utils\routing.ts">
         <metrics statements="13" coveredstatements="13" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="2" count="3" type="stmt"/>
-        <line num="4" count="3" type="stmt"/>
-        <line num="6" count="3" type="stmt"/>
-        <line num="8" count="3" type="stmt"/>
-        <line num="10" count="3" type="stmt"/>
-        <line num="12" count="3" type="stmt"/>
-        <line num="14" count="3" type="stmt"/>
-        <line num="16" count="3" type="stmt"/>
-        <line num="18" count="3" type="stmt"/>
-        <line num="20" count="3" type="stmt"/>
-        <line num="22" count="3" type="stmt"/>
-        <line num="24" count="3" type="stmt"/>
-        <line num="26" count="3" type="stmt"/>
+        <line num="2" count="8" type="stmt"/>
+        <line num="4" count="8" type="stmt"/>
+        <line num="6" count="8" type="stmt"/>
+        <line num="8" count="8" type="stmt"/>
+        <line num="10" count="8" type="stmt"/>
+        <line num="12" count="8" type="stmt"/>
+        <line num="14" count="8" type="stmt"/>
+        <line num="16" count="8" type="stmt"/>
+        <line num="18" count="8" type="stmt"/>
+        <line num="20" count="8" type="stmt"/>
+        <line num="22" count="8" type="stmt"/>
+        <line num="24" count="8" type="stmt"/>
+        <line num="26" count="8" type="stmt"/>
       </file>
-      <file name="storage.ts" path="C:\Users\DELL\Documents\projetos\portal-Consignado\src\utils\storage.ts">
+      <file name="storage.ts" path="C:\dev\portal-Consignado\src\utils\storage.ts">
         <metrics statements="10" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
-        <line num="1" count="2" type="stmt"/>
-        <line num="3" count="2" type="stmt"/>
-        <line num="5" count="2" type="stmt"/>
-        <line num="7" count="2" type="stmt"/>
-        <line num="9" count="2" type="stmt"/>
-        <line num="11" count="2" type="stmt"/>
-        <line num="13" count="2" type="stmt"/>
-        <line num="21" count="2" type="stmt"/>
+        <line num="1" count="9" type="stmt"/>
+        <line num="3" count="9" type="stmt"/>
+        <line num="5" count="9" type="stmt"/>
+        <line num="7" count="9" type="stmt"/>
+        <line num="9" count="9" type="stmt"/>
+        <line num="11" count="9" type="stmt"/>
+        <line num="13" count="9" type="stmt"/>
+        <line num="21" count="9" type="stmt"/>
         <line num="22" count="0" type="stmt"/>
         <line num="23" count="0" type="stmt"/>
       </file>

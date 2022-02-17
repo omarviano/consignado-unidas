@@ -50,7 +50,7 @@ const GlobalStyles = createGlobalStyle`
     opacity: 1;
     visibility: visible;
     transition: opacity 0.3s ease-in-out 0s, visibility 0.3s ease-in-out 0s;
-    z-index: 999;
+    z-index: 99999;
     overflow: auto;
   }
 `;

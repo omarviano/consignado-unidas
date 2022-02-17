@@ -16,6 +16,7 @@ const EmailForm: React.FC<EmailFormProps> = ({ onSubmit }) => (
     onSubmit={onSubmit}
     validateOnBlur={false}
     validateOnChange
+    name="email-form"
   >
     <StepSmallTitle>Qual o seu melhor e-mail?</StepSmallTitle>
 
@@ -25,6 +26,7 @@ const EmailForm: React.FC<EmailFormProps> = ({ onSubmit }) => (
       label="Seu melhor e-mail"
       placeholder="Seu melhor e-mail"
       variant="outlined"
+      inputProps={{ 'data-testid': 'email' }}
       FormHelperTextProps={{
         id: 'error',
       }}

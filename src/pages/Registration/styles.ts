@@ -78,3 +78,7 @@ export const EmailModalText = styled.p`
   font-size: 18px;
   line-height: 34px;
 `;
+
+export const CurrentStep = styled.span`
+  visibility: hidden;
+`;

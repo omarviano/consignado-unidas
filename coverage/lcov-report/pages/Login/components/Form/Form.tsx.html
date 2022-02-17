@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">61.76% </span>
+                <span class="strong">76.47% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>21/34</span>
+                <span class='fraction'>26/34</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">35.71% </span>
+                <span class="strong">50% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>5/14</span>
+                <span class='fraction'>7/14</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">60% </span>
+                <span class="strong">80% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>6/10</span>
+                <span class='fraction'>8/10</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">72.41% </span>
+                <span class="strong">82.76% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>21/29</span>
+                <span class='fraction'>24/29</span>
             </div>
         
             
@@ -186,9 +186,7 @@
 <a name='L127'></a><a href='#L127'>127</a>
 <a name='L128'></a><a href='#L128'>128</a>
 <a name='L129'></a><a href='#L129'>129</a>
-<a name='L130'></a><a href='#L130'>130</a>
-<a name='L131'></a><a href='#L131'>131</a>
-<a name='L132'></a><a href='#L132'>132</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L130'></a><a href='#L130'>130</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -239,19 +237,19 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -270,8 +268,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -369,8 +365,8 @@ const Form: FC = memo(() =&gt; {
     [showPassword],
   );
 &nbsp;
-  const handleReCaptchaVerify = useCallback(<span class="fstat-no" title="function not covered" >as</span>ync () =&gt; {
-<span class="cstat-no" title="statement not covered" >    if (!executeRecaptcha) <span class="cstat-no" title="statement not covered" >return undefined;</span></span>
+  const handleReCaptchaVerify = useCallback(async () =&gt; {
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (!executeRecaptcha) return undefined;
 &nbsp;
     const token = <span class="cstat-no" title="statement not covered" >await executeRecaptcha('login');</span>
 &nbsp;
@@ -378,10 +374,10 @@ const Form: FC = memo(() =&gt; {
   }, [executeRecaptcha]);
 &nbsp;
   const handleSubmit = useCallback(
-<span class="fstat-no" title="function not covered" >    as</span>ync (values: LoginCredentials) =&gt; {
-      const recaptchaToken = <span class="cstat-no" title="statement not covered" >await handleReCaptchaVerify();</span>
+    async (values: LoginCredentials) =&gt; {
+      const recaptchaToken = await handleReCaptchaVerify();
 &nbsp;
-<span class="cstat-no" title="statement not covered" >      if (!recaptchaToken) <span class="cstat-no" title="statement not covered" >return;</span></span>
+      <span class="missing-if-branch" title="else path not taken" >E</span>if (!recaptchaToken) return;
 &nbsp;
 <span class="cstat-no" title="statement not covered" >      signIn(values, recaptchaToken);</span>
 <span class="cstat-no" title="statement not covered" >      resetModalActive();</span>
@@ -401,51 +397,49 @@ const Form: FC = memo(() =&gt; {
   }, [history, isAuthenticated]);
 &nbsp;
   return (
-    &lt;div data-testid="form-login"&gt;
-      &lt;Formik
-        initialValues={initialValues}
-        onSubmit={handleSubmit}
-        validationSchema={schema}
+    &lt;Formik
+      initialValues={initialValues}
+      onSubmit={handleSubmit}
+      validationSchema={schema}
+    &gt;
+      &lt;Styled.InputEmail
+        type="text"
+        variant="outlined"
+        name="cpf"
+        label="Cpf"
+        placeholder="Seu Cpf"
+        mask="999.999.999-99"
+      /&gt;
+&nbsp;
+      &lt;Styled.InputPassword
+        variant="outlined"
+        name="password"
+        label="Sua Senha"
+        placeholder="Senha"
+        type={inputPasswordType}
+        InputProps={{
+          endAdornment: (
+            &lt;Styled.InputAdornment position="end"&gt;
+              &lt;Styled.IconButton
+                aria-label="toggle password visibility"
+                onClick={handleClickShowPassword}
+              &gt;
+                {eyeIconVisibilityOrVisibilityOff}
+              &lt;/Styled.IconButton&gt;
+            &lt;/Styled.InputAdornment&gt;
+          ),
+        }}
+      /&gt;
+&nbsp;
+      &lt;Styled.ButtonEnter
+        variant="contained"
+        color="primary"
+        type="submit"
+        disabled={isAuthenticating}
       &gt;
-        &lt;Styled.InputEmail
-          type="text"
-          variant="outlined"
-          name="cpf"
-          label="Cpf"
-          placeholder="Seu Cpf"
-          mask="999.999.999-99"
-        /&gt;
-&nbsp;
-        &lt;Styled.InputPassword
-          variant="outlined"
-          name="password"
-          label="Sua Senha"
-          placeholder="Senha"
-          type={inputPasswordType}
-          InputProps={{
-            endAdornment: (
-              &lt;Styled.InputAdornment position="end"&gt;
-                &lt;Styled.IconButton
-                  aria-label="toggle password visibility"
-                  onClick={handleClickShowPassword}
-                &gt;
-                  {eyeIconVisibilityOrVisibilityOff}
-                &lt;/Styled.IconButton&gt;
-              &lt;/Styled.InputAdornment&gt;
-            ),
-          }}
-        /&gt;
-&nbsp;
-        &lt;Styled.ButtonEnter
-          variant="contained"
-          color="primary"
-          type="submit"
-          disabled={isAuthenticating}
-        &gt;
-          Entrar
-        &lt;/Styled.ButtonEnter&gt;
-      &lt;/Formik&gt;
-    &lt;/div&gt;
+        Entrar
+      &lt;/Styled.ButtonEnter&gt;
+    &lt;/Formik&gt;
   );
 });
 &nbsp;
@@ -457,7 +451,7 @@ export { Form };
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Fri Jan 28 2022 15:24:41 GMT-0300 (Horário Padrão de Brasília)
+                at Fri Feb 11 2022 14:16:01 GMT-0300 (Horário Padrão de Brasília)
             </div>
         </div>
         <script src="../../../../prettify.js"></script>
