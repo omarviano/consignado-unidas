@@ -1,184 +1,192 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <unitTest version="1">
-    <file path="C:\dev\portal-Consignado\src\__tests__\pages\SimulateLoan.test.tsx">
-        <testCase name="Page: &lt;Contracts /&gt; should be able to render grid" duration="5442"/>
-        <testCase name="Page: &lt;Contracts /&gt; should be able to render cards" duration="570"/>
-        <testCase name="Page: &lt;Contracts /&gt; should be able to render selected value" duration="195"/>
-        <testCase name="Page: &lt;Contracts /&gt; should be able to redirect when value is 0" duration="240"/>
-        <testCase name="Page: &lt;Contracts /&gt; should be able to show validation error - WEB" duration="1778"/>
-        <testCase name="Page: &lt;Contracts /&gt; should be able to request loan - WEB" duration="1283"/>
-        <testCase name="Page: &lt;Contracts /&gt; should be able show error message - WEB" duration="894"/>
-        <testCase name="Page: &lt;Contracts /&gt; should be able to show validation error - MOBILE" duration="257"/>
-        <testCase name="Page: &lt;Contracts /&gt; should be able to request loan - Mobile" duration="293"/>
-        <testCase name="Page: &lt;Contracts /&gt; should be able show error message - Mobile" duration="387"/>
-        <testCase name="Page: &lt;Contracts /&gt; should be able to change slider value" duration="191"/>
-    </file>
-    <file path="C:\dev\portal-Consignado\src\__tests__\components\SessionModal.test.tsx">
-        <testCase name="Page &lt;SessionModal /&gt; should be able to not render Session Modal" duration="43"/>
-        <testCase name="Page &lt;SessionModal /&gt; should be able to render Session Modal" duration="249"/>
-        <testCase name="Page &lt;SessionModal /&gt; should be able to clear storage and log in again" duration="85"/>
-    </file>
-    <file path="C:\dev\portal-Consignado\src\__tests__\pages\Contracts.test.tsx">
-        <testCase name="Page: &lt;Contracts /&gt; should be able to render grid" duration="4196"/>
-        <testCase name="Page: &lt;Contracts /&gt; should be able to render cards" duration="224"/>
-        <testCase name="Page: &lt;Contracts /&gt; should be able to show no contracts - WEB" duration="1306"/>
-        <testCase name="Page: &lt;Contracts /&gt; should be able to show no contracts - Mobile" duration="182"/>
-        <testCase name="Page: &lt;Contracts /&gt; should be able to render data in table - Web" duration="2423"/>
-        <testCase name="Page: &lt;Contracts /&gt; should be able to render cards - Mobile" duration="383"/>
-        <testCase name="Page: &lt;Contracts /&gt; should be able go to home" duration="246"/>
-        <testCase name="Page: &lt;Contracts /&gt; should be able go to installments page - Mobile" duration="20132"/>
-        <testCase name="Page: &lt;Contracts /&gt; should be able go to installments page - WEB" duration="1466"/>
-    </file>
-    <file path="C:\dev\portal-Consignado\src\__tests__\pages\ContractInstallments.test.tsx">
-        <testCase name="Page: &lt;ContractInstallments /&gt; should be able to render grid" duration="2732"/>
-        <testCase name="Page: &lt;ContractInstallments /&gt; should be able to render cards" duration="722"/>
-        <testCase name="Page: &lt;ContractInstallments /&gt; should be able to show data" duration="2168"/>
-        <testCase name="Page: &lt;ContractInstallments /&gt; should be able to render data in table - Web" duration="1505"/>
-        <testCase name="Page: &lt;ContractInstallments /&gt; should be able to render cards - Mobile" duration="329"/>
-        <testCase name="Page: &lt;ContractInstallments /&gt; should be able redirect to Contracts Page when occurred error" duration="236"/>
-    </file>
     <file path="C:\dev\portal-Consignado\src\__tests__\pages\ResetPassword.test.tsx">
-        <testCase name="Page: &lt;ResetPassword /&gt; should be able to render inputs" duration="306"/>
-        <testCase name="Page: &lt;ResetPassword /&gt; should be able to show error messages" duration="213"/>
-        <testCase name="Page: &lt;ResetPassword /&gt; should be able to show confirm your password" duration="368"/>
-        <testCase name="Page: &lt;ResetPassword /&gt; should be able to show inform your password" duration="234"/>
-        <testCase name="Page: &lt;ResetPassword /&gt; should be able to show password does not meet minimum requirements" duration="440"/>
-        <testCase name="Page: &lt;ResetPassword /&gt; should be able to show token not found" duration="686"/>
-        <testCase name="Page: &lt;ResetPassword /&gt; should be able to show invalid data" duration="790"/>
-        <testCase name="Page: &lt;ResetPassword /&gt; should be able to change password" duration="772"/>
-    </file>
-    <file path="C:\dev\portal-Consignado\src\__tests__\pages\Registration\components\BankDataForm\BankDataForm.test.tsx">
-        <testCase name="Component: &lt;BankDataForm /&gt; should be able to show data" duration="1824"/>
-        <testCase name="Component: &lt;BankDataForm /&gt; should be able to not submit form" duration="1391"/>
-        <testCase name="Component: &lt;BankDataForm /&gt; should be able to show invalid bank data" duration="2639"/>
-        <testCase name="Component: &lt;BankDataForm /&gt; should be able to not submit form" duration="1254"/>
-        <testCase name="Component: &lt;BankDataForm /&gt; should be able to submit form" duration="6106"/>
-        <testCase name="Component: &lt;BankDataForm /&gt; should be able to submit form all fields filled" duration="5241"/>
-    </file>
-    <file path="C:\dev\portal-Consignado\src\__tests__\pages\Registration\Registration.test.tsx">
-        <testCase name="Component: &lt;Registration /&gt; should be able to register without bank data" duration="18171"/>
-        <testCase name="Component: &lt;Registration /&gt; should be able to register whith all data" duration="29145"/>
-        <testCase name="Component: &lt;Registration /&gt; should be able to validate personal data" duration="8177"/>
-        <testCase name="Component: &lt;Registration /&gt; should be able to show register failed" duration="23951"/>
-    </file>
-    <file path="C:\dev\portal-Consignado\src\__tests__\pages\Registration\components\PhoneNumberForm\PhoneNumberForm.test.tsx">
-        <testCase name="Component: &lt;PhoneNumberForm /&gt; should be able to render input" duration="396"/>
-        <testCase name="Component: &lt;PhoneNumberForm /&gt; should be able to show required field" duration="212"/>
-        <testCase name="Component: &lt;PhoneNumberForm /&gt; should be able to not submit form" duration="205"/>
-        <testCase name="Component: &lt;PhoneNumberForm /&gt; should be able to show invalid phone" duration="517"/>
-        <testCase name="Component: &lt;PhoneNumberForm /&gt; should be able to submit form data" duration="934"/>
-    </file>
-    <file path="C:\dev\portal-Consignado\src\__tests__\pages\login.test.tsx">
-        <testCase name="SignIn Page should be able to sign in" duration="1953"/>
-    </file>
-    <file path="C:\dev\portal-Consignado\src\__tests__\pages\Registration\components\CompleteNameForm\CompleteNameForm.test.tsx">
-        <testCase name="Component: &lt;CompleteNomeForm /&gt; should be able to render input" duration="650"/>
-        <testCase name="Component: &lt;CompleteNomeForm /&gt; should be able to show required field" duration="242"/>
-        <testCase name="Component: &lt;CompleteNomeForm /&gt; should be able to not submit form" duration="235"/>
-        <testCase name="Component: &lt;CompleteNomeForm /&gt; should be able to submit form data" duration="306"/>
+        <testCase name="Page: &lt;ResetPassword /&gt; should be able to render inputs" duration="873"/>
+        <testCase name="Page: &lt;ResetPassword /&gt; should be able to show error messages" duration="333"/>
+        <testCase name="Page: &lt;ResetPassword /&gt; should be able to show confirm your password" duration="593"/>
+        <testCase name="Page: &lt;ResetPassword /&gt; should be able to show inform your password" duration="301"/>
+        <testCase name="Page: &lt;ResetPassword /&gt; should be able to show password does not meet minimum requirements" duration="541"/>
+        <testCase name="Page: &lt;ResetPassword /&gt; should be able to show token not found" duration="1074"/>
+        <testCase name="Page: &lt;ResetPassword /&gt; should be able to show invalid data" duration="1289"/>
+        <testCase name="Page: &lt;ResetPassword /&gt; should be able to change password" duration="983"/>
     </file>
     <file path="C:\dev\portal-Consignado\src\__tests__\pages\ChangePassword.test.tsx">
-        <testCase name="Page &lt;ChangePassword /&gt; should be able to render inputs" duration="900"/>
-        <testCase name="Page &lt;ChangePassword /&gt; should be able to show username e e-mail" duration="231"/>
-        <testCase name="Page &lt;ChangePassword /&gt; should be able to show error messages" duration="326"/>
-        <testCase name="Page &lt;ChangePassword /&gt; should be able to show confirm your password" duration="543"/>
-        <testCase name="Page &lt;ChangePassword /&gt; should be able to show inform your password" duration="352"/>
-        <testCase name="Page &lt;ChangePassword /&gt; should be able to show password does not meet minimum requirements" duration="559"/>
-        <testCase name="Page &lt;ChangePassword /&gt; should be able to show unchanged password" duration="1462"/>
-        <testCase name="Page &lt;ChangePassword /&gt; should be able to change password" duration="1507"/>
+        <testCase name="Page &lt;ChangePassword /&gt; should be able to render inputs" duration="1542"/>
+        <testCase name="Page &lt;ChangePassword /&gt; should be able to show username e e-mail" duration="308"/>
+        <testCase name="Page &lt;ChangePassword /&gt; should be able to show error messages" duration="397"/>
+        <testCase name="Page &lt;ChangePassword /&gt; should be able to show confirm your password" duration="578"/>
+        <testCase name="Page &lt;ChangePassword /&gt; should be able to show inform your password" duration="369"/>
+        <testCase name="Page &lt;ChangePassword /&gt; should be able to show password does not meet minimum requirements" duration="725"/>
+        <testCase name="Page &lt;ChangePassword /&gt; should be able to show unchanged password" duration="1910"/>
+        <testCase name="Page &lt;ChangePassword /&gt; should be able to change password" duration="1283"/>
+    </file>
+    <file path="C:\dev\portal-Consignado\src\__tests__\pages\SimulateLoan.test.tsx">
+        <testCase name="Page: &lt;Contracts /&gt; should be able to render grid" duration="1887"/>
+        <testCase name="Page: &lt;Contracts /&gt; should be able to render cards" duration="141"/>
+        <testCase name="Page: &lt;Contracts /&gt; should be able to render selected value" duration="141"/>
+        <testCase name="Page: &lt;Contracts /&gt; should be able to redirect when value is 0" duration="82"/>
+        <testCase name="Page: &lt;Contracts /&gt; should be able to show validation error - WEB" duration="882"/>
+        <testCase name="Page: &lt;Contracts /&gt; should be able to request loan - WEB" duration="1051"/>
+        <testCase name="Page: &lt;Contracts /&gt; should be able show error message - WEB" duration="817"/>
+        <testCase name="Page: &lt;Contracts /&gt; should be able to show validation error - MOBILE" duration="198"/>
+        <testCase name="Page: &lt;Contracts /&gt; should be able to request loan - Mobile" duration="298"/>
+        <testCase name="Page: &lt;Contracts /&gt; should be able show error message - Mobile" duration="325"/>
+        <testCase name="Page: &lt;Contracts /&gt; should be able to change slider value" duration="247"/>
+    </file>
+    <file path="C:\dev\portal-Consignado\src\__tests__\pages\Contracts.test.tsx">
+        <testCase name="Page: &lt;Contracts /&gt; should be able to render grid" duration="3171"/>
+        <testCase name="Page: &lt;Contracts /&gt; should be able to render cards" duration="160"/>
+        <testCase name="Page: &lt;Contracts /&gt; should be able to show no contracts - WEB" duration="630"/>
+        <testCase name="Page: &lt;Contracts /&gt; should be able to show no contracts - Mobile" duration="163"/>
+        <testCase name="Page: &lt;Contracts /&gt; should be able to render data in table - Web" duration="1519"/>
+        <testCase name="Page: &lt;Contracts /&gt; should be able to render cards - Mobile" duration="321"/>
+        <testCase name="Page: &lt;Contracts /&gt; should be able go to home" duration="148"/>
+        <testCase name="Page: &lt;Contracts /&gt; should be able go to installments page - Mobile" duration="20168"/>
+        <testCase name="Page: &lt;Contracts /&gt; should be able go to installments page - WEB" duration="1329"/>
     </file>
     <file path="C:\dev\portal-Consignado\src\__tests__\pages\Registration\components\BirthDateForm\BirthDateForm.test.tsx">
-        <testCase name="Component: &lt;BirthDateForm /&gt; should be able to render input" duration="301"/>
+        <testCase name="Component: &lt;BirthDateForm /&gt; should be able to render input" duration="385"/>
         <testCase name="Component: &lt;BirthDateForm /&gt; should be able to show required field" duration="216"/>
-        <testCase name="Component: &lt;BirthDateForm /&gt; should be able to not submit form" duration="216"/>
-        <testCase name="Component: &lt;BirthDateForm /&gt; should be able to show future date not allowed " duration="369"/>
-        <testCase name="Component: &lt;BirthDateForm /&gt; should be able to show invalid date" duration="294"/>
-        <testCase name="Component: &lt;BirthDateForm /&gt; should be able to submit form" duration="212"/>
+        <testCase name="Component: &lt;BirthDateForm /&gt; should be able to not submit form" duration="220"/>
+        <testCase name="Component: &lt;BirthDateForm /&gt; should be able to show future date not allowed " duration="266"/>
+        <testCase name="Component: &lt;BirthDateForm /&gt; should be able to show invalid date" duration="173"/>
+        <testCase name="Component: &lt;BirthDateForm /&gt; should be able to submit form" duration="220"/>
+    </file>
+    <file path="C:\dev\portal-Consignado\src\__tests__\pages\Registration\components\BankDataForm\BankDataForm.test.tsx">
+        <testCase name="Component: &lt;BankDataForm /&gt; should be able to show data" duration="1532"/>
+        <testCase name="Component: &lt;BankDataForm /&gt; should be able to not submit form" duration="1350"/>
+        <testCase name="Component: &lt;BankDataForm /&gt; should be able to show invalid bank data" duration="2565"/>
+        <testCase name="Component: &lt;BankDataForm /&gt; should be able to not submit form" duration="1141"/>
+        <testCase name="Component: &lt;BankDataForm /&gt; should be able to submit form" duration="5465"/>
+        <testCase name="Component: &lt;BankDataForm /&gt; should be able to submit form all fields filled" duration="6187"/>
+    </file>
+    <file path="C:\dev\portal-Consignado\src\__tests__\pages\login.test.tsx">
+        <testCase name="SignIn Page should be able to sign in" duration="490"/>
+    </file>
+    <file path="C:\dev\portal-Consignado\src\__tests__\pages\ContractInstallments.test.tsx">
+        <testCase name="Page: &lt;ContractInstallments /&gt; should be able to render grid" duration="1691"/>
+        <testCase name="Page: &lt;ContractInstallments /&gt; should be able to render cards" duration="530"/>
+        <testCase name="Page: &lt;ContractInstallments /&gt; should be able to show data" duration="2097"/>
+        <testCase name="Page: &lt;ContractInstallments /&gt; should be able to render data in table - Web" duration="1131"/>
+        <testCase name="Page: &lt;ContractInstallments /&gt; should be able to render cards - Mobile" duration="246"/>
+        <testCase name="Page: &lt;ContractInstallments /&gt; should be able redirect to Contracts Page when occurred error" duration="177"/>
     </file>
     <file path="C:\dev\portal-Consignado\src\__tests__\pages\Registration\components\PasswordForm\PasswordForm.test.tsx">
-        <testCase name="Component: &lt;PasswordForm /&gt; should be able to render inputs" duration="413"/>
-        <testCase name="Component: &lt;PasswordForm /&gt; should be able to show error messages" duration="673"/>
-        <testCase name="Component: &lt;PasswordForm /&gt; should be able to show confirm your password" duration="303"/>
-        <testCase name="Component: &lt;PasswordForm /&gt; should be able to show inform your password" duration="349"/>
-        <testCase name="Component: &lt;PasswordForm /&gt; should be able to show password must be the same" duration="593"/>
-        <testCase name="Component: &lt;PasswordForm /&gt; should be able to show password does not meet minimum requirements" duration="592"/>
-        <testCase name="Component: &lt;PasswordForm /&gt; should be able to create password" duration="539"/>
+        <testCase name="Component: &lt;PasswordForm /&gt; should be able to render inputs" duration="270"/>
+        <testCase name="Component: &lt;PasswordForm /&gt; should be able to show error messages" duration="217"/>
+        <testCase name="Component: &lt;PasswordForm /&gt; should be able to show confirm your password" duration="174"/>
+        <testCase name="Component: &lt;PasswordForm /&gt; should be able to show inform your password" duration="262"/>
+        <testCase name="Component: &lt;PasswordForm /&gt; should be able to show password must be the same" duration="503"/>
+        <testCase name="Component: &lt;PasswordForm /&gt; should be able to show password does not meet minimum requirements" duration="378"/>
+        <testCase name="Component: &lt;PasswordForm /&gt; should be able to create password" duration="457"/>
+    </file>
+    <file path="C:\dev\portal-Consignado\src\__tests__\components\Error500.test.tsx">
+        <testCase name="Page: &lt;Error500 /&gt; should be able to show modal &lt;Error500 /&gt;" duration="201"/>
+    </file>
+    <file path="C:\dev\portal-Consignado\src\__tests__\pages\Registration\Registration.test.tsx">
+        <testCase name="Component: &lt;Registration /&gt; should be able to register without bank data" duration="14773"/>
+        <testCase name="Component: &lt;Registration /&gt; should be able to register whith all data" duration="24856"/>
+        <testCase name="Component: &lt;Registration /&gt; should be able to validate personal data" duration="7647"/>
+        <testCase name="Component: &lt;Registration /&gt; should be able to show register failed" duration="23144"/>
     </file>
     <file path="C:\dev\portal-Consignado\src\__tests__\pages\Registration\components\EmailForm\EmailForm.test.tsx">
-        <testCase name="Component: &lt;EmailForm /&gt; should be able to render input" duration="389"/>
-        <testCase name="Component: &lt;EmailForm /&gt; should be able to show required field" duration="228"/>
-        <testCase name="Component: &lt;EmailForm /&gt; should be able to not submit form" duration="198"/>
-        <testCase name="Component: &lt;EmailForm /&gt; should be able to show invalid email" duration="273"/>
-        <testCase name="Component: &lt;EmailForm /&gt; should be able to async validation: invalid email" duration="494"/>
-        <testCase name="Component: &lt;EmailForm /&gt; should be able to async validation: valid email" duration="467"/>
-        <testCase name="Component: &lt;EmailForm /&gt; should be able to submit form data" duration="443"/>
+        <testCase name="Component: &lt;EmailForm /&gt; should be able to render input" duration="446"/>
+        <testCase name="Component: &lt;EmailForm /&gt; should be able to show required field" duration="231"/>
+        <testCase name="Component: &lt;EmailForm /&gt; should be able to not submit form" duration="176"/>
+        <testCase name="Component: &lt;EmailForm /&gt; should be able to show invalid email" duration="566"/>
+        <testCase name="Component: &lt;EmailForm /&gt; should be able to async validation: invalid email" duration="709"/>
+        <testCase name="Component: &lt;EmailForm /&gt; should be able to async validation: valid email" duration="651"/>
+        <testCase name="Component: &lt;EmailForm /&gt; should be able to submit form data" duration="853"/>
+    </file>
+    <file path="C:\dev\portal-Consignado\src\__tests__\pages\Registration\components\CNPJForm\CNPJForm.test.tsx">
+        <testCase name="Component: &lt;CNPJForm /&gt; should be able to render input" duration="909"/>
+        <testCase name="Component: &lt;CNPJForm /&gt; should be able to show required field" duration="780"/>
+        <testCase name="Component: &lt;CNPJForm /&gt; should be able to show incomplete field" duration="494"/>
+        <testCase name="Component: &lt;CNPJForm /&gt; should be able to not submit form" duration="290"/>
+        <testCase name="Component: &lt;CNPJForm /&gt; should be able to validate data" duration="575"/>
+        <testCase name="Component: &lt;CNPJForm /&gt; should be able to submit form data" duration="514"/>
+    </file>
+    <file path="C:\dev\portal-Consignado\src\__tests__\pages\Registration\components\CompleteNameForm\CompleteNameForm.test.tsx">
+        <testCase name="Component: &lt;CompleteNomeForm /&gt; should be able to render input" duration="462"/>
+        <testCase name="Component: &lt;CompleteNomeForm /&gt; should be able to show required field" duration="257"/>
+        <testCase name="Component: &lt;CompleteNomeForm /&gt; should be able to not submit form" duration="171"/>
+        <testCase name="Component: &lt;CompleteNomeForm /&gt; should be able to submit form data" duration="293"/>
     </file>
     <file path="C:\dev\portal-Consignado\src\__tests__\pages\Registration\components\CPFForm\CPFForm.test.tsx">
-        <testCase name="Component: &lt;CPFForm /&gt; should be able to render input" duration="413"/>
-        <testCase name="Component: &lt;CPFForm /&gt; should be able to show required field" duration="321"/>
-        <testCase name="Component: &lt;CPFForm /&gt; should be able to show incomplete field" duration="289"/>
+        <testCase name="Component: &lt;CPFForm /&gt; should be able to render input" duration="549"/>
+        <testCase name="Component: &lt;CPFForm /&gt; should be able to show required field" duration="311"/>
+        <testCase name="Component: &lt;CPFForm /&gt; should be able to show incomplete field" duration="322"/>
         <testCase name="Component: &lt;CPFForm /&gt; should be able to not submit form" duration="193"/>
-        <testCase name="Component: &lt;CPFForm /&gt; should be able to show user not found" duration="517"/>
-        <testCase name="Component: &lt;CPFForm /&gt; should be able to submit form data" duration="555"/>
+        <testCase name="Component: &lt;CPFForm /&gt; should be able to show user not found" duration="519"/>
+        <testCase name="Component: &lt;CPFForm /&gt; should be able to submit form data" duration="468"/>
+    </file>
+    <file path="C:\dev\portal-Consignado\src\__tests__\pages\Registration\components\PhoneNumberForm\PhoneNumberForm.test.tsx">
+        <testCase name="Component: &lt;PhoneNumberForm /&gt; should be able to render input" duration="376"/>
+        <testCase name="Component: &lt;PhoneNumberForm /&gt; should be able to show required field" duration="231"/>
+        <testCase name="Component: &lt;PhoneNumberForm /&gt; should be able to not submit form" duration="221"/>
+        <testCase name="Component: &lt;PhoneNumberForm /&gt; should be able to show invalid phone" duration="316"/>
+        <testCase name="Component: &lt;PhoneNumberForm /&gt; should be able to submit form data" duration="306"/>
+    </file>
+    <file path="C:\dev\portal-Consignado\src\__tests__\pages\Registration\components\BankDataConfirmation\BankDataConfirmation.test.tsx">
+        <testCase name="Component: &lt;BankDataConfirmation /&gt; should be able to show data" duration="235"/>
+        <testCase name="Component: &lt;BankDataConfirmation /&gt; should be able to show terms not accepted when click &quot;yes&quot;" duration="294"/>
+        <testCase name="Component: &lt;BankDataConfirmation /&gt; should be able to show terms not accepted when click &quot;not now&quot;" duration="59"/>
+        <testCase name="Component: &lt;BankDataConfirmation /&gt; should be able to accept terms" duration="190"/>
+        <testCase name="Component: &lt;BankDataConfirmation /&gt; should be able to accept terms and click not now" duration="72"/>
+    </file>
+    <file path="C:\dev\portal-Consignado\src\__tests__\components\SessionModal.test.tsx">
+        <testCase name="Page &lt;SessionModal /&gt; should be able to not render Session Modal" duration="85"/>
+        <testCase name="Page &lt;SessionModal /&gt; should be able to render Session Modal" duration="252"/>
+        <testCase name="Page &lt;SessionModal /&gt; should be able to clear storage and log in again" duration="237"/>
     </file>
     <file path="C:\dev\portal-Consignado\src\__tests__\hooks\auth.test.tsx">
-        <testCase name="Auth hook should be able to sign in" duration="23"/>
-        <testCase name="Auth hook should be able not to sign in on password incorrect" duration="11"/>
-        <testCase name="Auth hook should be able not to sign with on user not found" duration="9"/>
-    </file>
-    <file path="C:\dev\portal-Consignado\src\__tests__\hooks\simulateRealTime.test.tsx">
-        <testCase name="Hook Simulate Real Time should be able to search margens" duration="10"/>
-        <testCase name="Hook Simulate Real Time should be able to add value slider simulate" duration="17"/>
-        <testCase name="Hook Simulate Real Time should be able to add data simulate loan" duration="20"/>
-    </file>
-    <file path="C:\dev\portal-Consignado\src\__tests__\hooks\headerMobile.test.tsx">
-        <testCase name="Hook header mobile should be able to execute toggle header mobile" duration="20"/>
-    </file>
-    <file path="C:\dev\portal-Consignado\src\__tests__\hooks\useViaCEP.test.tsx">
-        <testCase name="Hook ViaCEP should be able to search CEP with atributes" duration="28"/>
+        <testCase name="Auth hook should be able to sign in" duration="52"/>
+        <testCase name="Auth hook should be able not to sign in on password incorrect" duration="9"/>
+        <testCase name="Auth hook should be able not to sign with on user not found" duration="10"/>
     </file>
     <file path="C:\dev\portal-Consignado\src\__tests__\hooks\useWindowDimensions.test.ts">
-        <testCase name="Hook window dimensions should be able to execute window dimensions width" duration="6"/>
-        <testCase name="Hook window dimensions should be able to execute window dimensions height" duration="3"/>
+        <testCase name="Hook window dimensions should be able to execute window dimensions width" duration="36"/>
+        <testCase name="Hook window dimensions should be able to execute window dimensions height" duration="5"/>
+    </file>
+    <file path="C:\dev\portal-Consignado\src\__tests__\hooks\useInterceptors.test.tsx">
+        <testCase name="Hook interceptor should be able to show modal Error500" duration="108"/>
+        <testCase name="Hook interceptor should be able to show modal Session expired" duration="217"/>
+        <testCase name="Hook interceptor should be able to call refresh token" duration="14"/>
+    </file>
+    <file path="C:\dev\portal-Consignado\src\__tests__\utils\formatDate.test.ts">
+        <testCase name="Formatação de datas Formatação data nula" duration="2"/>
+        <testCase name="Formatação de datas Formatação  pt-br" duration="6"/>
+    </file>
+    <file path="C:\dev\portal-Consignado\src\__tests__\hooks\simulateRealTime.test.tsx">
+        <testCase name="Hook Simulate Real Time should be able to search margens" duration="17"/>
+        <testCase name="Hook Simulate Real Time should be able to add value slider simulate" duration="7"/>
+        <testCase name="Hook Simulate Real Time should be able to add data simulate loan" duration="16"/>
+    </file>
+    <file path="C:\dev\portal-Consignado\src\__tests__\hooks\useViaCEP.test.tsx">
+        <testCase name="Hook ViaCEP should be able to search CEP with atributes" duration="7"/>
+    </file>
+    <file path="C:\dev\portal-Consignado\src\__tests__\hooks\headerMobile.test.tsx">
+        <testCase name="Hook header mobile should be able to execute toggle header mobile" duration="5"/>
     </file>
     <file path="C:\dev\portal-Consignado\src\__tests__\hooks\simulate.test.tsx">
-        <testCase name="Simulate hook should be able to simulate loan" duration="17"/>
-    </file>
-    <file path="C:\dev\portal-Consignado\src\__tests__\hooks\useModal.test.ts">
-        <testCase name="Hook Modal should be able to execute toggle modal" duration="20"/>
-    </file>
-    <file path="C:\dev\portal-Consignado\src\__tests__\hooks\session.test.tsx">
-        <testCase name="Hook session should be able to execute updateSession" duration="15"/>
+        <testCase name="Simulate hook should be able to simulate loan" duration="18"/>
     </file>
     <file path="C:\dev\portal-Consignado\src\__tests__\utils\generateRandom.test.ts">
-        <testCase name="util generateRandom geração de números randômicos" duration="1"/>
+        <testCase name="util generateRandom geração de números randômicos" duration="2"/>
+    </file>
+    <file path="C:\dev\portal-Consignado\src\__tests__\hooks\session.test.tsx">
+        <testCase name="Hook session should be able to execute updateSession" duration="7"/>
+    </file>
+    <file path="C:\dev\portal-Consignado\src\__tests__\hooks\useModal.test.ts">
+        <testCase name="Hook Modal should be able to execute toggle modal" duration="9"/>
     </file>
     <file path="C:\dev\portal-Consignado\src\__tests__\utils\document.test.ts">
         <testCase name="Document Testando remoção em string fazias" duration="1"/>
         <testCase name="Document Testando remoção de máscaras" duration="1"/>
     </file>
     <file path="C:\dev\portal-Consignado\src\__tests__\utils\formatValue.test.ts">
-        <testCase name="Formatação de valores monetários pt-br(R$) Formatação sem passar valor" duration="2"/>
+        <testCase name="Formatação de valores monetários pt-br(R$) Formatação sem passar valor" duration="21"/>
         <testCase name="Formatação de valores monetários pt-br(R$) Formatação número decimal" duration="1"/>
         <testCase name="Formatação de valores monetários pt-br(R$) Formatação número inteiro" duration="1"/>
-    </file>
-    <file path="C:\dev\portal-Consignado\src\__tests__\utils\formatDate.test.ts">
-        <testCase name="Formatação de datas Formatação data nula" duration="1"/>
-        <testCase name="Formatação de datas Formatação  pt-br" duration="11"/>
-    </file>
-    <file path="C:\dev\portal-Consignado\src\__tests__\pages\Registration\components\BankDataConfirmation\BankDataConfirmation.test.tsx">
-        <testCase name="Component: &lt;BankDataConfirmation /&gt; should be able to show data" duration="300"/>
-        <testCase name="Component: &lt;BankDataConfirmation /&gt; should be able to show terms not accepted when click &quot;yes&quot;" duration="241"/>
-        <testCase name="Component: &lt;BankDataConfirmation /&gt; should be able to show terms not accepted when click &quot;not now&quot;" duration="42"/>
-        <testCase name="Component: &lt;BankDataConfirmation /&gt; should be able to accept terms" duration="173"/>
-        <testCase name="Component: &lt;BankDataConfirmation /&gt; should be able to accept terms and click not now" duration="43"/>
-    </file>
-    <file path="C:\dev\portal-Consignado\src\__tests__\pages\Registration\components\CNPJForm\CNPJForm.test.tsx">
-        <testCase name="Component: &lt;CNPJForm /&gt; should be able to render input" duration="492"/>
-        <testCase name="Component: &lt;CNPJForm /&gt; should be able to show required field" duration="425"/>
-        <testCase name="Component: &lt;CNPJForm /&gt; should be able to show incomplete field" duration="260"/>
-        <testCase name="Component: &lt;CNPJForm /&gt; should be able to not submit form" duration="212"/>
-        <testCase name="Component: &lt;CNPJForm /&gt; should be able to validate data" duration="200"/>
-        <testCase name="Component: &lt;CNPJForm /&gt; should be able to submit form data" duration="217"/>
     </file>
 </unitTest>
