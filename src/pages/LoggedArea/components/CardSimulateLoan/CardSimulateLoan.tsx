@@ -57,7 +57,9 @@ const CardSimulateLoan: FC = memo(() => {
   );
 
   useEffect(() => {
-    setValue(dataMargin[0]?.availableValue <= 0 ? 0 : MIN_VALUE);
+    setValue(
+      dataMargin[0]?.availableValue <= 0 ? 0 : dataMargin[0]?.creditLimit,
+    );
   }, [dataMargin]);
 
   return (
