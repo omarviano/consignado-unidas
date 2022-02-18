@@ -104,45 +104,45 @@ const Layout: React.FC<LayoutProps> = ({ children, containerStyles }) => {
 
         <Styled.Container style={containerStyles}>{children}</Styled.Container>
 
-        <Styled.Footer>
-          <Link to={RoutingPath.PRIVACY}>Política de privacidade</Link>
+        <Styled.FooterContainer>
+          <Styled.Footer>
+            <Styled.FooterContent>
+              <Link to={RoutingPath.PRIVACY}>Política de privacidade</Link>
 
-          <Styled.FooterText className="privacy privacy-alt">
-            Somos correspondentes bancários da Mova
-          </Styled.FooterText>
+              <Styled.Version>Versão {version}</Styled.Version>
+            </Styled.FooterContent>
 
-          <Styled.About>
-            <Styled.AboutText>
-              O site consignado.unidas.com.br pertence e é operado pela Unidas,
-              inscrita no CNPJ 10.215.988/0001-60, com sede na Avenida Raja
-              Gabaglia, nº 1.781, 12º andar, Luxemburgo, Belo Horizonte/MG. A
-            </Styled.AboutText>
+            <Styled.FooterContent>
+              <Styled.About>
+                <Styled.AboutText>
+                  O site consignado.unidas.com.br pertence e é operado pela
+                  Unidas, inscrita no CNPJ 10.215.988/0001-60, com sede na
+                  Avenida Raja Gabaglia, nº 1.781, 12º andar, Luxemburgo, Belo
+                  Horizonte/MG. A
+                </Styled.AboutText>
 
-            <Styled.AboutText>
-              Unidas não é uma instituição financeira e não realiza operações de
-              crédito diretamente. A Unidas atua como correspondente bancário da
-              Mova Sociedade de Empréstimo entre Pessoas S.A. (CNPJ
-              33.959.738/0001-30) e segue as diretrizes do Banco Central do
-              Brasil, nos termos da Resolução nº. 3.954, de 24 de fevereiro de
-              2011.
-            </Styled.AboutText>
-            <Styled.VersionText className="desktop">
-              Versão {version}
-            </Styled.VersionText>
-          </Styled.About>
+                <Styled.AboutText>
+                  Unidas não é uma instituição financeira e não realiza
+                  operações de crédito diretamente. A Unidas atua como
+                  correspondente bancário da Mova Sociedade de Empréstimo entre
+                  Pessoas S.A. (CNPJ 33.959.738/0001-30) e segue as diretrizes
+                  do Banco Central do Brasil, nos termos da Resolução nº. 3.954,
+                  de 24 de fevereiro de 2011.
+                </Styled.AboutText>
+              </Styled.About>
+            </Styled.FooterContent>
 
-          <Styled.FooterBox>
-            <Styled.FooterText className="privacy">
-              Somos correspondentes bancários da Mova
-            </Styled.FooterText>
-            <Styled.FooterText className="copyright">
-              &copy; 2022 UNIDAS - Todos os direitos reservados.
-            </Styled.FooterText>
-            <Styled.VersionText className="mobile">
-              Versão {version}
-            </Styled.VersionText>
-          </Styled.FooterBox>
-        </Styled.Footer>
+            <Styled.Copyright>
+              <Styled.CopyrightText>
+                Somos correspondentes bancários da Mova
+              </Styled.CopyrightText>
+
+              <Styled.CopyrightText>
+                © 2021 UNIDAS - Todos os direitos reservados.
+              </Styled.CopyrightText>
+            </Styled.Copyright>
+          </Styled.Footer>
+        </Styled.FooterContainer>
       </Styled.Page>
 
       <Modal open={open} onClose={toggle}>
