@@ -15,8 +15,7 @@ import { api } from 'services/api';
 import LoggedArea from 'pages/LoggedArea';
 import { SimulateLoanContext } from 'hooks/simulate';
 import { SimulateLoanRealTimeContext } from 'hooks/simulateRealtime';
-import { ModalSimulateLoanContext } from 'pages/LoggedArea/components/ModalSimulateLoan/context';
-import { CreditUnderAnalysis } from 'pages/LoggedArea/components/CreditUnderAnalysis';
+import { QuotationStatus } from 'enums/quote';
 
 const mockHistoryPush = jest.fn();
 
@@ -67,14 +66,14 @@ const mockSimulateLoanRealTime = {
     {
       relationship: 'TRABALHANDO',
       totalValue: 1000,
-      availableValue: 1000,
+      availableValue: 999.77,
       admissionDate: new Date(2014, 0, 31),
       situation: 'string',
       employeeSalary: 1000,
       creditLimit: 10000,
     },
   ],
-  valueSliderSimulate: 1000,
+  valueSliderSimulate: 5,
   getMargin: getMarginFn,
   addValueSliderSimulate: addValueSliderSimulateFn,
   addDataSimulateLoan: addDataSimulateLoanFn,
@@ -105,54 +104,65 @@ describe('Page  <LoggedArea />', () => {
     );
 
     await waitFor(() => {
-      expect(screen.getByTestId('value').textContent).toBe('R$\xa01.000,00');
+      expect(screen.getByTestId('value').textContent).toBe('R$\xa0999,77');
     });
   }, 5000);
 
-  // test('should be able to render status card under analysis', async () => {
-  //   render(
-  //     <SimulateLoanRealTimeContext.Provider value={mockSimulateLoanRealTime}>
-  //       <Providers>
-  //         <LoggedArea />
-  //       </Providers>
-  //     </SimulateLoanRealTimeContext.Provider>,
-  //   );
+  test('should be able to not render recused loan card', async () => {
+    const apiMock = new MockAdapter(api);
+    apiMock.onGet('/financial/quote').reply(200, {
+      data: {
+        quotationStatusId: QuotationStatus.RecusadoPeloUsuario,
+      },
+    });
 
-  //   const apiResponse = {
-  //     success: true,
-  //     error: null,
-  //     message: 'Cotação recuperada com sucesso!',
-  //     statusCode: 200,
-  //     data: {
-  //       id: 89,
-  //       quotationStatusId: 1,
-  //       quotationStatus: {
-  //         id: 1,
-  //         description: 'Aprovada',
-  //       },
-  //       value: 2000,
-  //       dueDate: new Date('0001-01-01T00:00:00'),
-  //       installmentQuantity: 48,
-  //       installmentValue: 116.82330815007725,
-  //       installmentEffectiveCostPerYear: 45.28,
-  //       installmentFeesPerMonth: 5.1,
-  //       bankingReferences: null,
-  //       disapprovedCheck: false,
-  //     },
-  //   };
+    render(
+      <SimulateLoanRealTimeContext.Provider value={mockSimulateLoanRealTime}>
+        <Providers>
+          <LoggedArea />
+        </Providers>
+      </SimulateLoanRealTimeContext.Provider>,
+    );
 
-  //   const apiMock = new MockAdapter(api);
+    await waitFor(() => {
+      expect(screen.queryByTestId('creditUnderAnalysis')).toBe(null);
+    });
+  }, 5000);
 
-  //   apiMock.onPost('/financial/quote').reply(200, apiResponse);
+  test('should be able to render <CreditUnderAnalysis /> and correct text', async () => {
+    const apiMock = new MockAdapter(api);
+    apiMock.onGet('/financial/quote').reply(200, {
+      data: {
+        quotationStatusId: QuotationStatus.Aprovado,
+      },
+    });
 
-  //   await waitFor(() => {
-  //     expect(screen.getByTestId('text').textContent).toBe(
-  //       'Empréstimo aprovado',
-  //     );
-  //   });
-  // }, 5000);
+    render(
+      <SimulateLoanRealTimeContext.Provider value={mockSimulateLoanRealTime}>
+        <Providers>
+          <LoggedArea />
+        </Providers>
+      </SimulateLoanRealTimeContext.Provider>,
+    );
 
-  test('should be able to change slider value', async () => {
+    await waitFor(() => {
+      expect(screen.getByTestId('creditUnderAnalysis')).toBeDefined();
+      expect(screen.getByTestId('text').textContent).toBe(
+        'Empréstimo aprovado',
+      );
+    });
+  }, 5000);
+
+  /* test('should be able to change slider value', async () => {
+    const apiMock = new MockAdapter(api);
+    apiMock.onGet('/financial/quote').reply(200, {
+      data: {
+        quotationStatusId: QuotationStatus.Aprovado,
+      },
+    });
+    apiMock.onGet('/margins').reply(200);
+    apiMock.onPost('/financial/simulate').reply(200);
+
     const { container } = render(
       <SimulateLoanRealTimeContext.Provider value={mockSimulateLoanRealTime}>
         <Providers>
@@ -161,14 +171,15 @@ describe('Page  <LoggedArea />', () => {
       </SimulateLoanRealTimeContext.Provider>,
     );
 
-    const input = container.querySelector(
+     const input = container.querySelector(
       'input[type="range"]',
     ) as HTMLInputElement;
-    fireEvent.change(input, { target: { value: 2000 } });
-
+    fireEvent.change(input, { target: { value: 1200 } });
+ 
     await waitFor(() => {
-      expect(addValueSliderSimulateFn).toHaveBeenCalledWith(2000);
-      expect(addDataSimulateLoanFn).toHaveBeenCalledWith({});
+      expect(screen.getByTestId('slider-value').textContent).toBe(
+        'R$\xa01.000,00',
+      );
     });
-  }, 5000);
+  }, 5000); */
 });

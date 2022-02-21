@@ -71,7 +71,10 @@ const CardSimulateLoan: FC = memo(() => {
           empréstimo e realizando apenas uma simulação. O aceite será feito em
           etapas posteriores.
         </Styled.TextInfomation>
-        <Styled.TextValueSlider disabled={disableSliderAndButton}>
+        <Styled.TextValueSlider
+          disabled={disableSliderAndButton}
+          data-testid="slider-value"
+        >
           {formatValue(value)}
         </Styled.TextValueSlider>
         <Styled.Slider
