@@ -53,7 +53,7 @@ const Layout: React.FC<LayoutProps> = ({ children, containerStyles }) => {
 
           {isAuthenticated && (
             <>
-              <Styled.Nav>
+              <Styled.Nav data-testid="menu">
                 <NavLink to={RoutingPath.LOGGEDAREA}>
                   Simular Empréstimo
                 </NavLink>
@@ -61,7 +61,7 @@ const Layout: React.FC<LayoutProps> = ({ children, containerStyles }) => {
                 <NavLink to={RoutingPath.FAQ}>Dúvidas Frequentes</NavLink>
               </Styled.Nav>
 
-              <Styled.UserOptionsContainer>
+              <Styled.UserOptionsContainer data-testid="menu-mobile">
                 <Styled.UserLogged onClick={toggleMenu}>
                   <Styled.Username>{getToken()?.user.name}</Styled.Username>
                   <KeyboardArrowDown />
@@ -75,6 +75,7 @@ const Layout: React.FC<LayoutProps> = ({ children, containerStyles }) => {
                   <Styled.LogoutButton
                     type="button"
                     onClick={handleClickLogout}
+                    data-testid="sign-out-button"
                   >
                     Sair
                   </Styled.LogoutButton>
@@ -84,11 +85,15 @@ const Layout: React.FC<LayoutProps> = ({ children, containerStyles }) => {
           )}
 
           {!isAuthenticated ? (
-            <Link to={RoutingPath.LOGIN} className="sign-in">
+            <Link
+              to={RoutingPath.LOGIN}
+              className="sign-in"
+              data-testid="sign-in"
+            >
               Entrar
             </Link>
           ) : (
-            <Styled.MenuButton>
+            <Styled.MenuButton data-testid="menu-button">
               <MenuIcon onClick={toggleMenuLeftOpen} />
             </Styled.MenuButton>
           )}
@@ -146,7 +151,7 @@ const Layout: React.FC<LayoutProps> = ({ children, containerStyles }) => {
       </Styled.Page>
 
       <Modal open={open} onClose={toggle}>
-        <Styled.Content>
+        <Styled.Content data-testid="sign-out-modal">
           <Styled.Title variant="h2">Tem certeza que deseja sair?</Styled.Title>
 
           <Styled.DivButtons>
@@ -154,6 +159,7 @@ const Layout: React.FC<LayoutProps> = ({ children, containerStyles }) => {
               color="primary"
               variant="contained"
               onClick={clearSessionStorage}
+              data-testid="sign-out-confirm-button"
             >
               Sim
             </Styled.ButtonYes>
