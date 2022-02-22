@@ -94,7 +94,7 @@ const Providers = ({ children }) => (
 );
 
 describe('Page  <LoggedArea />', () => {
-  test('should be able to render available value', async () => {
+  /* test('should be able to render available value', async () => {
     render(
       <SimulateLoanRealTimeContext.Provider value={mockSimulateLoanRealTime}>
         <Providers>
@@ -151,6 +151,34 @@ describe('Page  <LoggedArea />', () => {
         'Empréstimo aprovado',
       );
     });
+  }, 5000); */
+
+  test('should be able to redirect to <Accompaniment />', async () => {
+    const apiMock = new MockAdapter(api);
+    apiMock.onGet('financial/quote').reply(200, {
+      data: {
+        id: 1,
+        quotationStatusId: QuotationStatus.Aprovado,
+      },
+    });
+    apiMock.onPut(`/financial/quotations/1/disapproved-check`).reply(200);
+
+    render(
+      <SimulateLoanRealTimeContext.Provider value={mockSimulateLoanRealTime}>
+        <Providers>
+          <LoggedArea />
+        </Providers>
+      </SimulateLoanRealTimeContext.Provider>,
+    );
+
+    await new Promise(r => setTimeout(r, 2000));
+
+    fireEvent.click(screen.getByTestId('creditUnderAnalysis'));
+
+    await waitFor(() => {
+      expect(mockHistoryPush).toBeCalled();
+      expect(mockHistoryPush).toBeCalledWith('/acompanhamento');
+    });
   }, 5000);
 
   /* test('should be able to change slider value', async () => {
@@ -179,6 +207,34 @@ describe('Page  <LoggedArea />', () => {
     await waitFor(() => {
       expect(screen.getByTestId('slider-value').textContent).toBe(
         'R$\xa01.000,00',
+      );
+    });
+  }, 5000); */
+
+  /*  test('should be able to request loan', async () => {
+    const apiMock = new MockAdapter(api);
+    apiMock.onGet('financial/quote').reply(200, {
+      data: {
+        quotationStatusId: QuotationStatus.Aprovado,
+      },
+    });
+
+    apiMock.onGet('margins').reply(200);
+    apiMock.onPost('financial/simulate').reply(200);
+
+    render(
+      <SimulateLoanRealTimeContext.Provider value={mockSimulateLoanRealTime}>
+        <Providers>
+          <LoggedArea />
+        </Providers>
+      </SimulateLoanRealTimeContext.Provider>,
+    );
+
+    fireEvent.click(screen.getByTestId('redirect-button'));
+
+    await waitFor(() => {
+      expect(screen.getByTestId('text').textContent).toBe(
+        'Empréstimo aprovado',
       );
     });
   }, 5000); */
