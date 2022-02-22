@@ -106,7 +106,7 @@ describe('Page  <LoggedArea />', () => {
     await waitFor(() => {
       expect(screen.getByTestId('value').textContent).toBe('R$\xa0999,77');
     });
-  }, 5000);
+  }, 5000); */
 
   test('should be able to not render recused loan card', async () => {
     const apiMock = new MockAdapter(api);
@@ -151,7 +151,7 @@ describe('Page  <LoggedArea />', () => {
         'Empréstimo aprovado',
       );
     });
-  }, 5000); */
+  }, 5000);
 
   test('should be able to redirect to <Accompaniment />', async () => {
     const apiMock = new MockAdapter(api);
@@ -181,7 +181,7 @@ describe('Page  <LoggedArea />', () => {
     });
   }, 5000);
 
-  /* test('should be able to change slider value', async () => {
+  test('should be able to change slider value', async () => {
     const apiMock = new MockAdapter(api);
     apiMock.onGet('/financial/quote').reply(200, {
       data: {
@@ -199,17 +199,17 @@ describe('Page  <LoggedArea />', () => {
       </SimulateLoanRealTimeContext.Provider>,
     );
 
-     const input = container.querySelector(
+    const input = container.querySelector(
       'input[type="range"]',
     ) as HTMLInputElement;
     fireEvent.change(input, { target: { value: 1200 } });
- 
+
     await waitFor(() => {
       expect(screen.getByTestId('slider-value').textContent).toBe(
-        'R$\xa01.000,00',
+        'R$\xa01.200,00',
       );
     });
-  }, 5000); */
+  }, 5000);
 
   /*  test('should be able to request loan', async () => {
     const apiMock = new MockAdapter(api);

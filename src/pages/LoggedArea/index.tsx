@@ -42,8 +42,8 @@ const LoggedArea: FC = withContext(
           <CreditUnderAnalysis />
         </Styled.CardsContainer>
 
-        {/* <CardSimulateLoan />
-        <ModalSimulateLoan /> */}
+        <CardSimulateLoan />
+        <ModalSimulateLoan />
       </Layout>
     );
   },
