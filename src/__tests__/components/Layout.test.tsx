@@ -53,7 +53,7 @@ const Providers = ({ children }) => (
   </ThemeProviderMaterialUi>
 );
 
-const Component = () => <div data-testid="child">child</div>;
+const Component = () => <span data-testid="child">child</span>;
 
 describe('<Layout />', () => {
   test('should be able to render a child', async () => {
