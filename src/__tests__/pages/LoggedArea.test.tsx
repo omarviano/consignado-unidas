@@ -94,20 +94,6 @@ const Providers = ({ children }) => (
 );
 
 describe('Page  <LoggedArea />', () => {
-  /* test('should be able to render available value', async () => {
-    render(
-      <SimulateLoanRealTimeContext.Provider value={mockSimulateLoanRealTime}>
-        <Providers>
-          <LoggedArea />
-        </Providers>
-      </SimulateLoanRealTimeContext.Provider>,
-    );
-
-    await waitFor(() => {
-      expect(screen.getByTestId('value').textContent).toBe('R$\xa0999,77');
-    });
-  }, 5000); */
-
   test('should be able to not render recused loan card', async () => {
     const apiMock = new MockAdapter(api);
     apiMock.onGet('/financial/quote').reply(200, {
@@ -189,7 +175,6 @@ describe('Page  <LoggedArea />', () => {
       },
     });
     apiMock.onGet('/margins').reply(200);
-    apiMock.onPost('/financial/simulate').reply(200);
 
     const { container } = render(
       <SimulateLoanRealTimeContext.Provider value={mockSimulateLoanRealTime}>
@@ -211,17 +196,36 @@ describe('Page  <LoggedArea />', () => {
     });
   }, 5000);
 
-  /*  test('should be able to request loan', async () => {
+  test('should be able to request loan', async () => {
     const apiMock = new MockAdapter(api);
     apiMock.onGet('financial/quote').reply(200, {
       data: {
         quotationStatusId: QuotationStatus.Aprovado,
       },
     });
-
     apiMock.onGet('margins').reply(200);
-    apiMock.onPost('financial/simulate').reply(200);
 
+    const { container } = render(
+      <SimulateLoanRealTimeContext.Provider value={mockSimulateLoanRealTime}>
+        <Providers>
+          <LoggedArea />
+        </Providers>
+      </SimulateLoanRealTimeContext.Provider>,
+    );
+
+    const input = container.querySelector(
+      'input[type="range"]',
+    ) as HTMLInputElement;
+    fireEvent.change(input, { target: { value: 1109 } });
+
+    fireEvent.click(screen.getByTestId('redirect-button'));
+
+    await waitFor(() => {
+      expect(addValueSliderSimulateFn).toHaveBeenCalledWith(1109);
+    });
+  }, 5000);
+
+  test('should be able to render available value', async () => {
     render(
       <SimulateLoanRealTimeContext.Provider value={mockSimulateLoanRealTime}>
         <Providers>
@@ -230,12 +234,8 @@ describe('Page  <LoggedArea />', () => {
       </SimulateLoanRealTimeContext.Provider>,
     );
 
-    fireEvent.click(screen.getByTestId('redirect-button'));
-
     await waitFor(() => {
-      expect(screen.getByTestId('text').textContent).toBe(
-        'Empréstimo aprovado',
-      );
+      expect(screen.getByTestId('value').textContent).toBe('R$\xa0999,77');
     });
-  }, 5000); */
+  }, 5000);
 });
