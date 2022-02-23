@@ -1,11 +1,11 @@
 import { useMemo, useState, useCallback, useEffect } from 'react';
-import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
+import { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
 
 import { SessionExpired } from 'components/SessionExpired';
 import { Error500 } from 'components/Error500';
 
 import showModal from 'utils/alert';
-import { api } from 'services/api';
+import { api, apiWithoutInterceptors } from 'services/api';
 import { useAuth } from './auth';
 import { useSession } from './session';
 
@@ -30,12 +30,9 @@ const useInterceptors = (): boolean[] => {
 
             const {
               data: { data },
-            } = await axios.get(
-              `${process.env.REACT_APP_BASE_URL}auth/refresh-token`,
-              {
-                headers,
-              },
-            );
+            } = await apiWithoutInterceptors.get('auth/refresh-token', {
+              headers,
+            });
 
             refreshToken(data.token);
 
@@ -63,15 +60,16 @@ const useInterceptors = (): boolean[] => {
         } */
 
         if (
-          error.request.status === 401 &&
-          error.request.responseURL !== `${process.env.REACT_APP_BASE_URL}auth`
+          error.response?.status === 401 &&
+          error.response?.request.responseURL !==
+            `${process.env.REACT_APP_BASE_URL}auth`
         ) {
           showModal({ content: <SessionExpired /> });
 
           return Promise.reject(error);
         }
 
-        if (error.request.status >= 500) {
+        if (error.response?.status && error.response?.status >= 500) {
           showModal({ content: <Error500 /> });
 
           return Promise.reject(error);
