@@ -57,7 +57,7 @@ const AccountConfirmation: React.FC = () => {
   return (
     <Layout>
       <Styled.Container>
-        <Styled.Title data-testid="title">
+        <Styled.Title>
           Agora falta pouco!
           <br />
           Clique no botão abaixo para confirmar sua conta.
@@ -68,14 +68,13 @@ const AccountConfirmation: React.FC = () => {
           variant="contained"
           onClick={confirmationAccount}
           disabled={confirmingAccount}
-          data-testid="confirmationButton"
         >
           {confirmingAccount ? 'Confirmando...' : 'Confirmar Conta'}
         </Button>
       </Styled.Container>
 
       <Modal open={modalSuccesOpen}>
-        <Styled.ModalContent data-testid="modal-success">
+        <Styled.ModalContent>
           <ConfirmIcon />
 
           <Styled.ModalTitle>Conta confirmada com sucesso!</Styled.ModalTitle>
@@ -95,7 +94,7 @@ const AccountConfirmation: React.FC = () => {
         open={modalErrorOpen}
         onClose={toggleModalError}
         icon={<Error color="error" />}
-        text={<span data-testid="error-message">{errorMessage}</span>}
+        text={errorMessage}
       />
     </Layout>
   );

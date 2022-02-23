@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">85.71% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/7</span>
+                <span class='fraction'>6/7</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">50% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/4</span>
+                <span class='fraction'>2/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/2</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">85.71% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/7</span>
+                <span class='fraction'>6/7</span>
             </div>
         
             
@@ -55,7 +55,7 @@
             Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
         </p>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -129,17 +129,17 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -190,30 +190,30 @@ import ImageAlertYellow from 'assets/icons/alert-yellow.svg';
 import { useSimulateLoanRealTime } from 'hooks/simulateRealtime';
 import * as Styled from './styles';
 &nbsp;
-const CardMarginAvailable: FC = <span class="cstat-no" title="statement not covered" >memo(<span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
-  const { dataMargin } = <span class="cstat-no" title="statement not covered" >useSimulateLoanRealTime();</span>
+const CardMarginAvailable: FC = memo(() =&gt; {
+  const { dataMargin } = useSimulateLoanRealTime();
 &nbsp;
-  const valueAvailable = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    if (dataMargin[0]?.availableValue) {</span>
-<span class="cstat-no" title="statement not covered" >      return formatValue(dataMargin[0]?.availableValue);</span>
+  const valueAvailable = () =&gt; {
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (dataMargin[0]?.availableValue) {
+      return formatValue(dataMargin[0]?.availableValue);
     }
 <span class="cstat-no" title="statement not covered" >    return 'R$ -';</span>
   };
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  return (</span>
+  return (
     &lt;Styled.Container&gt;
       &lt;Styled.TextUserLogged variant="h2"&gt;
         Olá! {getToken()?.user.name}!
       &lt;/Styled.TextUserLogged&gt;
       {dataMargin[0]?.availableValue &lt;= 0 ? (
-        &lt;Styled.TextMarginNotAvailable variant="h4"&gt;
+<span class="branch-0 cbranch-no" title="branch not covered" >        &lt;Styled.TextMarginNotAvailable variant="h4"&gt;</span>
           &lt;img src={ImageAlertYellow} alt="Alert" /&gt;
           Infelizmente você não tem margem disponível para solicitação de
           empréstimo :(. Entre em contato com RH da empresa.
         &lt;/Styled.TextMarginNotAvailable&gt;
       ) : (
         &lt;Fragment&gt;
-          &lt;Styled.TextValueAvailable variant="h2"&gt;
+          &lt;Styled.TextValueAvailable data-testid="value" variant="h2"&gt;
             {valueAvailable()}
           &lt;/Styled.TextValueAvailable&gt;
           &lt;Styled.TextInformation variant="h4"&gt;
@@ -247,7 +247,7 @@ export { CardMarginAvailable };
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Fri Feb 18 2022 10:54:11 GMT-0300 (Horário Padrão de Brasília)
+                at Wed Feb 23 2022 09:09:42 GMT-0300 (Horário Padrão de Brasília)
             </div>
         </div>
         <script src="../../../../prettify.js"></script>

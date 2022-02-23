@@ -89,15 +89,15 @@ const Form: FC = memo(() => {
         type="text"
         variant="outlined"
         name="cpf"
-        label="CPF"
-        placeholder="CPF"
+        label="Cpf"
+        placeholder="Seu Cpf"
         mask="999.999.999-99"
       />
 
       <Styled.InputPassword
         variant="outlined"
         name="password"
-        label="Senha"
+        label="Sua Senha"
         placeholder="Senha"
         type={inputPasswordType}
         InputProps={{

@@ -14,7 +14,7 @@ const SessionExpired: React.FC = () => {
 
   return (
     <Modal open>
-      <Styled.ModalContent id="session-modal" data-testid="session-modal">
+      <Styled.ModalContent>
         <Update />
         <Styled.ModalText>Sessão expirada</Styled.ModalText>
 
@@ -23,7 +23,6 @@ const SessionExpired: React.FC = () => {
           variant="contained"
           disableElevation
           onClick={clearStorageData}
-          data-testid="log-in-again-button"
         >
           Logar novamente
         </Styled.Button>

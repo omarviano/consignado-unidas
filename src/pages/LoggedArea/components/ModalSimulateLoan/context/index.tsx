@@ -8,7 +8,9 @@ import React, {
 
 import { ModalSimulateLoanProps } from './props';
 
-const ModalSimulateLoanContext = createContext({} as ModalSimulateLoanProps);
+export const ModalSimulateLoanContext = createContext(
+  {} as ModalSimulateLoanProps,
+);
 
 const ModalSimulateLoanProvider: FC = props => {
   const { children } = props;

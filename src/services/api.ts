@@ -7,15 +7,8 @@ const api = axios.create({
   },
 });
 
-const apiWithoutInterceptors = axios.create({
-  baseURL: process.env.REACT_APP_BASE_URL,
-  headers: {
-    'Content-Type': 'application/json',
-  },
-});
-
 const viaCepApi = axios.create({
   baseURL: 'https://viacep.com.br/ws/',
 });
 
-export { api, apiWithoutInterceptors, viaCepApi };
+export { api, viaCepApi };
