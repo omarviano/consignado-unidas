@@ -15,31 +15,35 @@ const CreditUnderAnalysis: React.FC = () => {
   const STATUS = useMemo(
     () => ({
       [QuotationStatus.Analise]: (
-        <Styled.Title>Análise de crédito</Styled.Title>
+        <Styled.Title data-testid="text">Análise de crédito</Styled.Title>
       ),
       [QuotationStatus.DocumentacaoPendente]: (
-        <Styled.Title>Documentação pendente</Styled.Title>
+        <Styled.Title data-testid="text">Documentação pendente</Styled.Title>
       ),
       [QuotationStatus.Documentacao]: (
-        <Styled.Title>Documentação enviada</Styled.Title>
+        <Styled.Title data-testid="text">Documentação enviada</Styled.Title>
       ),
       [QuotationStatus.Aprovado]: (
-        <Styled.Title>Empréstimo aprovado</Styled.Title>
+        <Styled.Title data-testid="text">Empréstimo aprovado</Styled.Title>
       ),
       [QuotationStatus.RecusadoPeloUsuario]: (
-        <Styled.Title>Empréstimo recusado</Styled.Title>
+        <Styled.Title data-testid="text">Empréstimo recusado</Styled.Title>
       ),
       [QuotationStatus.AssinaturaContratoPendente]: (
-        <Styled.Title>Assinatura de contrato pendente</Styled.Title>
+        <Styled.Title data-testid="text">
+          Assinatura de contrato pendente
+        </Styled.Title>
       ),
       [QuotationStatus.AssinaturaContrato]: (
-        <Styled.Title>Assinatura de contrato</Styled.Title>
+        <Styled.Title data-testid="text">Assinatura de contrato</Styled.Title>
       ),
       [QuotationStatus.CreditoLiberado]: (
-        <Styled.Title releasedCredit>Crédito liberado</Styled.Title>
+        <Styled.Title data-testid="text" releasedCredit>
+          Crédito liberado
+        </Styled.Title>
       ),
       [QuotationStatus.EmprestimoReprovadoPeloBanco]: (
-        <Styled.Title>Empréstimo reprovado</Styled.Title>
+        <Styled.Title data-testid="text">Empréstimo reprovado</Styled.Title>
       ),
       default: null,
     }),
@@ -68,7 +72,10 @@ const CreditUnderAnalysis: React.FC = () => {
     quote.quotationStatusId >= 0 &&
     !quote.disapprovedCheck &&
     quote.quotationStatusId !== QuotationStatus.RecusadoPeloUsuario ? (
-    <Styled.Container onClick={() => goToAccompaniment(quote.id)}>
+    <Styled.Container
+      onClick={() => goToAccompaniment(quote.id)}
+      data-testid="creditUnderAnalysis"
+    >
       <Styled.PreTitle>Status do seu contrato atual</Styled.PreTitle>
       {STATUS[quote.quotationStatusId ?? 'default']}
       <Styled.Text>Acompanhe sua solicitação</Styled.Text>
