@@ -4,7 +4,7 @@ import { HeaderMobileContextData } from './props';
 
 const initialValue = {} as HeaderMobileContextData;
 
-export const HeaderMobileContext = createContext(initialValue);
+const HeaderMobileContext = createContext(initialValue);
 
 export const HeaderMobileProvider: FC = props => {
   const { children } = props;
