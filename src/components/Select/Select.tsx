@@ -37,6 +37,7 @@ const Select: FC<SelectProps> = React.memo(
         </Styled.Label>
         <Styled.Select
           {...field}
+          data-testid="select"
           placeholder={label}
           fullWidth
           select
@@ -52,6 +53,9 @@ const Select: FC<SelectProps> = React.memo(
           {...rest}
           error={!!meta.error && meta.touched}
           helperText={meta.touched ? meta.error : undefined}
+          SelectProps={{
+            id: 'select',
+          }}
         >
           {optionsMap}
         </Styled.Select>

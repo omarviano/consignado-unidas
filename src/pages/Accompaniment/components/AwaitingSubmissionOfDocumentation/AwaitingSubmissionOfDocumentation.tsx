@@ -5,7 +5,7 @@ import { getToken } from 'hooks/auth/storage';
 import * as Styled from './styles';
 
 const AwaitingSubmissionOfDocumentation: React.FC = () => (
-  <Styled.DataCard>
+  <Styled.DataCard data-testid="awaitingSubmissionOfDocumentation">
     <MailOutline color="secondary" />
 
     <Styled.HelloUsername>Olá {getToken()?.user.name}!</Styled.HelloUsername>

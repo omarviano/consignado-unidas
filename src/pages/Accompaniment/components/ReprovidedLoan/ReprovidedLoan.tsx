@@ -9,7 +9,7 @@ const ReprovidedLoan: FC = () => {
   const history = useHistory();
 
   return (
-    <Styled.Container>
+    <Styled.Container data-testid="reprovidedLoan">
       <Styled.ReprovidedLoan variant="h2">
         Olá {getToken()?.user.name}! Tudo bem? Temos uma triste notícia. <br />{' '}
         A sua proposta de empréstimo foi{' '}
