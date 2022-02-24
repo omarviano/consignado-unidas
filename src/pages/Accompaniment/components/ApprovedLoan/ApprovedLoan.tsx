@@ -95,12 +95,16 @@ const ApprovedLoan: FC<ApprovedLoanProps> = ({ onApproved }) => {
     setCep(cepInput?.value);
   };
 
-  const handleInputTextArea = () => {
+  const totalTextAreaCharacters = () => {
     const textarea = document.getElementById(
       'reasonDescription',
     ) as HTMLInputElement;
 
-    setTotalCharacters(textarea?.value?.length);
+    return textarea?.value?.length || 0;
+  };
+
+  const handleInputTextArea = () => {
+    setTotalCharacters(totalTextAreaCharacters());
   };
 
   const handleSelectReason = (
@@ -223,7 +227,7 @@ const ApprovedLoan: FC<ApprovedLoanProps> = ({ onApproved }) => {
   };
 
   const handleReasonSubmit = data => {
-    if (reasonDescriptionRequired && totalCharacters === 0) return;
+    if (reasonDescriptionRequired && totalTextAreaCharacters() === 0) return;
 
     refuseLoan(data);
   };
@@ -613,6 +617,7 @@ const ApprovedLoan: FC<ApprovedLoanProps> = ({ onApproved }) => {
           <Styled.ButtonGoToHomeScreen
             variant="contained"
             onClick={() => history.push(RoutingPath.LOGGEDAREA)}
+            data-testid="button-go-to-home"
           >
             Ir para tela inicial
           </Styled.ButtonGoToHomeScreen>

@@ -1,17 +1,12 @@
-import {
-  render,
-  screen,
-  fireEvent,
-  waitFor,
-  within,
-} from '@testing-library/react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import MockAdapter from 'axios-mock-adapter';
-import { BrowserRouter } from 'react-router-dom';
+import { Router, BrowserRouter } from 'react-router-dom';
 import { ThemeProvider as ThemeProviderStyledComponents } from 'styled-components';
 import {
   ThemeProvider as ThemeProviderMaterialUi,
   StyledEngineProvider,
 } from '@mui/material';
+import { createMemoryHistory } from 'history';
 import { materialUiTheme } from 'styles/theme/material-ui';
 
 import { AppProvider } from 'hooks';
@@ -322,9 +317,13 @@ describe('Page: <Accompaniment  />', () => {
     });
     mock.onPost('/financial/quote/refuse').reply(200);
 
-    const { getByRole } = render(
+    const history = createMemoryHistory();
+
+    render(
       <Providers>
-        <Accompaniment />
+        <Router history={history}>
+          <Accompaniment />
+        </Router>
       </Providers>,
     );
 
@@ -341,31 +340,34 @@ describe('Page: <Accompaniment  />', () => {
       expect(screen.getByTestId('refuseModalForm')).toBeDefined();
     });
 
-    /*   fireEvent.mouseDown(screen.getAllByRole('button')[0]);
-    await new Promise(r => setTimeout(r, 1000));
-
-    const listbox = within(getByRole('listbox'));
-    fireEvent.click(listbox.getByText('Opt 2'));
+    const reasonRefuseId = screen.getByTestId('reasonRefuseId');
+    fireEvent.change(reasonRefuseId, { target: { value: '2' } });
 
     const reasonDescription = screen.getByTestId('reasonDescription');
     reasonDescription.focus();
-    fireEvent.change(reasonDescription, { target: { value: 'Pqqqqq' } });
-
-    await new Promise(r => setTimeout(r, 5000));
+    fireEvent.change(reasonDescription, { target: { value: 'Pq' } });
 
     fireEvent.click(screen.getByTestId('refuseButton'));
-
-    await new Promise(r => setTimeout(r, 5000));
 
     await waitFor(() => {
       expect(mock.history.post[0].data).toBe(
         JSON.stringify({
           quotationId: 1,
-          reasonRefuseId: '1',
-          reasonDescription: 'Pqqqqq',
+          reasonRefuseId: '2',
+          reasonDescription: 'Pq',
         }),
       );
-    }); */
+
+      expect(screen.getByTestId('refuseAcceptedModal')).toBeDefined();
+    });
+
+    fireEvent.click(screen.getByTestId('button-go-to-home'));
+
+    await new Promise(r => setTimeout(r, 1000));
+
+    await waitFor(() => {
+      expect(history.location.pathname).toBe('/area-logada');
+    });
   }, 50000);
 
   test('should be able to accept proposal', async () => {
