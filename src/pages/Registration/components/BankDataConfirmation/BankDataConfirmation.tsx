@@ -67,8 +67,14 @@ const BankDataConfirmation: React.FC<BankDataConfirmationProps> = ({
 
           <Styled.TermsText>
             Estou de acordo com os{' '}
-            <Link to={RoutingPath.PRIVACY}>termos e condições</Link> da{' '}
-            <Link to={RoutingPath.PRIVACY}>política de privacidade</Link>.
+            <Link target="__blank" to={RoutingPath.PRIVACY}>
+              termos e condições
+            </Link>{' '}
+            da{' '}
+            <Link target="__blank" to={RoutingPath.PRIVACY}>
+              política de privacidade
+            </Link>
+            .
           </Styled.TermsText>
         </Styled.IAgreeTermsContainer>
 

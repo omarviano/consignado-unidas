@@ -32,7 +32,7 @@ const CardMarginAvailable: FC = memo(() => {
         </Styled.TextMarginNotAvailable>
       ) : (
         <Fragment>
-          <Styled.TextValueAvailable variant="h2">
+          <Styled.TextValueAvailable data-testid="value" variant="h2">
             {valueAvailable()}
           </Styled.TextValueAvailable>
           <Styled.TextInformation variant="h4">
