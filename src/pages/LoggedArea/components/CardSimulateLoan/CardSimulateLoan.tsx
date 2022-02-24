@@ -42,7 +42,9 @@ const CardSimulateLoan: FC = memo(() => {
   }, [dataMargin, value]);
 
   const disableSliderAndButton = useMemo(
-    () => dataMargin[0]?.availableValue <= 0,
+    () =>
+      dataMargin[0]?.availableValue === undefined ||
+      dataMargin[0]?.availableValue <= 0,
     [dataMargin],
   );
 
