@@ -5,7 +5,7 @@ import { getToken } from 'hooks/auth/storage';
 import * as Styled from './styles';
 
 const ContractSigning: React.FC = () => (
-  <Styled.DataCard>
+  <Styled.DataCard data-testid="contractSigning">
     <MailOutline color="secondary" />
 
     <Styled.HelloUserName>Olá {getToken()?.user.name}!</Styled.HelloUserName>

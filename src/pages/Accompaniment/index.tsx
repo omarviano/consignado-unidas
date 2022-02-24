@@ -129,17 +129,36 @@ const Accompaniment: React.FC = () => {
   );
   const STEPS_ICON = useMemo(
     () => ({
-      [QuotationStatus.Analise]: <CheckCircle color="success" />,
-      [QuotationStatus.Aprovado]: <CheckCircle color="success" />,
-      [QuotationStatus.RecusadoPeloUsuario]: <Cancel color="error" />,
-      [QuotationStatus.DocumentacaoPendente]: <WatchLater color="warning" />,
-      [QuotationStatus.Documentacao]: <CheckCircle color="success" />,
-      [QuotationStatus.AssinaturaContratoPendente]: (
-        <WatchLater color="warning" />
+      [QuotationStatus.Analise]: (
+        <CheckCircle color="success" data-testid="requestUnderAnalysisIcon" />
       ),
-      [QuotationStatus.AssinaturaContrato]: <CheckCircle color="success" />,
-      [QuotationStatus.CreditoLiberado]: <CheckCircle color="success" />,
-      [QuotationStatus.EmprestimoReprovadoPeloBanco]: <Cancel color="error" />,
+      [QuotationStatus.Aprovado]: (
+        <CheckCircle color="success" data-testid="approvedLoanIcon" />
+      ),
+      [QuotationStatus.RecusadoPeloUsuario]: (
+        <Cancel color="error" data-testid="refusedIcon" />
+      ),
+      [QuotationStatus.DocumentacaoPendente]: (
+        <WatchLater
+          color="warning"
+          data-testid="awaitingSubmissionOfDocumentationIcon"
+        />
+      ),
+      [QuotationStatus.Documentacao]: (
+        <CheckCircle color="success" data-testid="documentationSentIcon" />
+      ),
+      [QuotationStatus.AssinaturaContratoPendente]: (
+        <WatchLater color="warning" data-testid="contractSigningIcon" />
+      ),
+      [QuotationStatus.AssinaturaContrato]: (
+        <CheckCircle color="success" data-testid="signingContractIcon" />
+      ),
+      [QuotationStatus.CreditoLiberado]: (
+        <CheckCircle color="success" data-testid="releasedCreditIcon" />
+      ),
+      [QuotationStatus.EmprestimoReprovadoPeloBanco]: (
+        <Cancel color="error" data-testid="reprovidedLoanIcon" />
+      ),
       default: <CropSquare className="tranparent-icon" />,
     }),
     [],
