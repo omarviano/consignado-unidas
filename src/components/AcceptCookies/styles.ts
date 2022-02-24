@@ -33,7 +33,7 @@ export const Container = styled.div`
     }
   }
 
-  & + div div {
+  & + div .grecaptcha-badge {
     bottom: 88px !important;
 
     @media (max-width: 768px) {
