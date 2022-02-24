@@ -15,7 +15,7 @@ import {
 import { materialUiTheme } from 'styles/theme/material-ui';
 
 import { AppProvider } from 'hooks';
-import { api } from 'services/api';
+import { api, viaCepApi } from 'services/api';
 import { QuotationStatus } from 'enums/quote';
 
 import Accompaniment from 'pages/Accompaniment';
@@ -261,7 +261,7 @@ describe('Page: <Accompaniment  />', () => {
     });
   });
 
-  /* test('should be able to refuse proposal', async () => {
+  test('should be able to refuse proposal', async () => {
     const mock = new MockAdapter(api);
     mock.onGet('/financial/quote').reply(200, {
       data: {
@@ -281,7 +281,30 @@ describe('Page: <Accompaniment  />', () => {
         disapprovedCheck: false,
       },
     });
-    mock.onGet('/user-account').reply(200, {data:{}});
+    mock.onGet('/user-account').reply(200, {
+      data: {
+        cpf: '47087643088',
+        name: 'COLABORADOR 10',
+        email: 'teste@unidas123.com.br',
+        password: 'E10ADC3949BA59ABBE56E057F20F883E',
+        phoneNumber: '11111111111',
+        bankCode: 1,
+        agency: '123456',
+        accountNumber: '12345',
+        digit: '12',
+        birthDate: '1992-09-05T03:00:00',
+        professional: 'Dev',
+        nationality: 'Brasileiraa',
+        zipCode: '38400104',
+        publicPlace: 'Rua tal tal tal',
+        number: '123',
+        district: 'Asdf',
+        complement: 'Apartamento tal',
+        city: 'Uberlândia',
+        state: 'MG',
+        cnpj: '10215988000160',
+      },
+    });
     mock.onGet('/banks').reply(200, { data: [] });
     mock.onGet('/reason-refuse').reply(200, {
       data: [
@@ -318,7 +341,7 @@ describe('Page: <Accompaniment  />', () => {
       expect(screen.getByTestId('refuseModalForm')).toBeDefined();
     });
 
-    fireEvent.mouseDown(screen.getAllByRole('button')[0]);
+    /*   fireEvent.mouseDown(screen.getAllByRole('button')[0]);
     await new Promise(r => setTimeout(r, 1000));
 
     const listbox = within(getByRole('listbox'));
@@ -342,11 +365,12 @@ describe('Page: <Accompaniment  />', () => {
           reasonDescription: 'Pqqqqq',
         }),
       );
-    });
-  }, 50000); */
+    }); */
+  }, 50000);
 
   test('should be able to accept proposal', async () => {
     const mock = new MockAdapter(api);
+    const mockViaCep = new MockAdapter(viaCepApi);
     mock.onGet('/financial/quote').reply(200, {
       data: {
         id: 1,
@@ -367,23 +391,28 @@ describe('Page: <Accompaniment  />', () => {
     });
     mock.onGet('/user-account').reply(200, {
       data: {
-        name: 'Nome do usuário',
-        nationality: 'Brazilll',
-        professional: 'Dev',
+        cpf: '47087643088',
+        name: 'COLABORADOR 10',
+        email: 'teste@unidas123.com.br',
+        password: 'E10ADC3949BA59ABBE56E057F20F883E',
+        phoneNumber: '11111111111',
         bankCode: 1,
-        number: 123456,
-        agency: 123456,
-        accountNumber: 123456,
-        digit: 12,
-        complement: 'Complement',
-        cep: '38660000',
-        logradouro: 'Rua avenida',
-        bairro: 'Centrão',
-        localidade: 'Buritis',
-        uf: 'MG',
+        agency: '123456',
+        accountNumber: '12345',
+        digit: '12',
+        birthDate: '1992-09-05T03:00:00',
+        professional: 'Dev',
+        nationality: 'Brasileiraa',
+        zipCode: '38400104',
+        publicPlace: 'Rua tal tal tal',
+        number: '123',
+        district: 'Asdf',
+        complement: 'Apartamento tal',
+        city: 'Uberlândia',
+        state: 'MG',
+        cnpj: '10215988000160',
       },
     });
-
     mock.onGet('/banks').reply(200, {
       data: [
         {
@@ -396,6 +425,13 @@ describe('Page: <Accompaniment  />', () => {
       data: [],
     });
     mock.onPatch('/financial/quotations/1/accept').reply(200);
+    mockViaCep.onGet('38400104/json/').reply(200, {
+      logradouro: 'Rua Coronel Antônio Alves Pereira',
+      complemento: 'até 1257/1258',
+      bairro: 'Centro',
+      localidade: 'Uberlândia',
+      uf: 'MG',
+    });
 
     render(
       <Providers>
@@ -404,6 +440,7 @@ describe('Page: <Accompaniment  />', () => {
     );
 
     await new Promise(r => setTimeout(r, 1000));
+
     fireEvent.click(screen.getByTestId('acceptProposalButton'));
 
     await waitFor(() => {
@@ -411,15 +448,29 @@ describe('Page: <Accompaniment  />', () => {
     });
 
     fireEvent.click(screen.getByTestId('confirmationButton'));
-    fireEvent.click(screen.getByTestId('confirmationButton'));
-    fireEvent.click(screen.getByTestId('confirmationButton'));
-
     await new Promise(r => setTimeout(r, 10000));
 
     await waitFor(() => {
-      console.log('mock', mock.history);
+      expect(mock.history.patch[0].data).toBe(
+        JSON.stringify({
+          nationality: 'Brasileiraa',
+          professional: 'Dev',
+          number: '123',
+          complement: 'Apartamento tal',
+          bankCode: '1',
+          agency: '123456',
+          digit: '12',
+          accountNumber: '12345',
+          accountType: 'Conta corrente',
+          zipCode: '38400104',
+          publicPlace: 'Rua Coronel Antônio Alves Pereira',
+          district: 'Centro',
+          city: 'Uberlândia',
+          state: 'MG',
+        }),
+      );
 
-      expect(screen.getAllByTestId('confirmationModal')).toBeDefined();
+      expect(screen.getAllByTestId('modal-success')).toBeDefined();
     });
   }, 50000);
 });

@@ -186,8 +186,6 @@ const ApprovedLoan: FC<ApprovedLoanProps> = ({ onApproved }) => {
     try {
       setLoading(true);
 
-      console.log('dataSubmit', data);
-
       const dataSubmit: UserDataProps = {
         nationality: data?.nationality,
         professional: data?.professional,
@@ -204,7 +202,6 @@ const ApprovedLoan: FC<ApprovedLoanProps> = ({ onApproved }) => {
         city: data?.localidade,
         state: data?.uf,
       };
-      console.log('dataSubmit', dataSubmit);
 
       await AccompanimentServices.approveLoan(dataSubmit, Number(loanData?.id));
 
@@ -215,8 +212,6 @@ const ApprovedLoan: FC<ApprovedLoanProps> = ({ onApproved }) => {
       const { response } = error as AxiosError;
       setErrorMessage(response?.data?.message);
       toggleModalError();
-
-      console.log('cacth');
     } finally {
       setLoading(false);
     }
@@ -393,7 +388,7 @@ const ApprovedLoan: FC<ApprovedLoanProps> = ({ onApproved }) => {
             ...address,
           }}
           onSubmit={handleSubmit}
-          /* validationSchema={schema} */
+          validationSchema={schema}
           enableReinitialize
           innerRef={refFormik as any}
         >
@@ -557,7 +552,7 @@ const ApprovedLoan: FC<ApprovedLoanProps> = ({ onApproved }) => {
             <Styled.ButtonToSend
               type="submit"
               variant="contained"
-              /* disabled={loading} */
+              disabled={loading}
               data-testid="confirmationButton"
             >
               {submitButtonText('Enviar', 'Enviando...')}
@@ -571,7 +566,7 @@ const ApprovedLoan: FC<ApprovedLoanProps> = ({ onApproved }) => {
         height="226px"
         open={modalSuccessOpen}
         onClose={handleCloseApprovedModal}
-        icon={<CheckCircle color="success" />}
+        icon={<CheckCircle color="success" data-testid="modal-success" />}
         text="Aceite enviado com sucesso!"
       />
 
@@ -632,7 +627,7 @@ const ApprovedLoan: FC<ApprovedLoanProps> = ({ onApproved }) => {
 
           <Formik
             initialValues={{ reasonRefuseId: '' }}
-            /* validationSchema={reasonsSchema} */
+            validationSchema={reasonsSchema}
             onSubmit={handleReasonSubmit}
           >
             <Select
