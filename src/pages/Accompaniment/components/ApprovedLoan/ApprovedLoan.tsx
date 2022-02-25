@@ -387,6 +387,7 @@ const ApprovedLoan: FC<ApprovedLoanProps> = ({ onApproved }) => {
       <Modal open={modalConfirmationOpen} onClose={toggleModalConfirmation}>
         <Formik
           initialValues={{
+            nationality: 'Brasileiro',
             ...userData,
             ...refFormik.current?.values,
             ...address,
