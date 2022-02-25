@@ -65,7 +65,7 @@ const ApprovedLoan: FC<ApprovedLoanProps> = ({ onApproved }) => {
       ({ data: { data: response } }) => {
         setUserData({
           name: response?.name,
-          nationality: response?.nationality,
+          nationality: response?.nationality || 'Brasileiro',
           professional: response?.professional,
           number: response?.number,
           complement: response?.complement,
@@ -387,7 +387,6 @@ const ApprovedLoan: FC<ApprovedLoanProps> = ({ onApproved }) => {
       <Modal open={modalConfirmationOpen} onClose={toggleModalConfirmation}>
         <Formik
           initialValues={{
-            nationality: 'Brasileiro',
             ...userData,
             ...refFormik.current?.values,
             ...address,
@@ -396,6 +395,7 @@ const ApprovedLoan: FC<ApprovedLoanProps> = ({ onApproved }) => {
           validationSchema={schema}
           enableReinitialize
           innerRef={refFormik as any}
+          validateOnMount
         >
           <Styled.ContainerModal data-testid="confirmationModal">
             <Styled.AdditionalData variant="h2">
