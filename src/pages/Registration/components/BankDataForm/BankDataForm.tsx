@@ -30,7 +30,7 @@ const BankDataForm: React.FC<BankDataFormProps> = ({
   const formRef = useRef<FormikProps<any>>(null);
   const [formValues, setFormValues] = useState({
     professional: '',
-    nationality: 'Brasileira',
+    nationality: 'Brasileiro',
     zipCode: '',
     logradouro: '',
     number: '',
@@ -82,7 +82,7 @@ const BankDataForm: React.FC<BankDataFormProps> = ({
 
   useEffect(() => {
     setFormValues({
-      nationality: 'Brasileira',
+      nationality: 'Brasileiro',
       ...formRef.current?.values,
     });
   }, [address]);
