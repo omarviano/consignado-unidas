@@ -388,8 +388,6 @@ const ApprovedLoan: FC<ApprovedLoanProps> = ({ onApproved }) => {
         <Formik
           initialValues={{
             ...userData,
-            ...refFormik.current?.values,
-            ...address,
           }}
           onSubmit={handleSubmit}
           validationSchema={schema}
@@ -450,6 +448,7 @@ const ApprovedLoan: FC<ApprovedLoanProps> = ({ onApproved }) => {
                   placeholder="Informe seu endereço"
                   variant="outlined"
                   disabled={addressInputDisabled(address?.logradouro)}
+                  value={address?.logradouro}
                 />
               </Grid>
               <Grid item xs={12} sm={3}>
@@ -467,6 +466,7 @@ const ApprovedLoan: FC<ApprovedLoanProps> = ({ onApproved }) => {
                   placeholder="Informe seu bairro"
                   variant="outlined"
                   disabled={addressInputDisabled(address?.bairro)}
+                  value={address?.bairro}
                 />
               </Grid>
             </Styled.GridContainer>
@@ -487,6 +487,7 @@ const ApprovedLoan: FC<ApprovedLoanProps> = ({ onApproved }) => {
                   placeholder="Informe sua cidade"
                   variant="outlined"
                   disabled={addressInputDisabled(address?.localidade)}
+                  value={address?.localidade}
                 />
               </Grid>
               <Grid item xs={12} sm={4}>
@@ -498,6 +499,7 @@ const ApprovedLoan: FC<ApprovedLoanProps> = ({ onApproved }) => {
                     placeholder="Selecione seu estado"
                     variant="outlined"
                     disabled={addressInputDisabled(address?.uf)}
+                    value={address?.uf}
                   />
                 </Styled.DivSelect>
               </Grid>
