@@ -1,7 +1,5 @@
 import { FC, useState } from 'react';
 import { Layout } from 'components/Layout';
-/* eslint-disable import/no-extraneous-dependencies */
-import _ from 'lodash';
 
 import { Add, Remove } from '@mui/icons-material';
 import { withAITracking } from '@microsoft/applicationinsights-react-js';
@@ -10,7 +8,7 @@ import { reactPlugin } from 'hooks/appInsights';
 import { Formik } from 'components/Formik';
 import { Input } from 'components/Inputs/Input';
 import { Button } from 'components/Buttons/Button';
-import { DataQuestions, DataQuestionsProps } from './dataQuestions';
+import { DataQuestions } from './dataQuestions';
 
 import * as Styled from './styles';
 
