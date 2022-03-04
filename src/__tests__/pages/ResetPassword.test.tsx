@@ -192,10 +192,12 @@ describe('Page: <ResetPassword />', () => {
 
     fireEvent.submit(form);
 
+    await new Promise(r => setTimeout(r, 1000));
+
     await waitFor(() => {
       expect(screen.getByRole('presentation')).toBeDefined();
     });
-  });
+  }, 50000);
 
   test('should be able to change password', async () => {
     const location = {
@@ -227,8 +229,10 @@ describe('Page: <ResetPassword />', () => {
 
     fireEvent.submit(form);
 
+    await new Promise(r => setTimeout(r, 1000));
+
     await waitFor(() => {
       expect(screen.getByTestId('password-redefined')).toBeDefined();
     });
-  });
+  }, 5000);
 });
