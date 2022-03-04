@@ -43,7 +43,7 @@ export const Content = styled.div`
       color: #000;
     }
 
-    .gkUCqa .MuiOutlinedInput-root {
+    .MuiOutlinedInput-root {
       height: 60px;
     }
 
@@ -56,7 +56,7 @@ export const Content = styled.div`
     @media (max-width: 768px) {
       margin-bottom: 42px;
 
-      .gkUCqa .MuiOutlinedInput-root {
+      .MuiOutlinedInput-root {
         height: 40px;
       }
 
