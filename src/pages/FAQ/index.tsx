@@ -8,7 +8,7 @@ import { reactPlugin } from 'hooks/appInsights';
 import { Formik } from 'components/Formik';
 import { Input } from 'components/Inputs/Input';
 import { Button } from 'components/Buttons/Button';
-import { DataQuestions } from './dataQuestions';
+import { DataQuestions } from 'pages/FAQ/dataQuestions';
 
 import * as Styled from './styles';
 
@@ -32,8 +32,8 @@ const FAQ: FC = () => {
       ...item,
       items: item.items.filter(
         child =>
-          child.title.includes(search.toLowerCase()) ||
-          child.questionAnswered.includes(search.toLowerCase()),
+          child.title.toLowerCase().includes(search.toLowerCase()) ||
+          child.questionAnswered.toLowerCase().includes(search.toLowerCase()),
       ),
     })).filter(item => item.items.length > 0);
 
@@ -55,19 +55,32 @@ const FAQ: FC = () => {
           <Styled.CommonQuestions>Perguntas Frequentes</Styled.CommonQuestions>
 
           <Formik initialValues={{ search: '' }} onSubmit={handleSubmit}>
-            <Input name="search" placeholder="Pesquisar" label="" />
-            <Button type="submit" variant="contained">
+            <Input
+              name="search"
+              placeholder="Pesquisar"
+              label=""
+              inputProps={{ 'data-testid': 'searchInput' }}
+            />
+            <Button
+              type="submit"
+              variant="contained"
+              data-testid="searchButton"
+            >
               Buscar
             </Button>
           </Formik>
 
           {dataQuestionFiltered.length === 0 && (
-            <Styled.NoResults>Nenhum resultado encontrado</Styled.NoResults>
+            <Styled.NoResults data-testId="noResults">
+              Nenhum resultado encontrado
+            </Styled.NoResults>
           )}
 
           {dataQuestionFiltered.map(group => (
             <Styled.Group>
-              <Styled.GroupTitle>{group.title}</Styled.GroupTitle>
+              <Styled.GroupTitle data-testid="groupTitle">
+                {group.title}
+              </Styled.GroupTitle>
 
               {group.items.map(item => (
                 <Styled.Accordion
@@ -86,13 +99,16 @@ const FAQ: FC = () => {
                     aria-controls="panel4bh-content"
                     id="panel4bh-header"
                   >
-                    <Styled.TitleQuestion changeColor={expanded === item.id}>
+                    <Styled.TitleQuestion
+                      data-testid="titleQuestion"
+                      changeColor={expanded === item.id}
+                    >
                       {item.title}
                     </Styled.TitleQuestion>
                   </Styled.AccordionSummary>
 
                   <Styled.AccordionDetails>
-                    <Styled.QuestionAnswered>
+                    <Styled.QuestionAnswered data-testid="questionAnswered">
                       {item.questionAnswered}
                     </Styled.QuestionAnswered>
                   </Styled.AccordionDetails>
