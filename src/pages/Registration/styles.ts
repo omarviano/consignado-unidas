@@ -1,5 +1,6 @@
-import { Box } from '@mui/material';
 import styled, { css } from 'styled-components';
+import TypographyStyles from '@mui/material/Typography';
+import { Box } from '@mui/material';
 
 interface StepsContainerProps {
   currentStep: number;
@@ -10,29 +11,68 @@ interface StepProps {
   currentStep: number;
 }
 
-export const StepsContainer = styled.div<StepsContainerProps>`
-  height: ${({ currentStep }) =>
-    currentStep < 6 ? 'calc(100vh - 320px)' : 'auto'};
-  padding: 32px 0;
+interface StepIndicatorProps {
+  active: boolean;
+}
 
-  @media (max-height: 720px) {
-    height: auto;
+export const StepIndicatorContainer = styled.div`
+  position: relative;
+  max-width: 720px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  text-align: center;
+  margin: 4% auto 56px;
+
+  > button {
+    display: none;
+    position: absolute;
+    margin: auto;
+    left: 16px;
+  }
+
+  @media (max-width: 768px) {
+    margin: 12px auto 34px;
+
+    > button {
+      display: block;
+      color: #cedce1;
+    }
   }
 `;
+
+export const StepTitle = styled(TypographyStyles)`
+  width: 100%;
+  font-size: 16px;
+  font-weight: bold;
+  color: ${({ theme }) => theme.palette.grey[500]};
+  margin-bottom: 9px;
+`;
+
+export const StepIndicatorBox = styled.div`
+  display: flex;
+  gap: 17px;
+  justify-content: center;
+`;
+
+export const StepIndicator = styled.span<StepIndicatorProps>`
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: ${({ active, theme }) =>
+    active ? theme.palette.primary.main : '#cedce1'};
+`;
+
+export const StepsContainer = styled.div<StepsContainerProps>``;
 
 export const Step = styled.div<StepProps>`
   display: none;
   padding: 0 16px 0;
   width: 100%;
-  max-width: 720px;
+  max-width: ${({ currentStep }) => (currentStep > 0 ? '450px' : '720px')};
   margin: auto;
   visibility: hidden;
-
-  position: relative;
-  top: 35%;
-  transform: ${({ currentStep }) =>
-    currentStep < 6 ? 'translateY(-20%)' : 'none'};
-  height: ${({ currentStep }) => (currentStep < 6 ? '200px' : 'auto')};
 
   ${({ currentStep, step }) =>
     step === currentStep &&
@@ -49,9 +89,10 @@ export const Step = styled.div<StepProps>`
     }
   }
 
-  @media (max-height: 720px) {
-    transform: none;
-    height: auto;
+  @media (max-width: 768px) {
+    > button {
+      display: none;
+    }
   }
 `;
 
@@ -77,8 +118,4 @@ export const EmailModalText = styled.p`
   margin-top: 32px;
   font-size: 18px;
   line-height: 34px;
-`;
-
-export const CurrentStep = styled.span`
-  visibility: hidden;
 `;
