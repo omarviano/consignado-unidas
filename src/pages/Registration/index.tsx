@@ -31,7 +31,7 @@ import * as Styled from './styles';
 const NUMBER_OF_STEPS = 9;
 
 const Registration: React.FC = () => {
-  const [currentStep, setCurrentStep] = useState(8);
+  const [currentStep, setCurrentStep] = useState(0);
   const [formsData, setFormsData] = useState<Register>();
   const [cpf, setCpf] = useState<string>();
   const [responseErros, setResponseErros] = useState<string>();
@@ -148,33 +148,6 @@ const Registration: React.FC = () => {
     toggleValidationModal();
   };
 
-  const STEPS = {
-    0: <CPFForm onSubmit={onSubmitCPFForm} />,
-    1: <CNPJForm data={{ cpf }} onSubmit={onSubmitCNPJForm} />,
-    2: <CompleteNameForm onSubmit={onSubmitCompleteNameForm} />,
-    3: <BirthDateForm onSubmit={onSubmitBirthDateForm} />,
-    4: <EmailForm onSubmit={onSubmitEmailForm} />,
-    5: <PhoneNumberForm onSubmit={onSubmitPhoneNumberForm} />,
-    6: <PasswordForm onSubmit={onSubmitPasswordForm} />,
-    7: (
-      <BankDataConfirmation
-        submitting={registering}
-        onSubmit={onSubmitBankDataConfirmationForm}
-        onClickNoButton={onClickNoButtonBankDataConfirmationForm}
-        username={formsData?.name}
-        email={formsData?.email}
-      />
-    ),
-    8: (
-      <BankDataForm
-        submitting={registering}
-        onSubmit={onSubmitBankDataForm}
-        username={formsData?.name}
-        email={formsData?.email}
-      />
-    ),
-  };
-
   return (
     <Layout>
       <Styled.StepIndicatorContainer>
@@ -196,19 +169,84 @@ const Registration: React.FC = () => {
       </Styled.StepIndicatorContainer>
 
       <Styled.StepsContainer currentStep={currentStep}>
-        {Array(NUMBER_OF_STEPS)
-          .fill(null)
-          .map((_, step) => (
-            <Styled.Step step={step} currentStep={currentStep}>
-              {step > 0 && (
-                <Styled.BackButton type="button" onClick={handleClickPrev}>
-                  <ArrowBack />
-                </Styled.BackButton>
-              )}
+        <Styled.Step step={0} currentStep={currentStep}>
+          <CPFForm onSubmit={onSubmitCPFForm} />
+        </Styled.Step>
 
-              {STEPS[currentStep]}
-            </Styled.Step>
-          ))}
+        <Styled.Step step={1} currentStep={currentStep}>
+          <Styled.BackButton type="button" onClick={handleClickPrev}>
+            <ArrowBack />
+          </Styled.BackButton>
+
+          <CNPJForm data={{ cpf }} onSubmit={onSubmitCNPJForm} />
+        </Styled.Step>
+
+        <Styled.Step step={2} currentStep={currentStep}>
+          <Styled.BackButton type="button" onClick={handleClickPrev}>
+            <ArrowBack />
+          </Styled.BackButton>
+
+          <CompleteNameForm onSubmit={onSubmitCompleteNameForm} />
+        </Styled.Step>
+
+        <Styled.Step step={3} currentStep={currentStep}>
+          <Styled.BackButton type="button" onClick={handleClickPrev}>
+            <ArrowBack />
+          </Styled.BackButton>
+
+          <BirthDateForm onSubmit={onSubmitBirthDateForm} />
+        </Styled.Step>
+
+        <Styled.Step step={4} currentStep={currentStep}>
+          <Styled.BackButton type="button" onClick={handleClickPrev}>
+            <ArrowBack />
+          </Styled.BackButton>
+
+          <EmailForm onSubmit={onSubmitEmailForm} />
+        </Styled.Step>
+
+        <Styled.Step step={5} currentStep={currentStep}>
+          <Styled.BackButton type="button" onClick={handleClickPrev}>
+            <ArrowBack />
+          </Styled.BackButton>
+
+          <PhoneNumberForm onSubmit={onSubmitPhoneNumberForm} />
+        </Styled.Step>
+
+        <Styled.Step step={6} currentStep={currentStep}>
+          <Styled.BackButton type="button" onClick={handleClickPrev}>
+            <ArrowBack />
+          </Styled.BackButton>
+
+          <PasswordForm onSubmit={onSubmitPasswordForm} />
+        </Styled.Step>
+
+        <Styled.Step step={7} currentStep={currentStep}>
+          <Styled.BackButton type="button" onClick={handleClickPrev}>
+            <ArrowBack />
+          </Styled.BackButton>
+
+          <BankDataConfirmation
+            submitting={registering}
+            onSubmit={onSubmitBankDataConfirmationForm}
+            onClickNoButton={onClickNoButtonBankDataConfirmationForm}
+            username={formsData?.name}
+            email={formsData?.email}
+          />
+        </Styled.Step>
+
+        <Styled.Step step={8} currentStep={currentStep}>
+          <Styled.BackButton type="button" onClick={handleClickPrev}>
+            <ArrowBack />
+          </Styled.BackButton>
+
+          <BankDataForm
+            submitting={registering}
+            onSubmit={onSubmitBankDataForm}
+            username={formsData?.name}
+            email={formsData?.email}
+          />
+        </Styled.Step>
       </Styled.StepsContainer>
 
       <ModalMessage
