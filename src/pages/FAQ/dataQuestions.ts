@@ -101,7 +101,7 @@ export const DataQuestions: DataQuestionsProps[] = [
     title: 'Desligamento',
     items: [
       {
-        id: 'question13',
+        id: 'question130',
         title: 'O que acontece com o meu empréstimo se eu sair da empresa?',
         questionAnswered:
           'Nesse caso, se o pagamento do seu empréstimo ainda não foi realizado, será descontado o valor de 30% da sua verba rescisória para fazer a quitação. E se ainda houver alguma dívida, o empréstimo consignado se torna um empréstimo pessoal, que deverá ser pago por boletos diretamente ao banco responsável. Mas não se preocupe: o valor das parcelas e das taxas são mantidas e podem ser renegociadas diretamente com a instituição financeira, ok?',
