@@ -24,7 +24,6 @@ import { Document } from 'utils/document';
 import { FormikProps } from 'formik';
 import { Button } from 'components/Buttons/Button';
 import useWindowDimensions from 'hooks/useWindowDimensions';
-import { generateRandom } from 'utils/generateRandom';
 import { UserDataProps, FormProps } from '../../models/userData';
 import { schema, reasonsSchema } from './schema';
 import { InstallmentCard } from './components/InstallmentCard';
@@ -66,7 +65,7 @@ const ApprovedLoan: FC<ApprovedLoanProps> = ({ onApproved }) => {
       ({ data: { data: response } }) => {
         setUserData({
           name: response?.name,
-          nationality: response?.nationality,
+          nationality: response?.nationality || 'Brasileiro',
           professional: response?.professional,
           number: response?.number,
           complement: response?.complement,
@@ -96,12 +95,16 @@ const ApprovedLoan: FC<ApprovedLoanProps> = ({ onApproved }) => {
     setCep(cepInput?.value);
   };
 
-  const handleInputTextArea = () => {
+  const totalTextAreaCharacters = () => {
     const textarea = document.getElementById(
       'reasonDescription',
     ) as HTMLInputElement;
 
-    setTotalCharacters(textarea?.value?.length);
+    return textarea?.value?.length || 0;
+  };
+
+  const handleInputTextArea = () => {
+    setTotalCharacters(totalTextAreaCharacters());
   };
 
   const handleSelectReason = (
@@ -150,7 +153,7 @@ const ApprovedLoan: FC<ApprovedLoanProps> = ({ onApproved }) => {
   useEffect(() => {
     const data = [
       {
-        id: generateRandom(),
+        id: loanData?.installmentQuantity || 0,
         valueFormatted: displayValue(
           formatValue(Number(loanData?.installmentValue)),
         ),
@@ -224,7 +227,7 @@ const ApprovedLoan: FC<ApprovedLoanProps> = ({ onApproved }) => {
   };
 
   const handleReasonSubmit = data => {
-    if (reasonDescriptionRequired && totalCharacters === 0) return;
+    if (reasonDescriptionRequired && totalTextAreaCharacters() === 0) return;
 
     refuseLoan(data);
   };
@@ -332,11 +335,11 @@ const ApprovedLoan: FC<ApprovedLoanProps> = ({ onApproved }) => {
       : undefined;
 
   return (
-    <Styled.Card>
+    <Styled.Card data-testid="approvedLoan">
       <Styled.LoanInformation variant="h2">
         Olá {getToken()?.user.name}! Tudo bem? Temos uma ótima notícia! <br /> A
         sua proposta de empréstimo foi{' '}
-        <Styled.Approved>
+        <Styled.Approved data-testid="approvedText">
           {displayValue(loanData?.quotationStatus?.description)}
         </Styled.Approved>
         !
@@ -344,14 +347,14 @@ const ApprovedLoan: FC<ApprovedLoanProps> = ({ onApproved }) => {
 
       <Styled.TotalAmountOfLoanRequested variant="h2">
         Valor total do empréstimo solicitado:{' '}
-        <Styled.TextBlack>
+        <Styled.TextBlack data-testid="value">
           {displayValue(formatValue(Number(loanData?.value)))}
         </Styled.TextBlack>
       </Styled.TotalAmountOfLoanRequested>
 
       <Styled.InstallmentDueDate variant="h2">
         Data de Vencimento da 1ª parcela:{' '}
-        <Styled.TextBlack>
+        <Styled.TextBlack data-testid="dueDate">
           {displayValue(formatDate(loanData?.dueDate))}
         </Styled.TextBlack>
       </Styled.InstallmentDueDate>
@@ -367,6 +370,7 @@ const ApprovedLoan: FC<ApprovedLoanProps> = ({ onApproved }) => {
         <Styled.ButtonAcceptProposal
           variant="contained"
           onClick={toggleModalConfirmation}
+          data-testid="acceptProposalButton"
         >
           Aceitar Proposta
         </Styled.ButtonAcceptProposal>
@@ -374,6 +378,7 @@ const ApprovedLoan: FC<ApprovedLoanProps> = ({ onApproved }) => {
         <Styled.ButtonRefuseProposal
           variant="outlined"
           onClick={toggleModalRefuse}
+          data-testid="refuseProposalButton"
         >
           Recusar Proposta
         </Styled.ButtonRefuseProposal>
@@ -383,15 +388,14 @@ const ApprovedLoan: FC<ApprovedLoanProps> = ({ onApproved }) => {
         <Formik
           initialValues={{
             ...userData,
-            ...refFormik.current?.values,
-            ...address,
           }}
           onSubmit={handleSubmit}
           validationSchema={schema}
           enableReinitialize
           innerRef={refFormik as any}
+          validateOnMount
         >
-          <Styled.ContainerModal>
+          <Styled.ContainerModal data-testid="confirmationModal">
             <Styled.AdditionalData variant="h2">
               Dados complementares
             </Styled.AdditionalData>
@@ -444,6 +448,7 @@ const ApprovedLoan: FC<ApprovedLoanProps> = ({ onApproved }) => {
                   placeholder="Informe seu endereço"
                   variant="outlined"
                   disabled={addressInputDisabled(address?.logradouro)}
+                  value={address?.logradouro}
                 />
               </Grid>
               <Grid item xs={12} sm={3}>
@@ -461,6 +466,7 @@ const ApprovedLoan: FC<ApprovedLoanProps> = ({ onApproved }) => {
                   placeholder="Informe seu bairro"
                   variant="outlined"
                   disabled={addressInputDisabled(address?.bairro)}
+                  value={address?.bairro}
                 />
               </Grid>
             </Styled.GridContainer>
@@ -481,6 +487,7 @@ const ApprovedLoan: FC<ApprovedLoanProps> = ({ onApproved }) => {
                   placeholder="Informe sua cidade"
                   variant="outlined"
                   disabled={addressInputDisabled(address?.localidade)}
+                  value={address?.localidade}
                 />
               </Grid>
               <Grid item xs={12} sm={4}>
@@ -492,6 +499,7 @@ const ApprovedLoan: FC<ApprovedLoanProps> = ({ onApproved }) => {
                     placeholder="Selecione seu estado"
                     variant="outlined"
                     disabled={addressInputDisabled(address?.uf)}
+                    value={address?.uf}
                   />
                 </Styled.DivSelect>
               </Grid>
@@ -552,6 +560,7 @@ const ApprovedLoan: FC<ApprovedLoanProps> = ({ onApproved }) => {
               type="submit"
               variant="contained"
               disabled={loading}
+              data-testid="confirmationButton"
             >
               {submitButtonText('Enviar', 'Enviando...')}
             </Styled.ButtonToSend>
@@ -564,7 +573,7 @@ const ApprovedLoan: FC<ApprovedLoanProps> = ({ onApproved }) => {
         height="226px"
         open={modalSuccessOpen}
         onClose={handleCloseApprovedModal}
-        icon={<CheckCircle color="success" />}
+        icon={<CheckCircle color="success" data-testid="modal-success" />}
         text="Aceite enviado com sucesso!"
       />
 
@@ -576,7 +585,7 @@ const ApprovedLoan: FC<ApprovedLoanProps> = ({ onApproved }) => {
       />
 
       <Modal open={modalRefuseOpen} onClose={toggleModalRefuse}>
-        <Styled.ContainerModalRefuseProposal>
+        <Styled.ContainerModalRefuseProposal data-testid="refuseProposalModal">
           <Styled.RefuseProposal variant="h2">
             Tem certeza que deseja recusar a proposta?
           </Styled.RefuseProposal>
@@ -586,6 +595,7 @@ const ApprovedLoan: FC<ApprovedLoanProps> = ({ onApproved }) => {
               variant="contained"
               onClick={handleRefuseLoan}
               disabled={loading}
+              data-testid="confirmRefuse"
             >
               Sim
             </Styled.ButtonYes>
@@ -598,7 +608,7 @@ const ApprovedLoan: FC<ApprovedLoanProps> = ({ onApproved }) => {
       </Modal>
 
       <Modal open={modalRefuseAcceptOpen} onClose={goToLoggedArea}>
-        <Styled.ContainerModalRefuseProposalAccept>
+        <Styled.ContainerModalRefuseProposalAccept data-testid="refuseAcceptedModal">
           <Styled.CheckCircle color="success" />
 
           <Styled.RefuseProposalAccept variant="h2">
@@ -610,6 +620,7 @@ const ApprovedLoan: FC<ApprovedLoanProps> = ({ onApproved }) => {
           <Styled.ButtonGoToHomeScreen
             variant="contained"
             onClick={() => history.push(RoutingPath.LOGGEDAREA)}
+            data-testid="button-go-to-home"
           >
             Ir para tela inicial
           </Styled.ButtonGoToHomeScreen>
@@ -617,13 +628,13 @@ const ApprovedLoan: FC<ApprovedLoanProps> = ({ onApproved }) => {
       </Modal>
 
       <Modal open={reasonRefusesOpen} onClose={toggleReasonRefuses}>
-        <Styled.ReasonRefusesModal>
+        <Styled.ReasonRefusesModal data-testid="refuseModalForm">
           <Styled.ReasonRefusesModalTitle>
             Deseja nos informar o motivo pelo qual você recusou a proposta?{' '}
           </Styled.ReasonRefusesModalTitle>
 
           <Formik
-            initialValues={{}}
+            initialValues={{ reasonRefuseId: '' }}
             validationSchema={reasonsSchema}
             onSubmit={handleReasonSubmit}
           >
@@ -633,6 +644,10 @@ const ApprovedLoan: FC<ApprovedLoanProps> = ({ onApproved }) => {
               options={reasons}
               variant="outlined"
               onChange={handleSelectReason}
+              inputProps={{ 'data-testid': 'reasonRefuseId', role: 'textbox' }}
+              FormHelperTextProps={{
+                id: 'reasonRefuseId-error',
+              }}
             />
 
             <Input
@@ -645,16 +660,22 @@ const ApprovedLoan: FC<ApprovedLoanProps> = ({ onApproved }) => {
               rows={8}
               inputProps={{
                 maxLength: 300,
+                'data-testid': 'reasonDescription',
               }}
               onInput={handleInputTextArea}
               error={reasonError()}
               helperText={reasonHelperText()}
             />
-            <Styled.TotalCharacters>
+            <Styled.TotalCharacters data-testid="totalCharacters">
               Máximo de carateres {totalCharacters}/300
             </Styled.TotalCharacters>
 
-            <Button type="submit" variant="contained" disabled={loading}>
+            <Button
+              type="submit"
+              variant="contained"
+              disabled={loading}
+              data-testid="refuseButton"
+            >
               {submitButtonText('Enviar', 'Enviando...')}
             </Button>
           </Formik>

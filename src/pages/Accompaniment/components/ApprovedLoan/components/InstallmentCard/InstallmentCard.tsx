@@ -4,7 +4,7 @@ import { InstallmentCardProps } from './props';
 import * as Styled from './styles';
 
 const InstallmentCard: React.FC<InstallmentCardProps> = ({ data }) => (
-  <Styled.Container>
+  <Styled.Container data-testid="installment-card">
     <Styled.NumberInstallments>
       {data[0]?.quantityFormatted} parcelas
     </Styled.NumberInstallments>

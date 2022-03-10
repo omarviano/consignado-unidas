@@ -8,7 +8,7 @@ import { ReleasedCreditProps } from './props';
 import * as Styled from './styles';
 
 const ReleasedCredit: React.FC<ReleasedCreditProps> = ({ data }) => (
-  <Styled.DataCard>
+  <Styled.DataCard data-testid="releasedCredit">
     <MailOutline color="secondary" />
 
     <Styled.HelloUsername>Olá {getToken()?.user.name}!</Styled.HelloUsername>
@@ -17,14 +17,17 @@ const ReleasedCredit: React.FC<ReleasedCreditProps> = ({ data }) => (
       Temos uma ótima notícia!
       <br />O seu crédito no valor de{' '}
       <strong>{data?.value ? formatValue(data.value) : '-'}</strong> foi{' '}
-      <strong className="released">LIBERADO</strong>!
+      <strong className="released" data-testid="releasedCreditText">
+        LIBERADO
+      </strong>
+      !
     </Styled.ReleasedCredit>
 
     <Styled.ReleasedCredit>
       Ele já está disponível na sua conta:
     </Styled.ReleasedCredit>
 
-    <Styled.BankData>
+    <Styled.BankData data-testid="bankData">
       Banco: {data?.bankingReferences?.bankDescription || '-'}
       <br />
       Agência: {data?.bankingReferences?.agency || '-'}

@@ -47,7 +47,7 @@ describe('SignIn Page', () => {
       wrapper: Providers,
     });
 
-    const cpfField = getByPlaceholderText('Seu Cpf');
+    const cpfField = getByPlaceholderText('CPF');
     const passwordField = getByPlaceholderText('Senha');
 
     fireEvent.change(cpfField, { target: { value: '47087643088' } });

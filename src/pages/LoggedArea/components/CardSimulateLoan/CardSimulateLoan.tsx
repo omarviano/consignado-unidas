@@ -42,7 +42,9 @@ const CardSimulateLoan: FC = memo(() => {
   }, [dataMargin, value]);
 
   const disableSliderAndButton = useMemo(
-    () => dataMargin[0]?.availableValue <= 0,
+    () =>
+      dataMargin[0]?.availableValue === undefined ||
+      dataMargin[0]?.availableValue <= 0,
     [dataMargin],
   );
 
@@ -57,7 +59,9 @@ const CardSimulateLoan: FC = memo(() => {
   );
 
   useEffect(() => {
-    setValue(dataMargin[0]?.availableValue <= 0 ? 0 : MIN_VALUE);
+    setValue(
+      dataMargin[0]?.availableValue <= 0 ? 0 : dataMargin[0]?.creditLimit,
+    );
   }, [dataMargin]);
 
   return (
@@ -71,7 +75,10 @@ const CardSimulateLoan: FC = memo(() => {
           empréstimo e realizando apenas uma simulação. O aceite será feito em
           etapas posteriores.
         </Styled.TextInfomation>
-        <Styled.TextValueSlider disabled={disableSliderAndButton}>
+        <Styled.TextValueSlider
+          disabled={disableSliderAndButton}
+          data-testid="slider-value"
+        >
           {formatValue(value)}
         </Styled.TextValueSlider>
         <Styled.Slider
@@ -89,6 +96,7 @@ const CardSimulateLoan: FC = memo(() => {
           variant="contained"
           disabled={disableSliderAndButton || requestStatus.loading}
           color="primary"
+          data-testid="redirect-button"
         >
           {requestStatus.loading
             ? 'Simulando Empréstimo'

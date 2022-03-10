@@ -1,4 +1,4 @@
-import React, { FC, useMemo, useRef, useCallback } from 'react';
+import React, { FC, useMemo, useRef, useCallback, useEffect } from 'react';
 import { useField } from 'formik';
 import MenuItem from '@mui/material/MenuItem';
 
@@ -30,6 +30,11 @@ const Select: FC<SelectProps> = React.memo(
       [field, helpers, onChange],
     );
 
+    useEffect(() => {
+      if (value !== undefined) helpers.setValue(value, true);
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [value]);
+
     return (
       <>
         <Styled.Label isError={!!meta.error && meta.touched}>
@@ -37,6 +42,7 @@ const Select: FC<SelectProps> = React.memo(
         </Styled.Label>
         <Styled.Select
           {...field}
+          data-testid="select"
           placeholder={label}
           fullWidth
           select
@@ -52,6 +58,9 @@ const Select: FC<SelectProps> = React.memo(
           {...rest}
           error={!!meta.error && meta.touched}
           helperText={meta.touched ? meta.error : undefined}
+          SelectProps={{
+            id: 'select',
+          }}
         >
           {optionsMap}
         </Styled.Select>

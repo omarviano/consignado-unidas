@@ -133,7 +133,7 @@ export const ModalConfirmData = styled(TypographyStyles)`
   font-size: 18px;
   line-height: 34px;
   letter-spacing: 0.2px;
-  color: ${({ theme }) => theme.palette.grey[400]};
+  color: ${({ theme }) => theme.palette.grey[200]};
   text-align: left;
   margin-left: 36px;
 

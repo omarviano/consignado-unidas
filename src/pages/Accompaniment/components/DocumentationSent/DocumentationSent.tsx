@@ -5,7 +5,7 @@ import { getToken } from 'hooks/auth/storage';
 import * as Styled from './styles';
 
 const DocumentationSent: React.FC = () => (
-  <Styled.DataCard>
+  <Styled.DataCard data-testid="documentationSent">
     <MailOutline color="secondary" />
 
     <Styled.HelloUsername>Olá {getToken()?.user.name}!</Styled.HelloUsername>

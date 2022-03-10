@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { forwardRef, useCallback, useMemo, memo } from 'react';
+import { forwardRef, useCallback, useMemo, memo, useEffect } from 'react';
 import InputMask from 'react-input-mask';
 
 import { useField } from 'formik';
@@ -65,6 +65,11 @@ const Input = memo(
 
       return {};
     }, [meta.error, meta.initialError, meta.touched]);
+
+    useEffect(() => {
+      if (value !== undefined) helpers.setValue(value, true);
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [value]);
 
     return (
       <Styled.FormControl fullWidth>

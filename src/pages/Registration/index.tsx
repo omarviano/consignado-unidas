@@ -28,7 +28,7 @@ import { RegistrationServices } from './services/registration.services';
 
 import * as Styled from './styles';
 
-const NUMBER_OF_STEPS = 9;
+// const NUMBER_OF_STEPS = 9;
 
 const Registration: React.FC = () => {
   const [currentStep, setCurrentStep] = useState(0);
@@ -42,40 +42,6 @@ const Registration: React.FC = () => {
     useModal();
   const [validationDataMessage, setvalidationDataMessage] = useState('');
   const history = useHistory();
-
-  const handleClickPrev = (): void => {
-    if (currentStep > 0) setCurrentStep(state => state - 1);
-  };
-
-  const nextStep = (): void => {
-    if (currentStep + 1 < NUMBER_OF_STEPS) setCurrentStep(state => state + 1);
-  };
-
-  const onSubmit = (data): void => {
-    setFormsData(state => ({ ...state, ...data }));
-    nextStep();
-  };
-
-  const onSubmitCPFForm = (data): void => {
-    setCpf(data.cpf);
-    onSubmit(data);
-  };
-
-  const validateData = async ({ birthDate }: Register) => {
-    try {
-      await RegistrationServices.validateData({
-        cpf: Document.removeMask(formsData?.cpf || ''),
-        name: formsData?.name,
-        birthDate,
-      });
-      onSubmit({ birthDate });
-    } catch (error) {
-      const { response } = error as AxiosError;
-
-      setvalidationDataMessage(response?.data?.message);
-      toggleValidationModal();
-    }
-  };
 
   const registration = async (data: Register): Promise<void> => {
     try {
@@ -99,12 +65,76 @@ const Registration: React.FC = () => {
     }
   };
 
-  const registerWhithoutBankData = (): void => {
+  const handleClickPrev = (): void => {
+    if (currentStep > 0) setCurrentStep(state => state - 1);
+  };
+
+  const onSubmit = (data): void => {
+    setFormsData(state => ({ ...state, ...data }));
+  };
+
+  const onSubmitCPFForm = (data): void => {
+    setCpf(data.cpf);
+    onSubmit(data);
+    setCurrentStep(1);
+  };
+
+  const onSubmitCNPJForm = (data): void => {
+    onSubmit(data);
+    setCurrentStep(2);
+  };
+
+  const onSubmitCompleteNameForm = (data): void => {
+    onSubmit(data);
+    setCurrentStep(3);
+  };
+
+  const onSubmitBirthDateForm = async ({
+    birthDate,
+  }: Register): Promise<void> => {
+    try {
+      await RegistrationServices.validateData({
+        cpf: Document.removeMask(formsData?.cpf || ''),
+        name: formsData?.name,
+        birthDate,
+      });
+
+      onSubmit({ birthDate });
+      setCurrentStep(4);
+    } catch (error) {
+      const { response } = error as AxiosError;
+
+      setvalidationDataMessage(response?.data?.message);
+      toggleValidationModal();
+    }
+  };
+
+  const onSubmitEmailForm = (data): void => {
+    onSubmit(data);
+    setCurrentStep(5);
+  };
+
+  const onSubmitPhoneNumberForm = (data): void => {
+    onSubmit(data);
+    setCurrentStep(6);
+  };
+
+  const onSubmitPasswordForm = (data): void => {
+    onSubmit(data);
+    setCurrentStep(7);
+  };
+
+  const onClickNoButtonBankDataConfirmationForm = (): void => {
     if (!formsData) return;
     registration(formsData);
   };
 
-  const completeRegistration = async (data): Promise<void> => {
+  const onSubmitBankDataConfirmationForm = (): void => {
+    if (!formsData) return;
+    setCurrentStep(8);
+  };
+
+  const onSubmitBankDataForm = async (data): Promise<void> => {
     if (!formsData) return;
     registration({ ...formsData, ...data });
   };
@@ -134,7 +164,7 @@ const Registration: React.FC = () => {
             <ArrowBack />
           </Styled.BackButton>
 
-          <CNPJForm data={{ cpf }} onSubmit={onSubmit} />
+          <CNPJForm data={{ cpf }} onSubmit={onSubmitCNPJForm} />
         </Styled.Step>
 
         <Styled.Step step={2} currentStep={currentStep}>
@@ -142,7 +172,7 @@ const Registration: React.FC = () => {
             <ArrowBack />
           </Styled.BackButton>
 
-          <CompleteNameForm onSubmit={onSubmit} />
+          <CompleteNameForm onSubmit={onSubmitCompleteNameForm} />
         </Styled.Step>
 
         <Styled.Step step={3} currentStep={currentStep}>
@@ -150,7 +180,7 @@ const Registration: React.FC = () => {
             <ArrowBack />
           </Styled.BackButton>
 
-          <BirthDateForm onSubmit={validateData} />
+          <BirthDateForm onSubmit={onSubmitBirthDateForm} />
         </Styled.Step>
 
         <Styled.Step step={4} currentStep={currentStep}>
@@ -158,7 +188,7 @@ const Registration: React.FC = () => {
             <ArrowBack />
           </Styled.BackButton>
 
-          <EmailForm onSubmit={onSubmit} />
+          <EmailForm onSubmit={onSubmitEmailForm} />
         </Styled.Step>
 
         <Styled.Step step={5} currentStep={currentStep}>
@@ -166,7 +196,7 @@ const Registration: React.FC = () => {
             <ArrowBack />
           </Styled.BackButton>
 
-          <PhoneNumberForm onSubmit={onSubmit} />
+          <PhoneNumberForm onSubmit={onSubmitPhoneNumberForm} />
         </Styled.Step>
 
         <Styled.Step step={6} currentStep={currentStep}>
@@ -174,7 +204,7 @@ const Registration: React.FC = () => {
             <ArrowBack />
           </Styled.BackButton>
 
-          <PasswordForm onSubmit={onSubmit} />
+          <PasswordForm onSubmit={onSubmitPasswordForm} />
         </Styled.Step>
 
         <Styled.Step step={7} currentStep={currentStep}>
@@ -184,8 +214,8 @@ const Registration: React.FC = () => {
 
           <BankDataConfirmation
             submitting={registering}
-            onSubmit={onSubmit}
-            onClickNoButton={registerWhithoutBankData}
+            onSubmit={onSubmitBankDataConfirmationForm}
+            onClickNoButton={onClickNoButtonBankDataConfirmationForm}
             username={formsData?.name}
             email={formsData?.email}
           />
@@ -198,7 +228,7 @@ const Registration: React.FC = () => {
 
           <BankDataForm
             submitting={registering}
-            onSubmit={completeRegistration}
+            onSubmit={onSubmitBankDataForm}
             username={formsData?.name}
             email={formsData?.email}
           />
