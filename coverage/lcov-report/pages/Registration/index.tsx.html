@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">90.28% </span>
+                <span class="strong">90.54% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>65/72</span>
+                <span class='fraction'>67/74</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">40% </span>
+                <span class="strong">41.67% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>4/10</span>
+                <span class='fraction'>5/12</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">83.33% </span>
+                <span class="strong">84.21% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>15/18</span>
+                <span class='fraction'>16/19</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">96.97% </span>
+                <span class="strong">97.06% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>64/66</span>
+                <span class='fraction'>66/68</span>
             </div>
         
             
@@ -343,7 +343,22 @@
 <a name='L284'></a><a href='#L284'>284</a>
 <a name='L285'></a><a href='#L285'>285</a>
 <a name='L286'></a><a href='#L286'>286</a>
-<a name='L287'></a><a href='#L287'>287</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L287'></a><a href='#L287'>287</a>
+<a name='L288'></a><a href='#L288'>288</a>
+<a name='L289'></a><a href='#L289'>289</a>
+<a name='L290'></a><a href='#L290'>290</a>
+<a name='L291'></a><a href='#L291'>291</a>
+<a name='L292'></a><a href='#L292'>292</a>
+<a name='L293'></a><a href='#L293'>293</a>
+<a name='L294'></a><a href='#L294'>294</a>
+<a name='L295'></a><a href='#L295'>295</a>
+<a name='L296'></a><a href='#L296'>296</a>
+<a name='L297'></a><a href='#L297'>297</a>
+<a name='L298'></a><a href='#L298'>298</a>
+<a name='L299'></a><a href='#L299'>299</a>
+<a name='L300'></a><a href='#L300'>300</a>
+<a name='L301'></a><a href='#L301'>301</a>
+<a name='L302'></a><a href='#L302'>302</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -373,7 +388,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">72x</span>
@@ -444,6 +459,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -495,6 +511,20 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">71x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">639x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -659,7 +689,7 @@ import { RegistrationServices } from './services/registration.services';
 &nbsp;
 import * as Styled from './styles';
 &nbsp;
-// const NUMBER_OF_STEPS = 9;
+const NUMBER_OF_STEPS = 9;
 &nbsp;
 const Registration: React.FC = () =&gt; {
   const [currentStep, setCurrentStep] = useState(0);
@@ -726,6 +756,7 @@ const Registration: React.FC = () =&gt; {
     try {
       await RegistrationServices.validateData({
         cpf: Document.removeMask(formsData?.cpf || <span class="branch-1 cbranch-no" title="branch not covered" >'')</span>,
+        cnpj: Document.removeMask(formsData?.cnpj || <span class="branch-1 cbranch-no" title="branch not covered" >'')</span>,
         name: formsData?.name,
         birthDate,
       });
@@ -781,9 +812,23 @@ const Registration: React.FC = () =&gt; {
 &nbsp;
   return (
     &lt;Layout&gt;
-      &lt;Styled.CurrentStep data-testid="step"&gt;
-        {`${currentStep + 1}/9`}
-      &lt;/Styled.CurrentStep&gt;
+      &lt;Styled.StepIndicatorContainer&gt;
+        &lt;Styled.BackButton type="button" onClick={handleClickPrev}&gt;
+          &lt;ArrowBack /&gt;
+        &lt;/Styled.BackButton&gt;
+&nbsp;
+        &lt;Styled.StepTitle data-testid="step"&gt;
+          Passo {currentStep + 1} de {NUMBER_OF_STEPS}
+        &lt;/Styled.StepTitle&gt;
+&nbsp;
+        &lt;Styled.StepIndicatorBox&gt;
+          {Array(NUMBER_OF_STEPS)
+            .fill(null)
+            .map((_, step) =&gt; (
+              &lt;Styled.StepIndicator active={step === currentStep} /&gt;
+            ))}
+        &lt;/Styled.StepIndicatorBox&gt;
+      &lt;/Styled.StepIndicatorContainer&gt;
 &nbsp;
       &lt;Styled.StepsContainer currentStep={currentStep}&gt;
         &lt;Styled.Step step={0} currentStep={currentStep}&gt;
@@ -922,7 +967,7 @@ export default withAITracking(reactPlugin, Registration, 'Registration');
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Fri Mar 04 2022 11:41:44 GMT-0300 (Horário Padrão de Brasília)
+                at Mon Mar 14 2022 12:06:49 GMT-0300 (Horário Padrão de Brasília)
             </div>
         </div>
         <script src="../../prettify.js"></script>
