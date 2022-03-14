@@ -360,7 +360,7 @@ const ApprovedLoan: FC<ApprovedLoanProps> = ({ onApproved }) => {
       </Styled.InstallmentDueDate>
 
       <Styled.ProposalInformation variant="h6">
-        Esta proposta será válida em até 15 dias e está sujeita a alterações de
+        Esta proposta será válida em até 7 dias e está sujeita a alterações de
         acordo com a data do aceite.
       </Styled.ProposalInformation>
 

@@ -95,6 +95,7 @@ const Registration: React.FC = () => {
     try {
       await RegistrationServices.validateData({
         cpf: Document.removeMask(formsData?.cpf || ''),
+        cnpj: Document.removeMask(formsData?.cnpj || ''),
         name: formsData?.name,
         birthDate,
       });
