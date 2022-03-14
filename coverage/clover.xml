@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1646404905580" clover="3.2.0">
-  <project timestamp="1646404905581" name="All files">
-    <metrics statements="1234" coveredstatements="1061" conditionals="472" coveredconditionals="349" methods="390" coveredmethods="324" elements="2096" coveredelements="1734" complexity="0" loc="1234" ncloc="1234" packages="89" files="140" classes="140"/>
+<coverage generated="1647270410613" clover="3.2.0">
+  <project timestamp="1647270410614" name="All files">
+    <metrics statements="1236" coveredstatements="1063" conditionals="474" coveredconditionals="350" methods="391" coveredmethods="325" elements="2101" coveredelements="1738" complexity="0" loc="1236" ncloc="1236" packages="89" files="140" classes="140"/>
     <package name="components.AcceptCookies">
       <metrics statements="8" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="3" coveredmethods="0"/>
       <file name="AcceptCookies.tsx" path="C:\dev\portal-Consignado\src\components\AcceptCookies\AcceptCookies.tsx">
@@ -60,10 +60,10 @@
       <file name="SubmitButton.tsx" path="C:\dev\portal-Consignado\src\components\Buttons\SubmitButton\SubmitButton.tsx">
         <metrics statements="5" coveredstatements="5" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
         <line num="7" count="2" type="stmt"/>
-        <line num="10" count="94" type="stmt"/>
-        <line num="11" count="94" type="stmt"/>
+        <line num="10" count="92" type="stmt"/>
+        <line num="11" count="92" type="stmt"/>
         <line num="12" count="25" type="cond" truecount="2" falsecount="0"/>
-        <line num="16" count="94" type="stmt"/>
+        <line num="16" count="92" type="stmt"/>
       </file>
       <file name="index.tsx" path="C:\dev\portal-Consignado\src\components\Buttons\SubmitButton\index.tsx">
         <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
@@ -141,24 +141,24 @@
       <file name="Input.tsx" path="C:\dev\portal-Consignado\src\components\Inputs\Input\Input.tsx">
         <metrics statements="19" coveredstatements="17" conditionals="15" coveredconditionals="13" methods="5" coveredmethods="5"/>
         <line num="10" count="13" type="stmt"/>
-        <line num="27" count="4649" type="stmt"/>
-        <line num="29" count="4648" type="stmt"/>
-        <line num="37" count="4648" type="stmt"/>
+        <line num="27" count="4645" type="stmt"/>
+        <line num="29" count="4644" type="stmt"/>
+        <line num="37" count="4644" type="stmt"/>
         <line num="39" count="12" type="stmt"/>
         <line num="40" count="12" type="cond" truecount="1" falsecount="1"/>
         <line num="41" count="0" type="stmt"/>
         <line num="44" count="12" type="cond" truecount="2" falsecount="0"/>
         <line num="45" count="9" type="stmt"/>
-        <line num="51" count="4648" type="stmt"/>
+        <line num="51" count="4644" type="stmt"/>
         <line num="52" count="672" type="cond" truecount="1" falsecount="1"/>
         <line num="53" count="0" type="stmt"/>
         <line num="59" count="672" type="cond" truecount="4" falsecount="0"/>
         <line num="60" count="124" type="stmt"/>
         <line num="66" count="548" type="stmt"/>
-        <line num="69" count="4648" type="stmt"/>
+        <line num="69" count="4644" type="stmt"/>
         <line num="70" count="251" type="cond" truecount="2" falsecount="0"/>
-        <line num="74" count="4648" type="stmt"/>
-        <line num="109" count="4628" type="stmt"/>
+        <line num="74" count="4644" type="stmt"/>
+        <line num="109" count="4624" type="stmt"/>
       </file>
       <file name="index.tsx" path="C:\dev\portal-Consignado\src\components\Inputs\Input\index.tsx">
         <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
@@ -1496,9 +1496,10 @@
       </file>
     </package>
     <package name="pages.Registration">
-      <metrics statements="66" coveredstatements="64" conditionals="10" coveredconditionals="4" methods="18" coveredmethods="15"/>
+      <metrics statements="68" coveredstatements="66" conditionals="12" coveredconditionals="5" methods="19" coveredmethods="16"/>
       <file name="index.tsx" path="C:\dev\portal-Consignado\src\pages\Registration\index.tsx">
-        <metrics statements="66" coveredstatements="64" conditionals="10" coveredconditionals="4" methods="18" coveredmethods="15"/>
+        <metrics statements="68" coveredstatements="66" conditionals="12" coveredconditionals="5" methods="19" coveredmethods="16"/>
+        <line num="31" count="1" type="stmt"/>
         <line num="33" count="1" type="stmt"/>
         <line num="34" count="72" type="stmt"/>
         <line num="35" count="71" type="stmt"/>
@@ -1536,35 +1537,36 @@
         <line num="92" count="71" type="stmt"/>
         <line num="95" count="4" type="stmt"/>
         <line num="96" count="4" type="stmt"/>
-        <line num="102" count="3" type="stmt"/>
         <line num="103" count="3" type="stmt"/>
-        <line num="105" count="1" type="stmt"/>
-        <line num="107" count="1" type="stmt"/>
+        <line num="104" count="3" type="stmt"/>
+        <line num="106" count="1" type="stmt"/>
         <line num="108" count="1" type="stmt"/>
-        <line num="112" count="71" type="stmt"/>
-        <line num="113" count="3" type="stmt"/>
+        <line num="109" count="1" type="stmt"/>
+        <line num="113" count="71" type="stmt"/>
         <line num="114" count="3" type="stmt"/>
-        <line num="117" count="71" type="stmt"/>
-        <line num="118" count="3" type="stmt"/>
+        <line num="115" count="3" type="stmt"/>
+        <line num="118" count="71" type="stmt"/>
         <line num="119" count="3" type="stmt"/>
-        <line num="122" count="71" type="stmt"/>
-        <line num="123" count="3" type="stmt"/>
+        <line num="120" count="3" type="stmt"/>
+        <line num="123" count="71" type="stmt"/>
         <line num="124" count="3" type="stmt"/>
-        <line num="127" count="71" type="stmt"/>
-        <line num="128" count="1" type="cond" truecount="1" falsecount="1"/>
-        <line num="129" count="1" type="stmt"/>
-        <line num="132" count="71" type="stmt"/>
-        <line num="133" count="2" type="cond" truecount="1" falsecount="1"/>
-        <line num="134" count="2" type="stmt"/>
-        <line num="137" count="71" type="stmt"/>
-        <line num="138" count="2" type="cond" truecount="1" falsecount="1"/>
-        <line num="139" count="2" type="stmt"/>
-        <line num="142" count="71" type="stmt"/>
-        <line num="143" count="0" type="stmt"/>
-        <line num="146" count="71" type="stmt"/>
-        <line num="147" count="1" type="stmt"/>
+        <line num="125" count="3" type="stmt"/>
+        <line num="128" count="71" type="stmt"/>
+        <line num="129" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="130" count="1" type="stmt"/>
+        <line num="133" count="71" type="stmt"/>
+        <line num="134" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="135" count="2" type="stmt"/>
+        <line num="138" count="71" type="stmt"/>
+        <line num="139" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="140" count="2" type="stmt"/>
+        <line num="143" count="71" type="stmt"/>
+        <line num="144" count="0" type="stmt"/>
+        <line num="147" count="71" type="stmt"/>
         <line num="148" count="1" type="stmt"/>
-        <line num="151" count="71" type="stmt"/>
+        <line num="149" count="1" type="stmt"/>
+        <line num="152" count="71" type="stmt"/>
+        <line num="167" count="639" type="stmt"/>
       </file>
     </package>
     <package name="pages.Registration.components.BankDataConfirmation">
@@ -1872,7 +1874,7 @@
       <metrics statements="31" coveredstatements="31" conditionals="4" coveredconditionals="3" methods="6" coveredmethods="6"/>
       <file name="document.ts" path="C:\dev\portal-Consignado\src\utils\document.ts">
         <metrics statements="1" coveredstatements="1" conditionals="1" coveredconditionals="0" methods="1" coveredmethods="1"/>
-        <line num="4" count="76" type="stmt"/>
+        <line num="4" count="80" type="stmt"/>
       </file>
       <file name="formatDate.ts" path="C:\dev\portal-Consignado\src\utils\formatDate.ts">
         <metrics statements="2" coveredstatements="2" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
