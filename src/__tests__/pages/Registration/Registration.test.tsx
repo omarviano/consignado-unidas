@@ -78,8 +78,10 @@ describe('Component: <Registration />', () => {
     await new Promise(r => setTimeout(r, 200));
 
     await waitFor(() => {
-      expect(screen.getByTestId('step').textContent).toBe('2/9');
+      expect(screen.getByTestId('step').textContent).toBe('Passo 2 de 9');
     });
+
+    // tirar steps do array
 
     // Informing the CNPJ
     const cnpjForm = screen.getByTestId('cnpj-form');
@@ -92,7 +94,7 @@ describe('Component: <Registration />', () => {
     await new Promise(r => setTimeout(r, 200));
 
     await waitFor(() => {
-      expect(screen.getByTestId('step').textContent).toBe('3/9');
+      expect(screen.getByTestId('step').textContent).toBe('Passo 3 de 9');
     });
 
     // Informing the Name
@@ -109,7 +111,7 @@ describe('Component: <Registration />', () => {
     await new Promise(r => setTimeout(r, 200));
 
     await waitFor(() => {
-      expect(screen.getByTestId('step').textContent).toBe('4/9');
+      expect(screen.getByTestId('step').textContent).toBe('Passo 4 de 9');
     });
 
     // Informing the BirthDate
@@ -124,7 +126,7 @@ describe('Component: <Registration />', () => {
     await new Promise(r => setTimeout(r, 2000));
 
     await waitFor(() => {
-      expect(screen.getByTestId('step').textContent).toBe('5/9');
+      expect(screen.getByTestId('step').textContent).toBe('Passo 5 de 9');
     });
 
     // Informing the Email
@@ -141,7 +143,7 @@ describe('Component: <Registration />', () => {
     await new Promise(r => setTimeout(r, 2000));
 
     await waitFor(() => {
-      expect(screen.getByTestId('step').textContent).toBe('6/9');
+      expect(screen.getByTestId('step').textContent).toBe('Passo 6 de 9');
     });
 
     // Informing the PhoneNumber
@@ -156,7 +158,7 @@ describe('Component: <Registration />', () => {
     await new Promise(r => setTimeout(r, 2000));
 
     await waitFor(() => {
-      expect(screen.getByTestId('step').textContent).toBe('7/9');
+      expect(screen.getByTestId('step').textContent).toBe('Passo 7 de 9');
     });
 
     // Informing the Password
@@ -174,7 +176,7 @@ describe('Component: <Registration />', () => {
     await new Promise(r => setTimeout(r, 2000));
 
     await waitFor(() => {
-      expect(screen.getByTestId('step').textContent).toBe('8/9');
+      expect(screen.getByTestId('step').textContent).toBe('Passo 8 de 9');
     });
 
     // Accept terms and Click not now button
@@ -241,7 +243,7 @@ describe('Component: <Registration />', () => {
     await new Promise(r => setTimeout(r, 200));
 
     await waitFor(() => {
-      expect(screen.getByTestId('step').textContent).toBe('2/9');
+      expect(screen.getByTestId('step').textContent).toBe('Passo 2 de 9');
     });
 
     // Informing the CNPJ
@@ -255,7 +257,7 @@ describe('Component: <Registration />', () => {
     await new Promise(r => setTimeout(r, 200));
 
     await waitFor(() => {
-      expect(screen.getByTestId('step').textContent).toBe('3/9');
+      expect(screen.getByTestId('step').textContent).toBe('Passo 3 de 9');
     });
 
     // Informing the Name
@@ -272,7 +274,7 @@ describe('Component: <Registration />', () => {
     await new Promise(r => setTimeout(r, 200));
 
     await waitFor(() => {
-      expect(screen.getByTestId('step').textContent).toBe('4/9');
+      expect(screen.getByTestId('step').textContent).toBe('Passo 4 de 9');
     });
 
     // Informing the BirthDate
@@ -287,7 +289,7 @@ describe('Component: <Registration />', () => {
     await new Promise(r => setTimeout(r, 2000));
 
     await waitFor(() => {
-      expect(screen.getByTestId('step').textContent).toBe('5/9');
+      expect(screen.getByTestId('step').textContent).toBe('Passo 5 de 9');
     });
 
     // Informing the Email
@@ -304,7 +306,7 @@ describe('Component: <Registration />', () => {
     await new Promise(r => setTimeout(r, 2000));
 
     await waitFor(() => {
-      expect(screen.getByTestId('step').textContent).toBe('6/9');
+      expect(screen.getByTestId('step').textContent).toBe('Passo 6 de 9');
     });
 
     // Informing the PhoneNumber
@@ -319,7 +321,7 @@ describe('Component: <Registration />', () => {
     await new Promise(r => setTimeout(r, 2000));
 
     await waitFor(() => {
-      expect(screen.getByTestId('step').textContent).toBe('7/9');
+      expect(screen.getByTestId('step').textContent).toBe('Passo 7 de 9');
     });
 
     // Informing the Password
@@ -337,7 +339,7 @@ describe('Component: <Registration />', () => {
     await new Promise(r => setTimeout(r, 2000));
 
     await waitFor(() => {
-      expect(screen.getByTestId('step').textContent).toBe('8/9');
+      expect(screen.getByTestId('step').textContent).toBe('Passo 8 de 9');
     });
 
     // Accept terms and Click yes button
@@ -353,7 +355,7 @@ describe('Component: <Registration />', () => {
     await new Promise(r => setTimeout(r, 2000));
 
     await waitFor(() => {
-      expect(screen.getByTestId('step').textContent).toBe('9/9');
+      expect(screen.getByTestId('step').textContent).toBe('Passo 9 de 9');
     });
 
     // Informing all data
@@ -445,7 +447,7 @@ describe('Component: <Registration />', () => {
     await new Promise(r => setTimeout(r, 200));
 
     await waitFor(() => {
-      expect(screen.getByTestId('step').textContent).toBe('2/9');
+      expect(screen.getByTestId('step').textContent).toBe('Passo 2 de 9');
     });
 
     // Informing the CNPJ
@@ -459,7 +461,7 @@ describe('Component: <Registration />', () => {
     await new Promise(r => setTimeout(r, 200));
 
     await waitFor(() => {
-      expect(screen.getByTestId('step').textContent).toBe('3/9');
+      expect(screen.getByTestId('step').textContent).toBe('Passo 3 de 9');
     });
 
     // Informing the Name
@@ -476,7 +478,7 @@ describe('Component: <Registration />', () => {
     await new Promise(r => setTimeout(r, 200));
 
     await waitFor(() => {
-      expect(screen.getByTestId('step').textContent).toBe('4/9');
+      expect(screen.getByTestId('step').textContent).toBe('Passo 4 de 9');
     });
 
     // Informing the BirthDate
@@ -502,7 +504,7 @@ describe('Component: <Registration />', () => {
     await new Promise(r => setTimeout(r, 2000));
 
     await waitFor(() => {
-      expect(screen.getByTestId('step').textContent).toBe('1/9');
+      expect(screen.getByTestId('step').textContent).toBe('Passo 1 de 9');
     });
   }, 50000);
 
@@ -554,7 +556,7 @@ describe('Component: <Registration />', () => {
     await new Promise(r => setTimeout(r, 200));
 
     await waitFor(() => {
-      expect(screen.getByTestId('step').textContent).toBe('2/9');
+      expect(screen.getByTestId('step').textContent).toBe('Passo 2 de 9');
     });
 
     // Informing the CNPJ
@@ -568,7 +570,7 @@ describe('Component: <Registration />', () => {
     await new Promise(r => setTimeout(r, 200));
 
     await waitFor(() => {
-      expect(screen.getByTestId('step').textContent).toBe('3/9');
+      expect(screen.getByTestId('step').textContent).toBe('Passo 3 de 9');
     });
 
     // Informing the Name
@@ -585,7 +587,7 @@ describe('Component: <Registration />', () => {
     await new Promise(r => setTimeout(r, 200));
 
     await waitFor(() => {
-      expect(screen.getByTestId('step').textContent).toBe('4/9');
+      expect(screen.getByTestId('step').textContent).toBe('Passo 4 de 9');
     });
 
     // Informing the BirthDate
@@ -600,7 +602,7 @@ describe('Component: <Registration />', () => {
     await new Promise(r => setTimeout(r, 2000));
 
     await waitFor(() => {
-      expect(screen.getByTestId('step').textContent).toBe('5/9');
+      expect(screen.getByTestId('step').textContent).toBe('Passo 5 de 9');
     });
 
     // Informing the Email
@@ -617,7 +619,7 @@ describe('Component: <Registration />', () => {
     await new Promise(r => setTimeout(r, 2000));
 
     await waitFor(() => {
-      expect(screen.getByTestId('step').textContent).toBe('6/9');
+      expect(screen.getByTestId('step').textContent).toBe('Passo 6 de 9');
     });
 
     // Informing the PhoneNumber
@@ -632,7 +634,7 @@ describe('Component: <Registration />', () => {
     await new Promise(r => setTimeout(r, 2000));
 
     await waitFor(() => {
-      expect(screen.getByTestId('step').textContent).toBe('7/9');
+      expect(screen.getByTestId('step').textContent).toBe('Passo 7 de 9');
     });
 
     // Informing the Password
@@ -650,7 +652,7 @@ describe('Component: <Registration />', () => {
     await new Promise(r => setTimeout(r, 2000));
 
     await waitFor(() => {
-      expect(screen.getByTestId('step').textContent).toBe('8/9');
+      expect(screen.getByTestId('step').textContent).toBe('Passo 8 de 9');
     });
 
     // Accept terms and Click yes button
@@ -666,7 +668,7 @@ describe('Component: <Registration />', () => {
     await new Promise(r => setTimeout(r, 2000));
 
     await waitFor(() => {
-      expect(screen.getByTestId('step').textContent).toBe('9/9');
+      expect(screen.getByTestId('step').textContent).toBe('Passo 9 de 9');
     });
 
     // Informing all data

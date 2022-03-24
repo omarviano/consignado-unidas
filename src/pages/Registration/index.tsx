@@ -28,7 +28,7 @@ import { RegistrationServices } from './services/registration.services';
 
 import * as Styled from './styles';
 
-// const NUMBER_OF_STEPS = 9;
+const NUMBER_OF_STEPS = 9;
 
 const Registration: React.FC = () => {
   const [currentStep, setCurrentStep] = useState(0);
@@ -95,6 +95,7 @@ const Registration: React.FC = () => {
     try {
       await RegistrationServices.validateData({
         cpf: Document.removeMask(formsData?.cpf || ''),
+        cnpj: Document.removeMask(formsData?.cnpj || ''),
         name: formsData?.name,
         birthDate,
       });
@@ -150,9 +151,23 @@ const Registration: React.FC = () => {
 
   return (
     <Layout>
-      <Styled.CurrentStep data-testid="step">
-        {`${currentStep + 1}/9`}
-      </Styled.CurrentStep>
+      <Styled.StepIndicatorContainer>
+        <Styled.BackButton type="button" onClick={handleClickPrev}>
+          <ArrowBack />
+        </Styled.BackButton>
+
+        <Styled.StepTitle data-testid="step">
+          Passo {currentStep + 1} de {NUMBER_OF_STEPS}
+        </Styled.StepTitle>
+
+        <Styled.StepIndicatorBox>
+          {Array(NUMBER_OF_STEPS)
+            .fill(null)
+            .map((_, step) => (
+              <Styled.StepIndicator active={step === currentStep} />
+            ))}
+        </Styled.StepIndicatorBox>
+      </Styled.StepIndicatorContainer>
 
       <Styled.StepsContainer currentStep={currentStep}>
         <Styled.Step step={0} currentStep={currentStep}>

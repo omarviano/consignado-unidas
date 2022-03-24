@@ -1,6 +1,6 @@
 {
   "name": "portal-consignado",
-  "version": "1.8.0",
+  "version": "1.9.0",
   "private": true,
   "scripts": {
     "start": "react-scripts start",
@@ -10,6 +10,7 @@
     "build:dev": "env-cmd -f .env.development react-scripts build",
     "build:staging": "env-cmd -f .env.staging react-scripts build",
     "build:preprod": "env-cmd -f .env.preprod react-scripts build",
+    "build:posrelease": "env-cmd -f .env.posrelease react-scripts build",
     "build:prod": "env-cmd -f .env.prod react-scripts build",
     "commit": "cz",
     "prepare": "husky install",
