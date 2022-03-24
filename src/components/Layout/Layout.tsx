@@ -123,11 +123,11 @@ const Layout: React.FC<LayoutProps> = ({ children, containerStyles }) => {
                   O site consignado.unidas.com.br pertence e é operado pela
                   Unidas, inscrita no CNPJ 10.215.988/0001-60, com sede na
                   Avenida Raja Gabaglia, nº 1.781, 12º andar, Luxemburgo, Belo
-                  Horizonte/MG. A
+                  Horizonte/MG.
                 </Styled.AboutText>
 
                 <Styled.AboutText>
-                  Unidas não é uma instituição financeira e não realiza
+                  A Unidas não é uma instituição financeira e não realiza
                   operações de crédito diretamente. A Unidas atua como
                   correspondente bancário da Mova Sociedade de Empréstimo entre
                   Pessoas S.A. (CNPJ 33.959.738/0001-30) e segue as diretrizes
